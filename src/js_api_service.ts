@@ -1,18 +1,17 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { loadLocale, loadLocaleJSON } from './utils';
+import * as fs from 'fs';
 
-export class LuaAPI {
+export class JavascriptAPI {
     private webviewPanel: vscode.WebviewPanel;
     private viewType: string;
 
     constructor(
         private readonly context: vscode.ExtensionContext,
-        private readonly isServer: boolean
     ){
         // @ts-ignore
         this.webviewPanel = null;
-        this.viewType = `dota2CodingHelper.${isServer?'luaServerAPI':'luaClientAPI'}`;
+        this.viewType = `dota2CodingHelper.jsAPI`;
     }
 
     public register() {
@@ -25,28 +24,22 @@ export class LuaAPI {
     private start(): void {
         this.webviewPanel = vscode.window.createWebviewPanel(
             this.viewType,
-            `Dota2 Lua ${this.isServer?'Server':'Client'} API`,
+            `Dota2 Javascript API`,
             vscode.ViewColumn.One,
             {
                 enableScripts: true,
                 retainContextWhenHidden: true,
+                enableFindWidget: true,
             });
         this.renderHTML();
     }
 
-    private renderHTML() {
+    private async renderHTML() {
         const media = path.join(this.context.extensionPath, 'media');
-
-        const jsUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, 'lua_api.js'))
-        );
+        const jsAPIPath = path.join(media, 'javascript_api.html');
 
         const styleUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, 'lua_api.css'))
-        );
-
-        const apiUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, `lua_${this.isServer?'server':'client'}_api.json`))
+            vscode.Uri.file(path.join(media, 'js_api.css'))
         );
 
         this.webviewPanel.webview.html = `<!DOCTYPE html>
@@ -58,12 +51,7 @@ export class LuaAPI {
                 <link href="${styleUri}" rel="stylesheet" />
             </head>
             <body>
-                <div id="root"></div>
-                <script>
-                    window.apiUri = "${apiUri}";
-                    window.localeData = \`${loadLocaleJSON()}\`;
-                </script>
-                <script src="${jsUri}"></script>
+                ${await fs.promises.readFile(jsAPIPath)}
             </body>
             </html>`;
     }
