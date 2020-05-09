@@ -1,11 +1,16 @@
 {
 	"name": "dota2-coding-helper",
 	"displayName": "Dota2 Coding Helper",
-	"description": "",
-	"version": "0.0.2",
+	"description": "View some Dota2 custom game document",
+    "version": "0.0.2",
+    "publisher": "robincode",
+    "icon": "media/logo.png",
 	"engines": {
 		"vscode": "^1.44.0"
-	},
+    },
+    "repository": {
+        "url": "https://github.com/RobinCodeX/dota2-coding-helper"
+    },
 	"categories": [
 		"Other"
 	],
