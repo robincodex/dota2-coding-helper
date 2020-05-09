@@ -1,0 +1,125 @@
+@import './common.css';
+
+#search-container {
+    font-size: 20px;
+    display: block;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+}
+#search-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#api-container {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 45px;
+    left: 5px;
+    right: 5px;
+    bottom: 8px;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border: 1px solid #303030;
+    margin-right: 8px;
+}
+
+#menu-header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #303030;
+}
+#menu-header > div {
+    flex-grow: 1;
+    text-align: center;
+    padding: 2px 0px;
+    cursor: pointer;
+    user-select: none;
+    color: #bbbbbb;
+}
+
+#menu-header > div:first-child {
+    border-right: 1px solid #303030;
+}
+
+#menu-header > div.selected {
+    color:#73bbff;
+}
+
+#menu-item-list {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#menu .menu-item {
+    padding: 3px 5px;
+    color: #eeeeee;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+#menu .menu-item:hover {
+    background: #404040;
+}
+
+#menu .menu-item.selected {
+    background: #00407c;
+}
+
+#api-list-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #303030;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.api-title {
+    color: #4ba8ff;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.api-title:not(:first-child) {
+    margin-top: 20px;
+}
+
+.table.api-list {
+}
+
+.func-return {
+    color: #3ac98f;
+}
+
+.func-name {
+    color: #eec773;
+}
+
+.func-params {
+    color: #cfcfcf;
+}
+
+.function {
+    margin-bottom: 3px;
+    font-size: 17px;
+}
+
+.constant-value {
+    color: #cfcfcf;
+    float: right;
+}

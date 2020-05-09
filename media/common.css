@@ -1,0 +1,43 @@
+body {
+    background: #1e1e1e;
+    color: #eeeeee;
+    width: 100%; }
+  
+  button {
+    background: #303030;
+    border: 1px solid #000000;
+    color: #eeeeee;
+    padding: 4px 8px;
+    outline: none;
+    border-radius: 100000px; }
+    button:hover {
+      border: 1px solid #555555; }
+    button.danger {
+      color: #e9b6b6;
+      border: 1px solid #941515; }
+      button.danger:hover {
+        border: 1px solid #d44d4d; }
+  
+  .invisible {
+    display: none !important; }
+  
+  .table {
+    border-collapse: collapse; }
+    .table tr td, .table tr th {
+      padding: 5px;
+      border: 1px solid #353535; }
+    .table tr:not(:last-child) td, .table tr:not(:last-child) th {
+      border-bottom-width: 0; }
+  
+  input[type="text"] {
+    background: #303030;
+    border: 1px solid #000000;
+    color: #eeeeee;
+    padding: 5px 4px;
+    width: 200px; }
+    input[type="text"]:focus {
+      outline-style: dashed;
+      outline-color: #374b37;
+      outline-width: 1px; }
+    input[type="text"].error:focus {
+      outline-color: #8f1c1c; }

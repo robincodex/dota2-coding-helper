@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:dota2CodingHelper.luaServerAPI"
+        "onCommand:dota2CodingHelper.luaServerAPI",
+        "onCommand:dota2CodingHelper.luaClientAPI"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +19,11 @@
 			{
 				"command": "dota2CodingHelper.luaServerAPI",
                 "title": "Lua Server API",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+				"command": "dota2CodingHelper.luaClientAPI",
+                "title": "Lua Client API",
                 "category": "Dota2 Coding Helper"
 			}
 		]
