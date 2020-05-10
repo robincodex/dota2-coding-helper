@@ -17,6 +17,11 @@ async function fetchJavascriptAPI(cb) {
     body.find('#bodyContent > div:last-child').remove();
     body.find('#siteSub').html('Copy From Valve Developer Community');
 
+    const mwContentText = body.find('#mw-content-text > div:first-child');
+    if (!mwContentText.attr('id')) {
+        mwContentText.remove();
+    }
+
     const $modifierfunction = body.find('#modifierfunction').parent();
     $modifierfunction.next().remove();
     $modifierfunction.remove();
@@ -60,7 +65,6 @@ async function fetchJavascriptAPI(cb) {
 
 async function fetchPanoramaCSS(cb) {
     const res = await request("https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Panorama/CSS_Properties");
-    // const res = await fs.promises.readFile('I:/web/API - Valve Developer Community.html');
     const $ = cheerio.load(res);
     const body = $('div#content');
     body.find('h1#firstHeading').remove();
@@ -72,11 +76,39 @@ async function fetchPanoramaCSS(cb) {
     body.find('#bodyContent > div:last-child').remove();
     body.find('#siteSub').html('Copy From Valve Developer Community');
 
+    const mwContentText = body.find('#mw-content-text > div:first-child');
+    if (!mwContentText.attr('id')) {
+        mwContentText.remove();
+    }
+
     await fs.promises.writeFile("./media/panorama_css.html", body.html());
+    cb();
+}
+
+async function fetchAbilitiesDataDriven(cb) {
+    const res = await request("https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/Abilities_Data_Driven");
+    const $ = cheerio.load(res);
+    const body = $('div#content');
+    body.find('h1#firstHeading').remove();
+    body.find('div#contentSub').remove();
+    body.find('div#jump-to-nav').remove();
+    body.find('#toctitle .toctoggle').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#siteSub').html('Copy From Valve Developer Community');
+    
+    const mwContentText = body.find('#mw-content-text > div:first-child');
+    if (!mwContentText.attr('id')) {
+        mwContentText.remove();
+    }
+
+    await fs.promises.writeFile("./media/abilities_data_driven.html", body.html());
     cb();
 }
 
 task("default", parallel(
     fetchJavascriptAPI,
-    fetchPanoramaCSS
+    fetchPanoramaCSS,
+    fetchAbilitiesDataDriven
 ));

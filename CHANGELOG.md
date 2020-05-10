@@ -1,10 +1,11 @@
 # Change Log
 
 ## v0.0.3
-- Add Panorama CSS View
+- Add View of Panorama CSS
+- Add View of Abilities Data Driven 
 
 ## v0.0.2
-- Add Javascript API View
+- Add View of Javascript API
 
 ## v0.0.1
-- Add Lua Server and Client API View
+- Add View of Lua Server and Client API

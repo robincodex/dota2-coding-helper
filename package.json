@@ -18,7 +18,8 @@
 		"onCommand:dota2CodingHelper.luaServerAPI",
         "onCommand:dota2CodingHelper.luaClientAPI",
         "onCommand:dota2CodingHelper.jsAPI",
-        "onCommand:dota2CodingHelper.panoramaCSS"
+        "onCommand:dota2CodingHelper.panoramaCSS",
+        "onCommand:dota2CodingHelper.abilitiesDataDriven"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -41,6 +42,11 @@
             {
 				"command": "dota2CodingHelper.panoramaCSS",
 				"title": "Panorama CSS",
+				"category": "Dota2 Coding Helper"
+            },
+            {
+				"command": "dota2CodingHelper.abilitiesDataDriven",
+				"title": "Abilities Data Driven",
 				"category": "Dota2 Coding Helper"
 			}
 		]
