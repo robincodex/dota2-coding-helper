@@ -1,8 +1,8 @@
 {
 	"name": "dota2-coding-helper",
 	"displayName": "Dota2 Coding Helper",
-	"description": "View some Dota2 custom game document",
-    "version": "0.0.2",
+	"description": "View some document for Dota2 custom game",
+    "version": "0.0.3",
     "publisher": "robincode",
     "icon": "media/logo.png",
 	"engines": {
@@ -17,7 +17,8 @@
 	"activationEvents": [
 		"onCommand:dota2CodingHelper.luaServerAPI",
         "onCommand:dota2CodingHelper.luaClientAPI",
-        "onCommand:dota2CodingHelper.jsAPI"
+        "onCommand:dota2CodingHelper.jsAPI",
+        "onCommand:dota2CodingHelper.panoramaCSS"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -35,6 +36,11 @@
             {
 				"command": "dota2CodingHelper.jsAPI",
 				"title": "Javascript API",
+				"category": "Dota2 Coding Helper"
+            },
+            {
+				"command": "dota2CodingHelper.panoramaCSS",
+				"title": "Panorama CSS",
 				"category": "Dota2 Coding Helper"
 			}
 		]

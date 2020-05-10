@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.0.3
+- Add Panorama CSS View
+
 ## v0.0.2
 - Add Javascript API View
 

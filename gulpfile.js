@@ -58,6 +58,25 @@ async function fetchJavascriptAPI(cb) {
     cb();
 }
 
+async function fetchPanoramaCSS(cb) {
+    const res = await request("https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Panorama/CSS_Properties");
+    // const res = await fs.promises.readFile('I:/web/API - Valve Developer Community.html');
+    const $ = cheerio.load(res);
+    const body = $('div#content');
+    body.find('h1#firstHeading').remove();
+    body.find('div#contentSub').remove();
+    body.find('div#jump-to-nav').remove();
+    body.find('#toctitle .toctoggle').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#bodyContent > div:last-child').remove();
+    body.find('#siteSub').html('Copy From Valve Developer Community');
+
+    await fs.promises.writeFile("./media/panorama_css.html", body.html());
+    cb();
+}
+
 task("default", parallel(
-    fetchJavascriptAPI
+    fetchJavascriptAPI,
+    fetchPanoramaCSS
 ));

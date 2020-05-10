@@ -7,3 +7,8 @@
 You can use `Ctrl+F` to search content.
 
 ![Javascript API](https://github.com/RobinCodeX/dota2-coding-helper/raw/master/.github/js_api.gif)
+
+## View Panorama CSS
+You can use `Ctrl+F` to search content.
+
+![Panorama CSS](https://github.com/RobinCodeX/dota2-coding-helper/raw/master/.github/panorama_css.png)
