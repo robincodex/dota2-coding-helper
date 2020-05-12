@@ -83,3 +83,50 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+#lightbox {
+    position: fixed;
+    flex-direction: row;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    user-select: none;
+}
+
+#lightbox.show {
+    display: flex;
+}
+
+#lightbox #left-arrow {
+    flex-shrink: 0;
+    width: 128px;
+    height: 128px;
+    background-image: url("./down_arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    transform: rotateZ(90deg);
+    cursor: pointer;
+    margin: 0px 5px;
+}
+#lightbox #right-arrow {
+    width: 128px;
+    height: 128px;
+    flex-shrink: 1;
+    background-image: url("./down_arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    transform: rotateZ(-90deg);
+    cursor: pointer;
+    margin: 0px 5px;
+}
+#lightbox #img-container {
+    flex-grow: 1;
+    text-align: center;
+    pointer-events: none;
+}

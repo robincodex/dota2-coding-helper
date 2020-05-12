@@ -25,6 +25,79 @@ async function showContent( file ) {
     content.scrollTop = 0;
 }
 
+/** @type {HTMLImageElement} */
+let lastImageForLightbox = null;
+
+/**
+ * @param {HTMLImageElement} img 
+ */
+function showLightbox( img ) {
+    const lightbox = root.querySelector('#lightbox');
+    const container = lightbox.querySelector('#img-container');
+    container.innerHTML = '';
+    container.appendChild(img.cloneNode(false));
+    lightbox.classList.add('show');
+    lightbox.addEventListener('wheel', onLightboxMouseWheel);
+    lastImageForLightbox = img;
+}
+
+function previousLightboxImage() {
+    if (!lastImageForLightbox) {
+        return;
+    }
+    let currentImage = lastImageForLightbox;
+    while(currentImage.previousElementSibling) {
+        const nextImage = currentImage.previousElementSibling;
+        if (!(nextImage instanceof HTMLImageElement)) {
+            return;
+        }
+        const alt = nextImage.getAttribute('alt');
+        if (alt === 'box-static') {
+            currentImage = nextImage;
+            continue;
+        }
+        else if (alt === 'box') {
+            showLightbox(nextImage);
+        }
+        return;
+    }
+}
+
+function nextLightboxImage() {
+    if (!lastImageForLightbox) {
+        return;
+    }
+    let currentImage = lastImageForLightbox;
+    while(currentImage.nextElementSibling) {
+        const nextImage = currentImage.nextElementSibling;
+        if (!(nextImage instanceof HTMLImageElement)) {
+            return;
+        }
+        const alt = nextImage.getAttribute('alt');
+        if (alt === 'box-static') {
+            currentImage = nextImage;
+            continue;
+        }
+        else if (alt === 'box') {
+            showLightbox(nextImage);
+        }
+        return;
+    }
+}
+
+/**
+ * @param {MouseWheelEvent} event 
+ */
+function onLightboxMouseWheel( event ) {
+    console.log("onLightboxMouseWheel");
+    event.preventDefault();
+    if (event.deltaY < 0) {
+        previousLightboxImage();
+    } else {
+        nextLightboxImage();
+    }
+}
+
 (async function(){
     let category = '';
     Object.keys(window.dirsInfo).sort().forEach((v) => {
@@ -44,6 +117,11 @@ async function showContent( file ) {
         <div id="docs-content" class="markdown-body">
         </div>
     </div>
+    <div id="lightbox">
+        <div id="left-arrow"></div>
+        <div id="img-container"></div>
+        <div id="right-arrow"></div>
+    </div>
     `;
 
     const input = root.querySelector(`#category-Panorama`);
@@ -59,7 +137,8 @@ async function showContent( file ) {
         }
     });
 
-    root.addEventListener('click', (ev) => {
+    root.querySelector('#docs-container').addEventListener('click', (ev) => {
+        ev.stopPropagation();
         if (ev.target instanceof HTMLDivElement && ev.target.classList.contains('file')) {
             const file = ev.target.getAttribute('data-file');
             if (file) {
@@ -71,6 +150,25 @@ async function showContent( file ) {
                 ev.target.classList.add('selected');
                 lastSelectedFileElement = ev.target;
             }
+        }
+        else if (ev.target instanceof HTMLImageElement && ev.target.getAttribute("alt") === 'box') {
+            showLightbox(ev.target);
+        }
+    });
+
+    const lightbox = root.querySelector('#lightbox');
+    lightbox.addEventListener('click', (ev) => {
+        if (ev.target instanceof HTMLDivElement) {
+            if (ev.target.id === 'left-arrow') {
+                previousLightboxImage();
+                return;
+            } else if (ev.target.id === 'right-arrow') {
+                nextLightboxImage();
+                return;
+            }
+            lightbox.classList.remove('show');
+            lightbox.removeEventListener('wheel', onLightboxMouseWheel);
+            lastImageForLightbox = null;
         }
     });
 })();
