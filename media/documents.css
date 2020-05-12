@@ -1,0 +1,85 @@
+@import "./atom-one-dark.css";
+@import "./markdown.css";
+
+.markdown-body img[alt="box"] {
+    height: 128px;
+    border: 2px solid #101010;
+    margin: 3px;
+    position: relative;
+    transition-property: transform;
+    transition-duration: 0.12s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.markdown-body img[alt="box"]:hover {
+    transform: scaleX(1.1) scaleY(1.1);
+    z-index: 100;
+    border: 2px solid #ffffff;
+}
+
+.markdown-body img[alt="box-static"] {
+    height: 128px;
+    margin: 3px 0px;
+    position: relative;
+    background: transparent;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#category {
+    display: flex;
+    flex-direction: row;
+}
+
+#category input {
+    vertical-align: middle;
+    outline: none;
+}
+
+#category label {
+    vertical-align: middle;
+}
+
+#docs-container {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 25px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+
+#docs-files {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-right: 10px;
+    border: 1px solid #353535;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#docs-files > div {
+    padding: 5px 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#docs-files > div:hover {
+    background-color: #303030;
+}
+
+#docs-files > div.selected {
+    background-color: #04467c;
+}
+
+#docs-content {
+    flex-grow: 1;
+    border: 1px solid #353535;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -4,6 +4,7 @@ import { loadLocale } from './utils';
 import { JavascriptAPI } from './js_api_service';
 import { PanoramaCSS } from './panorama_css';
 import { AbilitiesDataDriven } from './abilities_data_driven';
+import { CustomGameDocuments } from './documents_service';
 
 export function activate(context: vscode.ExtensionContext) {
     loadLocale();
@@ -12,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push((new JavascriptAPI(context)).register());
     context.subscriptions.push((new PanoramaCSS(context)).register());
     context.subscriptions.push((new AbilitiesDataDriven(context)).register());
+    context.subscriptions.push((new CustomGameDocuments(context)).register());
 }
 
 export function deactivate() {}

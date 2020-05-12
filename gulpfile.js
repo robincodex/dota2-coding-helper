@@ -112,3 +112,5 @@ task("default", parallel(
     fetchPanoramaCSS,
     fetchAbilitiesDataDriven
 ));
+
+task("docs", require('./generate_docs'));
