@@ -310,7 +310,7 @@ function onSearch( value ) {
     // Fetch api data;
     const res = await fetch(window.apiUri);
     apiData = await res.json();
-    const localeData = JSON.parse(window.localeData);
+    const localeData = window.localeData;
 
     // Initialize html
     root.innerHTML = `

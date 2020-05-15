@@ -9,4 +9,5 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 .github
-/docs
+docs
+!media/docs
