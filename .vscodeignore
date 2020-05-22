@@ -11,3 +11,5 @@ vsc-extension-quickstart.md
 .github
 docs
 !media/docs
+generate_docs.js
+gulpfile.js
