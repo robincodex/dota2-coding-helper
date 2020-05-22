@@ -2,7 +2,7 @@
 	"name": "dota2-coding-helper",
 	"displayName": "Dota2 Coding Helper",
 	"description": "View some document for Dota2 custom game",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"publisher": "robincode",
 	"icon": "media/logo.png",
 	"engines": {
