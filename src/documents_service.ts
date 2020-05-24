@@ -35,6 +35,10 @@ export class CustomGameDocuments {
     }
 
     private async getDirsInfo() {
+        type file_info_t = {
+            filename: string,
+            realname: string,
+        };
         const sortList: string[] = [
             "CSS.html",
             "Panel.html",
@@ -43,14 +47,14 @@ export class CustomGameDocuments {
             "Button.html",
             "综合.html",
         ];
-        const sortFunc = (a: string, b: string) => {
-            if (a === b) {
+        const sortFunc = (a: file_info_t, b: file_info_t) => {
+            if (a.realname === b.realname) {
                 return 0;
             }
-            let c = sortList.indexOf(a);
-            let d = sortList.indexOf(b);
+            let c = sortList.indexOf(a.realname);
+            let d = sortList.indexOf(b.realname);
             if (c >= 0 && d >= 0) {
-                return sortList.indexOf(a) < sortList.indexOf(b)? -1:1;
+                return sortList.indexOf(a.realname) < sortList.indexOf(b.realname)? -1:1;
             } else if (c >= 0) {
                 return -1;
             } else if (d >= 0) {
@@ -60,13 +64,19 @@ export class CustomGameDocuments {
         };
 
         const rootPath = path.resolve(__dirname, "../media/docs");
-        const info: {[key: string]: string[]} = {};
+        const info: {[key: string]: file_info_t[]} = {};
         const docs = await fs.promises.readdir(rootPath);
         for(const category of docs) {
-            const list: string[] = [];
+            const list: file_info_t[] = [];
             const files = await fs.promises.readdir(path.join(rootPath, category));
-            files.sort(sortFunc);
-            list.push(...files);
+            const files2 = files.map((v) => {
+                return {
+                    filename: v,
+                    realname: Buffer.from(v.replace('.html', ''), 'hex').toString('utf8')+'.html',
+                };
+            });
+            files2.sort(sortFunc);
+            list.push(...files2);
             info[category] = list;
         }
         return JSON.stringify(info);

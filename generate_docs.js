@@ -11,7 +11,7 @@ converter.setOption('tasklists', true);
 converter.setOption('strikethrough', true);
 converter.setOption('emoji', true);
 
-async function start() {
+async function generate_docs() {
     if (!fs.existsSync("./media/docs")) {
         await fs.promises.mkdir('./media/docs');
     }
@@ -69,13 +69,14 @@ async function start() {
             };
             await imgWorker();
 
-            await fs.promises.writeFile(path.join( targetPath, f.replace('.md','.html') ), $("body").html());
+            const buf = Buffer.from(f.replace('.md','')).toString('hex');
+            await fs.promises.writeFile(path.join( targetPath, `${buf.toString('ascii')}.html` ), $("body").html());
         }
     }
 
 }
 
 module.exports = async function(cb) {
-    await start();
+    await generate_docs();
     cb();
 };

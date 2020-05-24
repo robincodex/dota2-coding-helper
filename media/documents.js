@@ -9,8 +9,8 @@ function swapCategory( name ) {
 
     let fileList = '';
     const files = window.dirsInfo[name];
-    for(const f of files) {
-        fileList += `<div class="file" data-file="${f}">${f.split('.')[0]}</div>`;
+    for(const v of files) {
+        fileList += `<div class="file" data-file="${v.filename}">${v.realname.split('.')[0]}</div>`;
     }
     docsFiles.innerHTML = fileList;
 
