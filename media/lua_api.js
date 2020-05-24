@@ -116,7 +116,7 @@ function renderConstants(title, data) {
         return `<tr>
             <td>
                 <div class="function">
-                    <span class="func-name">${v.name}</span><span class="constant-value">${v.value}</span>
+                    <span class="func-name">${v.name}</span> <span class="constant-value">${v.value}</span>
                 </div>
                 <div>${v.desc}</div>
             </td>
