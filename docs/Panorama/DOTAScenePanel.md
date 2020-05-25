@@ -59,7 +59,7 @@ $.DispatchEvent( "PlaySoundEffect", "effect", "ui.courier_in_use" );
 // 设置单位
 // 第二参数未知，从效果来看，第二个参数应该是决定渲染单位的方式
 // 因为设置单位之后，单位不是站在圆盘上面的，这跟默认的unit属性不一样
-function DOTAScenePanel.SetUnit(string unitName, string a): void;
+function DOTAScenePanel.SetUnit(string unitName, string a,bool drawbackground): void;
 
 // 获取嵌入的面板(panoramasurfacexml)
 function DOTAScenePanel.GetPanoramaSurfacePanel(): Panel;
