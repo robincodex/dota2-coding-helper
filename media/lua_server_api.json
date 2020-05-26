@@ -16,6 +16,11 @@
       "name":"AngleDiff",
       "return":"float"
     },{
+      "desc":"Generate a vector given a QAngles",
+      "func":"( QAngle_1 )",
+      "name":"AnglesToVector",
+      "return":"Vector"
+    },{
       "desc":"AppendToLogFile is deprecated. Print to the console for logging instead.",
       "func":"( string_1, string_2 )",
       "name":"AppendToLogFile",
@@ -49,6 +54,11 @@
       "desc":"Create all I/O events for a particular entity",
       "func":"( ehandle_1 )",
       "name":"CancelEntityIOEvents",
+      "return":"void"
+    },{
+      "desc":"CenterCameraOnUnit( nPlayerId, hUnit ): Centers each players' camera on a unit.",
+      "func":"( int_1, handle_2 )",
+      "name":"CenterCameraOnUnit",
       "return":"void"
     },{
       "desc":"( teamNumber )",
@@ -160,6 +170,11 @@
       "func":"()",
       "name":"DebugBreak",
       "return":"void"
+    },{
+      "desc":"Creates a test unit controllable by the specified player.",
+      "func":"( handle_1, string_2, int_3, bool_4, handle_5 )",
+      "name":"DebugCreateUnit",
+      "return":"int"
     },{
       "desc":"Draw a debug overlay box (origin, mins, maxs, forward, r, g, b, a, duration )",
       "func":"( Vector_1, Vector_2, Vector_3, int_4, int_5, int_6, int_7, float_8 )",
@@ -371,6 +386,11 @@
       "name":"FrameTime",
       "return":"float"
     },{
+      "desc":"Returns the currently active spawn group handle",
+      "func":"()",
+      "name":"GetActiveSpawnGroupHandle",
+      "return":"int"
+    },{
       "desc":"( version )",
       "func":"( string_1 )",
       "name":"GetDedicatedServerKey",
@@ -455,6 +475,11 @@
       "func":"()",
       "name":"GetSystemTime",
       "return":"string"
+    },{
+      "desc":"Get system time in milliseconds",
+      "func":"()",
+      "name":"GetSystemTimeMS",
+      "return":"double"
     },{
       "desc":"",
       "func":"( int_1, int_2, int_3, Vector_4, int_5, int_6, int_7 )",
@@ -586,6 +611,11 @@
       "name":"MakeStringToken",
       "return":"int"
     },{
+      "desc":"Triggers the creation of entities in a manually-completed spawn group",
+      "func":"( int_1 )",
+      "name":"ManuallyTriggerSpawnGroupCompletion",
+      "return":"void"
+    },{
       "desc":"Start a minimap event. (nTeamID, hEntity, nXCoord, nYCoord, nEventType, nEventDuration).",
       "func":"( int_1, handle_2, int_3, int_4, int_5, int_6 )",
       "name":"MinimapEvent",
@@ -706,6 +736,11 @@
       "name":"RollPercentage",
       "return":"bool"
     },{
+      "desc":"( chance, pseudo random id, unit.",
+      "func":"( unsigned_1, int_2, handle_3 )",
+      "name":"RollPseudoRandomPercentage",
+      "return":"bool"
+    },{
       "desc":"Rotate a QAngle by another QAngle.",
       "func":"( QAngle_1, QAngle_2 )",
       "name":"RotateOrientation",
@@ -815,6 +850,11 @@
       "func":"( Vector_1, float_2 )",
       "name":"SpawnDOTAShopTriggerRadiusApproximate",
       "return":"handle"
+    },{
+      "desc":"Asynchronously spawns a single entity from a table",
+      "func":"( string_1, handle_2, handle_3, handle_4 )",
+      "name":"SpawnEntityFromTableAsynchronous",
+      "return":"void"
     },{
       "desc":"Synchronously spawns a single entity from a table",
       "func":"( string_1, handle_2 )",
@@ -1313,6 +1353,11 @@
       "desc":"",
       "func":"( bool bAutoUse, float flInitialHeight, float flLaunchHeight, float flDuration, Vector vEndPoint )",
       "name":"LaunchLootInitialHeight",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bAutoUse, float flRequiredHeight, float flHeight, float flDuration, Vector vEndPoint )",
+      "name":"LaunchLootRequiredHeight",
       "return":"void"
     },{
       "desc":"",
@@ -2691,6 +2736,12 @@
       "name":"State_Get",
       "return":"int"
     }],
+  "CLogicRelay":[{
+      "desc":"Trigger( hActivator, hCaller ) : Triggers the logic_relay",
+      "func":"( handle hActivator, handle hCaller )",
+      "name":"Trigger",
+      "return":"void"
+    }],
   "CDebugOverlayScriptHelper":[{
       "desc":"Draws an axis. Specify origin + orientation in world space.",
       "func":"( Vector_1, Quaternion_2, float_3, bool_4, float_5 )",
@@ -2914,6 +2965,17 @@
       "desc":"Override playbackrate",
       "func":"( float flRate )",
       "name":"SetPlaybackRate",
+      "return":"void"
+    }],
+  "CFoWBlockerRegion":[{
+      "desc":"AddRectangularBlocker( vMins, vMaxs, bClear ) : Sets or clears a blocker rectangle",
+      "func":"( Vector vMins, Vector vMaxs, bool bClearRegion )",
+      "name":"AddRectangularBlocker",
+      "return":"void"
+    },{
+      "desc":"AddRectangularOutlineBlocker( vMins, vMaxs, bClear ) : Sets or clears a blocker rectangle outline",
+      "func":"( Vector vMins, Vector vMaxs, bool bClearRegion )",
+      "name":"AddRectangularOutlineBlocker",
       "return":"void"
     }],
   "CEntityScriptFramework":[],
@@ -4767,8 +4829,12 @@
         "value":42
       },{
         "desc":"",
-        "name":"MODIFIER_STATE_LAST",
+        "name":"MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED",
         "value":43
+      },{
+        "desc":"",
+        "name":"MODIFIER_STATE_LAST",
+        "value":44
       }],
     "modifierpriority":[{
         "desc":"",
@@ -6097,6 +6163,14 @@
         "desc":"",
         "name":"ACT_DOTA_SHUFFLE_R",
         "value":1750
+      },{
+        "desc":"",
+        "name":"ACT_DOTA_OVERRIDE_LOADOUT",
+        "value":1751
+      },{
+        "desc":"",
+        "name":"ACT_DOTA_TAUNT_SPECIAL",
+        "value":1752
       }],
     "DOTA_GameState":[{
         "desc":"",
@@ -6398,11 +6472,11 @@
         "value":56
       },{
         "desc":"",
-        "name":"DOTA_PLAYER_LOADOUT_START",
+        "name":"DOTA_LOADOUT_TYPE_COURIER",
         "value":57
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_COURIER",
+        "name":"DOTA_PLAYER_LOADOUT_START",
         "value":57
       },{
         "desc":"",
@@ -6478,20 +6552,24 @@
         "value":75
       },{
         "desc":"",
-        "name":"DOTA_PLAYER_LOADOUT_END",
-        "value":76
-      },{
-        "desc":"",
         "name":"DOTA_LOADOUT_TYPE_VERSUS_SCREEN",
         "value":76
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_NONE",
+        "name":"DOTA_LOADOUT_TYPE_STREAK_EFFECT",
         "value":77
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_COUNT",
+        "name":"DOTA_PLAYER_LOADOUT_END",
+        "value":77
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_NONE",
         "value":78
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_COUNT",
+        "value":79
       }],
     "DOTADamageFlag_t":[{
         "desc":"",
@@ -6708,773 +6786,785 @@
         "name":"MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT",
         "value":31
       },{
+        "desc":"GetModifierManacostReduction_Constant",
+        "name":"MODIFIER_PROPERTY_MANACOST_REDUCTION_CONSTANT",
+        "value":32
+      },{
         "desc":"GetModifierBaseAttackTimeConstant",
         "name":"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT",
-        "value":32
+        "value":33
       },{
         "desc":"GetModifierBaseAttackTimeConstant_Adjust",
         "name":"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST",
-        "value":33
+        "value":34
       },{
         "desc":"GetModifierAttackPointConstant",
         "name":"MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT",
-        "value":34
+        "value":35
       },{
         "desc":"GetModifierDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE",
-        "value":35
+        "value":36
       },{
         "desc":"GetModifierDamageOutgoing_Percentage_Illusion",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION",
-        "value":36
+        "value":37
       },{
         "desc":"GetModifierDamageOutgoing_Percentage_Illusion_Amplify",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION_AMPLIFY",
-        "value":37
+        "value":38
       },{
         "desc":"GetModifierTotalDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE",
-        "value":38
+        "value":39
       },{
         "desc":"GetModifierSpellAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE",
-        "value":39
+        "value":40
       },{
         "desc":"GetModifierSpellAmplify_PercentageUnique",
         "name":"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE_UNIQUE",
-        "value":40
+        "value":41
       },{
         "desc":"GetModifierHealAmplify_PercentageSource",
         "name":"MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_SOURCE",
-        "value":41
+        "value":42
       },{
         "desc":"GetModifierHealAmplify_PercentageTarget",
         "name":"MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET",
-        "value":42
+        "value":43
       },{
         "desc":"GetModifierHPRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE",
-        "value":43
+        "value":44
       },{
         "desc":"GetModifierLifestealRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE",
-        "value":44
+        "value":45
       },{
         "desc":"GetModifierMPRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE",
-        "value":45
+        "value":46
       },{
         "desc":"GetModifierMPRestoreAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE",
-        "value":46
+        "value":47
       },{
         "desc":"GetModifierBaseDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE",
-        "value":47
+        "value":48
       },{
         "desc":"GetModifierBaseDamageOutgoing_PercentageUnique",
         "name":"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE_UNIQUE",
-        "value":48
+        "value":49
       },{
         "desc":"GetModifierIncomingDamage_Percentage",
         "name":"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE",
-        "value":49
+        "value":50
       },{
         "desc":"GetModifierIncomingPhysicalDamage_Percentage",
         "name":"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE",
-        "value":50
+        "value":51
       },{
         "desc":"GetModifierIncomingPhysicalDamageConstant",
         "name":"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT",
-        "value":51
+        "value":52
       },{
         "desc":"GetModifierIncomingSpellDamageConstant",
         "name":"MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT",
-        "value":52
+        "value":53
       },{
         "desc":"GetModifierEvasion_Constant",
         "name":"MODIFIER_PROPERTY_EVASION_CONSTANT",
-        "value":53
+        "value":54
       },{
         "desc":"GetModifierNegativeEvasion_Constant",
         "name":"MODIFIER_PROPERTY_NEGATIVE_EVASION_CONSTANT",
-        "value":54
+        "value":55
       },{
         "desc":"GetModifierStatusResistance",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE",
-        "value":55
+        "value":56
       },{
         "desc":"GetModifierStatusResistanceStacking",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING",
-        "value":56
+        "value":57
       },{
         "desc":"GetModifierStatusResistanceCaster",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER",
-        "value":57
+        "value":58
       },{
         "desc":"GetModifierAvoidDamage",
         "name":"MODIFIER_PROPERTY_AVOID_DAMAGE",
-        "value":58
+        "value":59
       },{
         "desc":"GetModifierAvoidSpell",
         "name":"MODIFIER_PROPERTY_AVOID_SPELL",
-        "value":59
+        "value":60
       },{
         "desc":"GetModifierMiss_Percentage",
         "name":"MODIFIER_PROPERTY_MISS_PERCENTAGE",
-        "value":60
+        "value":61
       },{
         "desc":"GetModifierPhysicalArmorBase_Percentage",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BASE_PERCENTAGE",
-        "value":61
+        "value":62
       },{
         "desc":"GetModifierPhysicalArmorTotal_Percentage",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_TOTAL_PERCENTAGE",
-        "value":62
+        "value":63
       },{
         "desc":"GetModifierPhysicalArmorBonus",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS",
-        "value":63
+        "value":64
       },{
         "desc":"GetModifierPhysicalArmorBonusUnique",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE",
-        "value":64
+        "value":65
       },{
         "desc":"GetModifierPhysicalArmorBonusUniqueActive",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE",
-        "value":65
+        "value":66
       },{
         "desc":"GetModifierIgnorePhysicalArmor",
         "name":"MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR",
-        "value":66
+        "value":67
       },{
         "desc":"GetModifierMagicalResistanceBaseReduction",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BASE_REDUCTION",
-        "value":67
+        "value":68
       },{
         "desc":"GetModifierMagicalResistanceDirectModification",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION",
-        "value":68
+        "value":69
       },{
         "desc":"GetModifierMagicalResistanceBonus",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS",
-        "value":69
+        "value":70
       },{
         "desc":"GetModifierMagicalResistanceBonusIllusions",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS_ILLUSIONS",
-        "value":70
+        "value":71
       },{
         "desc":"GetModifierMagicalResistanceDecrepifyUnique",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE",
-        "value":71
+        "value":72
       },{
         "desc":"GetModifierBaseRegen",
         "name":"MODIFIER_PROPERTY_BASE_MANA_REGEN",
-        "value":72
+        "value":73
       },{
         "desc":"GetModifierConstantManaRegen",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT",
-        "value":73
+        "value":74
       },{
         "desc":"GetModifierConstantManaRegenUnique",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE",
-        "value":74
+        "value":75
       },{
         "desc":"GetModifierTotalPercentageManaRegen",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE",
-        "value":75
+        "value":76
       },{
         "desc":"GetModifierConstantHealthRegen",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT",
-        "value":76
+        "value":77
       },{
         "desc":"GetModifierHealthRegenPercentage",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE",
-        "value":77
+        "value":78
       },{
         "desc":"GetModifierHealthRegenPercentageUnique",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE_UNIQUE",
-        "value":78
+        "value":79
       },{
         "desc":"GetModifierHealthBonus",
         "name":"MODIFIER_PROPERTY_HEALTH_BONUS",
-        "value":79
+        "value":80
       },{
         "desc":"GetModifierManaBonus",
         "name":"MODIFIER_PROPERTY_MANA_BONUS",
-        "value":80
+        "value":81
       },{
         "desc":"GetModifierExtraStrengthBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS",
-        "value":81
+        "value":82
       },{
         "desc":"GetModifierExtraHealthBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS",
-        "value":82
+        "value":83
       },{
         "desc":"GetModifierExtraManaBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_MANA_BONUS",
-        "value":83
+        "value":84
       },{
         "desc":"GetModifierExtraHealthPercentage",
         "name":"MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE",
-        "value":84
+        "value":85
       },{
         "desc":"GetModifierExtraManaPercentage",
         "name":"MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE",
-        "value":85
+        "value":86
       },{
         "desc":"GetModifierBonusStats_Strength",
         "name":"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS",
-        "value":86
+        "value":87
       },{
         "desc":"GetModifierBonusStats_Agility",
         "name":"MODIFIER_PROPERTY_STATS_AGILITY_BONUS",
-        "value":87
+        "value":88
       },{
         "desc":"GetModifierBonusStats_Intellect",
         "name":"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS",
-        "value":88
+        "value":89
       },{
         "desc":"GetModifierBonusStats_Strength_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE",
-        "value":89
+        "value":90
       },{
         "desc":"GetModifierBonusStats_Agility_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE",
-        "value":90
+        "value":91
       },{
         "desc":"GetModifierBonusStats_Intellect_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE",
-        "value":91
+        "value":92
       },{
         "desc":"GetModifierCastRangeBonus",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS",
-        "value":92
+        "value":93
       },{
         "desc":"GetModifierCastRangeBonusTarget",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS_TARGET",
-        "value":93
+        "value":94
       },{
         "desc":"GetModifierCastRangeBonusStacking",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING",
-        "value":94
+        "value":95
       },{
         "desc":"GetModifierAttackRangeOverride",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE",
-        "value":95
+        "value":96
       },{
         "desc":"GetModifierAttackRangeBonus",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS",
-        "value":96
+        "value":97
       },{
         "desc":"GetModifierAttackRangeBonusUnique",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE",
-        "value":97
+        "value":98
       },{
         "desc":"GetModifierAttackRangeBonusPercentage",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE",
-        "value":98
+        "value":99
       },{
         "desc":"GetModifierMaxAttackRange",
         "name":"MODIFIER_PROPERTY_MAX_ATTACK_RANGE",
-        "value":99
+        "value":100
       },{
         "desc":"GetModifierProjectileSpeedBonus",
         "name":"MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS",
-        "value":100
+        "value":101
       },{
         "desc":"GetModifierProjectileSpeedBonusPercentage",
         "name":"MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE",
-        "value":101
+        "value":102
       },{
         "desc":"GetModifierProjectileName",
         "name":"MODIFIER_PROPERTY_PROJECTILE_NAME",
-        "value":102
+        "value":103
       },{
         "desc":"ReincarnateTime",
         "name":"MODIFIER_PROPERTY_REINCARNATION",
-        "value":103
+        "value":104
       },{
         "desc":"GetModifierConstantRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME",
-        "value":104
+        "value":105
       },{
         "desc":"GetModifierPercentageRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE",
-        "value":105
+        "value":106
       },{
         "desc":"GetModifierStackingRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME_STACKING",
-        "value":106
+        "value":107
       },{
         "desc":"GetModifierPercentageCooldown",
         "name":"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE",
-        "value":107
+        "value":108
       },{
         "desc":"GetModifierPercentageCooldownOngoing",
         "name":"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING",
-        "value":108
+        "value":109
       },{
         "desc":"GetModifierPercentageCasttime",
         "name":"MODIFIER_PROPERTY_CASTTIME_PERCENTAGE",
-        "value":109
+        "value":110
       },{
         "desc":"GetModifierPercentageManacost",
         "name":"MODIFIER_PROPERTY_MANACOST_PERCENTAGE",
-        "value":110
+        "value":111
       },{
         "desc":"GetModifierPercentageManacostStacking",
         "name":"MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING",
-        "value":111
+        "value":112
       },{
         "desc":"GetModifierConstantDeathGoldCost",
         "name":"MODIFIER_PROPERTY_DEATHGOLDCOST",
-        "value":112
+        "value":113
       },{
         "desc":"GetModifierPercentageExpRateBoost",
         "name":"MODIFIER_PROPERTY_EXP_RATE_BOOST",
-        "value":113
+        "value":114
       },{
         "desc":"GetModifierPreAttack_CriticalStrike",
         "name":"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE",
-        "value":114
+        "value":115
       },{
         "desc":"GetModifierPreAttack_Target_CriticalStrike",
         "name":"MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE",
-        "value":115
+        "value":116
       },{
         "desc":"GetModifierMagical_ConstantBlock",
         "name":"MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK",
-        "value":116
+        "value":117
       },{
         "desc":"GetModifierPhysical_ConstantBlock",
         "name":"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK",
-        "value":117
+        "value":118
       },{
         "desc":"GetModifierPhysical_ConstantBlockSpecial",
         "name":"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL",
-        "value":118
+        "value":119
       },{
         "desc":"GetModifierPhysical_ConstantBlockUnavoidablePreArmor",
         "name":"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR",
-        "value":119
+        "value":120
       },{
         "desc":"GetModifierTotal_ConstantBlock",
         "name":"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK",
-        "value":120
+        "value":121
       },{
         "desc":"GetOverrideAnimation",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION",
-        "value":121
+        "value":122
       },{
         "desc":"GetOverrideAnimationWeight",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT",
-        "value":122
+        "value":123
       },{
         "desc":"GetOverrideAnimationRate",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE",
-        "value":123
+        "value":124
       },{
         "desc":"GetAbsorbSpell",
         "name":"MODIFIER_PROPERTY_ABSORB_SPELL",
-        "value":124
+        "value":125
       },{
         "desc":"GetReflectSpell",
         "name":"MODIFIER_PROPERTY_REFLECT_SPELL",
-        "value":125
+        "value":126
       },{
         "desc":"GetDisableAutoAttack",
         "name":"MODIFIER_PROPERTY_DISABLE_AUTOATTACK",
-        "value":126
+        "value":127
       },{
         "desc":"GetBonusDayVision",
         "name":"MODIFIER_PROPERTY_BONUS_DAY_VISION",
-        "value":127
+        "value":128
       },{
         "desc":"GetBonusNightVision",
         "name":"MODIFIER_PROPERTY_BONUS_NIGHT_VISION",
-        "value":128
+        "value":129
       },{
         "desc":"GetBonusNightVisionUnique",
         "name":"MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE",
-        "value":129
+        "value":130
       },{
         "desc":"GetBonusVisionPercentage",
         "name":"MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE",
-        "value":130
+        "value":131
       },{
         "desc":"GetFixedDayVision",
         "name":"MODIFIER_PROPERTY_FIXED_DAY_VISION",
-        "value":131
+        "value":132
       },{
         "desc":"GetFixedNightVision",
         "name":"MODIFIER_PROPERTY_FIXED_NIGHT_VISION",
-        "value":132
+        "value":133
       },{
         "desc":"GetMinHealth",
         "name":"MODIFIER_PROPERTY_MIN_HEALTH",
-        "value":133
+        "value":134
       },{
         "desc":"GetAbsoluteNoDamagePhysical",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL",
-        "value":134
+        "value":135
       },{
         "desc":"GetAbsoluteNoDamageMagical",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL",
-        "value":135
+        "value":136
       },{
         "desc":"GetAbsoluteNoDamagePure",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE",
-        "value":136
+        "value":137
       },{
         "desc":"GetIsIllusion",
         "name":"MODIFIER_PROPERTY_IS_ILLUSION",
-        "value":137
+        "value":138
       },{
         "desc":"GetModifierIllusionLabel",
         "name":"MODIFIER_PROPERTY_ILLUSION_LABEL",
-        "value":138
+        "value":139
       },{
         "desc":"GetModifierStrongIllusion",
         "name":"MODIFIER_PROPERTY_STRONG_ILLUSION",
-        "value":139
+        "value":140
       },{
         "desc":"GetModifierSuperIllusion",
         "name":"MODIFIER_PROPERTY_SUPER_ILLUSION",
-        "value":140
+        "value":141
       },{
         "desc":"GetModifierSuperIllusionWithUltimate",
         "name":"MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE",
-        "value":141
+        "value":142
       },{
         "desc":"GetModifierTurnRate_Percentage",
         "name":"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE",
-        "value":142
+        "value":143
       },{
         "desc":"GetModifierTurnRate_Override",
         "name":"MODIFIER_PROPERTY_TURN_RATE_OVERRIDE",
-        "value":143
+        "value":144
       },{
         "desc":"GetDisableHealing",
         "name":"MODIFIER_PROPERTY_DISABLE_HEALING",
-        "value":144
+        "value":145
       },{
         "desc":"GetAlwaysAllowAttack",
         "name":"MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK",
-        "value":145
+        "value":146
       },{
         "desc":"GetAllowEtherealAttack",
         "name":"MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK",
-        "value":146
+        "value":147
       },{
         "desc":"GetOverrideAttackMagical",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL",
-        "value":147
+        "value":148
       },{
         "desc":"GetModifierUnitStatsNeedsRefresh",
         "name":"MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH",
-        "value":148
-      },{
-        "desc":"Unused",
-        "name":"MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER",
         "value":149
       },{
         "desc":"Unused",
-        "name":"MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER",
+        "name":"MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER",
         "value":150
+      },{
+        "desc":"Unused",
+        "name":"MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER",
+        "value":151
       },{
         "desc":"GetModifierUnitDisllowUpgrading",
         "name":"MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING",
-        "value":151
+        "value":152
       },{
         "desc":"GetModifierDodgeProjectile",
         "name":"MODIFIER_PROPERTY_DODGE_PROJECTILE",
-        "value":152
+        "value":153
       },{
         "desc":"GetTriggerCosmeticAndEndAttack",
         "name":"MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK",
-        "value":153
+        "value":154
       },{
         "desc":"OnSpellTargetReady",
         "name":"MODIFIER_EVENT_ON_SPELL_TARGET_READY",
-        "value":154
+        "value":155
       },{
         "desc":"OnAttackRecord",
         "name":"MODIFIER_EVENT_ON_ATTACK_RECORD",
-        "value":155
+        "value":156
       },{
         "desc":"OnAttackStart",
         "name":"MODIFIER_EVENT_ON_ATTACK_START",
-        "value":156
+        "value":157
       },{
         "desc":"OnAttack",
         "name":"MODIFIER_EVENT_ON_ATTACK",
-        "value":157
+        "value":158
       },{
         "desc":"OnAttackLanded",
         "name":"MODIFIER_EVENT_ON_ATTACK_LANDED",
-        "value":158
+        "value":159
       },{
         "desc":"OnAttackFail",
         "name":"MODIFIER_EVENT_ON_ATTACK_FAIL",
-        "value":159
+        "value":160
       },{
         "desc":"OnAttackAllied",
         "name":"MODIFIER_EVENT_ON_ATTACK_ALLIED",
-        "value":160
+        "value":161
       },{
         "desc":"OnProjectileDodge",
         "name":"MODIFIER_EVENT_ON_PROJECTILE_DODGE",
-        "value":161
+        "value":162
       },{
         "desc":"OnOrder",
         "name":"MODIFIER_EVENT_ON_ORDER",
-        "value":162
+        "value":163
       },{
         "desc":"OnUnitMoved",
         "name":"MODIFIER_EVENT_ON_UNIT_MOVED",
-        "value":163
+        "value":164
       },{
         "desc":"OnAbilityStart",
         "name":"MODIFIER_EVENT_ON_ABILITY_START",
-        "value":164
+        "value":165
       },{
         "desc":"OnAbilityExecuted",
         "name":"MODIFIER_EVENT_ON_ABILITY_EXECUTED",
-        "value":165
+        "value":166
       },{
         "desc":"OnAbilityFullyCast",
         "name":"MODIFIER_EVENT_ON_ABILITY_FULLY_CAST",
-        "value":166
+        "value":167
       },{
         "desc":"OnBreakInvisibility",
         "name":"MODIFIER_EVENT_ON_BREAK_INVISIBILITY",
-        "value":167
+        "value":168
       },{
         "desc":"OnAbilityEndChannel",
         "name":"MODIFIER_EVENT_ON_ABILITY_END_CHANNEL",
-        "value":168
-      },{
-        "desc":"Unused",
-        "name":"MODIFIER_EVENT_ON_PROCESS_UPGRADE",
         "value":169
       },{
         "desc":"Unused",
-        "name":"MODIFIER_EVENT_ON_REFRESH",
+        "name":"MODIFIER_EVENT_ON_PROCESS_UPGRADE",
         "value":170
+      },{
+        "desc":"Unused",
+        "name":"MODIFIER_EVENT_ON_REFRESH",
+        "value":171
       },{
         "desc":"OnTakeDamage",
         "name":"MODIFIER_EVENT_ON_TAKEDAMAGE",
-        "value":171
+        "value":172
       },{
         "desc":"OnDamagePrevented",
         "name":"MODIFIER_EVENT_ON_DEATH_PREVENTED",
-        "value":172
+        "value":173
       },{
         "desc":"OnStateChanged",
         "name":"MODIFIER_EVENT_ON_STATE_CHANGED",
-        "value":173
+        "value":174
       },{
         "desc":"Unused",
         "name":"MODIFIER_EVENT_ON_ORB_EFFECT",
-        "value":174
+        "value":175
       },{
         "desc":"OnProcessCleave",
         "name":"MODIFIER_EVENT_ON_PROCESS_CLEAVE",
-        "value":175
+        "value":176
       },{
         "desc":"OnDamageCalculated",
         "name":"MODIFIER_EVENT_ON_DAMAGE_CALCULATED",
-        "value":176
+        "value":177
       },{
         "desc":"OnAttacked",
         "name":"MODIFIER_EVENT_ON_ATTACKED",
-        "value":177
+        "value":178
       },{
         "desc":"OnDeath",
         "name":"MODIFIER_EVENT_ON_DEATH",
-        "value":178
+        "value":179
       },{
         "desc":"OnRespawn",
         "name":"MODIFIER_EVENT_ON_RESPAWN",
-        "value":179
+        "value":180
       },{
         "desc":"OnSpentMana",
         "name":"MODIFIER_EVENT_ON_SPENT_MANA",
-        "value":180
+        "value":181
       },{
         "desc":"OnTeleporting",
         "name":"MODIFIER_EVENT_ON_TELEPORTING",
-        "value":181
+        "value":182
       },{
         "desc":"OnTeleported",
         "name":"MODIFIER_EVENT_ON_TELEPORTED",
-        "value":182
+        "value":183
       },{
         "desc":"OnSetLocation",
         "name":"MODIFIER_EVENT_ON_SET_LOCATION",
-        "value":183
+        "value":184
       },{
         "desc":"OnHealthGained",
         "name":"MODIFIER_EVENT_ON_HEALTH_GAINED",
-        "value":184
+        "value":185
       },{
         "desc":"OnManaGained",
         "name":"MODIFIER_EVENT_ON_MANA_GAINED",
-        "value":185
+        "value":186
       },{
         "desc":"OnTakeDamageKillCredit",
         "name":"MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT",
-        "value":186
+        "value":187
       },{
         "desc":"OnHeroKilled",
         "name":"MODIFIER_EVENT_ON_HERO_KILLED",
-        "value":187
+        "value":188
       },{
         "desc":"OnHealReceived",
         "name":"MODIFIER_EVENT_ON_HEAL_RECEIVED",
-        "value":188
+        "value":189
       },{
         "desc":"OnBuildingKilled",
         "name":"MODIFIER_EVENT_ON_BUILDING_KILLED",
-        "value":189
+        "value":190
       },{
         "desc":"OnModelChanged",
         "name":"MODIFIER_EVENT_ON_MODEL_CHANGED",
-        "value":190
+        "value":191
       },{
         "desc":"OnModifierAdded",
         "name":"MODIFIER_EVENT_ON_MODIFIER_ADDED",
-        "value":191
+        "value":192
       },{
         "desc":"OnTooltip",
         "name":"MODIFIER_PROPERTY_TOOLTIP",
-        "value":192
+        "value":193
       },{
         "desc":"GetModifierModelChange",
         "name":"MODIFIER_PROPERTY_MODEL_CHANGE",
-        "value":193
+        "value":194
       },{
         "desc":"GetModifierModelScale",
         "name":"MODIFIER_PROPERTY_MODEL_SCALE",
-        "value":194
+        "value":195
       },{
         "desc":"GetModifierScepter",
         "name":"MODIFIER_PROPERTY_IS_SCEPTER",
-        "value":195
+        "value":196
       },{
         "desc":"GetModifierRadarCooldownReduction",
         "name":"MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION",
-        "value":196
+        "value":197
       },{
         "desc":"GetActivityTranslationModifiers",
         "name":"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS",
-        "value":197
+        "value":198
       },{
         "desc":"GetAttackSound",
         "name":"MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND",
-        "value":198
+        "value":199
       },{
         "desc":"GetUnitLifetimeFraction",
         "name":"MODIFIER_PROPERTY_LIFETIME_FRACTION",
-        "value":199
+        "value":200
       },{
         "desc":"GetModifierProvidesFOWVision",
         "name":"MODIFIER_PROPERTY_PROVIDES_FOW_POSITION",
-        "value":200
+        "value":201
       },{
         "desc":"GetModifierSpellsRequireHP",
         "name":"MODIFIER_PROPERTY_SPELLS_REQUIRE_HP",
-        "value":201
+        "value":202
       },{
         "desc":"GetForceDrawOnMinimap",
         "name":"MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP",
-        "value":202
+        "value":203
       },{
         "desc":"GetModifierDisableTurning",
         "name":"MODIFIER_PROPERTY_DISABLE_TURNING",
-        "value":203
+        "value":204
       },{
         "desc":"GetModifierIgnoreCastAngle",
         "name":"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE",
-        "value":204
+        "value":205
       },{
         "desc":"GetModifierChangeAbilityValue",
         "name":"MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE",
-        "value":205
+        "value":206
+      },{
+        "desc":"GetModifierOverrideAbilitySpecial",
+        "name":"MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL",
+        "value":207
+      },{
+        "desc":"GetModifierOverrideAbilitySpecialValue",
+        "name":"MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE",
+        "value":208
       },{
         "desc":"GetModifierAbilityLayout",
         "name":"MODIFIER_PROPERTY_ABILITY_LAYOUT",
-        "value":206
+        "value":209
       },{
         "desc":"OnDominated",
         "name":"MODIFIER_EVENT_ON_DOMINATED",
-        "value":207
+        "value":210
       },{
         "desc":"GetModifierTempestDouble",
         "name":"MODIFIER_PROPERTY_TEMPEST_DOUBLE",
-        "value":208
+        "value":211
       },{
         "desc":"PreserveParticlesOnModelChanged",
         "name":"MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE",
-        "value":209
+        "value":212
       },{
         "desc":"OnAttackFinished",
         "name":"MODIFIER_EVENT_ON_ATTACK_FINISHED",
-        "value":210
+        "value":213
       },{
         "desc":"GetModifierIgnoreCooldown",
         "name":"MODIFIER_PROPERTY_IGNORE_COOLDOWN",
-        "value":211
+        "value":214
       },{
         "desc":"GetModifierCanAttackTrees",
         "name":"MODIFIER_PROPERTY_CAN_ATTACK_TREES",
-        "value":212
+        "value":215
       },{
         "desc":"GetVisualZDelta",
         "name":"MODIFIER_PROPERTY_VISUAL_Z_DELTA",
-        "value":213
+        "value":216
       },{
         "desc":"",
         "name":"MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION",
-        "value":214
+        "value":217
       },{
         "desc":"GetModifierNoVisionOfAttacker",
         "name":"MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER",
-        "value":215
+        "value":218
       },{
         "desc":"OnTooltip2",
         "name":"MODIFIER_PROPERTY_TOOLTIP2",
-        "value":216
+        "value":219
       },{
         "desc":"OnAttackRecordDestroy",
         "name":"MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY",
-        "value":217
+        "value":220
       },{
         "desc":"OnProjectileObstructionHit",
         "name":"MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT",
-        "value":218
+        "value":221
       },{
         "desc":"GetSuppressTeleport",
         "name":"MODIFIER_PROPERTY_SUPPRESS_TELEPORT",
-        "value":219
+        "value":222
       },{
         "desc":"OnAttackCancelled",
         "name":"MODIFIER_EVENT_ON_ATTACK_CANCELLED",
-        "value":220
+        "value":223
       },{
         "desc":"GetSuppressCleave",
         "name":"MODIFIER_PROPERTY_SUPPRESS_CLEAVE",
-        "value":221
+        "value":224
       },{
         "desc":"BotAttackScoreBonus",
         "name":"MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS",
-        "value":222
+        "value":225
       },{
         "desc":"",
         "name":"MODIFIER_FUNCTION_LAST",
-        "value":223
+        "value":226
       },{
         "desc":"",
         "name":"MODIFIER_FUNCTION_INVALID",
@@ -7496,6 +7586,18 @@
         "desc":"",
         "name":"DOTA_ModifyXP_RoshanKill",
         "value":3
+      },{
+        "desc":"",
+        "name":"DOTA_ModifyXP_TomeOfKnowledge",
+        "value":4
+      },{
+        "desc":"",
+        "name":"DOTA_ModifyXP_Outpost",
+        "value":5
+      },{
+        "desc":"",
+        "name":"DOTA_ModifyXP_MAX",
+        "value":6
       }],
     "DOTAUnitAttackCapability_t":[{
         "desc":"",
@@ -7840,8 +7942,12 @@
         "value":14
       },{
         "desc":"",
-        "name":"MAX_PATTACH_TYPES",
+        "name":"PATTACH_HEALTHBAR",
         "value":15
+      },{
+        "desc":"",
+        "name":"MAX_PATTACH_TYPES",
+        "value":16
       }]
   },
   "CDOTA_Buff":[{
@@ -7964,6 +8070,11 @@
       "func":"()",
       "name":"IsStunDebuff",
       "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"SendBuffRefreshToClients",
+      "return":"void"
     },{
       "desc":"(flTime, bInformClients)",
       "func":"( float flDuration, bool bInformClient )",
@@ -8523,196 +8634,10 @@
       "name":"IsTouching",
       "return":"bool"
     }],
-  "CDOTA_Modifier_Lua":[{
-      "desc":"True/false if this modifier is active on illusions.",
-      "func":"()",
-      "name":"AllowIllusionDuplicate",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"CanParentBeAutoAttacked",
-      "return":"bool"
-    },{
-      "desc":"True/false if this buff is removed when the duration expires.",
-      "func":"()",
-      "name":"DestroyOnExpire",
-      "return":"bool"
-    },{
-      "desc":"Return the types of attributes applied to this modifier (enum value from DOTAModifierAttribute_t",
-      "func":"()",
-      "name":"GetAttributes",
-      "return":"int"
-    },{
-      "desc":"Returns aura stickiness",
-      "func":"()",
-      "name":"GetAuraDuration",
-      "return":"float"
-    },{
-      "desc":"Return true/false if this entity should receive the aura under specific conditions",
-      "func":"( handle hEntity )",
-      "name":"GetAuraEntityReject",
-      "return":"bool"
-    },{
-      "desc":"Return the range around the parent this aura tries to apply its buff.",
-      "func":"()",
-      "name":"GetAuraRadius",
-      "return":"int"
-    },{
-      "desc":"Return the unit flags this aura respects when placing buffs.",
-      "func":"()",
-      "name":"GetAuraSearchFlags",
-      "return":"int"
-    },{
-      "desc":"Return the teams this aura applies its buff to.",
-      "func":"()",
-      "name":"GetAuraSearchTeam",
-      "return":"int"
-    },{
-      "desc":"Return the unit classifications this aura applies its buff to.",
-      "func":"()",
-      "name":"GetAuraSearchType",
-      "return":"int"
-    },{
-      "desc":"Return the attach type of the particle system from GetEffectName.",
-      "func":"()",
-      "name":"GetEffectAttachType",
-      "return":"int"
-    },{
-      "desc":"Return the name of the particle system that is created while this modifier is active.",
-      "func":"()",
-      "name":"GetEffectName",
-      "return":"string"
-    },{
-      "desc":"Return the name of the hero effect particle system that is created while this modifier is active.",
-      "func":"()",
-      "name":"GetHeroEffectName",
-      "return":"string"
-    },{
-      "desc":"The name of the secondary modifier that will be applied by this modifier (if it is an aura).",
-      "func":"()",
-      "name":"GetModifierAura",
-      "return":"string"
-    },{
-      "desc":"Return the priority order this modifier will be applied over others.",
-      "func":"()",
-      "name":"GetPriority",
-      "return":"int"
-    },{
-      "desc":"Return the name of the status effect particle system that is created while this modifier is active.",
-      "func":"()",
-      "name":"GetStatusEffectName",
-      "return":"string"
-    },{
-      "desc":"Return the name of the buff icon to be shown for this modifier.",
-      "func":"()",
-      "name":"GetTexture",
-      "return":"string"
-    },{
-      "desc":"Relationship of this hero effect with those from other buffs (higher is more likely to be shown).",
-      "func":"()",
-      "name":"HeroEffectPriority",
-      "return":"int"
-    },{
-      "desc":"True/false if this modifier is an aura.",
-      "func":"()",
-      "name":"IsAura",
-      "return":"bool"
-    },{
-      "desc":"True/false if this aura provides buffs when the parent is dead.",
-      "func":"()",
-      "name":"IsAuraActiveOnDeath",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier should be displayed as a debuff.",
-      "func":"()",
-      "name":"IsDebuff",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier should be displayed on the buff bar.",
-      "func":"()",
-      "name":"IsHidden",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsPermanent",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier can be purged.",
-      "func":"()",
-      "name":"IsPurgable",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier can be purged by strong dispels.",
-      "func":"()",
-      "name":"IsPurgeException",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier is considered a stun for purge reasons.",
-      "func":"()",
-      "name":"IsStunDebuff",
-      "return":"bool"
-    },{
-      "desc":"Runs when the modifier is created.",
-      "func":"( handle table )",
-      "name":"OnCreated",
-      "return":"void"
-    },{
-      "desc":"Runs when the modifier is destroyed (after unit loses modifier).",
-      "func":"()",
-      "name":"OnDestroy",
-      "return":"void"
-    },{
-      "desc":"Runs when the think interval occurs.",
-      "func":"()",
-      "name":"OnIntervalThink",
-      "return":"void"
-    },{
-      "desc":"Runs when the modifier is refreshed.",
-      "func":"( handle table )",
-      "name":"OnRefresh",
-      "return":"void"
-    },{
-      "desc":"Runs when the modifier is destroyed (before unit loses modifier).",
-      "func":"()",
-      "name":"OnRemoved",
-      "return":"void"
-    },{
-      "desc":"Runs when stack count changes (param is old count).",
-      "func":"( int iStackCount )",
-      "name":"OnStackCountChanged",
-      "return":"void"
-    },{
-      "desc":"True/false if this modifier is removed when the parent dies.",
-      "func":"()",
-      "name":"RemoveOnDeath",
-      "return":"bool"
-    },{
-      "desc":"Apply the overhead offset to the attached effect.",
-      "func":"()",
-      "name":"ShouldUseOverheadOffset",
-      "return":"bool"
-    },{
-      "desc":"Relationship of this status effect with those from other buffs (higher is more likely to be shown).",
-      "func":"()",
-      "name":"StatusEffectPriority",
-      "return":"int"
-    }],
-  "CDOTA_Item_Physical":[{
-      "desc":"Returned the contained item.",
-      "func":"()",
-      "name":"GetContainedItem",
-      "return":"handle"
-    },{
-      "desc":"Returns the game time when this item was created in the world",
-      "func":"()",
-      "name":"GetCreationTime",
-      "return":"float"
-    },{
-      "desc":"Set the contained item.",
-      "func":"( handle hItem )",
-      "name":"SetContainedItem",
+  "CDOTA_Ability_Nian_Leap":[{
+      "desc":"Override playbackrate",
+      "func":"( float flRate )",
+      "name":"SetPlaybackRate",
       "return":"void"
     }],
   "ProjectileManager":[{
@@ -8729,7 +8654,7 @@
       "desc":"Creates a tracking projectile",
       "func":"( handle_1 )",
       "name":"CreateTrackingProjectile",
-      "return":"void"
+      "return":"int"
     },{
       "desc":"Destroys the linear projectile matching the argument ID",
       "func":"( int_1 )",
@@ -8751,6 +8676,11 @@
       "name":"GetLinearProjectileVelocity",
       "return":"Vector"
     },{
+      "desc":"Returns current location of projectile",
+      "func":"( int_1 )",
+      "name":"GetTrackingProjectileLocation",
+      "return":"Vector"
+    },{
       "desc":"Makes the specified unit dodge projectiles",
       "func":"( handle_1 )",
       "name":"ProjectileDodge",
@@ -8761,7 +8691,22 @@
       "name":"UpdateLinearProjectileDirection",
       "return":"void"
     }],
-  "CLogicScript":[],
+  "CDOTA_Item_Physical":[{
+      "desc":"Returned the contained item.",
+      "func":"()",
+      "name":"GetContainedItem",
+      "return":"handle"
+    },{
+      "desc":"Returns the game time when this item was created in the world",
+      "func":"()",
+      "name":"GetCreationTime",
+      "return":"float"
+    },{
+      "desc":"Set the contained item.",
+      "func":"( handle hItem )",
+      "name":"SetContainedItem",
+      "return":"void"
+    }],
   "GridNav":[{
       "desc":"Determine if it is possible to reach the specified end point from the specified start point. bool (vStart, vEnd)",
       "func":"( Vector_1, Vector_2 )",
@@ -8823,7 +8768,28 @@
       "name":"WorldToGridPosY",
       "return":"int"
     }],
-  "CParticleSystem":[],
+  "CCustomNetTableManager":[{
+      "desc":"( string TableName, string KeyName )",
+      "func":"( string_1, string_2 )",
+      "name":"GetTableValue",
+      "return":"table"
+    },{
+      "desc":"( string TableName, string KeyName, script_table Value )",
+      "func":"( string_1, string_2, handle_3 )",
+      "name":"SetTableValue",
+      "return":"bool"
+    }],
+  "CNativeOutputs":[{
+      "desc":"Add an output",
+      "func":"( string_1, string_2 )",
+      "name":"AddOutput",
+      "return":"void"
+    },{
+      "desc":"Initialize with number of outputs",
+      "func":"( int_1 )",
+      "name":"Init",
+      "return":"void"
+    }],
   "CCustomGameEventManager":[{
       "desc":"( string EventName, func CallbackFunction ) - Register a callback to be called when a particular custom event arrives. Returns a listener ID that can be used to unregister later.",
       "func":"( string_1, handle_2 )",
@@ -8849,6 +8815,12 @@
       "func":"( int_1 )",
       "name":"UnregisterListener",
       "return":"void"
+    }],
+  "CScriptKeyValues":[{
+      "desc":"Reads a spawn key",
+      "func":"( string_1 )",
+      "name":"GetValue",
+      "return":"table"
     }],
   "CInfoWorldLayer":[{
       "desc":"Hides this layer",
@@ -8877,11 +8849,21 @@
       "name":"ScriptPlayScene",
       "return":"float"
     }],
-  "CScriptKeyValues":[{
-      "desc":"Reads a spawn key",
-      "func":"( string_1 )",
-      "name":"GetValue",
+  "CScriptHeroList":[{
+      "desc":"Returns all the heroes in the world",
+      "func":"()",
+      "name":"GetAllHeroes",
       "return":"table"
+    },{
+      "desc":"Get the Nth hero in the Hero List",
+      "func":"( int_1 )",
+      "name":"GetHero",
+      "return":"handle"
+    },{
+      "desc":"Returns the number of heroes in the world",
+      "func":"()",
+      "name":"GetHeroCount",
+      "return":"int"
     }],
   "CDOTA_Ability_Lua":[{
       "desc":"Determine whether an issued command with no target is valid.",
@@ -9170,28 +9152,6 @@
       "name":"RemoveCSSClasses",
       "return":"void"
     }],
-  "CScriptHeroList":[{
-      "desc":"Returns all the heroes in the world",
-      "func":"()",
-      "name":"GetAllHeroes",
-      "return":"table"
-    },{
-      "desc":"Get the Nth hero in the Hero List",
-      "func":"( int_1 )",
-      "name":"GetHero",
-      "return":"handle"
-    },{
-      "desc":"Returns the number of heroes in the world",
-      "func":"()",
-      "name":"GetHeroCount",
-      "return":"int"
-    }],
-  "CDOTA_Ability_Nian_Leap":[{
-      "desc":"Override playbackrate",
-      "func":"( float flRate )",
-      "name":"SetPlaybackRate",
-      "return":"void"
-    }],
   "CScriptHTTPRequest":[{
       "desc":"Send a HTTP request.",
       "func":"( handle_1 )",
@@ -9222,6 +9182,238 @@
       "func":"( string_1, string_2 )",
       "name":"SetHTTPRequestRawPostBody",
       "return":"bool"
+    }],
+  "CDOTA_Modifier_Lua":[{
+      "desc":"True/false if this modifier is active on illusions.",
+      "func":"()",
+      "name":"AllowIllusionDuplicate",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"CanParentBeAutoAttacked",
+      "return":"bool"
+    },{
+      "desc":"True/false if this buff is removed when the duration expires.",
+      "func":"()",
+      "name":"DestroyOnExpire",
+      "return":"bool"
+    },{
+      "desc":"Return the types of attributes applied to this modifier (enum value from DOTAModifierAttribute_t",
+      "func":"()",
+      "name":"GetAttributes",
+      "return":"int"
+    },{
+      "desc":"Returns aura stickiness",
+      "func":"()",
+      "name":"GetAuraDuration",
+      "return":"float"
+    },{
+      "desc":"Return true/false if this entity should receive the aura under specific conditions",
+      "func":"( handle hEntity )",
+      "name":"GetAuraEntityReject",
+      "return":"bool"
+    },{
+      "desc":"Return the range around the parent this aura tries to apply its buff.",
+      "func":"()",
+      "name":"GetAuraRadius",
+      "return":"int"
+    },{
+      "desc":"Return the unit flags this aura respects when placing buffs.",
+      "func":"()",
+      "name":"GetAuraSearchFlags",
+      "return":"int"
+    },{
+      "desc":"Return the teams this aura applies its buff to.",
+      "func":"()",
+      "name":"GetAuraSearchTeam",
+      "return":"int"
+    },{
+      "desc":"Return the unit classifications this aura applies its buff to.",
+      "func":"()",
+      "name":"GetAuraSearchType",
+      "return":"int"
+    },{
+      "desc":"Return the attach type of the particle system from GetEffectName.",
+      "func":"()",
+      "name":"GetEffectAttachType",
+      "return":"int"
+    },{
+      "desc":"Return the name of the particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetEffectName",
+      "return":"string"
+    },{
+      "desc":"Return the name of the hero effect particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetHeroEffectName",
+      "return":"string"
+    },{
+      "desc":"The name of the secondary modifier that will be applied by this modifier (if it is an aura).",
+      "func":"()",
+      "name":"GetModifierAura",
+      "return":"string"
+    },{
+      "desc":"Return the priority order this modifier will be applied over others.",
+      "func":"()",
+      "name":"GetPriority",
+      "return":"int"
+    },{
+      "desc":"Return the name of the status effect particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetStatusEffectName",
+      "return":"string"
+    },{
+      "desc":"Return the name of the buff icon to be shown for this modifier.",
+      "func":"()",
+      "name":"GetTexture",
+      "return":"string"
+    },{
+      "desc":"Relationship of this hero effect with those from other buffs (higher is more likely to be shown).",
+      "func":"()",
+      "name":"HeroEffectPriority",
+      "return":"int"
+    },{
+      "desc":"True/false if this modifier is an aura.",
+      "func":"()",
+      "name":"IsAura",
+      "return":"bool"
+    },{
+      "desc":"True/false if this aura provides buffs when the parent is dead.",
+      "func":"()",
+      "name":"IsAuraActiveOnDeath",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier should be displayed as a debuff.",
+      "func":"()",
+      "name":"IsDebuff",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier should be displayed on the buff bar.",
+      "func":"()",
+      "name":"IsHidden",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsPermanent",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier can be purged.",
+      "func":"()",
+      "name":"IsPurgable",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier can be purged by strong dispels.",
+      "func":"()",
+      "name":"IsPurgeException",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier is considered a stun for purge reasons.",
+      "func":"()",
+      "name":"IsStunDebuff",
+      "return":"bool"
+    },{
+      "desc":"Runs when the modifier is created.",
+      "func":"( handle table )",
+      "name":"OnCreated",
+      "return":"void"
+    },{
+      "desc":"Runs when the modifier is destroyed (after unit loses modifier).",
+      "func":"()",
+      "name":"OnDestroy",
+      "return":"void"
+    },{
+      "desc":"Runs when the think interval occurs.",
+      "func":"()",
+      "name":"OnIntervalThink",
+      "return":"void"
+    },{
+      "desc":"Runs when the modifier is refreshed.",
+      "func":"( handle table )",
+      "name":"OnRefresh",
+      "return":"void"
+    },{
+      "desc":"Runs when the modifier is destroyed (before unit loses modifier).",
+      "func":"()",
+      "name":"OnRemoved",
+      "return":"void"
+    },{
+      "desc":"Runs when stack count changes (param is old count).",
+      "func":"( int iStackCount )",
+      "name":"OnStackCountChanged",
+      "return":"void"
+    },{
+      "desc":"True/false if this modifier is removed when the parent dies.",
+      "func":"()",
+      "name":"RemoveOnDeath",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( bool bHasCustomData )",
+      "name":"SetHasCustomTransmitterData",
+      "return":"void"
+    },{
+      "desc":"Apply the overhead offset to the attached effect.",
+      "func":"()",
+      "name":"ShouldUseOverheadOffset",
+      "return":"bool"
+    },{
+      "desc":"Relationship of this status effect with those from other buffs (higher is more likely to be shown).",
+      "func":"()",
+      "name":"StatusEffectPriority",
+      "return":"int"
+    }],
+  "CSceneEntity":[{
+      "desc":"Adds a team (by index) to the broadcast list",
+      "func":"( int_1 )",
+      "name":"AddBroadcastTeamTarget",
+      "return":"void"
+    },{
+      "desc":"Cancel scene playback",
+      "func":"()",
+      "name":"Cancel",
+      "return":"void"
+    },{
+      "desc":"Returns length of this scene in seconds.",
+      "func":"()",
+      "name":"EstimateLength",
+      "return":"float"
+    },{
+      "desc":"Get the camera",
+      "func":"()",
+      "name":"FindCamera",
+      "return":"handle"
+    },{
+      "desc":"given an entity reference, such as !target, get actual entity from scene object",
+      "func":"( string_1 )",
+      "name":"FindNamedEntity",
+      "return":"handle"
+    },{
+      "desc":"If this scene is currently paused.",
+      "func":"()",
+      "name":"IsPaused",
+      "return":"bool"
+    },{
+      "desc":"If this scene is currently playing.",
+      "func":"()",
+      "name":"IsPlayingBack",
+      "return":"bool"
+    },{
+      "desc":"given a dummy scene name and a vcd string, load the scene",
+      "func":"( string_1, string_2 )",
+      "name":"LoadSceneFromString",
+      "return":"bool"
+    },{
+      "desc":"Removes a team (by index) from the broadcast list",
+      "func":"( int_1 )",
+      "name":"RemoveBroadcastTeamTarget",
+      "return":"void"
+    },{
+      "desc":"Start scene playback, takes activatorEntity as param",
+      "func":"( handle_1 )",
+      "name":"Start",
+      "return":"void"
     }],
   "CDOTA_Ability_Animation_Attack":[{
       "desc":"Override playbackrate",
@@ -9895,83 +10087,6 @@
       "name":"WhoSelectedHero",
       "return":"int"
     }],
-  "CSceneEntity":[{
-      "desc":"Adds a team (by index) to the broadcast list",
-      "func":"( int_1 )",
-      "name":"AddBroadcastTeamTarget",
-      "return":"void"
-    },{
-      "desc":"Cancel scene playback",
-      "func":"()",
-      "name":"Cancel",
-      "return":"void"
-    },{
-      "desc":"Returns length of this scene in seconds.",
-      "func":"()",
-      "name":"EstimateLength",
-      "return":"float"
-    },{
-      "desc":"Get the camera",
-      "func":"()",
-      "name":"FindCamera",
-      "return":"handle"
-    },{
-      "desc":"given an entity reference, such as !target, get actual entity from scene object",
-      "func":"( string_1 )",
-      "name":"FindNamedEntity",
-      "return":"handle"
-    },{
-      "desc":"If this scene is currently paused.",
-      "func":"()",
-      "name":"IsPaused",
-      "return":"bool"
-    },{
-      "desc":"If this scene is currently playing.",
-      "func":"()",
-      "name":"IsPlayingBack",
-      "return":"bool"
-    },{
-      "desc":"given a dummy scene name and a vcd string, load the scene",
-      "func":"( string_1, string_2 )",
-      "name":"LoadSceneFromString",
-      "return":"bool"
-    },{
-      "desc":"Removes a team (by index) from the broadcast list",
-      "func":"( int_1 )",
-      "name":"RemoveBroadcastTeamTarget",
-      "return":"void"
-    },{
-      "desc":"Start scene playback, takes activatorEntity as param",
-      "func":"( handle_1 )",
-      "name":"Start",
-      "return":"void"
-    }],
-  "CDOTA_Modifier_Lua_Horizontal_Motion":[{
-      "desc":"Starts the horizontal motion controller effects for this buff.  Returns true if successful.",
-      "func":"()",
-      "name":"ApplyHorizontalMotionController",
-      "return":"bool"
-    },{
-      "desc":"Get the priority",
-      "func":"()",
-      "name":"GetPriority",
-      "return":"int"
-    },{
-      "desc":"Called when the motion gets interrupted.",
-      "func":"()",
-      "name":"OnHorizontalMotionInterrupted",
-      "return":"void"
-    },{
-      "desc":"Set the priority",
-      "func":"( int nMotionPriority )",
-      "name":"SetPriority",
-      "return":"void"
-    },{
-      "desc":"Perform any motion from the given interval on the NPC.",
-      "func":"( handle me, float dt )",
-      "name":"UpdateHorizontalMotion",
-      "return":"void"
-    }],
   "CPropVRHand":[{
       "desc":"Add the attachment to this hand",
       "func":"( handle hAttachment )",
@@ -10043,6 +10158,32 @@
       "name":"SetHandAttachment",
       "return":"void"
     }],
+  "CDOTA_Modifier_Lua_Horizontal_Motion":[{
+      "desc":"Starts the horizontal motion controller effects for this buff.  Returns true if successful.",
+      "func":"()",
+      "name":"ApplyHorizontalMotionController",
+      "return":"bool"
+    },{
+      "desc":"Get the priority",
+      "func":"()",
+      "name":"GetPriority",
+      "return":"int"
+    },{
+      "desc":"Called when the motion gets interrupted.",
+      "func":"()",
+      "name":"OnHorizontalMotionInterrupted",
+      "return":"void"
+    },{
+      "desc":"Set the priority",
+      "func":"( int nMotionPriority )",
+      "name":"SetPriority",
+      "return":"void"
+    },{
+      "desc":"Perform any motion from the given interval on the NPC.",
+      "func":"( handle me, float dt )",
+      "name":"UpdateHorizontalMotion",
+      "return":"void"
+    }],
   "CPhysicsProp":[{
       "desc":"Disable motion for the prop",
       "func":"()",
@@ -10059,6 +10200,7 @@
       "name":"SetDynamicVsDynamicContinuous",
       "return":"void"
     }],
+  "CParticleSystem":[],
   "Convars":[{
       "desc":"GetBool(name) : returns the convar as a boolean flag.",
       "func":"( string_1 )",
@@ -10120,16 +10262,27 @@
       "name":"SetStr",
       "return":"void"
     }],
-  "CNativeOutputs":[{
-      "desc":"Add an output",
-      "func":"( string_1, string_2 )",
-      "name":"AddOutput",
-      "return":"void"
+  "CLogicScript":[],
+  "CBaseCombatCharacter":[{
+      "desc":"GetEquippedWeapons() : Returns an array of all the equipped weapons",
+      "func":"()",
+      "name":"GetEquippedWeapons",
+      "return":"table"
     },{
-      "desc":"Initialize with number of outputs",
-      "func":"( int_1 )",
-      "name":"Init",
-      "return":"void"
+      "desc":"Get the combat character faction.",
+      "func":"()",
+      "name":"GetFaction",
+      "return":"int"
+    },{
+      "desc":"GetWeaponCount() : Gets the number of weapons currently equipped",
+      "func":"()",
+      "name":"GetWeaponCount",
+      "return":"int"
+    },{
+      "desc":"Returns the shoot position eyes (or hand in VR).",
+      "func":"( int nHand, int nMuzzle )",
+      "name":"ShootPosition",
+      "return":"Vector"
     }],
   "CDOTA_Modifier_Lua_Vertical_Motion":[{
       "desc":"Starts the vertical motion controller effects for this buff.  Returns true if successful.",
@@ -10156,27 +10309,6 @@
       "func":"( handle me, float dt )",
       "name":"UpdateVerticalMotion",
       "return":"void"
-    }],
-  "CBaseCombatCharacter":[{
-      "desc":"GetEquippedWeapons() : Returns an array of all the equipped weapons",
-      "func":"()",
-      "name":"GetEquippedWeapons",
-      "return":"table"
-    },{
-      "desc":"Get the combat character faction.",
-      "func":"()",
-      "name":"GetFaction",
-      "return":"int"
-    },{
-      "desc":"GetWeaponCount() : Gets the number of weapons currently equipped",
-      "func":"()",
-      "name":"GetWeaponCount",
-      "return":"int"
-    },{
-      "desc":"Returns the shoot position eyes (or hand in VR).",
-      "func":"( int nHand, int nMuzzle )",
-      "name":"ShootPosition",
-      "return":"Vector"
     }],
   "CDOTA_BaseNPC_Building":[{
       "desc":"Get the invulnerability count for a building.",
@@ -11129,6 +11261,11 @@
       "desc":"Is this a real hero?",
       "func":"()",
       "name":"IsRealHero",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsReincarnating",
       "return":"bool"
     },{
       "desc":"",
@@ -12290,6 +12427,11 @@
       "name":"AddRealTimeCombatAnalyzerQuery",
       "return":"int"
     },{
+      "desc":"Allocates an entity which can be used by custom games to control FoW occlusion volumes",
+      "func":"( float flMinX, float flMinY, float flMaxX, float flMaxY, float flGridSize )",
+      "name":"AllocateFowBlockerRegion",
+      "return":"handle"
+    },{
       "desc":"Get if weather effects are disabled on the client.",
       "func":"()",
       "name":"AreWeatherEffectsDisabled",
@@ -12760,6 +12902,11 @@
       "name":"SetModifyGoldFilter",
       "return":"void"
     },{
+      "desc":"Allow items to be sent to the neutral stash.",
+      "func":"( bool bEnable )",
+      "name":"SetNeutralStashEnabled",
+      "return":"void"
+    },{
       "desc":"Set an override for the default selection entity, instead of each player's hero.",
       "func":"( handle hOverrideEntity )",
       "name":"SetOverrideSelectionEntity",
@@ -12803,6 +12950,11 @@
       "desc":"Enable/disable gold penalty for late picking.",
       "func":"( bool bEnabled )",
       "name":"SetSelectionGoldPenaltyEnabled",
+      "return":"void"
+    },{
+      "desc":"Allow items to be sent to the stash.",
+      "func":"( bool bEnable )",
+      "name":"SetSendToStashEnabled",
       "return":"void"
     },{
       "desc":"Turn purchasing items to the stash off/on. If purchasing to the stash is off the player must be at a shop to purchase items.",
@@ -12860,16 +13012,11 @@
       "name":"SetWeatherEffectsDisabled",
       "return":"void"
     }],
-  "CCustomNetTableManager":[{
-      "desc":"( string TableName, string KeyName )",
-      "func":"( string_1, string_2 )",
-      "name":"GetTableValue",
-      "return":"table"
-    },{
-      "desc":"( string TableName, string KeyName, script_table Value )",
-      "func":"( string_1, string_2, handle_3 )",
-      "name":"SetTableValue",
-      "return":"bool"
+  "CDOTA_Item_BagOfGold":[{
+      "desc":"Set the life time of this item",
+      "func":"( float flTime )",
+      "name":"SetLifeTime",
+      "return":"void"
     }],
   "CDotaSubquestBase":[{
       "desc":"Mark this subquest complete",
@@ -13107,6 +13254,11 @@
       "func":"( string soundname, string actormodel )",
       "name":"GetSoundDuration",
       "return":"float"
+    },{
+      "desc":"Returns the spawn group handle of this entity",
+      "func":"()",
+      "name":"GetSpawnGroupHandle",
+      "return":"int"
     },{
       "desc":"Get the team number of this entity.",
       "func":"()",
