@@ -545,3 +545,28 @@ Button:hover {
     animation-duration: 1.0s;
 }
 ```
+
+## tooltip
+
+```css
+/* 定义tooltip的初始方向，包含left, right, top, bottom */
+tooltip-position: bottom;
+tooltip-position: left bottom;
+
+/* 定义tooltip的箭头位置，默认50% 50% */
+tooltip-arrow-position: 25% 50%;
+
+/* 定义tooltip的内容位置，默认0% 0% */
+tooltip-body-position: 50% 100%;
+```
+
+## ui-scale
+
+指定缩放比例以应用于此面板的布局和所有后代。 此比例发生在布局级别而不是位图级别，因此文本之类的东西将增加其字体大小，而不仅仅是位图缩放。
+
+```css
+ui-scale: 150%; // 150% scaling for X, Y, and Z.
+ui-scale: 50% 100% 150%; // 50% scaling for X, 100% for Y. 150% for Z.
+
+/* 同理还有 ui-scale-x, ui-scale-y, ui-scale-z */
+```

@@ -1,5 +1,5 @@
 
-const root = document.getElementById('root');
+let root;
 let apiData = null;
 let lastSelectedMenuItem = null;
 
@@ -306,7 +306,9 @@ function onSearch( value ) {
     apiListContainer.scrollTop = 0;
 }
 
-(async function() {
+window.onload = async function() {
+    root = document.getElementById('root');
+
     // Fetch api data;
     const res = await fetch(window.apiUri);
     apiData = await res.json();
@@ -374,4 +376,6 @@ function onSearch( value ) {
             location.hash = ev.target.getAttribute('hash');
         }
     });
-})();
+
+    setTimeout(() => searchInput.focus(), 0);
+};

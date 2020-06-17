@@ -82,6 +82,58 @@
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
+}
+
+#navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    margin-top: 30px;
+    font-size: 14px;
+    width: 100px;
+    height: 20px;
+    background-color: #101010;
+    padding: 3px;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+    min-width: 100px;
+}
+
+#navigation .title {
+    text-align: center;
+}
+
+#navigation-body {
+    visibility: collapse;
+}
+
+#navigation:hover {
+    width: auto;
+    height: auto;
+    max-height: 90%;
+    overflow: auto;
+}
+
+#navigation:hover #navigation-body {
+    visibility: visible;
+}
+
+#navigation .nav-h1,
+#navigation .nav-h2 {
+    height: 18px;
+    padding: 2px;
+}
+
+#navigation .nav-h2 {
+    margin-left: 16px;
+}
+
+#navigation .nav-h1:hover,
+#navigation .nav-h2:hover {
+    background-color: #04467c;
 }
 
 #lightbox {
