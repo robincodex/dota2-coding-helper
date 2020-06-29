@@ -1,7 +1,10 @@
 # 机翻dota2自带修改器
 Scripting/Built-In Modifier Names
 
-## 综合
+# 综合
+
+|修改器字符串|说明|
+|---|---|
 |	modifier_attribute_bonus	|	属性奖金	|
 |	modifier_high_five_requested	|	高五要求	|
 |	modifier_seasonal_summon_common_thinker	|	季节性召唤共同思想家	|
@@ -360,7 +363,10 @@ Scripting/Built-In Modifier Names
 |	modifier_chilling_touch_slow	|	令人不寒而栗	|
 |	modifier_ice_blast	|	爆炸	|
 
-## 英雄技能
+# 英雄技能
+
+|修改器字符串|说明|
+|---|---|
 |	modifier_antimage_mana_break	|	反抗法力破坏	|
 |	modifier_antimage_blink_illusion	|	antimage眨眼错觉	|
 |	modifier_antimage_spell_shield	|	敌法符咒盾	|
@@ -1489,7 +1495,10 @@ Scripting/Built-In Modifier Names
 |	modifier_wisp_relocate_thinker	|	小精灵搬迁思想家	|
 |	modifier_wisp_relocate_return	|	wisp relocate return	|
 
-## 物品
+# 物品
+
+|修改器字符串|说明|
+|---|---|
 |	modifier_item_abyssal_blade	|	深渊之刃	|
 |	modifier_item_aegis	|	物品盾	|
 |	modifier_aegis_regen	|	宙斯盾	|
@@ -1716,8 +1725,8 @@ Scripting/Built-In Modifier Names
 |	modifier_item_soul_booster	|	物品灵魂助推器	|
 |	modifier_item_soul_ring	|	物品灵魂戒指	|
 |	modifier_item_soul_ring_buff	|	物品灵魂戒指	|
-|	modifier_item_sphere	|	项目范围	|
-|	modifier_item_sphere_target	|	项目领域目标	|
+|	modifier_item_sphere	|	林肯	|
+|	modifier_item_sphere_target	|	林肯法球	|
 |	modifier_item_spirit_vessel	|	精神物品船	|
 |	modifier_item_spirit_vessel_heal	|	灵器治疗	|
 |	modifier_item_spirit_vessel_damage	|	精神物品船损坏	|
