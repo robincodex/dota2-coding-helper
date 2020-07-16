@@ -16,6 +16,7 @@ async function fetchJavascriptAPI(cb) {
     body.find('#bodyContent > div:last-child').remove();
     body.find('#bodyContent > div:last-child').remove();
     body.find('#siteSub').html('Copy From Valve Developer Community');
+    body.find('.mw-indicators').remove();
 
     const mwContentText = body.find('#mw-content-text > div:first-child');
     if (!mwContentText.attr('id')) {
@@ -75,6 +76,7 @@ async function fetchPanoramaCSS(cb) {
     body.find('#bodyContent > div:last-child').remove();
     body.find('#bodyContent > div:last-child').remove();
     body.find('#siteSub').html('Copy From Valve Developer Community');
+    body.find('.mw-indicators').remove();
 
     const mwContentText = body.find('#mw-content-text > div:first-child');
     if (!mwContentText.attr('id')) {
@@ -97,6 +99,7 @@ async function fetchAbilitiesDataDriven(cb) {
     body.find('#bodyContent > div:last-child').remove();
     body.find('#bodyContent > div:last-child').remove();
     body.find('#siteSub').html('Copy From Valve Developer Community');
+    body.find('.mw-indicators').remove();
     
     const mwContentText = body.find('#mw-content-text > div:first-child');
     if (!mwContentText.attr('id')) {
