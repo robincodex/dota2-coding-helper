@@ -272,7 +272,6 @@ function onSearch( value ) {
             }
         }
     }
-    console.log(resultList);
 
     // Sort keys
     const keys = Object.keys(resultList);
@@ -373,6 +372,11 @@ window.onload = async function() {
     root.querySelector('#menu-item-list').addEventListener('click', (ev) => {
         ev.stopPropagation();
         if (ev.target instanceof HTMLDivElement && ev.target.classList.contains('menu-item')) {
+            if (searchInput.value.length > 0 && location.hash === ev.target.getAttribute('hash')) {
+                searchInput.value = '';
+                onSearch('');
+                return;
+            }
             location.hash = ev.target.getAttribute('hash');
         }
     });
