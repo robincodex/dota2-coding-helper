@@ -31,6 +31,9 @@ async function fetchJavascriptAPI(cb) {
     $modifierstate.next().remove();
     $modifierstate.remove();
 
+    const jsAPI = {};
+    const Constants = {};
+
     // Modify style
     body.find(".standard-table").each((i, elem) => {
         $elem = $(elem);
@@ -39,26 +42,58 @@ async function fetchJavascriptAPI(cb) {
             $elem.find("th:first-child").remove();
             $elem.find("td:first-child").remove();
 
-            $elem.find("td:first-child code").each((_, code) => {
-                const signature = $(code).html().trim();
+            $elem.find("td:first-child").each((_, child) => {
+                let $child = $(child);
+                let $code = $child.find('code');
+                const signature = $code.html().trim();
                 const pointIndex = signature.indexOf(".");
                 const leftTokenIndex = signature.indexOf("(");
                 const className = signature.substring(0, pointIndex) || '$';
                 const funcName = signature.substring(pointIndex+1, leftTokenIndex);
                 const params = signature.substring(leftTokenIndex);
-                $(code).html(`<span class="sign-class">${className}</span>.<span class="sign-func">${funcName}</span>${params}`);
+
+                let list = jsAPI[className];
+                if (!list) {
+                    list = [];
+                    jsAPI[className] = list;
+                }
+                let desc = $child.siblings('td').html();
+                list.push({
+                    "func": params,
+                    "name": funcName,
+                    "return": "",
+                    "desc": desc? desc.trim() : '',
+                });
+
+                $code.html(`<span class="sign-class">${className}</span>.<span class="sign-func">${funcName}</span>${params}`);
             });
         }
         else if (title === 'Enumerator') {
             $elem.find("td:first-child").each((_, code) => {
-                const enumerator = $(code).html().trim();
+                let $code = $(code);
+                const enumerator = $code.html().trim();
                 const pointIndex = enumerator.indexOf(".");
                 const className = enumerator.substring(0, pointIndex);
                 const funcName = enumerator.substring(pointIndex+1);
-                $(code).html(`<span class="sign-class">${className}</span>.<span class="sign-func">${funcName}</span>`);
+
+                let list = Constants[className];
+                if (!list) {
+                    list = [];
+                    Constants[className] = list;
+                }
+                list.push({
+                    "value": $code.siblings('td').html().trim(),
+                    "name": funcName,
+                    "desc": $code.siblings('td').siblings('td').html().trim(),
+                });
+
+                $code.html(`<span class="sign-class">${className}</span>.<span class="sign-func">${funcName}</span>`);
             });
         }
     });
+
+    jsAPI['Constants'] = Constants;
+    await fs.promises.writeFile("./media/javascript_api.json", JSON.stringify(jsAPI, null, '  '));
 
     await fs.promises.writeFile("./media/javascript_api.html", body.html());
     cb();
