@@ -1,6 +1,6 @@
 
-type Vector = number[];
-type QAngle = number[];
+declare type Vector = number[];
+declare type QAngle = number[];
 
 declare interface ITeamDetails {
     team_id: number;
@@ -94,7 +94,225 @@ declare interface PrepareUnitOrdersArgument {
     ShowEffects?: boolean;
 }
 
-declare interface GameEvents {
+declare type CSSProperties = {
+    '-s2-mix-blend-mode': string,
+    align: string,
+    animation: string,
+    'animation-delay': string,
+    'animation-direction': string,
+    'animation-duration': string,
+    'animation-iteration-count': string,
+    'animation-name': string,
+    'animation-timing-function': string,
+    'background-blur': string,
+    'background-color': string,
+    'background-image': string,
+    'background-position': string,
+    'background-repeat': string,
+    'background-size': string,
+    blur: string,
+    border: string,
+    'border-bottom': string,
+    'border-bottom-color': string,
+    'border-bottom-left-radius': string,
+    'border-bottom-right-radius': string,
+    'border-bottom-style': string,
+    'border-bottom-width': string,
+    'border-color': string,
+    'border-left': string,
+    'border-left-color': string,
+    'border-left-style': string,
+    'border-left-width': string,
+    'border-radius': string,
+    'border-right': string,
+    'border-right-color': string,
+    'border-right-style': string,
+    'border-right-width': string,
+    'border-style': string,
+    'border-top': string,
+    'border-top-color': string,
+    'border-top-left-radius': string,
+    'border-top-right-radius': string,
+    'border-top-style': string,
+    'border-top-width': string,
+    'border-width': string,
+    'box-shadow': string,
+    brightness: string,
+    clip: string,
+    color: string,
+    'context-menu-arrow-position': string,
+    'context-menu-body-position': string,
+    'context-menu-position': string,
+    contrast: string,
+    'flow-children': 'none' | 'down' | 'right' | 'right-wrap',
+    font: string,
+    'font-family': string,
+    'font-size': string,
+    'font-stretch': string,
+    'font-style': string,
+    'font-weight': string,
+    height: string,
+    'horizontal-align': string,
+    'hue-rotation': string,
+    'img-shadow': string,
+    'letter-spacing': string,
+    'line-height': string,
+    margin: string,
+    'margin-bottom': string,
+    'margin-left': string,
+    'margin-right': string,
+    'margin-top': string,
+    'max-height': string,
+    'max-width': string,
+    'min-height': string,
+    'min-width': string,
+    opacity: string,
+    'opacity-mask': string,
+    'opacity-mask-scroll-down': string,
+    'opacity-mask-scroll-up': string,
+    'opacity-mask-scroll-up-down': string,
+    overflow: string,
+    padding: string,
+    'padding-bottom': string,
+    'padding-left': string,
+    'padding-right': string,
+    'padding-top': string,
+    perspective: string,
+    'perspective-origin': string,
+    position: string,
+    'pre-transform-rotate2d': string,
+    'pre-transform-scale2d': string,
+    saturation: string,
+    sound: string,
+    'sound-out': string,
+    'text-align': string,
+    'text-decoration': string,
+    'text-decoration-style': string,
+    'text-overflow': string,
+    'text-shadow': string,
+    'text-transform': string,
+    'texture-sampling': string,
+    'tooltip-arrow-position': string,
+    'tooltip-body-position': string,
+    'tooltip-position': string,
+    transform: string,
+    'transform-origin': string,
+    transition: string,
+    'transition-delay': string,
+    'transition-duration': string,
+    'transition-property': string,
+    'transition-timing-function': string,
+    'ui-scale': string,
+    'ui-scale-x': string,
+    'ui-scale-y': string,
+    'ui-scale-z': string,
+    'vertical-align': string,
+    visibility: string,
+    'wash-color': string,
+    'white-space': string,
+    width: string,
+    x: string,
+    y: string,
+    z: string,
+    'z-index': string,
+    animationDelay: string,
+    animationDirection: string,
+    animationDuration: string,
+    animationIterationCount: string,
+    animationName: string,
+    animationTimingFunction: string,
+    backgroundBlur: string,
+    backgroundColor: string,
+    backgroundImage: string,
+    backgroundPosition: string,
+    backgroundRepeat: string,
+    backgroundSize: string,
+    borderBottom: string,
+    borderBottomColor: string,
+    borderBottomLeftRadius: string,
+    borderBottomRightRadius: string,
+    borderBottomStyle: string,
+    borderBottomWidth: string,
+    borderColor: string,
+    borderLeft: string,
+    borderLeftColor: string,
+    borderLeftStyle: string,
+    borderLeftWidth: string,
+    borderRadius: string,
+    borderRight: string,
+    borderRightColor: string,
+    borderRightStyle: string,
+    borderRightWidth: string,
+    borderStyle: string,
+    borderTop: string,
+    borderTopColor: string,
+    borderTopLeftRadius: string,
+    borderTopRightRadius: string,
+    borderTopStyle: string,
+    borderTopWidth: string,
+    borderWidth: string,
+    boxShadow: string,
+    contextMenuArrowPosition: string,
+    contextMenuBodyPosition: string,
+    contextMenuPosition: string,
+    flowChildren: 'none' | 'down' | 'right' | 'right-wrap',
+    fontFamily: string,
+    fontSize: string,
+    fontStretch: string,
+    fontStyle: string,
+    fontWeight: string,
+    horizontalAlign: string,
+    hueRotation: string,
+    imgShadow: string,
+    letterSpacing: string,
+    lineHeight: string,
+    marginBottom: string,
+    marginLeft: string,
+    marginRight: string,
+    marginTop: string,
+    maxHeight: string,
+    maxWidth: string,
+    minHeight: string,
+    minWidth: string,
+    opacityMask: string,
+    opacityMaskScrollDown: string,
+    opacityMaskScrollUp: string,
+    opacityMaskScrollUpDown: string,
+    paddingBottom: string,
+    paddingLeft: string,
+    paddingRight: string,
+    paddingTop: string,
+    perspectiveOrigin: string,
+    preTransformRotate2d: string,
+    preTransformScale2d: string,
+    soundOut: string,
+    textAlign: string,
+    textDecoration: string,
+    textDecorationStyle: string,
+    textOverflow: string,
+    textShadow: string,
+    textTransform: string,
+    textureSampling: string,
+    tooltipArrowPosition: string,
+    tooltipBodyPosition: string,
+    tooltipPosition: string,
+    transformOrigin: string,
+    transitionDelay: string,
+    transitionDuration: string,
+    transitionProperty: string,
+    transitionTimingFunction: string,
+    uiScale: string,
+    uiScaleX: string,
+    uiScaleY: string,
+    uiScaleZ: string,
+    verticalAlign: string,
+    washColor: string,
+    whiteSpace: string,
+    zIndex: string,
+};
+
+declare const GameEvents: IGameEvents;
+declare interface IGameEvents {
     /**
      * Subscribe to a game event
      */
@@ -121,7 +339,8 @@ declare interface GameEvents {
     SendEventClientSide<T = any>( pEventName: string, data: T ): number;
 }
 
-declare interface CustomNetTables {
+declare const CustomNetTables: ICustomNetTables;
+declare interface ICustomNetTables {
     /**
      * Get a key from a custom net table
      */
@@ -140,7 +359,8 @@ declare interface CustomNetTables {
     UnsubscribeNetTableListener( nCallbackHandle: number ): void;
 }
 
-declare interface SteamUGC {
+declare const SteamUGC: ISteamUGC;
+declare interface ISteamUGC {
     /**
      * Subscribe to a piece of UGC
      */
@@ -199,7 +419,8 @@ declare interface SteamUGC {
     RegisterDownloadItemResultCallback( pPublishedFileID: string, callback: Function ): any;
 }
 
-declare interface SteamFriends {
+declare const SteamFriends: ISteamFriends;
+declare interface ISteamFriends {
     /**
      * Requests the user&apos;s persona name
      */
@@ -210,7 +431,8 @@ declare interface SteamFriends {
     SetLargeAvatarImage( ...args: any[] ): void;
 }
 
-declare interface SteamUtils {
+declare const SteamUtils: ISteamUtils;
+declare interface ISteamUtils {
     /**
      * Returns the connected universe
      */
@@ -221,7 +443,8 @@ declare interface SteamUtils {
     GetAppID(): number;
 }
 
-declare interface VRUtils {
+declare const VRUtils: IVRUtils;
+declare interface IVRUtils {
     /**
      * Get application properties for a VR app with the specified appID
      */
@@ -232,7 +455,8 @@ declare interface VRUtils {
     LaunchSteamApp( nAppID: number, pszLaunchSource: string ): any;
 }
 
-declare interface Buffs {
+declare const Buffs: IBuffs;
+declare interface IBuffs {
     GetName( nEntity: number, nBuff: number ): string;
     GetClass( nEntity: number, nBuff: number ): string;
     GetTexture( nEntity: number, nBuff: number ): string;
@@ -258,7 +482,8 @@ declare interface Buffs {
     GetAbility( nEntity: number, nBuff: number ): number;
 }
 
-declare interface Players {
+declare const Players: IPlayers;
+declare interface IPlayers {
     /**
      * Get the maximum number of players in the game.
      */
@@ -406,7 +631,8 @@ declare interface Players {
     GetPerspectivePlayerId(): number;
 }
 
-declare interface Entities {
+declare const Entities: IEntities;
+declare interface IEntities {
     /**
      * Get the world origin of the entity.
      */
@@ -590,7 +816,7 @@ declare interface Entities {
     GetNumItemsInInventory( nEntityIndex: number ): number;
     GetItemInSlot( nEntityIndex: number, nSlotIndex: number ): number;
     GetAbility( nEntityIndex: number, nSlotIndex: number ): number;
-    GetAbilityByName( nEntityIndex: number, pszAbilityName: string ): string;
+    GetAbilityByName( nEntityIndex: number, pszAbilityName: string ): number;
     GetNumBuffs( nEntityIndex: number ): number;
     GetBuff( nEntityIndex: number, nBufIndex: number ): number;
     GetAbilityPoints( nEntityIndex: number ): number;
@@ -614,7 +840,8 @@ declare interface Entities {
     GetContainedItem( nEntityIndex: number ): number;
 }
 
-declare interface Abilities {
+declare const Abilities: IAbilities;
+declare interface IAbilities {
     GetAbilityName( nEntityIndex: number ): string;
     GetAbilityTextureName( nEntityIndex: number ): string;
     GetAssociatedPrimaryAbilities( nEntityIndex: number ): string;
@@ -702,14 +929,15 @@ declare interface Abilities {
     /**
      * Ping the specified ability (Equivalent to alt-clicking the ability in the HUD action bar)
      */
-    PingAbility( nAbilityIndex: string ): void;
+    PingAbility( nAbilityIndex: number ): void;
     /**
      * Returns the keybind (as a string) for the specified ability.
      */
-    GetKeybind( nAbilityEntIndex: number ): number;
+    GetKeybind( nAbilityEntIndex: number ): string;
 }
 
-declare interface Items {
+declare const Items: IItems;
+declare interface IItems {
     ShouldDisplayCharges( nEntityIndex: number ): number;
     AlwaysDisplayCharges( nEntityIndex: number ): number;
     ShowSecondaryCharges( nEntityIndex: number ): number;
@@ -765,7 +993,8 @@ declare interface Items {
     LocalPlayerSellItem( nItem: number ): void;
 }
 
-declare interface Game {
+declare const Game: IGame;
+declare interface IGame {
     Time(): number;
     GetGameTime(): number;
     GetGameFrameTime(): number;
@@ -955,7 +1184,8 @@ declare interface Game {
     IsInAbilityLearnMode(): boolean;
 }
 
-declare interface GameUI {
+declare const GameUI: IGameUI;
+declare interface IGameUI {
     /**
      * Control whether the default UI is enabled
      */
@@ -980,7 +1210,7 @@ declare interface GameUI {
     /**
      * Return the entity index of the entity under the given screen position.
      */
-    FindScreenEntities(): {entityIndex: number;accurateCollision: boolean;}[];
+    FindScreenEntities( target: Vector ): {entityIndex: number;accurateCollision: boolean;}[];
     /**
      * Get the world position of the screen position, or null if the cursor is out of the world.
      */
@@ -1099,7 +1329,8 @@ declare interface GameUI {
     ReplaceDOTAAbilitySpecialValues( ability: number ): void;
 }
 
-declare interface Particles {
+declare const Particles: IParticles;
+declare interface IParticles {
     /**
      * Create a particle system
      */
@@ -1127,7 +1358,8 @@ declare interface Particles {
     SetParticleControlEnt( iIndex: number, iPoint: number, iEntIndex: number, iAttachType: number, pszAttachName: string, vecFallbackPositionVal: Vector, bIncludeWearables: boolean ): void;
 }
 
-declare interface EventData {
+declare const EventData: IEventData;
+declare interface IEventData {
     /**
      * Get the score of an EventAction
      */
@@ -1142,14 +1374,16 @@ declare interface EventData {
     GetPeriodicResourceMax( unPeriodicResourceID: number ): any;
 }
 
-declare interface LocalInventory {
+declare const LocalInventory: ILocalInventory;
+declare interface ILocalInventory {
     /**
      * Does the player have an inventory item of a given item definition index?
      */
     HasItemByDefinition( nDefIndex: number ): boolean;
 }
 
-declare interface $ {
+declare const $: IPanorama;
+declare interface IPanorama {
     /**
      * $<Label>("#label-id")
      */
@@ -1221,6 +1455,7 @@ declare interface $ {
     CreatePanel( tagName: 'Label', parent: Panel, id: string ): Label | undefined;
     CreatePanel( tagName: 'Movie', parent: Panel, id: string ): Movie | undefined;
     CreatePanel( tagName: 'NumberEntry', parent: Panel, id: string ): NumberEntry | undefined;
+    CreatePanel( tagName: 'Panel', parent: Panel, id: string ): Panel | undefined;
     CreatePanel( tagName: 'ProgressBar', parent: Panel, id: string ): ProgressBar | undefined;
     CreatePanel( tagName: 'RadioButton', parent: Panel, id: string ): RadioButton | undefined;
     CreatePanel( tagName: 'TabButton', parent: Panel, id: string ): TabButton | undefined;
@@ -1246,6 +1481,7 @@ declare interface $ {
     CreatePanelWithProperties( tagName: 'Label', parent: Panel, id: string, properties: {[key: string]: string} ): Label | undefined;
     CreatePanelWithProperties( tagName: 'Movie', parent: Panel, id: string, properties: {[key: string]: string} ): Movie | undefined;
     CreatePanelWithProperties( tagName: 'NumberEntry', parent: Panel, id: string, properties: {[key: string]: string} ): NumberEntry | undefined;
+    CreatePanelWithProperties( tagName: 'Panel', parent: Panel, id: string, properties: {[key: string]: string} ): Panel | undefined;
     CreatePanelWithProperties( tagName: 'ProgressBar', parent: Panel, id: string, properties: {[key: string]: string} ): ProgressBar | undefined;
     CreatePanelWithProperties( tagName: 'RadioButton', parent: Panel, id: string, properties: {[key: string]: string} ): RadioButton | undefined;
     CreatePanelWithProperties( tagName: 'TabButton', parent: Panel, id: string, properties: {[key: string]: string} ): TabButton | undefined;
@@ -1295,6 +1531,7 @@ declare interface $ {
 }
 
 declare interface Panel {
+    IsValid(): boolean;
     visible: boolean;
     enabled: boolean;
     checked: boolean;
@@ -1319,7 +1556,7 @@ declare interface Panel {
     scrolloffset_x: number;
     actualuiscale_y: number;
     actualuiscale_x: number;
-    style(): any;
+    style: CSSProperties;
     AddClass( name: string ): void;
     RemoveClass( name: string ): void;
     BHasClass( name: string ): boolean;
@@ -1332,16 +1569,16 @@ declare interface Panel {
     SetDraggable( b?: boolean ): void;
     IsDraggable(): boolean;
     GetChildCount(): number;
-    GetChild( index: number ): Panel;
+    GetChild<T = Panel>( index: number ): T | undefined;
     GetChildIndex(): number;
     Children(): Panel[];
-    FindChildrenWithClassTraverse( className: string ): Panel | undefined;
+    FindChildrenWithClassTraverse<T = Panel>( className: string ): T[];
     GetParent(): Panel;
     SetParent( panel: Panel ): void;
-    FindChild( id: string ): Panel;
-    FindChildTraverse( id: string ): Panel;
-    FindChildInLayoutFile( f: string ): Panel;
-    FindPanelInLayoutFile( f: string ): Panel;
+    FindChild<T = Panel>( id: string ): T | undefined;
+    FindChildTraverse<T = Panel>( id: string ): T | undefined;
+    FindChildInLayoutFile<T = Panel>( f: string ): T | undefined;
+    FindPanelInLayoutFile<T = Panel>( f: string ): T | undefined;
     RemoveAndDeleteChildren(): void;
     MoveChildBefore( source: Panel, target: Panel ): void;
     MoveChildAfter( source: Panel, target: Panel ): void;
@@ -1422,7 +1659,7 @@ declare interface TabButton extends Panel {
     scrolloffset_x: number;
     actualuiscale_y: number;
     actualuiscale_x: number;
-    style(): any;
+    style: CSSProperties;
     AddClass( name: string ): void;
     RemoveClass( name: string ): void;
     BHasClass( name: string ): boolean;
@@ -1435,16 +1672,16 @@ declare interface TabButton extends Panel {
     SetDraggable( b?: boolean ): void;
     IsDraggable(): boolean;
     GetChildCount(): number;
-    GetChild( index: number ): Panel;
+    GetChild<T = Panel>( index: number ): T | undefined;
     GetChildIndex(): number;
     Children(): Panel[];
-    FindChildrenWithClassTraverse( className: string ): Panel | undefined;
+    FindChildrenWithClassTraverse<T = Panel>( className: string ): T[];
     GetParent(): Panel;
     SetParent( panel: Panel ): void;
-    FindChild( id: string ): Panel;
-    FindChildTraverse( id: string ): Panel;
-    FindChildInLayoutFile( f: string ): Panel;
-    FindPanelInLayoutFile( f: string ): Panel;
+    FindChild<T = Panel>( id: string ): T | undefined;
+    FindChildTraverse<T = Panel>( id: string ): T | undefined;
+    FindChildInLayoutFile<T = Panel>( f: string ): T | undefined;
+    FindPanelInLayoutFile<T = Panel>( f: string ): T | undefined;
     RemoveAndDeleteChildren(): void;
     MoveChildBefore( source: Panel, target: Panel ): void;
     MoveChildAfter( source: Panel, target: Panel ): void;
@@ -1549,7 +1786,8 @@ declare interface TextEntry extends Panel {
     RaiseChangeEvents( b: boolean ): void;
 }
 
-declare interface SlottedSlider {
+declare const SlottedSlider: ISlottedSlider;
+declare interface ISlottedSlider {
     paneltype: string;
     rememberchildfocus: boolean;
     value: number;
@@ -1566,7 +1804,8 @@ declare interface SlottedSlider {
     RunScriptInPanelContext(): void;
 }
 
-declare interface Slider {
+declare const Slider: ISlider;
+declare interface ISlider {
     paneltype: string;
     rememberchildfocus: boolean;
     value: number;
