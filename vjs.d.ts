@@ -853,7 +853,7 @@ declare interface IAbilities {
     /**
      * Returns an AbilityLearnResult_t
      */
-    CanAbilityBeUpgraded( nEntityIndex: number ): boolean;
+    CanAbilityBeUpgraded( nEntityIndex: number ): AbilityLearnResult_t;
     CanBeExecuted( nEntityIndex: number ): number;
     GetAbilityDamage( nEntityIndex: number ): number;
     GetAbilityDamageType( nEntityIndex: number ): DAMAGE_TYPES;

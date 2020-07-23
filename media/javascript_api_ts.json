@@ -1551,7 +1551,7 @@
     {
       "func": "( nEntityIndex: number )",
       "name": "CanAbilityBeUpgraded",
-      "return": "boolean",
+      "return": "AbilityLearnResult_t",
       "desc": "Returns an AbilityLearnResult_t"
     },
     {
