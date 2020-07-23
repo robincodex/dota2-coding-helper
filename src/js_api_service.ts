@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { loadLocaleJSON } from './utils';
 
 export class JavascriptAPI {
     private webviewPanel: vscode.WebviewPanel;
@@ -36,10 +37,17 @@ export class JavascriptAPI {
 
     private async renderHTML() {
         const media = path.join(this.context.extensionPath, 'media');
-        const jsAPIPath = path.join(media, 'javascript_api.html');
+
+        const jsUri = this.webviewPanel.webview.asWebviewUri(
+            vscode.Uri.file(path.join(media, 'lua_api.js'))
+        );
 
         const styleUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, 'js_api.css'))
+            vscode.Uri.file(path.join(media, 'lua_api.css'))
+        );
+
+        const apiUri = this.webviewPanel.webview.asWebviewUri(
+            vscode.Uri.file(path.join(media, `javascript_api_ts.json`))
         );
 
         this.webviewPanel.webview.html = `<!DOCTYPE html>
@@ -51,7 +59,13 @@ export class JavascriptAPI {
                 <link href="${styleUri}" rel="stylesheet" />
             </head>
             <body>
-                ${await fs.promises.readFile(jsAPIPath)}
+                <div id="root"></div>
+                <script>
+                    window.apiUri = "${apiUri}";
+                    window.localeData = ${loadLocaleJSON()};
+                    window.usingJavascriptStyle = true;
+                </script>
+                <script src="${jsUri}"></script>
             </body>
             </html>`;
     }

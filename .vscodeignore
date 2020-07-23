@@ -13,3 +13,4 @@ docs
 !media/docs
 generate_docs.js
 gulpfile.js
+media/javascript_api.json

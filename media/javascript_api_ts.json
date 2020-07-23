@@ -83,7 +83,7 @@
       "desc": "Get a key from a custom net table"
     },
     {
-      "func": "( pPublishedFileID: string, boolean bVoteUp, callback: Function )",
+      "func": "( pPublishedFileID: string, bVoteUp: boolean, callback: Function )",
       "name": "SetUserItemVote",
       "return": "void",
       "desc": "Vote on a piece of UGC"
@@ -501,13 +501,13 @@
       "desc": "Is this player a spectator."
     },
     {
-      "func": "( integer nClickedPlayerID, boolean bHoldingCtrl, boolean bHoldingAlt )",
+      "func": "( nClickedPlayerID: number, bHoldingCtrl: boolean, bHoldingAlt: boolean )",
       "name": "PlayerPortraitClicked",
       "return": "void",
       "desc": "."
     },
     {
-      "func": "( nEntity: number, integer nBuffSerial, boolean bAlert )",
+      "func": "( nEntity: number, nBuffSerial: number, bAlert: boolean )",
       "name": "BuffClicked",
       "return": "void",
       "desc": "."
@@ -2195,7 +2195,7 @@
       "desc": ""
     },
     {
-      "func": "( boolean bIncludePreGame, boolean bIncludeNegativeTime )",
+      "func": "( bIncludePreGame: boolean, bIncludeNegativeTime: boolean )",
       "name": "GetDOTATime",
       "return": "number",
       "desc": ""
@@ -2955,15 +2955,15 @@
       "desc": "Get the current panel context"
     },
     {
-      "func": "( ...args: any[] )",
+      "func": "( context: Panel, keyName: string, callback: Function )",
       "name": "RegisterKeyBind",
-      "return": "",
+      "return": "void",
       "desc": "Register a key binding"
     },
     {
       "func": "( ...args: any[] )",
       "name": "Each",
-      "return": "",
+      "return": "void",
       "desc": "Call a function on each given item"
     },
     {

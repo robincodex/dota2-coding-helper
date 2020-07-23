@@ -87,6 +87,7 @@
     border: 1px solid #303030;
     padding: 7px;
     box-sizing: border-box;
+    font-family: Consolas, 'Courier New', monospace, var(--vscode-font-family);
 }
 
 .api-title {
@@ -114,9 +115,17 @@
     color: #cfcfcf;
 }
 
+.func-param-name {
+    color: #61b3e2;
+}
+
+.func-param-type {
+    color: #25bd80;
+}
+
 .function {
     margin-bottom: 3px;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .constant-value {

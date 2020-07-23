@@ -1,7 +1,12 @@
 
+// @ts-check
+
 let root;
 let apiData = null;
 let lastSelectedMenuItem = null;
+
+/** @ts-ignore */
+let usingJavascriptStyle = window.usingJavascriptStyle === true;
 
 // Sort priority
 const sortList = [
@@ -46,7 +51,18 @@ const sortList = [
     'DOTA_SHOP_TYPE',
     'DOTA_RUNES',
     'EDOTA_ModifyGold_Reason',
-    'EDOTA_ModifyXP_Reason'
+    'EDOTA_ModifyXP_Reason',
+    '$',
+    'Game',
+    'GameEvents',
+    'GameUI',
+    'Players',
+    'Entities',
+    'Abilities',
+    'Items',
+    'Buffs',
+    'Particles',
+    'Panel',
 ];
 
 // On location.hash change
@@ -82,8 +98,14 @@ function onHashChange() {
     apiListContainer.scrollTop = 0;
 }
 
-// Render a api list
+// Render list of Lua API
 function renderAPI(title, data) {
+    if (!data) {
+        return '';
+    }
+    if (usingJavascriptStyle) {
+        return renderJavascriptAPI(title, data);
+    }
     const getItem = (v) => {
         return `<tr>
             <td>
@@ -110,8 +132,60 @@ function renderAPI(title, data) {
     `;
 }
 
+// Render list of Javascript API
+function renderJavascriptAPI(title, data) {
+    /**
+     * @param {string} text
+     */
+    const renderParam = (text) => {
+        const list = text.match(/[\.\w\d_]+\:\s*[\w\d\_\|\[\]\. ]+/g);
+        if (!list) {
+            return text;
+        }
+        for (let i = list.length-1; i >= 0; i--) {
+            const str = list[i];
+            const strList = str.split(/\:\s*/);
+            if (strList.length === 1) {
+                text = text.replace(str, `<span class="func-param-name">${strList[0]}</span>: `);
+            }
+            else if (strList.length === 2) {
+                text = text.replace(str, `<span class="func-param-name">${strList[0]}</span>: <span class="func-param-type">${strList[1]}</span>`);
+            }
+        }
+        return text;
+    };
+
+    const getItem = (v) => {
+        return `<tr>
+            <td>
+                <div class="function">
+                    <span class="func-name">${v.name}</span><span class="func-params">${renderParam(v.func)}</span>:
+                    <span class="func-return"> ${v.return}</span>
+                </div>
+                <div>${v.desc}</div>
+            </td>
+        </tr>`;
+    };
+
+    let body = '';
+    for (let i = 0; i < data.length; i++) {
+        body += getItem(data[i]);
+    }
+
+    return `<div class="api-title">${title}</div>
+    <table class="table">
+        <tbody>
+            ${body}
+        </tbody>
+    </table>
+    `;
+}
+
 // Render a constants list
 function renderConstants(title, data) {
+    if (!data) {
+        return '';
+    }
     const getItem = (v) => {
         return `<tr>
             <td>
@@ -308,9 +382,10 @@ function onSearch( value ) {
 window.onload = async function() {
     root = document.getElementById('root');
 
-    // Fetch api data;
+    // @ts-ignore Fetch api data;
     const res = await fetch(window.apiUri);
     apiData = await res.json();
+    // @ts-ignore
     const localeData = window.localeData;
 
     // Initialize html
@@ -332,21 +407,29 @@ window.onload = async function() {
     showClasses();
 
     // Add some event to #search-input
+    /** @type {HTMLInputElement} */
     const searchInput = root.querySelector('#search-input');
     searchInput.addEventListener('change', (ev) => {
         ev.stopPropagation();
-        onSearch(ev.target.value);
+        if (ev.target instanceof HTMLInputElement) {
+            onSearch(ev.target.value);
+        }
     });
     searchInput.addEventListener('input', (ev) => {
         ev.stopPropagation();
-        if (!ev.target.value) {
-            onSearch(ev.target.value);
+        if (ev.target instanceof HTMLInputElement) {
+            if (!ev.target.value) {
+                onSearch(ev.target.value);
+            }
         }
     });
     searchInput.addEventListener('keydown', (ev) => {
         ev.stopPropagation();
+        // @ts-ignore
         if (ev.key === 'Enter') {
-            onSearch(ev.target.value);
+            if (ev.target instanceof HTMLInputElement) {
+                onSearch(ev.target.value);
+            }
         }
     });
 
