@@ -27,9 +27,9 @@ async function fetchJavascriptAPI(cb) {
     $modifierfunction.next().remove();
     $modifierfunction.remove();
 
-    const $modifierstate = body.find('#modifierstate').parent();
-    $modifierstate.next().remove();
-    $modifierstate.remove();
+    // const $modifierstate = body.find('#modifierstate').parent();
+    // $modifierstate.next().remove();
+    // $modifierstate.remove();
 
     const jsAPI = {};
     const Constants = {};
@@ -84,7 +84,7 @@ async function fetchJavascriptAPI(cb) {
                 list.push({
                     "value": $code.siblings('td').html().trim(),
                     "name": funcName,
-                    "desc": $code.siblings('td').siblings('td').html().trim(),
+                    "desc": $code.siblings('td').next().html().trim(),
                 });
 
                 $code.html(`<span class="sign-class">${className}</span>.<span class="sign-func">${funcName}</span>`);
@@ -95,7 +95,10 @@ async function fetchJavascriptAPI(cb) {
     jsAPI['Constants'] = Constants;
     await fs.promises.writeFile("./media/javascript_api.json", JSON.stringify(jsAPI, null, '  '));
 
-    await fs.promises.writeFile("./media/javascript_api.html", body.html());
+    // let fileContent = body.html();
+    // fileContent = fileContent.replace(/<!--[\s\S]*?-->/g, '');
+
+    // await fs.promises.writeFile("./media/javascript_api.html", fileContent);
     cb();
 }
 
@@ -118,7 +121,10 @@ async function fetchPanoramaCSS(cb) {
         mwContentText.remove();
     }
 
-    await fs.promises.writeFile("./media/panorama_css.html", body.html());
+    let fileContent = body.html();
+    fileContent = fileContent.replace(/<!--[\s\S]*?-->/g, '');
+
+    await fs.promises.writeFile("./media/panorama_css.html", fileContent);
     cb();
 }
 
@@ -141,7 +147,10 @@ async function fetchAbilitiesDataDriven(cb) {
         mwContentText.remove();
     }
 
-    await fs.promises.writeFile("./media/abilities_data_driven.html", body.html());
+    let fileContent = body.html();
+    fileContent = fileContent.replace(/<!--[\s\S]*?-->/g, '');
+
+    await fs.promises.writeFile("./media/abilities_data_driven.html", fileContent);
     cb();
 }
 

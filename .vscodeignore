@@ -12,5 +12,6 @@ vsc-extension-quickstart.md
 docs
 !media/docs
 generate_docs.js
+generate_ts.js
 gulpfile.js
 media/javascript_api.json
