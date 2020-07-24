@@ -4815,6 +4815,44 @@
       "desc": ""
     }
   ],
+  "DOTAHUDOverlayMap": [
+    {
+      "func": "",
+      "name": "mapscroll",
+      "return": "boolean",
+      "desc": ""
+    },
+    {
+      "func": "",
+      "name": "maptexture",
+      "return": "string",
+      "desc": "materials/overviews/[map_name].vtex"
+    },
+    {
+      "func": "",
+      "name": "mapscale",
+      "return": "number",
+      "desc": ""
+    },
+    {
+      "func": "",
+      "name": "fixedoffsetenabled",
+      "return": "boolean",
+      "desc": ""
+    },
+    {
+      "func": "( x: number, y: number )",
+      "name": "SetFixedOffset",
+      "return": "void",
+      "desc": ""
+    },
+    {
+      "func": "( size: number, x: number, y: number )",
+      "name": "SetFixedBackgroundTexturePosition",
+      "return": "boolean",
+      "desc": ""
+    }
+  ],
   "Constants": {
     "SteamUGCQuery": [
       {

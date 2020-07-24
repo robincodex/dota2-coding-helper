@@ -339,6 +339,7 @@ const extendsTable = {
     DOTAScenePanel: 'Panel',
     DOTAAbilityPanel: 'Panel',
     DOTAHTMLPanel: 'Panel',
+    DOTAHUDOverlayMap: 'Panel',
 };
 const elementList = Object.keys(extendsTable);
 elementList.sort();

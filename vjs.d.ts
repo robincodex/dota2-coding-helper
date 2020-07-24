@@ -1446,6 +1446,7 @@ declare interface IPanorama {
     CreatePanel( tagName: 'DOTAAbilityPanel', parent: Panel, id: string ): DOTAAbilityPanel | undefined;
     CreatePanel( tagName: 'DOTAAvatarImage', parent: Panel, id: string ): DOTAAvatarImage | undefined;
     CreatePanel( tagName: 'DOTAHTMLPanel', parent: Panel, id: string ): DOTAHTMLPanel | undefined;
+    CreatePanel( tagName: 'DOTAHUDOverlayMap', parent: Panel, id: string ): DOTAHUDOverlayMap | undefined;
     CreatePanel( tagName: 'DOTAHeroImage', parent: Panel, id: string ): DOTAHeroImage | undefined;
     CreatePanel( tagName: 'DOTAItemImage', parent: Panel, id: string ): DOTAItemImage | undefined;
     CreatePanel( tagName: 'DOTAScenePanel', parent: Panel, id: string ): DOTAScenePanel | undefined;
@@ -1472,6 +1473,7 @@ declare interface IPanorama {
     CreatePanelWithProperties( tagName: 'DOTAAbilityPanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAAbilityPanel | undefined;
     CreatePanelWithProperties( tagName: 'DOTAAvatarImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAAvatarImage | undefined;
     CreatePanelWithProperties( tagName: 'DOTAHTMLPanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHTMLPanel | undefined;
+    CreatePanelWithProperties( tagName: 'DOTAHUDOverlayMap', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHUDOverlayMap | undefined;
     CreatePanelWithProperties( tagName: 'DOTAHeroImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHeroImage | undefined;
     CreatePanelWithProperties( tagName: 'DOTAItemImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAItemImage | undefined;
     CreatePanelWithProperties( tagName: 'DOTAScenePanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAScenePanel | undefined;
@@ -1900,6 +1902,18 @@ declare interface DOTAAbilityPanel extends Panel {
 
 declare interface DOTAHTMLPanel extends Panel {
     SetURL( url: string ): void;
+}
+
+declare interface DOTAHUDOverlayMap extends Panel {
+    mapscroll: boolean;
+    /**
+     * materials/overviews/[map_name].vtex
+     */
+    maptexture: string;
+    mapscale: number;
+    fixedoffsetenabled: boolean;
+    SetFixedOffset( x: number, y: number ): void;
+    SetFixedBackgroundTexturePosition( size: number, x: number, y: number ): boolean;
 }
 
 declare enum SteamUGCQuery {
