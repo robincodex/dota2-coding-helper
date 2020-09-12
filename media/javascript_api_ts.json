@@ -3209,7 +3209,7 @@
       "desc": ""
     },
     {
-      "func": "( b?: boolean )",
+      "func": "( enable: boolean )",
       "name": "SetDraggable",
       "return": "void",
       "desc": ""
@@ -3233,7 +3233,7 @@
       "desc": ""
     },
     {
-      "func": "()",
+      "func": "(child: Panel)",
       "name": "GetChildIndex",
       "return": "number",
       "desc": ""
@@ -3835,7 +3835,7 @@
 			"desc": ""
 		},
 		{
-			"func": "()",
+			"func": "(child: Panel)",
 			"name": "GetChildIndex",
 			"return": "number",
 			"desc": ""
