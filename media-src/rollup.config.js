@@ -45,8 +45,7 @@ export default {
                 // ["module-resolver", {
                 //     root: ["./src/"],
                 //     alias: {
-                //         "react": "./node_modules/es-react/react.js",
-                //         "react-dom": "./node_modules/es-react/react-dom.js",
+                //         "@emotion/react": "./node_modules/@emotion/styled/dist/emotion-styled.umd.min.js",
                 //     }
                 // }],
                 'react-require',
@@ -61,6 +60,7 @@ export default {
                     regenerator: true,
                     useESModules: false,
                 }],
+                ["@emotion"]
             ],
         }),
         scss({

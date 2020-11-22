@@ -1,11 +1,23 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
-import { KeyValues3, loadFromString, formatKeyValues, NewKeyValue, NewKeyValuesObject, NewKeyValuesArray } from 'easy-keyvalues/dist/kv3';
-import { GetNonce, initializeKV3ToDocument, writeDocument, RequestHelper, locale } from './utils';
+import {
+    KeyValues3,
+    loadFromString,
+    formatKeyValues,
+    NewKeyValue,
+    NewKeyValuesObject,
+    NewKeyValuesArray,
+} from 'easy-keyvalues/dist/kv3';
+import {
+    GetNonce,
+    initializeKV3ToDocument,
+    writeDocument,
+    RequestHelper,
+    locale,
+} from './utils';
 import { promises } from 'fs';
 
 export class SoundEventsEditorService {
-
     private kvList: KeyValues3[];
     private request: RequestHelper;
 
@@ -23,9 +35,7 @@ export class SoundEventsEditorService {
         'distance_max',
     ];
 
-    constructor(
-        private readonly context: vscode.ExtensionContext,
-    ) {
+    constructor(private readonly context: vscode.ExtensionContext) {
         this.request = new RequestHelper();
         this.kvList = [];
     }
@@ -36,30 +46,33 @@ export class SoundEventsEditorService {
             return '[]';
         }
 
-        type resultType = {[key: string]: string | string[]};
+        type resultType = { [key: string]: string | string[] };
 
         const result: resultType[] = [];
-        for(const kv of root.Value) {
+        for (const kv of root.Value) {
             if (!kv.Key.startsWith('"') && !kv.Key.endsWith('"')) {
                 kv.Key = `"${kv.Key.trim()}"`;
             }
 
-            const data: resultType = {event: kv.Key, vsnd_files:[]};
+            const data: resultType = { event: kv.Key, vsnd_files: [] };
             result.push(data);
 
             if (Array.isArray(kv.Value)) {
                 // Find vsnd_files
-                const vsndFiles = kv.Value.find((v) => v.Key === "vsnd_files");
+                const vsndFiles = kv.Value.find((v) => v.Key === 'vsnd_files');
                 if (vsndFiles && Array.isArray(vsndFiles.Value)) {
-                    for(const sound of vsndFiles.Value) {
-                        if (!Array.isArray(sound.Value) && Array.isArray(data.vsnd_files)) {
+                    for (const sound of vsndFiles.Value) {
+                        if (
+                            !Array.isArray(sound.Value) &&
+                            Array.isArray(data.vsnd_files)
+                        ) {
                             data.vsnd_files.push(sound.Value);
                         }
                     }
                 }
 
                 // Find some value from keys
-                for(const child of kv.Value) {
+                for (const child of kv.Value) {
                     if (!Array.isArray(child.Value) && child.Key !== 'vsnd_files') {
                         data[child.Key] = child.Value;
                     }
@@ -78,12 +91,14 @@ export class SoundEventsEditorService {
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        root.Value.push(NewKeyValuesObject(`"${event.trim()}"`, [
-            NewKeyValue('type', 'dota_update_default'),
-            NewKeyValuesArray('vsnd_files', []),
-            NewKeyValue('volume', '1.0000'),
-            NewKeyValue('pitch', '1.0000'),
-        ]));
+        root.Value.push(
+            NewKeyValuesObject(`"${event.trim()}"`, [
+                NewKeyValue('type', 'dota_update_default'),
+                NewKeyValuesArray('vsnd_files', []),
+                NewKeyValue('volume', '1.0000'),
+                NewKeyValue('pitch', '1.0000'),
+            ])
+        );
     }
 
     /**
@@ -145,11 +160,11 @@ export class SoundEventsEditorService {
         if (kv && Array.isArray(kv.Value)) {
             const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
             if (vsnd_files && Array.isArray(vsnd_files.Value)) {
-                vsnd_files.Value.push(NewKeyValue("", file));
+                vsnd_files.Value.push(NewKeyValue('', file));
             }
         }
     }
-    
+
     /**
      * Add or change a sound key
      */
@@ -165,7 +180,7 @@ export class SoundEventsEditorService {
             if (child && !Array.isArray(child.Value)) {
                 child.Value = value;
             } else {
-                kv.Value.push(NewKeyValue(key,value));
+                kv.Value.push(NewKeyValue(key, value));
             }
         }
     }
@@ -199,12 +214,18 @@ export class SoundEventsEditorService {
             if (index === 0) {
                 return;
             }
-            [root.Value[index], root.Value[index-1]] = [root.Value[index-1], root.Value[index]];
+            [root.Value[index], root.Value[index - 1]] = [
+                root.Value[index - 1],
+                root.Value[index],
+            ];
         } else {
-            if (index === root.Value.length-1) {
+            if (index === root.Value.length - 1) {
                 return;
             }
-            [root.Value[index], root.Value[index+1]] = [root.Value[index+1], root.Value[index]];
+            [root.Value[index], root.Value[index + 1]] = [
+                root.Value[index + 1],
+                root.Value[index],
+            ];
         }
     }
 
@@ -232,7 +253,7 @@ export class SoundEventsEditorService {
             const num = lastNumberMatch[0];
             currentNumber = parseInt(num);
             prefix = prefix.replace(new RegExp(`${num}$`), '');
-            for(const n of num) {
+            for (const n of num) {
                 if (n === '0') {
                     zeroCount++;
                     continue;
@@ -245,7 +266,7 @@ export class SoundEventsEditorService {
 
         // Find max number
         const prefix2 = `"${prefix}`;
-        for(const child of root.Value) {
+        for (const child of root.Value) {
             if (child.Key.startsWith(prefix2)) {
                 const num = parseInt(child.Key.replace(prefix2, '').replace(/\"/g, ''));
                 if (!isNaN(num) && num > currentNumber) {
@@ -254,29 +275,29 @@ export class SoundEventsEditorService {
             }
         }
 
-        let suffix = (currentNumber+1).toString();
+        let suffix = (currentNumber + 1).toString();
         if (suffix.length <= zeroCount) {
-            suffix = '0'.repeat(zeroCount-suffix.length+1) + suffix;
+            suffix = '0'.repeat(zeroCount - suffix.length + 1) + suffix;
         }
 
         const cloneKV: KeyValues3 = JSON.parse(JSON.stringify(kv));
         cloneKV.Key = `"${prefix + suffix}"`;
 
         const kvIndex = root.Value.findIndex((v) => v.Key === event);
-        root.Value.splice(kvIndex+1, 0, cloneKV);
+        root.Value.splice(kvIndex + 1, 0, cloneKV);
     }
 
     /**
      * When editor is opened
-     * @param document 
-     * @param webviewPanel 
-     * @param _token 
+     * @param document
+     * @param webviewPanel
+     * @param _token
      */
     public async resolveCustomTextEditor(
-		document: vscode.TextDocument,
-		webviewPanel: vscode.WebviewPanel,
-		_token: vscode.CancellationToken
-	): Promise<void> {
+        document: vscode.TextDocument,
+        webviewPanel: vscode.WebviewPanel,
+        _token: vscode.CancellationToken
+    ): Promise<void> {
         // Setup initial content for the webview
         webviewPanel.webview.options = {
             enableScripts: true,
@@ -287,8 +308,8 @@ export class SoundEventsEditorService {
         const updateKeyValues = async () => {
             try {
                 this.kvList = await loadFromString(document.getText());
-            } catch(e) {
-                vscode.window.showErrorMessage(e.toString() + "\n" + document.uri.fsPath);
+            } catch (e) {
+                vscode.window.showErrorMessage(document.fileName + ': ' + e.toString());
             }
             webviewPanel.webview.postMessage({
                 label: 'update',
@@ -297,7 +318,7 @@ export class SoundEventsEditorService {
         };
 
         // Add a new event
-        this.request.listenRequest("add-event", (...args: any[]) => {
+        this.request.listenRequest('add-event', (...args: any[]) => {
             const event = args[0];
             if (typeof event !== 'string') {
                 return;
@@ -310,7 +331,7 @@ export class SoundEventsEditorService {
         });
 
         // Remove a event
-        this.request.listenRequest("remove-event", (...args: any[]) => {
+        this.request.listenRequest('remove-event', (...args: any[]) => {
             const event = args[0];
             if (typeof event !== 'string') {
                 return;
@@ -323,7 +344,7 @@ export class SoundEventsEditorService {
         });
 
         // Change a event name
-        this.request.listenRequest("change-event-name", (...args: any[]) => {
+        this.request.listenRequest('change-event-name', (...args: any[]) => {
             const oldEvent = args[0];
             const newEvent = args[1];
             if (typeof oldEvent !== 'string' && typeof newEvent !== 'string') {
@@ -337,7 +358,7 @@ export class SoundEventsEditorService {
         });
 
         // Remove a sound file
-        this.request.listenRequest("remove-sound-file", (...args: any[]) => {
+        this.request.listenRequest('remove-sound-file', (...args: any[]) => {
             const event = args[0];
             const index = args[1];
             if (typeof event !== 'string' && typeof index !== 'number') {
@@ -351,7 +372,7 @@ export class SoundEventsEditorService {
         });
 
         // Add a sound file
-        this.request.listenRequest("add-sound-file", (...args: any[]) => {
+        this.request.listenRequest('add-sound-file', (...args: any[]) => {
             const event = args[0];
             const file = args[1];
             if (typeof event !== 'string' && typeof file !== 'string') {
@@ -362,16 +383,20 @@ export class SoundEventsEditorService {
         });
 
         // Return soundKeys
-        this.request.listenRequest("get-sound-keys", (...args: any[]) => {
+        this.request.listenRequest('get-sound-keys', (...args: any[]) => {
             return SoundEventsEditorService.soundKeys;
         });
 
         // Add or change a sound key
-        this.request.listenRequest("change-sound-key", (...args: any[]) => {
+        this.request.listenRequest('change-sound-key', (...args: any[]) => {
             const event = args[0];
             const key = args[1];
             const value = args[2];
-            if (typeof event !== 'string' && typeof key !== 'string' && typeof value !== 'string') {
+            if (
+                typeof event !== 'string' &&
+                typeof key !== 'string' &&
+                typeof value !== 'string'
+            ) {
                 return;
             }
             this.changeSoundKeyValue(event, key, value);
@@ -379,7 +404,7 @@ export class SoundEventsEditorService {
         });
 
         // Remove a sound key
-        this.request.listenRequest("remove-sound-key", (...args: any[]) => {
+        this.request.listenRequest('remove-sound-key', (...args: any[]) => {
             const event = args[0];
             const key = args[1];
             if (typeof event !== 'string' && typeof key !== 'string') {
@@ -390,7 +415,7 @@ export class SoundEventsEditorService {
         });
 
         // Move a sound event
-        this.request.listenRequest("move-sound-event", (...args: any[]) => {
+        this.request.listenRequest('move-sound-event', (...args: any[]) => {
             const event = args[0];
             const up = args[1];
             if (typeof event !== 'string' && typeof up !== 'boolean') {
@@ -401,7 +426,7 @@ export class SoundEventsEditorService {
         });
 
         // Dulpicate a sound event
-        this.request.listenRequest("duplicate-sound-event", (...args: any[]) => {
+        this.request.listenRequest('duplicate-sound-event', (...args: any[]) => {
             const event = args[0];
             if (typeof event !== 'string') {
                 return;
@@ -433,10 +458,12 @@ export class SoundEventsEditorService {
             initializeKV3ToDocument(document);
             return;
         }
-        
+
         // Only support KeyValues3
-        if (!document.lineAt(0).text.startsWith("<!--")) {
-            vscode.window.showErrorMessage("This file isn't kv3 format.\n" + document.uri.fsPath);
+        if (!document.lineAt(0).text.startsWith('<!--')) {
+            vscode.window.showErrorMessage(
+                "This file isn't kv3 format.\n" + document.uri.fsPath
+            );
             return;
         }
 
@@ -445,19 +472,27 @@ export class SoundEventsEditorService {
 
     /**
      * Return HTML content
-     * @param webview 
+     * @param webview
      */
     private async getHTML(webview: vscode.Webview): Promise<string> {
         const nonce = GetNonce();
 
-        const styleUri = webview.asWebviewUri(vscode.Uri.file(
-            path.join(this.context.extensionPath, 'media/bundle/style.css')
-        ));
+        // const styleUri = webview.asWebviewUri(
+        //     vscode.Uri.file(
+        //         path.join(this.context.extensionPath, 'media/bundle/style.css')
+        //     )
+        // );
 
-        const indexJs = webview.asWebviewUri(vscode.Uri.file(
-            path.join(this.context.extensionPath, 'media/bundle/SoundEventsEditor.js')
-        ));
+        const indexJs = webview.asWebviewUri(
+            vscode.Uri.file(
+                path.join(
+                    this.context.extensionPath,
+                    'media/bundle/SoundEventsEditor.js'
+                )
+            )
+        );
 
+        // prettier-ignore
         return `
             <!DOCTYPE html>
             <html lang="${locale()}">
@@ -465,8 +500,8 @@ export class SoundEventsEditorService {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Sound Events Editor</title>
-                <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-                <link href="${styleUri}" rel="stylesheet" />
+                <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
+                <script nonce="${nonce}">window._nonce_ = "${nonce}"</script>
                 <script nonce="${nonce}" type="module" src="${indexJs}" defer></script>
             </head>
             <body>
@@ -478,36 +513,35 @@ export class SoundEventsEditorService {
 }
 
 export class SoundEventsEditorProvider implements vscode.CustomTextEditorProvider {
-
     private static readonly viewType = 'dota2CodingHelper.editSoundEvents';
-    
+
     public static register(context: vscode.ExtensionContext): vscode.Disposable {
         const provider = new SoundEventsEditorProvider(context);
         const providerRegistration = vscode.window.registerCustomEditorProvider(
-            SoundEventsEditorProvider.viewType, 
-            provider, 
+            SoundEventsEditorProvider.viewType,
+            provider,
             {
                 webviewOptions: {
-                    retainContextWhenHidden: true
-                }
-            });
+                    retainContextWhenHidden: true,
+                },
+            }
+        );
         return providerRegistration;
     }
 
-    constructor( private readonly context: vscode.ExtensionContext ) {
-    }
+    constructor(private readonly context: vscode.ExtensionContext) {}
 
     /**
      * When editor is opened
-     * @param document 
-     * @param webviewPanel 
-     * @param _token 
+     * @param document
+     * @param webviewPanel
+     * @param _token
      */
     public async resolveCustomTextEditor(
-		document: vscode.TextDocument,
-		webviewPanel: vscode.WebviewPanel,
-		_token: vscode.CancellationToken
-	): Promise<void> {
+        document: vscode.TextDocument,
+        webviewPanel: vscode.WebviewPanel,
+        _token: vscode.CancellationToken
+    ): Promise<void> {
         const service = new SoundEventsEditorService(this.context);
         await service.resolveCustomTextEditor(document, webviewPanel, _token);
     }

@@ -47,6 +47,10 @@ button {
             background: #232323;
         }
 
+        &:hover {
+            background: #232323;
+        }
+
         &:not(:last-child) {
             td,th {
                 border-bottom-width: 0;
