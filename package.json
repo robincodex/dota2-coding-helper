@@ -81,7 +81,7 @@
 		"glob": "^7.1.6",
 		"gulp": "^4.0.2",
 		"gulp-cli": "^2.2.0",
-		"highlight.js": "^10.0.2",
+		"highlight.js": "^10.1.2",
 		"image-data-uri": "^2.0.1",
 		"mocha": "^7.1.1",
 		"request": "^2.88.2",
