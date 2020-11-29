@@ -6,7 +6,9 @@ import * as Icons from 'react-bootstrap-icons';
 import styled from '@emotion/styled';
 import { ListView } from './Components/ListView';
 import { CacheProvider } from '@emotion/react';
-import { usePopper } from 'react-popper';
+import { css } from '@emotion/css';
+import { ContextMenuType, ShowContextMenu } from './Components/ContextMenu';
+import commonText from './common_i18n';
 
 const i18n: {
     [key: string]: {
@@ -17,6 +19,7 @@ const i18n: {
         volume: string;
         pitch: string;
         other_kv: string;
+        copy_event_name: string;
     };
 } = {
     en: {
@@ -27,6 +30,7 @@ const i18n: {
         volume: 'Volume',
         pitch: 'Pitch',
         other_kv: 'Other KV',
+        copy_event_name: 'Copy Sound Event Name',
     },
     'zh-cn': {
         title: '音效事件名列表',
@@ -36,10 +40,11 @@ const i18n: {
         volume: '音量',
         pitch: '音高',
         other_kv: '其它KV',
+        copy_event_name: '复制音效名称',
     },
 };
 
-const text = i18n[navigator.language] || i18n['en'];
+const localText = i18n[navigator.language] || i18n['en'];
 
 type resultType = { [key: string]: string | string[] };
 
@@ -99,9 +104,7 @@ const EditorView = styled.div`
     justify-content: stretch;
 `;
 
-const SoundContent = styled.div`
-    border: 1px solid #303030;
-`;
+const SoundContent = styled.div``;
 
 function SoundEventsEditor() {
     let [soundEvents, setSoundEvents] = useState<resultType[]>([]);
@@ -112,30 +115,21 @@ function SoundEventsEditor() {
         }
     });
 
-    // return (
-    //     <table className="table">
-    //         <thead>
-    //             <tr>
-    //                 <th>{text.event}</th>
-    //                 <th>{text.type}</th>
-    //                 <th>{text.sounds}</th>
-    //                 <th className="short-head">{text.volume}</th>
-    //                 <th className="short-head">{text.pitch}</th>
-    //                 <th>{text.other_kv}</th>
-    //             </tr>
-    //         </thead>
-    //         <tbody>
-    //             {soundEvents.map((v, i) => {
-    //                 return <SoundEvent soundData={v} key={i} />;
-    //             })}
-    //         </tbody>
-    //     </table>
-    // );
+    /**
+     * Copy Sound Event Name
+     */
+    function copySoundNames(keys: number[]) {
+        const events = keys.map((k) =>
+            String(soundEvents[k]['event']).replace(/\"/g, '')
+        );
+        navigator.clipboard.writeText(events.join('\n'));
+    }
+
     return (
         <CacheProvider value={editorCache}>
             <EditorView>
                 <ListView
-                    title={text.title}
+                    title={localText.title}
                     items={soundEvents.map((v, i) => {
                         return {
                             key: i,
@@ -144,13 +138,71 @@ function SoundEventsEditor() {
                             ),
                         };
                     })}
-                    onSelected={(items) => {
-                        console.log(items);
+                    onSelected={(items) => {}}
+                    onKeyDown={(evt, methods) => {
+                        if (evt.ctrlKey) {
+                            if (evt.altKey) {
+                                if (evt.key === 'c') {
+                                    copySoundNames(
+                                        methods.getSelectedItems().map(Number)
+                                    );
+                                }
+                            }
+                            if (evt.key === 'a') {
+                                methods.selectAll();
+                            }
+                        }
                     }}
-                    onContextMenu={(key, itemElement) => {}}
+                    onContextMenu={(event, keys, methods) => {
+                        const _keys = keys.map(Number);
+                        ShowContextMenu({
+                            menu: [
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'copy',
+                                    text: commonText.copy,
+                                    hotkey: 'Ctrl+C',
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'copy_event_name',
+                                    text: localText.copy_event_name,
+                                    hotkey: 'Ctrl+Alt+C',
+                                },
+                                {
+                                    type: ContextMenuType.Separator,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'select_all',
+                                    text: commonText.select_all,
+                                    hotkey: 'Ctrl+A',
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'delete',
+                                    text: commonText.delete,
+                                    hotkey: 'Del',
+                                },
+                            ],
+                            offset: {
+                                top: event.clientY,
+                                left: event.clientX,
+                            },
+                            onClick: (id) => {
+                                switch (id) {
+                                    case 'select_all':
+                                        methods.selectAll();
+                                        break;
+                                    case 'copy_event_name':
+                                        copySoundNames(_keys);
+                                        break;
+                                }
+                            },
+                        });
+                    }}
                 />
-
-                <SoundContent />
+                <SoundContent></SoundContent>
             </EditorView>
         </CacheProvider>
     );

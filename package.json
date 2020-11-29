@@ -1,109 +1,109 @@
 {
-	"name": "dota2-coding-helper",
-	"displayName": "Dota2 Coding Helper",
-	"description": "View some document for Dota2 custom game",
-	"version": "0.1.6",
-	"publisher": "robincode",
-	"icon": "media/logo.png",
-	"engines": {
-		"vscode": "^1.44.0"
-	},
-	"repository": {
-		"url": "https://github.com/RobinCodeX/dota2-coding-helper"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:dota2CodingHelper.luaServerAPI",
-		"onCommand:dota2CodingHelper.luaClientAPI",
-		"onCommand:dota2CodingHelper.jsAPI",
-		"onCommand:dota2CodingHelper.panoramaCSS",
-		"onCommand:dota2CodingHelper.abilitiesDataDriven",
-		"onCommand:dota2CodingHelper.documents",
-		"onCustomEditor:dota2CodingHelper.editSoundEvents"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "dota2CodingHelper.luaServerAPI",
-				"title": "Lua Server API",
-				"category": "Dota2 Coding Helper"
-			},
-			{
-				"command": "dota2CodingHelper.luaClientAPI",
-				"title": "Lua Client API",
-				"category": "Dota2 Coding Helper"
-			},
-			{
-				"command": "dota2CodingHelper.jsAPI",
-				"title": "Javascript API",
-				"category": "Dota2 Coding Helper"
-			},
-			{
-				"command": "dota2CodingHelper.panoramaCSS",
-				"title": "Panorama CSS",
-				"category": "Dota2 Coding Helper"
-			},
-			{
-				"command": "dota2CodingHelper.abilitiesDataDriven",
-				"title": "Abilities Data Driven",
-				"category": "Dota2 Coding Helper"
-			},
-			{
-				"command": "dota2CodingHelper.documents",
-				"title": "Custom Game Documents",
-				"category": "Dota2 Coding Helper"
-			}
-		],
-		"customEditors": [
-			{
-				"viewType": "dota2CodingHelper.editSoundEvents",
-				"displayName": "Dota2 Sound Events Editor",
-				"priority": "option",
-				"selector": [
-					{
-						"filenamePattern": "**/*.vsndevts"
-					}
-				]
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile & npm run docs",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js",
-		"task": "gulp",
-		"docs": "gulp docs"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/highlight.js": "^9.12.3",
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
-		"@types/showdown": "^1.9.3",
-		"@types/vscode": "^1.44.0",
-		"@typescript-eslint/eslint-plugin": "^2.26.0",
-		"@typescript-eslint/parser": "^2.26.0",
-		"cheerio": "^1.0.0-rc.3",
-		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
-		"gulp": "^4.0.2",
-		"gulp-cli": "^2.2.0",
-		"highlight.js": "^10.0.2",
-		"image-data-uri": "^2.0.1",
-		"mocha": "^7.1.1",
-		"request": "^2.88.2",
-		"request-promise": "^4.2.5",
-		"showdown": "^1.9.1",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
-	},
-	"dependencies": {
-		"easy-keyvalues": "^0.1.5"
-	}
+    "name": "dota2-coding-helper",
+    "displayName": "Dota2 Coding Helper",
+    "description": "View some document for Dota2 custom game",
+    "version": "0.1.6",
+    "publisher": "robincode",
+    "icon": "media/logo.png",
+    "engines": {
+        "vscode": "^1.50.0"
+    },
+    "repository": {
+        "url": "https://github.com/RobinCodeX/dota2-coding-helper"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:dota2CodingHelper.luaServerAPI",
+        "onCommand:dota2CodingHelper.luaClientAPI",
+        "onCommand:dota2CodingHelper.jsAPI",
+        "onCommand:dota2CodingHelper.panoramaCSS",
+        "onCommand:dota2CodingHelper.abilitiesDataDriven",
+        "onCommand:dota2CodingHelper.documents",
+        "onCustomEditor:dota2CodingHelper.editSoundEvents"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "dota2CodingHelper.luaServerAPI",
+                "title": "Lua Server API",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.luaClientAPI",
+                "title": "Lua Client API",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.jsAPI",
+                "title": "Javascript API",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.panoramaCSS",
+                "title": "Panorama CSS",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.abilitiesDataDriven",
+                "title": "Abilities Data Driven",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.documents",
+                "title": "Custom Game Documents",
+                "category": "Dota2 Coding Helper"
+            }
+        ],
+        "customEditors": [
+            {
+                "viewType": "dota2CodingHelper.editSoundEvents",
+                "displayName": "Dota2 Sound Events Editor",
+                "priority": "option",
+                "selector": [
+                    {
+                        "filenamePattern": "**/*.vsndevts"
+                    }
+                ]
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile & npm run docs",
+        "compile": "tsc -p ./",
+        "lint": "eslint src --ext ts",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "test": "node ./out/test/runTest.js",
+        "task": "gulp",
+        "docs": "gulp docs"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/highlight.js": "^9.12.3",
+        "@types/mocha": "^7.0.2",
+        "@types/node": "^13.11.0",
+        "@types/showdown": "^1.9.3",
+        "@types/vscode": "^1.44.0",
+        "@typescript-eslint/eslint-plugin": "^2.26.0",
+        "@typescript-eslint/parser": "^2.26.0",
+        "cheerio": "^1.0.0-rc.3",
+        "eslint": "^6.8.0",
+        "glob": "^7.1.6",
+        "gulp": "^4.0.2",
+        "gulp-cli": "^2.2.0",
+        "highlight.js": "^10.0.2",
+        "image-data-uri": "^2.0.1",
+        "mocha": "^7.1.1",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.5",
+        "showdown": "^1.9.1",
+        "typescript": "^3.8.3",
+        "vscode-test": "^1.3.0"
+    },
+    "dependencies": {
+        "easy-keyvalues": "^0.1.5"
+    }
 }

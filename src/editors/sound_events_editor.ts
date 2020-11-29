@@ -477,11 +477,11 @@ export class SoundEventsEditorService {
     private async getHTML(webview: vscode.Webview): Promise<string> {
         const nonce = GetNonce();
 
-        // const styleUri = webview.asWebviewUri(
-        //     vscode.Uri.file(
-        //         path.join(this.context.extensionPath, 'media/bundle/style.css')
-        //     )
-        // );
+        const styleUri = webview.asWebviewUri(
+            vscode.Uri.file(
+                path.join(this.context.extensionPath, 'media/bundle/style.css')
+            )
+        );
 
         const indexJs = webview.asWebviewUri(
             vscode.Uri.file(
@@ -500,11 +500,10 @@ export class SoundEventsEditorService {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Sound Events Editor</title>
-                <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
-                <script nonce="${nonce}">window._nonce_ = "${nonce}"</script>
-                <script nonce="${nonce}" type="module" src="${indexJs}" defer></script>
+                <link href="${styleUri}" rel="stylesheet" />
+                <script type="module" src="${indexJs}" defer></script>
             </head>
-            <body>
+            <body class="bp3-dark">
                 <div id="app" />
             </body>
             </html>

@@ -1,11 +1,14 @@
-import styled from '@emotion/styled';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { css } from '@emotion/css';
+import styled from '@emotion/styled';
 
-const Header = styled.h1``;
+const Header = styled.h1`
+    padding: 0px;
+`;
 
 function App() {
-    return <Header>123456</Header>;
+    return <Header>Header</Header>;
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

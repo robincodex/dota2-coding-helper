@@ -22,6 +22,8 @@ export default {
     plugins: [
         replace({
             'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
+            'process.env.BLUEPRINT_NAMESPACE': '"bp3"',
+            'process.env.REACT_APP_BLUEPRINT_NAMESPACE': '"bp3"',
         }),
         nodeResolve({
             extensions,
