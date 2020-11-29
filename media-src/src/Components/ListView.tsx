@@ -6,48 +6,48 @@ import { BaseElementAttributes } from './utils';
 /**
  * The data format of each row of the list item
  */
-export type ListViewItemData = { key: string | number; content: React.ReactNode };
+export type ListViewItemData<T> = { key: T; content: React.ReactNode };
 
-interface ListViewMethods {
+interface ListViewMethods<T> {
     selectAll(): void;
-    getSelectedItems(): (string | number)[];
+    getSelectedItems(): T[];
 }
 
-type ListViewProps = BaseElementAttributes & {
+type ListViewProps<T> = BaseElementAttributes & {
     title: string;
-    items: ListViewItemData[];
-    onSelected: (keys: (string | number)[]) => void;
+    items: ListViewItemData<T>[];
+    onSelected: (keys: T[]) => void;
     onContextMenu?: (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        keys: (string | number)[],
-        methods: ListViewMethods
+        keys: T[],
+        methods: ListViewMethods<T>
     ) => void;
     onKeyDown?: (
         event: React.KeyboardEvent<HTMLDivElement>,
-        methods: ListViewMethods
+        methods: ListViewMethods<T>
     ) => void;
 };
 
 /**
  * ListView
  */
-export function ListView({
+export function ListView<T>({
     title,
     items,
     onSelected,
     onContextMenu,
     onKeyDown,
     ...props
-}: ListViewProps) {
-    const [selectedState, setSelectedState] = useState<(string | number)[]>([]);
+}: ListViewProps<T>) {
+    const [selectedState, setSelectedState] = useState<T[]>([]);
 
     // Check the keys are all unique
-    const unique: Record<ListViewItemData['key'], boolean> = {};
+    const unique = new Map<T, boolean>();
     const areAllUnique = items.every((v) => {
-        if (unique[v.key]) {
+        if (unique.get(v.key)) {
             return false;
         }
-        unique[v.key] = true;
+        unique.set(v.key, true);
         return true;
     });
     if (!areAllUnique) {
@@ -91,7 +91,7 @@ export function ListView({
     /**
      * Create methods of ListView
      */
-    function createMethods(): ListViewMethods {
+    function createMethods(): ListViewMethods<T> {
         return {
             /**
              * Select all items
@@ -122,7 +122,7 @@ export function ListView({
     /**
      * On right click the ListViewItem
      */
-    function onItemContextMenu(v: ListViewItemData) {
+    function onItemContextMenu(v: ListViewItemData<T>) {
         return (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             if (onContextMenu) {
                 if (!selectedState.includes(v.key)) {
@@ -140,7 +140,7 @@ export function ListView({
     /**
      * On click the ListViewItem
      */
-    function onItemClick(v: ListViewItemData) {
+    function onItemClick(v: ListViewItemData<T>) {
         return (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             if (event.ctrlKey && selectedState.length > 0) {
                 // Select multiple items on Ctrl + Left Click

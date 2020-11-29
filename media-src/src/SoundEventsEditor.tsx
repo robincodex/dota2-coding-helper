@@ -104,7 +104,10 @@ const EditorView = styled.div`
     justify-content: stretch;
 `;
 
-const SoundContent = styled.div``;
+const SoundContent = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 function SoundEventsEditor() {
     let [soundEvents, setSoundEvents] = useState<resultType[]>([]);
@@ -143,9 +146,7 @@ function SoundEventsEditor() {
                         if (evt.ctrlKey) {
                             if (evt.altKey) {
                                 if (evt.key === 'c') {
-                                    copySoundNames(
-                                        methods.getSelectedItems().map(Number)
-                                    );
+                                    copySoundNames(methods.getSelectedItems());
                                 }
                             }
                             if (evt.key === 'a') {
@@ -154,7 +155,6 @@ function SoundEventsEditor() {
                         }
                     }}
                     onContextMenu={(event, keys, methods) => {
-                        const _keys = keys.map(Number);
                         ShowContextMenu({
                             menu: [
                                 {
@@ -195,7 +195,7 @@ function SoundEventsEditor() {
                                         methods.selectAll();
                                         break;
                                     case 'copy_event_name':
-                                        copySoundNames(_keys);
+                                        copySoundNames(keys);
                                         break;
                                 }
                             },
