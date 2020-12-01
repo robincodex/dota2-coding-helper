@@ -28,15 +28,23 @@ export function EditableText({
     defaultValue,
     ...props
 }: EditableTextProps) {
-    const [value, setValue] = useState(defaultValue || '');
+    defaultValue = defaultValue || '';
+    const [value, setValue] = useState(
+        renderValue ? renderValue(defaultValue) : defaultValue
+    );
 
     return (
         <Input
             type="text"
-            value={renderValue ? renderValue(value) : value}
+            value={value}
             {...props}
             onChange={(evt) => {
-                setValue(evt.currentTarget.value);
+                let v = evt.currentTarget.value;
+                v = renderValue ? renderValue(v) : v;
+                setValue(v);
+                if (onChange) {
+                    onChange(v);
+                }
             }}
         />
     );

@@ -14,6 +14,7 @@ export function searchString(src: string, target: string): boolean {
         if (index < 0) {
             return false;
         }
+        index++;
     }
     return true;
 }

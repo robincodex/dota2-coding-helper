@@ -3,25 +3,58 @@ import styled from '@emotion/styled';
 import { useCallback, useState } from 'react';
 import { BaseElementAttributes, searchString } from './utils';
 
+export enum InputState {
+    Normal,
+    Error,
+    Warning,
+}
+
+export const InputNumberFilter = /\-?\d+(\.\d+)?/;
+
+export const InputPositiveNumberFilter = /\d+(\.\d+)?/;
+
+export function renderNumericState(text: string): InputState {
+    if (InputNumberFilter.exec(text)?.shift() === text) {
+        return InputState.Normal;
+    }
+    return InputState.Error;
+}
+
+export function renderPositiveNumericState(text: string): InputState {
+    if (InputPositiveNumberFilter.exec(text)?.shift() === text) {
+        return InputState.Normal;
+    }
+    return InputState.Error;
+}
+
 type TextInputProps = BaseElementAttributes & {
     defaultValue?: string;
     inline?: boolean;
     label?: string;
     searchTexts?: string[];
     renderValue?: (text: string) => string;
+    renderState?: (text: string) => InputState;
     onChange?: (text: string) => void;
 };
 
 export function TextInput({
     renderValue,
+    renderState,
     onChange,
     defaultValue,
     inline,
     label,
     searchTexts,
+    className,
     ...props
 }: TextInputProps) {
-    const [value, setValue] = useState(defaultValue || '');
+    defaultValue = defaultValue || '';
+    const [value, setValue] = useState(
+        renderValue ? renderValue(defaultValue) : defaultValue
+    );
+    const [inputState, setInputState] = useState(
+        renderState ? renderState(defaultValue) : InputState.Normal
+    );
 
     return (
         <InputContainer
@@ -32,11 +65,23 @@ export function TextInput({
             <InputLabel>{label}</InputLabel>
             <InputBox>
                 <Input
+                    className={cx(className, {
+                        error: inputState === InputState.Error,
+                        warning: inputState === InputState.Warning,
+                    })}
                     type="text"
-                    value={renderValue ? renderValue(value) : value}
+                    value={value}
                     {...props}
                     onChange={(evt) => {
-                        setValue(evt.currentTarget.value);
+                        let v = evt.currentTarget.value;
+                        v = renderValue ? renderValue(v) : v;
+                        setValue(v);
+                        if (renderState) {
+                            setInputState(renderState(v));
+                        }
+                        if (onChange) {
+                            onChange(v);
+                        }
                     }}
                 />
                 {searchTexts ? (

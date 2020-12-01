@@ -17,6 +17,17 @@ import {
 } from './utils';
 import { promises } from 'fs';
 
+interface ISoundEventData {
+    event: string;
+    type: string;
+    vsnd_files: string[];
+    volume: string;
+    pitch: string;
+    params: Record<string, string>;
+}
+
+export type { ISoundEventData };
+
 export class SoundEventsEditorService {
     private kvList: KeyValues3[];
     private request: RequestHelper;
@@ -46,15 +57,20 @@ export class SoundEventsEditorService {
             return '[]';
         }
 
-        type resultType = { [key: string]: string | string[] };
-
-        const result: resultType[] = [];
+        const result: ISoundEventData[] = [];
         for (const kv of root.Value) {
             if (!kv.Key.startsWith('"') && !kv.Key.endsWith('"')) {
                 kv.Key = `"${kv.Key.trim()}"`;
             }
 
-            const data: resultType = { event: kv.Key, vsnd_files: [] };
+            const data: ISoundEventData = {
+                event: kv.Key,
+                vsnd_files: [],
+                pitch: '',
+                volume: '',
+                type: '',
+                params: {},
+            };
             result.push(data);
 
             if (Array.isArray(kv.Value)) {
@@ -74,7 +90,17 @@ export class SoundEventsEditorService {
                 // Find some value from keys
                 for (const child of kv.Value) {
                     if (!Array.isArray(child.Value) && child.Key !== 'vsnd_files') {
-                        data[child.Key] = child.Value;
+                        switch (child.Key) {
+                            case 'event':
+                            case 'pitch':
+                            case 'volume':
+                            case 'type':
+                                data[child.Key] = child.Value;
+                                break;
+                            default:
+                                data.params[child.Key] = child.Value;
+                                break;
+                        }
                     }
                 }
             }
@@ -500,8 +526,10 @@ export class SoundEventsEditorService {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Sound Events Editor</title>
-                <link href="${styleUri}" rel="stylesheet" />
-                <script type="module" src="${indexJs}" defer></script>
+                <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} blob:; style-src 'nonce-${nonce}' ${webview.cspSource}; script-src 'nonce-${nonce}';">
+                <link href="${styleUri}" nonce="${nonce}" rel="stylesheet" />
+                <script nonce="${nonce}">window._nonce_ = "${nonce}"</script>
+                <script nonce="${nonce}" type="module" src="${indexJs}" defer></script>
             </head>
             <body class="bp3-dark">
                 <div id="app" />

@@ -10,7 +10,8 @@ import { css } from '@emotion/css';
 import { ContextMenuType, ShowContextMenu } from './Components/ContextMenu';
 import commonText from './common_i18n';
 import { EditableText } from './Components/EditableText';
-import { TextInput } from './Components/TextInput';
+import { renderPositiveNumericState, TextInput } from './Components/TextInput';
+import type { ISoundEventData } from '../../src/editors/sound_events_editor';
 
 const i18n: {
     [key: string]: {
@@ -48,48 +49,55 @@ const i18n: {
 
 const localText = i18n[navigator.language] || i18n['en'];
 
-type resultType = { [key: string]: string | string[] };
-
-function SoundEvent({ soundData }: { soundData: resultType }) {
+function SoundEvent({ soundData }: { soundData: ISoundEventData }) {
     return (
-        <tr>
-            <td>
-                <input
-                    type="text"
-                    placeholder="xxxx"
-                    defaultValue={(soundData['event'] as string).replace(/"/g, '')}
+        <SoundCard>
+            <div style={{ marginBottom: 10 }}>
+                <EditableText
+                    defaultValue={soundData['event']}
+                    renderValue={(text) => text.replace(/\"/g, '')}
+                    style={{ fontSize: 30 }}
                 />
-            </td>
-            <td>
-                <input type="text" defaultValue={soundData['type']} />
-            </td>
-            <td>
-                {Array.isArray(soundData['vsnd_files'])
-                    ? soundData['vsnd_files'].map((v, i) => {
-                          return (
-                              <div key={i}>
-                                  <Icons.CircleFill size={6} /> {v}
-                              </div>
-                          );
-                      })
-                    : null}
-            </td>
-            <td>
-                <input
-                    type="text"
-                    className="text-center"
-                    defaultValue={soundData['volume'] ?? 0}
+            </div>
+            <div
+                style={{
+                    marginBottom: 10,
+                    display: 'flex',
+                    flexDirection: 'row',
+                }}
+            >
+                <TextInput
+                    label={localText.type}
+                    searchTexts={[
+                        'dota_update_default',
+                        'dota_limit_speakers_ui',
+                        'dota_src1_2d',
+                        'dota_src1_3d',
+                        'dota_src1_3d_footsteps',
+                        'dota_gamestart_horn',
+                        'dota_null_start',
+                        'dota_music_respawn',
+                        'dota_update_hero_select',
+                        'dota_update_killed',
+                        'dota_music_mainloop',
+                        'dota_statebattlemusic',
+                        'dota_battle',
+                        'dota_battleend',
+                        'dota_battlepicker',
+                        'dota_music_death_request',
+                        'dota_update_vo_switch',
+                    ]}
                 />
-            </td>
-            <td>
-                <input
-                    type="text"
-                    className="text-center"
-                    defaultValue={soundData['pitch'] ?? 0}
+                <TextInput
+                    renderState={renderPositiveNumericState}
+                    label={localText.volume}
                 />
-            </td>
-            <td></td>
-        </tr>
+                <TextInput
+                    renderState={renderPositiveNumericState}
+                    label={localText.pitch}
+                />
+            </div>
+        </SoundCard>
     );
 }
 
@@ -125,7 +133,7 @@ const SoundCard = styled.div`
 `;
 
 function SoundEventsEditor() {
-    let [soundEvents, setSoundEvents] = useState<resultType[]>([]);
+    let [soundEvents, setSoundEvents] = useState<ISoundEventData[]>([]);
     let [editableItems, setEditableItems] = useState<number[]>([]);
 
     useWindowEvent('message', (evt) => {
@@ -222,49 +230,7 @@ function SoundEventsEditor() {
                 />
                 <SoundsList>
                     {editableItems.map((i) => {
-                        return (
-                            <SoundCard key={i}>
-                                <div style={{ marginBottom: 10 }}>
-                                    <EditableText
-                                        defaultValue={String(soundEvents[i]['event'])}
-                                        renderValue={(text) => text.replace(/\"/g, '')}
-                                        style={{ fontSize: 30 }}
-                                    />
-                                </div>
-                                <div
-                                    style={{
-                                        marginBottom: 10,
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                    }}
-                                >
-                                    <TextInput
-                                        label={localText.type}
-                                        searchTexts={[
-                                            'dota_update_default',
-                                            'dota_limit_speakers_ui',
-                                            'dota_src1_2d',
-                                            'dota_src1_3d',
-                                            'dota_src1_3d_footsteps',
-                                            'dota_gamestart_horn',
-                                            'dota_null_start',
-                                            'dota_music_respawn',
-                                            'dota_update_hero_select',
-                                            'dota_update_killed',
-                                            'dota_music_mainloop',
-                                            'dota_statebattlemusic',
-                                            'dota_battle',
-                                            'dota_battleend',
-                                            'dota_battlepicker',
-                                            'dota_music_death_request',
-                                            'dota_update_vo_switch',
-                                        ]}
-                                    />
-                                    <TextInput label={localText.volume} />
-                                    <TextInput label={localText.pitch} />
-                                </div>
-                            </SoundCard>
-                        );
+                        return <SoundEvent key={i} soundData={soundEvents[i]} />;
                     })}
                 </SoundsList>
             </EditorView>
@@ -273,5 +239,4 @@ function SoundEventsEditor() {
 }
 
 const app = document.getElementById('app');
-app?.classList.add('SoundEventsEditor');
 ReactDOM.render(<SoundEventsEditor />, app);
