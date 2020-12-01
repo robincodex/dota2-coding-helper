@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/css';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BaseElementAttributes } from './utils';
 
 /**
@@ -10,7 +10,6 @@ export type ListViewItemData<T> = { key: T; content: React.ReactNode };
 
 interface ListViewMethods<T> {
     selectAll(): void;
-    getSelectedItems(): T[];
 }
 
 type ListViewProps<T> = BaseElementAttributes & {
@@ -24,6 +23,7 @@ type ListViewProps<T> = BaseElementAttributes & {
     ) => void;
     onKeyDown?: (
         event: React.KeyboardEvent<HTMLDivElement>,
+        keys: T[],
         methods: ListViewMethods<T>
     ) => void;
 };
@@ -59,6 +59,18 @@ export function ListView<T>({
         );
     }
 
+    // Create methods of ListView
+    const listViewsmethods: ListViewMethods<T> = {
+        /**
+         * Select all items
+         */
+        selectAll(): void {
+            const list = items.map((v) => v.key);
+            setSelectedState(list);
+            onSelected(list);
+        },
+    };
+
     // Normal
     return (
         <ListViewRoot
@@ -89,33 +101,11 @@ export function ListView<T>({
     );
 
     /**
-     * Create methods of ListView
-     */
-    function createMethods(): ListViewMethods<T> {
-        return {
-            /**
-             * Select all items
-             */
-            selectAll(): void {
-                const list = items.map((v) => v.key);
-                setSelectedState(list);
-                onSelected(list);
-            },
-            /**
-             * Return selected key of items
-             */
-            getSelectedItems() {
-                return [...selectedState];
-            },
-        };
-    }
-
-    /**
      * onKeyDown
      */
     function onKeyDownHandle(evt: React.KeyboardEvent<HTMLDivElement>) {
         if (onKeyDown) {
-            onKeyDown(evt, createMethods());
+            onKeyDown(evt, [...selectedState], listViewsmethods);
         }
     }
 
@@ -129,9 +119,9 @@ export function ListView<T>({
                     const list = [v.key];
                     setSelectedState(list);
                     onSelected(list);
-                    onContextMenu(event, list, createMethods());
+                    onContextMenu(event, list, listViewsmethods);
                 } else {
-                    onContextMenu(event, [...selectedState], createMethods());
+                    onContextMenu(event, [...selectedState], listViewsmethods);
                 }
             }
         };
@@ -158,7 +148,7 @@ export function ListView<T>({
                 // Select continuous multiple items on Shift + Left Click
                 let i = items.findIndex((v2) => selectedState.includes(v2.key));
                 let vi = items.findIndex((v2) => v2.key === v.key);
-                const list = [];
+                const list: T[] = [];
                 if (vi < i) {
                     list.push(
                         ...items.slice(vi, i).map((v) => v.key),
@@ -192,8 +182,9 @@ const ListViewRoot = styled.div`
     flex-shrink: 0;
     user-select: none;
     border-radius: var(--panel-border-radius);
-    background: var(--vscode-editorWidget-background);
+    /* background: var(--vscode-editorWidget-background); */
     outline: none;
+    overflow: hidden;
 `;
 
 const ListViewTitle = styled.div`
@@ -208,6 +199,7 @@ const ListViewTitle = styled.div`
 const ListViewItemList = styled.div`
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 `;
 
 const ListViewItem = styled.div`

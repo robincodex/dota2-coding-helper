@@ -9,6 +9,8 @@ import { CacheProvider } from '@emotion/react';
 import { css } from '@emotion/css';
 import { ContextMenuType, ShowContextMenu } from './Components/ContextMenu';
 import commonText from './common_i18n';
+import { EditableText } from './Components/EditableText';
+import { TextInput } from './Components/TextInput';
 
 const i18n: {
     [key: string]: {
@@ -93,24 +95,38 @@ function SoundEvent({ soundData }: { soundData: resultType }) {
 
 const EditorView = styled.div`
     position: fixed;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
+    top: var(--base-gap);
+    left: var(--base-gap);
+    right: var(--base-gap);
+    bottom: var(--base-gap);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
-    gap: 5px;
+    gap: var(--base-gap);
     justify-content: stretch;
 `;
 
-const SoundContent = styled.div`
+const SoundsList = styled.div`
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+`;
+
+const SoundCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vscode-panel-border);
+    flex-shrink: 0;
+    user-select: none;
+    border-radius: var(--panel-border-radius);
+    /* background: var(--vscode-editorWidget-background); */
+    padding: 20px;
+    margin-bottom: var(--base-gap);
 `;
 
 function SoundEventsEditor() {
     let [soundEvents, setSoundEvents] = useState<resultType[]>([]);
+    let [editableItems, setEditableItems] = useState<number[]>([]);
 
     useWindowEvent('message', (evt) => {
         if (evt.data.label === 'update') {
@@ -141,12 +157,14 @@ function SoundEventsEditor() {
                             ),
                         };
                     })}
-                    onSelected={(items) => {}}
-                    onKeyDown={(evt, methods) => {
+                    onSelected={(keys) => {
+                        setEditableItems(keys);
+                    }}
+                    onKeyDown={(evt, keys, methods) => {
                         if (evt.ctrlKey) {
                             if (evt.altKey) {
                                 if (evt.key === 'c') {
-                                    copySoundNames(methods.getSelectedItems());
+                                    copySoundNames(keys);
                                 }
                             }
                             if (evt.key === 'a') {
@@ -202,7 +220,53 @@ function SoundEventsEditor() {
                         });
                     }}
                 />
-                <SoundContent></SoundContent>
+                <SoundsList>
+                    {editableItems.map((i) => {
+                        return (
+                            <SoundCard key={i}>
+                                <div style={{ marginBottom: 10 }}>
+                                    <EditableText
+                                        defaultValue={String(soundEvents[i]['event'])}
+                                        renderValue={(text) => text.replace(/\"/g, '')}
+                                        style={{ fontSize: 30 }}
+                                    />
+                                </div>
+                                <div
+                                    style={{
+                                        marginBottom: 10,
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                    }}
+                                >
+                                    <TextInput
+                                        label={localText.type}
+                                        searchTexts={[
+                                            'dota_update_default',
+                                            'dota_limit_speakers_ui',
+                                            'dota_src1_2d',
+                                            'dota_src1_3d',
+                                            'dota_src1_3d_footsteps',
+                                            'dota_gamestart_horn',
+                                            'dota_null_start',
+                                            'dota_music_respawn',
+                                            'dota_update_hero_select',
+                                            'dota_update_killed',
+                                            'dota_music_mainloop',
+                                            'dota_statebattlemusic',
+                                            'dota_battle',
+                                            'dota_battleend',
+                                            'dota_battlepicker',
+                                            'dota_music_death_request',
+                                            'dota_update_vo_switch',
+                                        ]}
+                                    />
+                                    <TextInput label={localText.volume} />
+                                    <TextInput label={localText.pitch} />
+                                </div>
+                            </SoundCard>
+                        );
+                    })}
+                </SoundsList>
             </EditorView>
         </CacheProvider>
     );
