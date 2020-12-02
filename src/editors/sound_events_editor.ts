@@ -142,14 +142,13 @@ export class SoundEventsEditorService {
     /**
      * Change a event name
      */
-    private changeSoundEventName(oldEvent: string, newEvent: string) {
+    private changeSoundEventName(soundIndex: number, newEvent: string) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        oldEvent = `"${oldEvent}"`;
         newEvent = `"${newEvent.trim()}"`;
-        const kv = root.Value.find((v) => v.Key === oldEvent);
+        const kv = root.Value[soundIndex];
         if (kv) {
             kv.Key = newEvent;
         }
@@ -192,15 +191,31 @@ export class SoundEventsEditorService {
     }
 
     /**
-     * Add or change a sound key
+     * Change a sound file
      */
-    private changeSoundKeyValue(event: string, key: string, value: string) {
+    private changeSoundFile(soundIndex: number, itemIndex: number, file: string) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        const kv = root.Value.find((v) => v.Key === event);
+        const kv = root.Value[soundIndex];
+        if (kv && Array.isArray(kv.Value)) {
+            const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
+            if (vsnd_files && Array.isArray(vsnd_files.Value)) {
+                vsnd_files.Value[itemIndex].Value = file;
+            }
+        }
+    }
+
+    /**
+     * Add or change a sound key
+     */
+    private changeSoundKeyValue(soundIndex: number, key: string, value: string) {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return;
+        }
+        const kv = root.Value[soundIndex];
         if (kv && Array.isArray(kv.Value)) {
             const child = kv.Value.find((v) => v.Key === key);
             if (child && !Array.isArray(child.Value)) {
@@ -371,15 +386,15 @@ export class SoundEventsEditorService {
 
         // Change a event name
         this.request.listenRequest('change-event-name', (...args: any[]) => {
-            const oldEvent = args[0];
+            const soundIndex = args[0];
             const newEvent = args[1];
-            if (typeof oldEvent !== 'string' && typeof newEvent !== 'string') {
+            if (typeof soundIndex !== 'number' || typeof newEvent !== 'string') {
                 return;
             }
             if (newEvent.length <= 0) {
                 return;
             }
-            this.changeSoundEventName(oldEvent, newEvent);
+            this.changeSoundEventName(soundIndex, newEvent);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
@@ -408,6 +423,22 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
+        // Add a sound file
+        this.request.listenRequest('change-sound-file', (...args: any[]) => {
+            const soundIndex = args[0];
+            const itemIndex = args[1];
+            const file = args[2];
+            if (
+                typeof soundIndex !== 'number' ||
+                typeof itemIndex !== 'number' ||
+                typeof file !== 'string'
+            ) {
+                return;
+            }
+            this.changeSoundFile(soundIndex, itemIndex, file);
+            writeDocument(document, formatKeyValues(this.kvList));
+        });
+
         // Return soundKeys
         this.request.listenRequest('get-sound-keys', (...args: any[]) => {
             return SoundEventsEditorService.soundKeys;
@@ -415,17 +446,17 @@ export class SoundEventsEditorService {
 
         // Add or change a sound key
         this.request.listenRequest('change-sound-key', (...args: any[]) => {
-            const event = args[0];
+            const soundIndex = args[0];
             const key = args[1];
             const value = args[2];
             if (
-                typeof event !== 'string' &&
-                typeof key !== 'string' &&
+                typeof soundIndex !== 'number' ||
+                typeof key !== 'string' ||
                 typeof value !== 'string'
             ) {
                 return;
             }
-            this.changeSoundKeyValue(event, key, value);
+            this.changeSoundKeyValue(soundIndex, key, value);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 

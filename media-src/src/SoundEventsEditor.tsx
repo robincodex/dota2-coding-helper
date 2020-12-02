@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './SoundEventsEditor.scss';
-import { editorCache, useWindowEvent } from './utils';
+import { editorCache, onRequestResponse, request, useWindowEvent } from './utils';
 import * as Icons from 'react-bootstrap-icons';
 import styled from '@emotion/styled';
 import { ListView } from './Components/ListView';
@@ -12,6 +12,7 @@ import commonText from './common_i18n';
 import { EditableText } from './Components/EditableText';
 import { renderPositiveNumericState, TextInput } from './Components/TextInput';
 import type { ISoundEventData } from '../../src/editors/sound_events_editor';
+import { InputState } from './Components/utils';
 
 const i18n: {
     [key: string]: {
@@ -49,52 +50,111 @@ const i18n: {
 
 const localText = i18n[navigator.language] || i18n['en'];
 
-function SoundEvent({ soundData }: { soundData: ISoundEventData }) {
+const keysSuggestion: { [key: string]: string[] } = {
+    type: [
+        'dota_update_default',
+        'dota_limit_speakers_ui',
+        'dota_src1_2d',
+        'dota_src1_3d',
+        'dota_src1_3d_footsteps',
+        'dota_gamestart_horn',
+        'dota_null_start',
+        'dota_music_respawn',
+        'dota_update_hero_select',
+        'dota_update_killed',
+        'dota_music_mainloop',
+        'dota_statebattlemusic',
+        'dota_battle',
+        'dota_battleend',
+        'dota_battlepicker',
+        'dota_music_death_request',
+        'dota_update_vo_switch',
+    ],
+    mixgroup: ['Weapons'],
+};
+
+function SoundEvent({
+    soundData,
+    index,
+}: {
+    index: number;
+    soundData: ISoundEventData;
+}) {
     return (
         <SoundCard>
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 0 }}>
                 <EditableText
                     defaultValue={soundData['event']}
                     renderValue={(text) => text.replace(/\"/g, '')}
-                    style={{ fontSize: 30 }}
+                    style={{
+                        fontSize: 25,
+                        borderBottom: '1px solid var(--vscode-panel-border)',
+                    }}
+                    onComplete={(text) => {
+                        request('change-event-name', index, text);
+                    }}
                 />
             </div>
             <div
                 style={{
-                    marginBottom: 10,
                     display: 'flex',
                     flexDirection: 'row',
                 }}
             >
                 <TextInput
+                    key={'type' + soundData.type}
                     label={localText.type}
-                    searchTexts={[
-                        'dota_update_default',
-                        'dota_limit_speakers_ui',
-                        'dota_src1_2d',
-                        'dota_src1_3d',
-                        'dota_src1_3d_footsteps',
-                        'dota_gamestart_horn',
-                        'dota_null_start',
-                        'dota_music_respawn',
-                        'dota_update_hero_select',
-                        'dota_update_killed',
-                        'dota_music_mainloop',
-                        'dota_statebattlemusic',
-                        'dota_battle',
-                        'dota_battleend',
-                        'dota_battlepicker',
-                        'dota_music_death_request',
-                        'dota_update_vo_switch',
-                    ]}
+                    searchTexts={keysSuggestion['type']}
+                    defaultValue={soundData.type}
+                    onComplete={(text) => {
+                        request('change-sound-key', index, 'type', text);
+                    }}
                 />
                 <TextInput
+                    key={'volume' + soundData.volume}
                     renderState={renderPositiveNumericState}
                     label={localText.volume}
+                    defaultValue={soundData.volume}
+                    onComplete={(text) => {
+                        request('change-sound-key', index, 'volume', text);
+                    }}
                 />
                 <TextInput
+                    key={'pitch' + soundData.pitch}
                     renderState={renderPositiveNumericState}
                     label={localText.pitch}
+                    defaultValue={soundData.pitch}
+                    onComplete={(text) => {
+                        request('change-sound-key', index, 'pitch', text);
+                    }}
+                />
+            </div>
+            <div>
+                <ListView
+                    title="Sound Files (*.vsnd)"
+                    smallTitle
+                    items={soundData.vsnd_files.map((v, i) => {
+                        return {
+                            key: i,
+                            content: (
+                                <EditableText
+                                    key={v}
+                                    noBorder
+                                    defaultValue={v}
+                                    renderState={(v) => {
+                                        if (!v.endsWith('.vsnd')) {
+                                            return InputState.Error;
+                                        }
+                                        return InputState.Normal;
+                                    }}
+                                    onComplete={(text) => {
+                                        request('change-sound-file', index, i, text);
+                                    }}
+                                />
+                            ),
+                        };
+                    })}
+                    onSelected={() => {}}
                 />
             </div>
         </SoundCard>
@@ -139,6 +199,8 @@ function SoundEventsEditor() {
     useWindowEvent('message', (evt) => {
         if (evt.data.label === 'update') {
             setSoundEvents(JSON.parse(evt.data.text));
+        } else {
+            onRequestResponse(evt.data);
         }
     });
 
@@ -161,7 +223,9 @@ function SoundEventsEditor() {
                         return {
                             key: i,
                             content: (
-                                <div>{(v['event'] as string).replace(/\"/g, '')}</div>
+                                <div style={{ padding: 5 }}>
+                                    {(v['event'] as string).replace(/\"/g, '')}
+                                </div>
                             ),
                         };
                     })}
@@ -230,7 +294,13 @@ function SoundEventsEditor() {
                 />
                 <SoundsList>
                     {editableItems.map((i) => {
-                        return <SoundEvent key={i} soundData={soundEvents[i]} />;
+                        return (
+                            <SoundEvent
+                                key={soundEvents[i].event + i}
+                                index={i}
+                                soundData={soundEvents[i]}
+                            />
+                        );
                     })}
                 </SoundsList>
             </EditorView>

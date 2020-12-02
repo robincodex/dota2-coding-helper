@@ -18,3 +18,9 @@ export function searchString(src: string, target: string): boolean {
     }
     return true;
 }
+
+export enum InputState {
+    Normal,
+    Error,
+    Warning,
+}

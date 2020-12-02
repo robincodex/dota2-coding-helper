@@ -1,8 +1,9 @@
+import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useEffect, useRef } from 'react';
 import { ChevronRight } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
-import { useWindowEvent } from '../utils';
+import { editorCache, useWindowEvent } from '../utils';
 
 function GetContextPanel() {
     let elem = document.getElementById('context-menu-panel');
@@ -133,7 +134,12 @@ export function ShowContextMenu(props: {
     offset: { top: number; left: number };
     onClick: (id: number | string | symbol) => void;
 }) {
-    ReactDOM.render(<ContextMenu {...props} />, GetContextPanel());
+    ReactDOM.render(
+        <CacheProvider value={editorCache}>
+            <ContextMenu {...props} />
+        </CacheProvider>,
+        GetContextPanel()
+    );
 }
 
 export function CloseContextMenu() {

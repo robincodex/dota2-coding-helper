@@ -1,13 +1,7 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
 import { useCallback, useState } from 'react';
-import { BaseElementAttributes, searchString } from './utils';
-
-export enum InputState {
-    Normal,
-    Error,
-    Warning,
-}
+import { BaseElementAttributes, InputState, searchString } from './utils';
 
 export const InputNumberFilter = /\-?\d+(\.\d+)?/;
 
@@ -32,15 +26,29 @@ type TextInputProps = BaseElementAttributes & {
     inline?: boolean;
     label?: string;
     searchTexts?: string[];
+    /**
+     * Render value, same as filter value
+     */
     renderValue?: (text: string) => string;
+    /**
+     * Render border color
+     */
     renderState?: (text: string) => InputState;
+    /**
+     * Trigger on any char change
+     */
     onChange?: (text: string) => void;
+    /**
+     * Trigger on enter or blur
+     */
+    onComplete?: (text: string) => void;
 };
 
 export function TextInput({
     renderValue,
     renderState,
     onChange,
+    onComplete,
     defaultValue,
     inline,
     label,
@@ -55,6 +63,7 @@ export function TextInput({
     const [inputState, setInputState] = useState(
         renderState ? renderState(defaultValue) : InputState.Normal
     );
+    const [completeValue, setCompleteValue] = useState(value);
 
     return (
         <InputContainer
@@ -81,6 +90,26 @@ export function TextInput({
                         }
                         if (onChange) {
                             onChange(v);
+                        }
+                    }}
+                    onKeyDown={(evt) => {
+                        if (onComplete) {
+                            if (completeValue === value) {
+                                return;
+                            }
+                            if (evt.key === 'Enter') {
+                                onComplete(value);
+                                setCompleteValue(value);
+                            }
+                        }
+                    }}
+                    onBlur={() => {
+                        if (onComplete) {
+                            if (completeValue === value) {
+                                return;
+                            }
+                            onComplete(value);
+                            setCompleteValue(value);
                         }
                     }}
                 />
@@ -127,8 +156,10 @@ const Input = styled.input`
     border: 1px solid var(--vscode-input-background);
     display: flex;
     flex-direction: row;
-    border-radius: var(--panel-border-radius);
+    /* border-radius: var(--panel-border-radius); */
     padding: 3px;
+    box-sizing: border-box;
+    width: 100%;
 
     &::placeholder {
         color: var(--vscode-input-placeholderForeground);
