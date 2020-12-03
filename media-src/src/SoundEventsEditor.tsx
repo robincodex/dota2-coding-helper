@@ -4,7 +4,7 @@ import './SoundEventsEditor.scss';
 import { editorCache, onRequestResponse, request, useWindowEvent } from './utils';
 import * as Icons from 'react-bootstrap-icons';
 import styled from '@emotion/styled';
-import { ListView } from './Components/ListView';
+import { ListView, ListViewMethods } from './Components/ListView';
 import { CacheProvider } from '@emotion/react';
 import { css } from '@emotion/css';
 import { ContextMenuType, ShowContextMenu } from './Components/ContextMenu';
@@ -204,14 +204,32 @@ function SoundEventsEditor() {
         }
     });
 
-    /**
-     * Copy Sound Event Name
-     */
+    // Copy Sound Event Name
     function copySoundNames(keys: number[]) {
         const events = keys.map((k) =>
             String(soundEvents[k]['event']).replace(/\"/g, '')
         );
         navigator.clipboard.writeText(events.join('\n'));
+    }
+
+    // Copy Sound Events
+    function copySoundEvents(indexes: number[]) {
+        request('copy-sound-events', indexes);
+    }
+    // Paste Sound Events
+    async function pasteSoundEvents(
+        indexes: number[],
+        methods: ListViewMethods<number>
+    ) {
+        const list = await request<number[]>(
+            'paste-sound-events',
+            indexes.sort().pop()
+        );
+        methods.select(list);
+    }
+    // Delte Sound Events
+    function deleteSoundEvents(indexes: number[]) {
+        request('remove-events', indexes);
     }
 
     return (
@@ -241,10 +259,20 @@ function SoundEventsEditor() {
                             }
                             if (evt.key === 'a') {
                                 methods.selectAll();
+                            } else if (evt.key === 'c') {
+                                copySoundEvents(keys);
+                            } else if (evt.key === 'v') {
+                                pasteSoundEvents(keys, methods);
                             }
                         }
+                        if (evt.key === 'Delete') {
+                            deleteSoundEvents(keys);
+                        }
                     }}
-                    onContextMenu={(event, keys, methods) => {
+                    onContextMenu={async (event, keys, methods) => {
+                        const canPaste = await request<boolean>(
+                            'can-paste-sound-events'
+                        );
                         ShowContextMenu({
                             menu: [
                                 {
@@ -258,6 +286,13 @@ function SoundEventsEditor() {
                                     id: 'copy_event_name',
                                     text: localText.copy_event_name,
                                     hotkey: 'Ctrl+Alt+C',
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'paste',
+                                    text: commonText.paste,
+                                    hotkey: 'Ctrl+V',
+                                    inactive: !canPaste,
                                 },
                                 {
                                     type: ContextMenuType.Separator,
@@ -281,11 +316,20 @@ function SoundEventsEditor() {
                             },
                             onClick: (id) => {
                                 switch (id) {
+                                    case 'copy':
+                                        copySoundEvents(keys);
+                                        break;
+                                    case 'paste':
+                                        pasteSoundEvents(keys, methods);
+                                        break;
                                     case 'select_all':
                                         methods.selectAll();
                                         break;
                                     case 'copy_event_name':
                                         copySoundNames(keys);
+                                        break;
+                                    case 'delete':
+                                        deleteSoundEvents(keys);
                                         break;
                                 }
                             },
@@ -294,6 +338,9 @@ function SoundEventsEditor() {
                 />
                 <SoundsList>
                     {editableItems.map((i) => {
+                        if (!soundEvents[i]) {
+                            return null;
+                        }
                         return (
                             <SoundEvent
                                 key={soundEvents[i].event + i}

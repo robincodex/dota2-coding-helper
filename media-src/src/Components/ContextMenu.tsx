@@ -38,6 +38,7 @@ export type ContextMenuData =
           text: string;
           hotkey?: string;
           submenu?: ContextMenuData;
+          inactive?: boolean;
       }
     | { type: ContextMenuType.Separator };
 
@@ -112,6 +113,7 @@ function ContextMenu(props: {
                                     props.onClick(v.id);
                                 }
                             }}
+                            className={v.inactive ? 'inactive' : ''}
                         >
                             <MenuItemIcon></MenuItemIcon>
                             <MenuItemText>{v.text}</MenuItemText>
@@ -172,6 +174,11 @@ const MenuItem = styled.div`
     &:hover {
         color: var(--vscode-menu-selectionForeground);
         background: var(--vscode-menu-selectionBackground);
+    }
+
+    &.inactive {
+        color: var(--vscode-textSeparator-foreground);
+        background: transparent;
     }
 `;
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css, cx } from '@emotion/css';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BaseElementAttributes } from './utils';
 import { ThreeDots } from 'react-bootstrap-icons';
 
@@ -9,8 +9,9 @@ import { ThreeDots } from 'react-bootstrap-icons';
  */
 export type ListViewItemData<T> = { key: T; content: React.ReactNode };
 
-interface ListViewMethods<T> {
+export interface ListViewMethods<T> {
     selectAll(): void;
+    select(keys: T[]): void;
 }
 
 type ListViewProps<T> = BaseElementAttributes & {
@@ -74,6 +75,12 @@ export function ListView<T>({
             setSelectedState(list);
             if (onSelected) {
                 onSelected(list);
+            }
+        },
+        select(keys: T[]): void {
+            setSelectedState(keys);
+            if (onSelected) {
+                onSelected(keys);
             }
         },
     };

@@ -16,6 +16,7 @@ import {
     locale,
 } from './utils';
 import { promises } from 'fs';
+import clone from 'lodash/clone';
 
 interface ISoundEventData {
     event: string;
@@ -25,6 +26,8 @@ interface ISoundEventData {
     pitch: string;
     params: Record<string, string>;
 }
+
+let copySoundEvents: KeyValues3[] = [];
 
 export type { ISoundEventData };
 
@@ -130,13 +133,14 @@ export class SoundEventsEditorService {
     /**
      * Remove a event
      */
-    private removeSoundEvent(event: string) {
+    private removeSoundEvent(soundIndexes: number[]) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        root.Value = root.Value.filter((v) => v.Key !== event);
+        root.Value = root.Value.filter((v, i) => {
+            return !soundIndexes.includes(i);
+        });
     }
 
     /**
@@ -152,6 +156,45 @@ export class SoundEventsEditorService {
         if (kv) {
             kv.Key = newEvent;
         }
+    }
+
+    /**
+     * Copy sound events
+     */
+    private copySoundEvents(soundIndexes: number[]) {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return;
+        }
+        copySoundEvents = [];
+        for (const index of soundIndexes) {
+            const kv = root.Value[index];
+            if (kv) {
+                copySoundEvents.push(clone(kv));
+            }
+        }
+        vscode.env.clipboard.writeText(formatKeyValues(copySoundEvents));
+    }
+
+    /**
+     * Paste sound events
+     */
+    private pasteSoundEvents(lastIndex: number): number[] {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return [];
+        }
+        if (copySoundEvents.length <= 0) {
+            return [];
+        }
+        const list = Array.from(copySoundEvents.keys());
+        if (lastIndex < root.Value.length && lastIndex >= 0) {
+            root.Value.splice(lastIndex + 1, 0, ...copySoundEvents);
+            return list.map((v) => v + lastIndex + 1);
+        }
+        const len = root.Value.length;
+        root.Value.push(...copySoundEvents);
+        return list.map((v) => v + len);
     }
 
     /**
@@ -372,15 +415,12 @@ export class SoundEventsEditorService {
         });
 
         // Remove a event
-        this.request.listenRequest('remove-event', (...args: any[]) => {
-            const event = args[0];
-            if (typeof event !== 'string') {
+        this.request.listenRequest('remove-events', (...args: any[]) => {
+            const soundIndexes = args[0];
+            if (!Array.isArray(soundIndexes)) {
                 return;
             }
-            if (event.length <= 0) {
-                return;
-            }
-            this.removeSoundEvent(event);
+            this.removeSoundEvent(soundIndexes);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
@@ -396,6 +436,33 @@ export class SoundEventsEditorService {
             }
             this.changeSoundEventName(soundIndex, newEvent);
             writeDocument(document, formatKeyValues(this.kvList));
+        });
+
+        // Copy sound events
+        this.request.listenRequest('copy-sound-events', (...args: any[]) => {
+            const soundIndexes = args[0];
+            if (!Array.isArray(soundIndexes)) {
+                return;
+            }
+            this.copySoundEvents(soundIndexes);
+        });
+
+        // Paste sound events
+        this.request.listenRequest('paste-sound-events', (...args: any[]) => {
+            const lastIndex = args[0];
+            if (typeof lastIndex !== 'number') {
+                return;
+            }
+            const list = this.pasteSoundEvents(lastIndex);
+            if (list.length > 0) {
+                writeDocument(document, formatKeyValues(this.kvList));
+            }
+            return list;
+        });
+
+        // Paste sound events
+        this.request.listenRequest('can-paste-sound-events', (...args: any[]) => {
+            return copySoundEvents.length > 0;
         });
 
         // Remove a sound file

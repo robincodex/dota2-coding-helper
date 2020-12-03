@@ -4,6 +4,7 @@ const i18n: {
         select_all: string;
         remove: string;
         delete: string;
+        paste: string;
     };
 } = {
     en: {
@@ -11,12 +12,14 @@ const i18n: {
         select_all: 'Select All',
         remove: 'Remove',
         delete: 'Delete',
+        paste: 'Paste',
     },
     'zh-cn': {
         copy: '复制',
         select_all: '全选',
         remove: '删除',
         delete: '删除',
+        paste: '粘贴',
     },
 };
 

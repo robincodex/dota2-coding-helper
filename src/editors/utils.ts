@@ -44,20 +44,18 @@ export class RequestHelper {
 
 export function writeDocument(document: vscode.TextDocument, text: string) {
     const edit = new vscode.WorkspaceEdit();
-    edit.replace(
-        document.uri, 
-        new vscode.Range(0,0,document.lineCount, 0),
-        text);
+    edit.replace(document.uri, new vscode.Range(0, 0, document.lineCount, 0), text);
     vscode.workspace.applyEdit(edit);
 }
 
 export function initializeKV3ToDocument(document: vscode.TextDocument) {
     const edit = new vscode.WorkspaceEdit();
     edit.replace(
-        document.uri, 
-        new vscode.Range(0,0,document.lineCount, 0),
+        document.uri,
+        new vscode.Range(0, 0, document.lineCount, 0),
         `<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
-}`);
+}`
+    );
     vscode.workspace.applyEdit(edit);
 }
