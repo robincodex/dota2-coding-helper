@@ -200,17 +200,18 @@ export class SoundEventsEditorService {
     /**
      * Remove a sound file
      */
-    private removeSoundFile(event: string, index: number) {
+    private removeSoundFile(soundIndex: number, fileIndexes: number[]) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        const kv = root.Value.find((v) => v.Key === event);
+        const kv = root.Value[soundIndex];
         if (kv && Array.isArray(kv.Value)) {
             const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
             if (vsnd_files && Array.isArray(vsnd_files.Value)) {
-                vsnd_files.Value.splice(index, 1);
+                vsnd_files.Value = vsnd_files.Value.filter((v, i) => {
+                    return !fileIndexes.includes(i);
+                });
             }
         }
     }
@@ -466,16 +467,13 @@ export class SoundEventsEditorService {
         });
 
         // Remove a sound file
-        this.request.listenRequest('remove-sound-file', (...args: any[]) => {
-            const event = args[0];
-            const index = args[1];
-            if (typeof event !== 'string' && typeof index !== 'number') {
+        this.request.listenRequest('remove-sound-files', (...args: any[]) => {
+            const soundIndex = args[0];
+            const fileIndexes = args[1];
+            if (typeof soundIndex !== 'number' || !Array.isArray(fileIndexes)) {
                 return;
             }
-            if (event.length <= 0) {
-                return;
-            }
-            this.removeSoundFile(event, index);
+            this.removeSoundFile(soundIndex, fileIndexes);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 

@@ -1,11 +1,12 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BaseElementAttributes, InputState } from './utils';
 
 type EditableTextProps = BaseElementAttributes & {
     defaultValue?: string;
     noBorder?: boolean;
+    stopKeyDownPropagation?: boolean;
     /**
      * Render value, same as filter value
      */
@@ -56,6 +57,7 @@ export function EditableText({
     renderState,
     onChange,
     onComplete,
+    stopKeyDownPropagation,
     defaultValue,
     noBorder,
     className,
@@ -69,6 +71,13 @@ export function EditableText({
         renderState ? renderState(defaultValue) : InputState.Normal
     );
     const [completeValue, setCompleteValue] = useState(value);
+
+    useEffect(() => {
+        let v = defaultValue || '';
+        v = renderValue ? renderValue(v) : v;
+        setValue(v);
+        setCompleteValue(v);
+    }, [defaultValue]);
 
     return (
         <Input
@@ -92,6 +101,9 @@ export function EditableText({
                 }
             }}
             onKeyDown={(evt) => {
+                if (stopKeyDownPropagation) {
+                    evt.stopPropagation();
+                }
                 if (onComplete) {
                     if (completeValue === value) {
                         return;

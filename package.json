@@ -78,7 +78,8 @@
         "pretest": "npm run compile && npm run lint",
         "test": "node ./out/test/runTest.js",
         "task": "gulp",
-        "docs": "gulp docs"
+        "docs": "gulp docs",
+        "media": "cd ./media-src & npm run dev"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",

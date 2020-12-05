@@ -18,6 +18,7 @@ type ListViewProps<T> = BaseElementAttributes & {
     title: string;
     smallTitle?: boolean;
     titleMenu?: { id: string | number | symbol; text: string }[];
+    titleStyle?: BaseElementAttributes['style'];
     items: ListViewItemData<T>[];
     onSelected?: (keys: T[]) => void;
     onContextMenu?: (
@@ -40,6 +41,7 @@ export function ListView<T>({
     items,
     smallTitle,
     titleMenu,
+    titleStyle,
     onSelected,
     onContextMenu,
     onKeyDown,
@@ -93,6 +95,7 @@ export function ListView<T>({
                     small: smallTitle === true,
                     hasTitleMenu: !!titleMenu,
                 })}
+                style={titleStyle}
             >
                 {title}
                 {titleMenu ? (

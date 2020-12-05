@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BaseElementAttributes, InputState, searchString } from './utils';
 
 export const InputNumberFilter = /\-?\d+(\.\d+)?/;
@@ -25,7 +25,9 @@ type TextInputProps = BaseElementAttributes & {
     defaultValue?: string;
     inline?: boolean;
     label?: string;
+    labelStyle?: BaseElementAttributes['style'];
     searchTexts?: string[];
+    stopKeyDownPropagation?: boolean;
     /**
      * Render value, same as filter value
      */
@@ -54,6 +56,8 @@ export function TextInput({
     label,
     searchTexts,
     className,
+    labelStyle,
+    stopKeyDownPropagation,
     ...props
 }: TextInputProps) {
     defaultValue = defaultValue || '';
@@ -65,13 +69,25 @@ export function TextInput({
     );
     const [completeValue, setCompleteValue] = useState(value);
 
+    useEffect(() => {
+        let v = defaultValue || '';
+        v = renderValue ? renderValue(v) : v;
+        setValue(v);
+        setCompleteValue(v);
+    }, [defaultValue]);
+
     return (
         <InputContainer
             className={cx({
                 inline: inline === true,
             })}
+            onKeyDown={(evt) => {
+                if (stopKeyDownPropagation) {
+                    evt.stopPropagation();
+                }
+            }}
         >
-            <InputLabel>{label}</InputLabel>
+            <InputLabel style={labelStyle}>{label}</InputLabel>
             <InputBox>
                 <Input
                     className={cx(className, {

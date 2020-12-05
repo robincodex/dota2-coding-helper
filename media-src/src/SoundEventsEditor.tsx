@@ -80,6 +80,11 @@ function SoundEvent({
     index: number;
     soundData: ISoundEventData;
 }) {
+    // Delte Sound Files
+    function deleteSoundFiles(indexes: number[]) {
+        request('remove-sound-files', index, indexes);
+    }
+
     return (
         <SoundCard>
             <div style={{ marginBottom: 0 }}>
@@ -102,8 +107,8 @@ function SoundEvent({
                 }}
             >
                 <TextInput
-                    key={'type' + soundData.type}
                     label={localText.type}
+                    labelStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     searchTexts={keysSuggestion['type']}
                     defaultValue={soundData.type}
                     onComplete={(text) => {
@@ -111,18 +116,18 @@ function SoundEvent({
                     }}
                 />
                 <TextInput
-                    key={'volume' + soundData.volume}
                     renderState={renderPositiveNumericState}
                     label={localText.volume}
+                    labelStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     defaultValue={soundData.volume}
                     onComplete={(text) => {
                         request('change-sound-key', index, 'volume', text);
                     }}
                 />
                 <TextInput
-                    key={'pitch' + soundData.pitch}
                     renderState={renderPositiveNumericState}
                     label={localText.pitch}
+                    labelStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     defaultValue={soundData.pitch}
                     onComplete={(text) => {
                         request('change-sound-key', index, 'pitch', text);
@@ -132,15 +137,16 @@ function SoundEvent({
             <div>
                 <ListView
                     title="Sound Files (*.vsnd)"
+                    titleStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     smallTitle
                     items={soundData.vsnd_files.map((v, i) => {
                         return {
                             key: i,
                             content: (
                                 <EditableText
-                                    key={v}
                                     noBorder
                                     defaultValue={v}
+                                    stopKeyDownPropagation={true}
                                     renderState={(v) => {
                                         if (!v.endsWith('.vsnd')) {
                                             return InputState.Error;
@@ -154,7 +160,47 @@ function SoundEvent({
                             ),
                         };
                     })}
-                    onSelected={() => {}}
+                    onContextMenu={async (evt, keys, methods) => {
+                        ShowContextMenu({
+                            menu: [
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'copy',
+                                    text: commonText.copy,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'paste',
+                                    text: commonText.paste,
+                                    inactive: false,
+                                },
+                                {
+                                    type: ContextMenuType.Separator,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'select_all',
+                                    text: commonText.select_all,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'delete',
+                                    text: commonText.delete,
+                                },
+                            ],
+                            offset: { top: evt.clientY, left: evt.clientX },
+                            onClick(id) {
+                                switch (id) {
+                                    case 'select_all':
+                                        methods.selectAll();
+                                        break;
+                                    case 'delete':
+                                        deleteSoundFiles(keys);
+                                        break;
+                                }
+                            },
+                        });
+                    }}
                 />
             </div>
         </SoundCard>
@@ -299,6 +345,11 @@ function SoundEventsEditor() {
                                 },
                                 {
                                     type: ContextMenuType.Normal,
+                                    id: 'add',
+                                    text: commonText.add,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
                                     id: 'select_all',
                                     text: commonText.select_all,
                                     hotkey: 'Ctrl+A',
@@ -342,11 +393,7 @@ function SoundEventsEditor() {
                             return null;
                         }
                         return (
-                            <SoundEvent
-                                key={soundEvents[i].event + i}
-                                index={i}
-                                soundData={soundEvents[i]}
-                            />
+                            <SoundEvent key={i} index={i} soundData={soundEvents[i]} />
                         );
                     })}
                 </SoundsList>

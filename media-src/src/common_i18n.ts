@@ -5,6 +5,7 @@ const i18n: {
         remove: string;
         delete: string;
         paste: string;
+        add: string;
     };
 } = {
     en: {
@@ -13,6 +14,7 @@ const i18n: {
         remove: 'Remove',
         delete: 'Delete',
         paste: 'Paste',
+        add: 'Add',
     },
     'zh-cn': {
         copy: '复制',
@@ -20,6 +22,7 @@ const i18n: {
         remove: '删除',
         delete: '删除',
         paste: '粘贴',
+        add: '添加',
     },
 };
 
