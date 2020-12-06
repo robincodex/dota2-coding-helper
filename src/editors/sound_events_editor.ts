@@ -320,61 +320,66 @@ export class SoundEventsEditorService {
     }
 
     /**
-     * Duplicate a sound event
+     * Duplicate sound events
      */
-    private duplicateSoundEvent(event: string) {
+    private duplicateSoundEvents(soundIndexes: number[]) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        const kv = root.Value.find((v) => v.Key === event);
-        if (!kv || !Array.isArray(kv.Value)) {
-            return;
-        }
 
-        // Find number from end of string
-        const key = kv.Key.replace(/\"/g, '');
-        const lastNumberMatch = key.match(/\d+$/);
-        let zeroCount = 0;
-        let currentNumber = -1;
-        let prefix = key;
-        if (lastNumberMatch) {
-            const num = lastNumberMatch[0];
-            currentNumber = parseInt(num);
-            prefix = prefix.replace(new RegExp(`${num}$`), '');
-            for (const n of num) {
-                if (n === '0') {
-                    zeroCount++;
-                    continue;
-                }
-                break;
+        let i = 0;
+        for (const soundIndex of soundIndexes.sort()) {
+            const kv = root.Value[soundIndex + i];
+            if (!kv || !Array.isArray(kv.Value)) {
+                continue;
             }
-        } else {
-            currentNumber = 0;
-        }
 
-        // Find max number
-        const prefix2 = `"${prefix}`;
-        for (const child of root.Value) {
-            if (child.Key.startsWith(prefix2)) {
-                const num = parseInt(child.Key.replace(prefix2, '').replace(/\"/g, ''));
-                if (!isNaN(num) && num > currentNumber) {
-                    currentNumber = num;
+            // Find number from end of string
+            const key = kv.Key.replace(/\"/g, '');
+            const lastNumberMatch = key.match(/\d+$/);
+            let zeroCount = 0;
+            let currentNumber = -1;
+            let prefix = key;
+            if (lastNumberMatch) {
+                const num = lastNumberMatch[0];
+                currentNumber = parseInt(num);
+                prefix = prefix.replace(new RegExp(`${num}$`), '');
+                for (const n of num) {
+                    if (n === '0') {
+                        zeroCount++;
+                        continue;
+                    }
+                    break;
+                }
+            } else {
+                currentNumber = 0;
+            }
+
+            // Find max number
+            const prefix2 = `"${prefix}`;
+            for (const child of root.Value) {
+                if (child.Key.startsWith(prefix2)) {
+                    const num = parseInt(
+                        child.Key.replace(prefix2, '').replace(/\"/g, '')
+                    );
+                    if (!isNaN(num) && num > currentNumber) {
+                        currentNumber = num;
+                    }
                 }
             }
+
+            let suffix = (currentNumber + 1).toString();
+            if (suffix.length <= zeroCount) {
+                suffix = '0'.repeat(zeroCount - suffix.length + 1) + suffix;
+            }
+
+            const cloneKV: KeyValues3 = JSON.parse(JSON.stringify(kv));
+            cloneKV.Key = `"${prefix + suffix}"`;
+
+            root.Value.splice(soundIndex + i + 1, 0, cloneKV);
+            i++;
         }
-
-        let suffix = (currentNumber + 1).toString();
-        if (suffix.length <= zeroCount) {
-            suffix = '0'.repeat(zeroCount - suffix.length + 1) + suffix;
-        }
-
-        const cloneKV: KeyValues3 = JSON.parse(JSON.stringify(kv));
-        cloneKV.Key = `"${prefix + suffix}"`;
-
-        const kvIndex = root.Value.findIndex((v) => v.Key === event);
-        root.Value.splice(kvIndex + 1, 0, cloneKV);
     }
 
     /**
@@ -515,11 +520,6 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
-        // Return soundKeys
-        this.request.listenRequest('get-sound-keys', (...args: any[]) => {
-            return SoundEventsEditorService.soundKeys;
-        });
-
         // Add or change a sound key
         this.request.listenRequest('change-sound-key', (...args: any[]) => {
             const soundIndex = args[0];
@@ -558,13 +558,13 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
-        // Dulpicate a sound event
-        this.request.listenRequest('duplicate-sound-event', (...args: any[]) => {
-            const event = args[0];
-            if (typeof event !== 'string') {
+        // Dulpicate sound events
+        this.request.listenRequest('duplicate-sound-events', (...args: any[]) => {
+            const soundIndexes = args[0];
+            if (!Array.isArray(soundIndexes)) {
                 return;
             }
-            this.duplicateSoundEvent(event);
+            this.duplicateSoundEvents(soundIndexes);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 

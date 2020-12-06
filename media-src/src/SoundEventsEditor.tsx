@@ -34,6 +34,7 @@ const i18n: {
         add_sound_file_title: string;
         add_sound_file_tip: string;
         add_sound_event: string;
+        duplicate_sound_events: string;
     };
 } = {
     en: {
@@ -48,6 +49,7 @@ const i18n: {
         add_sound_file_title: 'Add Sound Files',
         add_sound_file_tip: 'One sound file path per line. Each line ends with .vsnd',
         add_sound_event: 'New Sound Event Name',
+        duplicate_sound_events: 'Dulpicate',
     },
     'zh-cn': {
         title: '音效事件名列表',
@@ -61,6 +63,7 @@ const i18n: {
         add_sound_file_title: '添加音效文件',
         add_sound_file_tip: '每行一条音效文件路径，每行以.vsnd结尾',
         add_sound_event: '新建音效事件',
+        duplicate_sound_events: '创建副本',
     },
 };
 
@@ -414,6 +417,11 @@ function SoundEventsEditor() {
                                     inactive: !canPaste,
                                 },
                                 {
+                                    type: ContextMenuType.Normal,
+                                    id: 'duplicate',
+                                    text: localText.duplicate_sound_events,
+                                },
+                                {
                                     type: ContextMenuType.Separator,
                                 },
                                 {
@@ -457,6 +465,9 @@ function SoundEventsEditor() {
                                         break;
                                     case 'add':
                                         addSoundEvent(keys);
+                                        break;
+                                    case 'duplicate':
+                                        request('duplicate-sound-events', keys);
                                         break;
                                 }
                             },
