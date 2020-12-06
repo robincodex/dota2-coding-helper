@@ -1,11 +1,11 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BaseElementAttributes, InputState } from './utils';
 
-type EditableTextProps = BaseElementAttributes & {
+type TextareaProps = BaseElementAttributes & {
     defaultValue?: string;
-    noBorder?: boolean;
+    defaultFocus?: boolean;
     stopKeyDownPropagation?: boolean;
     /**
      * Render value, same as filter value
@@ -19,21 +19,18 @@ type EditableTextProps = BaseElementAttributes & {
      * Trigger on any char change
      */
     onChange?: (text: string) => void;
-    /**
-     * Trigger on enter or blur
-     */
-    onComplete?: (text: string) => void;
 };
 
-const Input = styled.input`
+const Input = styled.textarea`
     border-radius: var(--panel-border-radius);
     outline: none;
     background: transparent;
-    border: none;
     color: var(--vscode-editor-foreground);
     padding: 3px;
     box-sizing: border-box;
     width: 100%;
+    border: 1px solid var(--vscode-input-background);
+    font-family: var(--vscode-font-family);
 
     &::placeholder {
         color: var(--vscode-input-placeholderForeground);
@@ -41,32 +38,27 @@ const Input = styled.input`
 
     &:focus {
         outline: none;
-        box-shadow: var(--vscode-editor-foreground) 0px 0px 3px;
-    }
-
-    &.noBorder {
-        box-shadow: none;
+        border: 1px solid var(--vscode-inputValidation-infoBorder);
     }
 
     &.error {
-        color: var(--vscode-inputValidation-errorBorder);
+        border: 1px solid var(--vscode-inputValidation-errorBorder);
     }
     &.warning {
-        color: var(--vscode-inputValidation-warningBorder);
+        border: 1px solid var(--vscode-inputValidation-warningBorder);
     }
 `;
 
-export function EditableText({
+export function Textarea({
     renderValue,
     renderState,
     onChange,
-    onComplete,
     stopKeyDownPropagation,
     defaultValue,
-    noBorder,
+    defaultFocus,
     className,
     ...props
-}: EditableTextProps) {
+}: TextareaProps) {
     defaultValue = defaultValue || '';
     const [value, setValue] = useState(
         renderValue ? renderValue(defaultValue) : defaultValue
@@ -74,21 +66,27 @@ export function EditableText({
     const [inputState, setInputState] = useState(
         renderState ? renderState(defaultValue) : InputState.Normal
     );
-    const [completeValue, setCompleteValue] = useState(value);
+    const inputElement = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
         let v = defaultValue || '';
         v = renderValue ? renderValue(v) : v;
         setValue(v);
-        setCompleteValue(v);
     }, [defaultValue]);
+
+    useEffect(() => {
+        if (defaultFocus) {
+            setTimeout(() => {
+                inputElement.current?.focus();
+            });
+        }
+    });
 
     return (
         <Input
-            type="text"
+            ref={inputElement}
             value={value}
             className={cx(className, {
-                noBorder: noBorder === true,
                 error: inputState === InputState.Error,
                 warning: inputState === InputState.Warning,
             })}
@@ -107,24 +105,6 @@ export function EditableText({
             onKeyDown={(evt) => {
                 if (stopKeyDownPropagation) {
                     evt.stopPropagation();
-                }
-                if (onComplete) {
-                    if (completeValue === value) {
-                        return;
-                    }
-                    if (evt.key === 'Enter') {
-                        onComplete(value);
-                        setCompleteValue(value);
-                    }
-                }
-            }}
-            onBlur={() => {
-                if (onComplete) {
-                    if (completeValue === value) {
-                        return;
-                    }
-                    onComplete(value);
-                    setCompleteValue(value);
                 }
             }}
         />

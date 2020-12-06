@@ -69,8 +69,8 @@ export class SoundEventsEditorService {
             const data: ISoundEventData = {
                 event: kv.Key,
                 vsnd_files: [],
-                pitch: '',
-                volume: '',
+                pitch: '1.0000',
+                volume: '1.0000',
                 type: '',
                 params: {},
             };
@@ -115,13 +115,15 @@ export class SoundEventsEditorService {
     /**
      * Add a new event
      */
-    private newSoundEvent(event: string): void {
+    private newSoundEvent(soundIndex: number, newEvent: string): void {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        root.Value.push(
-            NewKeyValuesObject(`"${event.trim()}"`, [
+        root.Value.splice(
+            soundIndex + 1,
+            0,
+            NewKeyValuesObject(`"${newEvent}"`, [
                 NewKeyValue('type', 'dota_update_default'),
                 NewKeyValuesArray('vsnd_files', []),
                 NewKeyValue('volume', '1.0000'),
@@ -219,17 +221,20 @@ export class SoundEventsEditorService {
     /**
      * Add a sound file
      */
-    private addSoundFile(event: string, file: string) {
+    private addSoundFile(soundIndex: number, itemIndex: number, files: string[]) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        const kv = root.Value.find((v) => v.Key === event);
+        const kv = root.Value[soundIndex];
         if (kv && Array.isArray(kv.Value)) {
             const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
             if (vsnd_files && Array.isArray(vsnd_files.Value)) {
-                vsnd_files.Value.push(NewKeyValue('', file));
+                vsnd_files.Value.splice(
+                    itemIndex + 1,
+                    0,
+                    ...files.map((v) => NewKeyValue('', v))
+                );
             }
         }
     }
@@ -404,14 +409,15 @@ export class SoundEventsEditorService {
 
         // Add a new event
         this.request.listenRequest('add-event', (...args: any[]) => {
-            const event = args[0];
-            if (typeof event !== 'string') {
+            const soundIndex = args[0];
+            const newEvent = args[1];
+            if (typeof soundIndex !== 'number' || typeof newEvent !== 'string') {
                 return;
             }
-            if (event.length <= 0) {
+            if (newEvent.length <= 0) {
                 return;
             }
-            this.newSoundEvent(event);
+            this.newSoundEvent(soundIndex, newEvent);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
@@ -478,13 +484,18 @@ export class SoundEventsEditorService {
         });
 
         // Add a sound file
-        this.request.listenRequest('add-sound-file', (...args: any[]) => {
-            const event = args[0];
-            const file = args[1];
-            if (typeof event !== 'string' && typeof file !== 'string') {
+        this.request.listenRequest('add-sound-files', (...args: any[]) => {
+            const soundIndex = args[0];
+            const itemIndex = args[1];
+            const files = args[2];
+            if (
+                typeof soundIndex !== 'number' ||
+                typeof itemIndex !== 'number' ||
+                !Array.isArray(files)
+            ) {
                 return;
             }
-            this.addSoundFile(event, file);
+            this.addSoundFile(soundIndex, itemIndex, files);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 

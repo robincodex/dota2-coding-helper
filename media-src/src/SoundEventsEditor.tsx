@@ -14,6 +14,12 @@ import { CellInput } from './Components/CellInput';
 import { renderPositiveNumericState, TextInput } from './Components/TextInput';
 import type { ISoundEventData } from '../../src/editors/sound_events_editor';
 import { InputState } from './Components/utils';
+import {
+    ShowInputDialog,
+    ShowModalDialog,
+    ShowTextareaDialog,
+} from './Components/ModalDialog';
+import { Button, ButtonGroup } from './Components/Button';
 
 const i18n: {
     [key: string]: {
@@ -25,31 +31,40 @@ const i18n: {
         pitch: string;
         other_kv: string;
         copy_event_name: string;
+        add_sound_file_title: string;
+        add_sound_file_tip: string;
+        add_sound_event: string;
     };
 } = {
     en: {
         title: 'LIST OF SOUND EVENT NAME',
         event: 'Sound Event',
         type: 'Sound Type',
-        sounds: 'vsnd_files',
+        sounds: 'Sound Files (*.vsnd)',
         volume: 'Volume',
         pitch: 'Pitch',
         other_kv: 'Other KV',
         copy_event_name: 'Copy Sound Event Name',
+        add_sound_file_title: 'Add Sound Files',
+        add_sound_file_tip: 'One sound file path per line. Each line ends with .vsnd',
+        add_sound_event: 'New Sound Event Name',
     },
     'zh-cn': {
         title: '音效事件名列表',
         event: '事件名',
         type: '音效类型',
-        sounds: '音效文件(vsnd_files)',
+        sounds: '音效文件 (*.vsnd)',
         volume: '音量',
         pitch: '音高',
         other_kv: '其它KV',
         copy_event_name: '复制音效名称',
+        add_sound_file_title: '添加音效文件',
+        add_sound_file_tip: '每行一条音效文件路径，每行以.vsnd结尾',
+        add_sound_event: '新建音效事件',
     },
 };
 
-const localText = i18n[navigator.language] || i18n['en'];
+const localText = i18n[navigator.language.toLowerCase()] || i18n['en'];
 
 const keysSuggestion: { [key: string]: string[] } = {
     type: [
@@ -84,6 +99,29 @@ function SoundEvent({
     // Delte Sound Files
     function deleteSoundFiles(indexes: number[]) {
         request('remove-sound-files', index, indexes);
+    }
+    // Add a sound file
+    function addSoundFile(indexes: number[]) {
+        ShowTextareaDialog({
+            title: localText.add_sound_file_title,
+            label: localText.add_sound_file_tip,
+            width: 600,
+            height: 100,
+            ok: (text) => {
+                const list = text.split('\n').map((v) => v.trim());
+                request('add-sound-files', index, indexes.sort().pop(), list);
+            },
+            renderValue(text) {
+                return text.replace(/\"/g, '');
+            },
+            renderState(text) {
+                const list = text.split('\n');
+                if (!list.every((v) => v.trim().endsWith('.vsnd'))) {
+                    return InputState.Error;
+                }
+                return InputState.Normal;
+            },
+        });
     }
 
     return (
@@ -137,7 +175,7 @@ function SoundEvent({
             </div>
             <div>
                 <ListView
-                    title="Sound Files (*.vsnd)"
+                    title={localText.sounds}
                     titleStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     smallTitle
                     items={soundData.vsnd_files.map((v, i) => {
@@ -193,6 +231,11 @@ function SoundEvent({
                                 },
                                 {
                                     type: ContextMenuType.Normal,
+                                    id: 'add',
+                                    text: commonText.add,
+                                },
+                                {
+                                    type: ContextMenuType.Normal,
                                     id: 'select_all',
                                     text: commonText.select_all,
                                     hotkey: 'Ctrl+A',
@@ -212,6 +255,9 @@ function SoundEvent({
                                         break;
                                     case 'delete':
                                         deleteSoundFiles(keys);
+                                        break;
+                                    case 'add':
+                                        addSoundFile(keys);
                                         break;
                                 }
                             },
@@ -293,6 +339,18 @@ function SoundEventsEditor() {
     function deleteSoundEvents(indexes: number[]) {
         request('remove-events', indexes);
     }
+    // Add a sound event
+    function addSoundEvent(indexes: number[]) {
+        ShowInputDialog({
+            title: localText.add_sound_event,
+            ok: (text) => {
+                request('add-event', indexes.sort().pop(), text);
+            },
+            renderValue(text) {
+                return text.trim().replace(/\"/g, '');
+            },
+        });
+    }
 
     return (
         <CacheProvider value={editorCache}>
@@ -304,7 +362,7 @@ function SoundEventsEditor() {
                             key: i,
                             content: (
                                 <div style={{ padding: 5 }}>
-                                    {(v['event'] as string).replace(/\"/g, '')}
+                                    {v.event.replace(/\"/g, '')}
                                 </div>
                             ),
                         };
@@ -396,6 +454,9 @@ function SoundEventsEditor() {
                                         break;
                                     case 'delete':
                                         deleteSoundEvents(keys);
+                                        break;
+                                    case 'add':
+                                        addSoundEvent(keys);
                                         break;
                                 }
                             },

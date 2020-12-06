@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BaseElementAttributes, InputState, searchString } from './utils';
 
 export const InputNumberFilter = /\-?\d+(\.\d+)?/;
@@ -28,6 +28,7 @@ type TextInputProps = BaseElementAttributes & {
     labelStyle?: BaseElementAttributes['style'];
     searchTexts?: string[];
     stopKeyDownPropagation?: boolean;
+    defaultFocus?: boolean;
     /**
      * Render value, same as filter value
      */
@@ -43,7 +44,7 @@ type TextInputProps = BaseElementAttributes & {
     /**
      * Trigger on enter or blur
      */
-    onComplete?: (text: string) => void;
+    onComplete?: (text: string, isEnter?: boolean) => void;
 };
 
 export function TextInput({
@@ -52,6 +53,7 @@ export function TextInput({
     onChange,
     onComplete,
     defaultValue,
+    defaultFocus,
     inline,
     label,
     searchTexts,
@@ -68,6 +70,7 @@ export function TextInput({
         renderState ? renderState(defaultValue) : InputState.Normal
     );
     const [completeValue, setCompleteValue] = useState(value);
+    const inputElement = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         let v = defaultValue || '';
@@ -75,6 +78,14 @@ export function TextInput({
         setValue(v);
         setCompleteValue(v);
     }, [defaultValue]);
+
+    useEffect(() => {
+        if (defaultFocus) {
+            setTimeout(() => {
+                inputElement.current?.focus();
+            });
+        }
+    });
 
     return (
         <InputContainer
@@ -90,6 +101,7 @@ export function TextInput({
             <InputLabel style={labelStyle}>{label}</InputLabel>
             <InputBox>
                 <Input
+                    ref={inputElement}
                     className={cx(className, {
                         error: inputState === InputState.Error,
                         warning: inputState === InputState.Warning,
@@ -114,7 +126,7 @@ export function TextInput({
                                 return;
                             }
                             if (evt.key === 'Enter') {
-                                onComplete(value);
+                                onComplete(value, true);
                                 setCompleteValue(value);
                             }
                         }
@@ -124,7 +136,7 @@ export function TextInput({
                             if (completeValue === value) {
                                 return;
                             }
-                            onComplete(value);
+                            onComplete(value, false);
                             setCompleteValue(value);
                         }
                     }}

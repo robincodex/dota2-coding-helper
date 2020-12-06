@@ -36,6 +36,10 @@ const Input = styled.input`
     display: none;
     line-height: 16px;
 
+    &::placeholder {
+        color: var(--vscode-input-placeholderForeground);
+    }
+
     &:focus {
         outline: none;
     }
