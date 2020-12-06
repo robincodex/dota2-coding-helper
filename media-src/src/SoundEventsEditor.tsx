@@ -10,6 +10,7 @@ import { css } from '@emotion/css';
 import { ContextMenuType, ShowContextMenu } from './Components/ContextMenu';
 import commonText from './common_i18n';
 import { EditableText } from './Components/EditableText';
+import { CellInput } from './Components/CellInput';
 import { renderPositiveNumericState, TextInput } from './Components/TextInput';
 import type { ISoundEventData } from '../../src/editors/sound_events_editor';
 import { InputState } from './Components/utils';
@@ -143,8 +144,7 @@ function SoundEvent({
                         return {
                             key: i,
                             content: (
-                                <EditableText
-                                    noBorder
+                                <CellInput
                                     defaultValue={v}
                                     stopKeyDownPropagation={true}
                                     renderState={(v) => {
@@ -160,6 +160,18 @@ function SoundEvent({
                             ),
                         };
                     })}
+                    onKeyDown={(evt, keys, methods) => {
+                        if (evt.ctrlKey) {
+                            if (evt.key === 'a') {
+                                methods.selectAll();
+                            } else if (evt.key === 'c') {
+                            } else if (evt.key === 'v') {
+                            }
+                        }
+                        if (evt.key === 'Delete') {
+                            deleteSoundFiles(keys);
+                        }
+                    }}
                     onContextMenu={async (evt, keys, methods) => {
                         ShowContextMenu({
                             menu: [
@@ -167,12 +179,14 @@ function SoundEvent({
                                     type: ContextMenuType.Normal,
                                     id: 'copy',
                                     text: commonText.copy,
+                                    hotkey: 'Ctrl+C',
                                 },
                                 {
                                     type: ContextMenuType.Normal,
                                     id: 'paste',
                                     text: commonText.paste,
                                     inactive: false,
+                                    hotkey: 'Ctrl+V',
                                 },
                                 {
                                     type: ContextMenuType.Separator,
@@ -181,11 +195,13 @@ function SoundEvent({
                                     type: ContextMenuType.Normal,
                                     id: 'select_all',
                                     text: commonText.select_all,
+                                    hotkey: 'Ctrl+A',
                                 },
                                 {
                                     type: ContextMenuType.Normal,
                                     id: 'delete',
                                     text: commonText.delete,
+                                    hotkey: 'Del',
                                 },
                             ],
                             offset: { top: evt.clientY, left: evt.clientX },
@@ -302,8 +318,7 @@ function SoundEventsEditor() {
                                 if (evt.key === 'c') {
                                     copySoundNames(keys);
                                 }
-                            }
-                            if (evt.key === 'a') {
+                            } else if (evt.key === 'a') {
                                 methods.selectAll();
                             } else if (evt.key === 'c') {
                                 copySoundEvents(keys);

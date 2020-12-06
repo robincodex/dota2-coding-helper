@@ -207,18 +207,6 @@ export function ListView<T>({
     }
 }
 
-const ListViewRoot = styled.div`
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--vscode-panel-border);
-    flex-shrink: 0;
-    user-select: none;
-    border-radius: var(--panel-border-radius);
-    /* background: var(--vscode-editorWidget-background); */
-    outline: none;
-    overflow: hidden;
-`;
-
 const ListViewTitleMenu = styled.div`
     position: absolute;
     right: 0;
@@ -270,5 +258,24 @@ const ListViewItem = styled.div`
     &.selected {
         color: var(--vscode-list-focusForeground);
         background: var(--vscode-list-focusBackground);
+    }
+`;
+
+const ListViewRoot = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vscode-panel-border);
+    flex-shrink: 0;
+    user-select: none;
+    border-radius: var(--panel-border-radius);
+    /* background: var(--vscode-editorWidget-background); */
+    outline: none;
+    overflow: hidden;
+
+    &:not(:focus) {
+        ${ListViewItem}.selected {
+            color: var(--vscode-list-hoverForeground);
+            background: var(--vscode-list-hoverBackground);
+        }
     }
 `;
