@@ -293,30 +293,34 @@ export class SoundEventsEditorService {
     /**
      * Move a sound event
      */
-    private moveSoundEvent(event: string, up: boolean) {
+    private moveSoundEvents(
+        soundIndexes: number[],
+        targetIndex: number,
+        isTop: boolean
+    ) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
         }
-        event = `"${event}"`;
-        const index = root.Value.findIndex((v) => v.Key === event);
-        if (up) {
-            if (index === 0) {
-                return;
-            }
-            [root.Value[index], root.Value[index - 1]] = [
-                root.Value[index - 1],
-                root.Value[index],
-            ];
-        } else {
-            if (index === root.Value.length - 1) {
-                return;
-            }
-            [root.Value[index], root.Value[index + 1]] = [
-                root.Value[index + 1],
-                root.Value[index],
-            ];
+        const kv = root.Value[targetIndex];
+        if (!kv) {
+            return;
         }
+        const list: KeyValues3[] = [];
+        for (const soundIndex of soundIndexes.sort().reverse()) {
+            if (root.Value[soundIndex] && soundIndex !== targetIndex) {
+                list.push(...root.Value.splice(soundIndex, 1));
+            }
+        }
+        targetIndex = root.Value.indexOf(kv);
+        if (!isTop) {
+            targetIndex += 1;
+        }
+        root.Value.splice(targetIndex, 0, ...list.reverse());
+        return {
+            startIndex: targetIndex,
+            length: list.length,
+        };
     }
 
     /**
@@ -548,14 +552,20 @@ export class SoundEventsEditorService {
         });
 
         // Move a sound event
-        this.request.listenRequest('move-sound-event', (...args: any[]) => {
-            const event = args[0];
-            const up = args[1];
-            if (typeof event !== 'string' && typeof up !== 'boolean') {
+        this.request.listenRequest('move-sound-events', (...args: any[]) => {
+            const soundIndexes = args[0];
+            const targetIndex = args[1];
+            const isTop = args[2];
+            if (
+                !Array.isArray(soundIndexes) ||
+                typeof targetIndex !== 'number' ||
+                typeof isTop !== 'boolean'
+            ) {
                 return;
             }
-            this.moveSoundEvent(event, up);
+            let result = this.moveSoundEvents(soundIndexes, targetIndex, isTop);
             writeDocument(document, formatKeyValues(this.kvList));
+            return result;
         });
 
         // Dulpicate sound events

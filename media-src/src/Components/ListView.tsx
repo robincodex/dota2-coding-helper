@@ -31,6 +31,12 @@ type ListViewProps<T> = BaseElementAttributes & {
         keys: T[],
         methods: ListViewMethods<T>
     ) => void;
+    onMoveItems?: (
+        keys: T[],
+        target: T,
+        isTop: boolean,
+        methods: ListViewMethods<T>
+    ) => void;
 };
 
 /**
@@ -45,9 +51,11 @@ export function ListView<T>({
     onSelected,
     onContextMenu,
     onKeyDown,
+    onMoveItems,
     ...props
 }: ListViewProps<T>) {
     const [selectedState, setSelectedState] = useState<T[]>([]);
+    const root = useRef<HTMLDivElement>(null);
 
     // Check the keys are all unique
     const unique = new Map<T, boolean>();
@@ -87,9 +95,12 @@ export function ListView<T>({
         },
     };
 
+    let dragKeys: T[] = [];
+    let dropIsTop = false;
+
     // Normal
     return (
-        <ListViewRoot {...props} tabIndex={0} onKeyDown={onKeyDownHandle}>
+        <ListViewRoot {...props} ref={root} tabIndex={0} onKeyDown={onKeyDownHandle}>
             <ListViewTitle
                 className={cx({
                     small: smallTitle === true,
@@ -113,14 +124,115 @@ export function ListView<T>({
                             className={isSelected ? 'selected' : ''}
                             onClick={onItemClick(v)}
                             onContextMenu={onItemContextMenu(v)}
+                            draggable={!!onMoveItems}
+                            onDragStart={onDragStart(v)}
+                            onDragEnd={onDragEnd()}
+                            onDragOver={(evt) => {
+                                evt.preventDefault();
+                            }}
                         >
                             {v.content}
+                            <ListViewItemDragPanel
+                                onDragEnter={(evt) => {
+                                    evt.preventDefault();
+                                }}
+                                onDragLeave={onDragLeave()}
+                                onDragOver={onDragOver()}
+                                onDrop={onDrop(v)}
+                            />
                         </ListViewItem>
                     );
                 })}
             </ListViewItemList>
         </ListViewRoot>
     );
+
+    // Start move items
+    function onDragStart(v: ListViewItemData<T>) {
+        if (!onMoveItems) {
+            return;
+        }
+        return (evt: React.DragEvent<HTMLDivElement>) => {
+            const dragPanel = document.createElement('div');
+            dragPanel.id = 'custom-draggable-element';
+            dragPanel.style.padding = '5px';
+            dragPanel.style.background = '#000';
+            dragPanel.style.borderRadius = '1000px';
+            dragPanel.style.position = 'absolute';
+            dragPanel.style.top = '-99999px';
+            document.body.appendChild(dragPanel);
+            evt.dataTransfer.setDragImage(dragPanel, -11, -11);
+            root.current?.classList?.add('drag-start');
+            dropIsTop = false;
+
+            if (evt.currentTarget.classList.contains('selected')) {
+                dragPanel.innerText = selectedState.length.toString();
+                dragKeys = [...selectedState];
+            } else {
+                dragPanel.innerText = '1';
+                dragKeys = [v.key];
+            }
+        };
+    }
+
+    // End of move items
+    function onDragEnd() {
+        if (!onMoveItems) {
+            return;
+        }
+        return () => {
+            const elem = document.getElementById('custom-draggable-element');
+            if (elem) {
+                elem.parentElement?.removeChild(elem);
+            }
+            root.current?.classList?.remove('drag-start');
+        };
+    }
+
+    function onDragLeave() {
+        if (!onMoveItems) {
+            return;
+        }
+        return (evt: React.DragEvent<HTMLDivElement>) => {
+            evt.preventDefault();
+            evt.currentTarget.classList.remove('drag-enter-top');
+            evt.currentTarget.classList.remove('drag-enter-bottom');
+        };
+    }
+
+    // Set dropIsTop
+    function onDragOver() {
+        if (!onMoveItems) {
+            return;
+        }
+        return (evt: React.DragEvent<HTMLDivElement>) => {
+            evt.preventDefault();
+            const rect = evt.currentTarget.getBoundingClientRect();
+            const mid = rect.y + rect.height / 2;
+            if (evt.clientY < mid) {
+                dropIsTop = true;
+                evt.currentTarget.classList.add('drag-enter-top');
+                evt.currentTarget.classList.remove('drag-enter-bottom');
+            } else {
+                dropIsTop = false;
+                evt.currentTarget.classList.add('drag-enter-bottom');
+                evt.currentTarget.classList.remove('drag-enter-top');
+            }
+        };
+    }
+
+    // Trigger onMoveItems
+    function onDrop(v: ListViewItemData<T>) {
+        if (!onMoveItems) {
+            return;
+        }
+        return (evt: React.DragEvent<HTMLDivElement>) => {
+            evt.preventDefault();
+            evt.currentTarget.classList.remove('drag-enter-top');
+            evt.currentTarget.classList.remove('drag-enter-bottom');
+            onMoveItems(dragKeys, v.key, dropIsTop, listViewsmethods);
+        };
+    }
 
     /**
      * onKeyDown
@@ -261,6 +373,26 @@ const ListViewItem = styled.div`
     }
 `;
 
+const ListViewItemDragPanel = styled.div`
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-style: none;
+    border: 1px solid transparent;
+
+    &.drag-enter-top {
+        border: 1px solid var(--vscode-terminal-ansiBrightGreen);
+        border-style: dashed none none none;
+    }
+    &.drag-enter-bottom {
+        border: 1px solid var(--vscode-terminal-ansiBrightGreen);
+        border-style: none none dashed none;
+    }
+`;
+
 const ListViewRoot = styled.div`
     display: flex;
     flex-direction: column;
@@ -276,6 +408,12 @@ const ListViewRoot = styled.div`
         ${ListViewItem}.selected {
             color: var(--vscode-list-hoverForeground);
             background: var(--vscode-list-hoverBackground);
+        }
+    }
+
+    &.drag-start {
+        ${ListViewItemDragPanel} {
+            display: block;
         }
     }
 `;

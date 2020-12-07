@@ -473,6 +473,19 @@ function SoundEventsEditor() {
                             },
                         });
                     }}
+                    onMoveItems={async (keys, target, isTop, methods) => {
+                        const result = await request<{
+                            startIndex: number;
+                            length: number;
+                        }>('move-sound-events', keys, target, isTop);
+                        if (result) {
+                            let list: number[] = [];
+                            for (let i = 0; i < result.length; i++) {
+                                list.push(result.startIndex + i);
+                            }
+                            methods.select(list);
+                        }
+                    }}
                 />
                 <SoundsList>
                     {editableItems.map((i) => {
