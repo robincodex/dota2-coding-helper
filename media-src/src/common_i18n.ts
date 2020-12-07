@@ -32,5 +32,5 @@ const i18n: {
     },
 };
 
-const commonText = i18n[navigator.language.toLowerCase()] || i18n['en'];
+const commonText = i18n[document.documentElement.lang.toLowerCase()] || i18n['en'];
 export default commonText;

@@ -67,7 +67,7 @@ const i18n: {
     },
 };
 
-const localText = i18n[navigator.language.toLowerCase()] || i18n['en'];
+const localText = i18n[document.documentElement.lang.toLowerCase()] || i18n['en'];
 
 const keysSuggestion: { [key: string]: string[] } = {
     type: [
@@ -125,6 +125,14 @@ function SoundEvent({
                 return InputState.Normal;
             },
         });
+    }
+    // Copy Sound Files
+    function copySoundFiles(indexes: number[]) {
+        request('copy-sound-files', index, indexes);
+    }
+    // Paste Sound Files
+    function pasteSoundFiles(indexes: number[]) {
+        request('paste-sound-files', index, indexes);
     }
 
     return (
@@ -206,7 +214,9 @@ function SoundEvent({
                             if (evt.key === 'a') {
                                 methods.selectAll();
                             } else if (evt.key === 'c') {
+                                copySoundFiles(keys);
                             } else if (evt.key === 'v') {
+                                pasteSoundFiles(keys);
                             }
                         }
                         if (evt.key === 'Delete') {
@@ -262,9 +272,28 @@ function SoundEvent({
                                     case 'add':
                                         addSoundFile(keys);
                                         break;
+                                    case 'copy':
+                                        copySoundFiles(keys);
+                                        break;
+                                    case 'paste':
+                                        pasteSoundFiles(keys);
+                                        break;
                                 }
                             },
                         });
+                    }}
+                    onMoveItems={async (keys, target, isTop, methods) => {
+                        const result = await request<{
+                            startIndex: number;
+                            length: number;
+                        }>('move-sound-files', index, keys, target, isTop);
+                        if (result) {
+                            let list: number[] = [];
+                            for (let i = 0; i < result.length; i++) {
+                                list.push(result.startIndex + i);
+                            }
+                            methods.select(list);
+                        }
                     }}
                 />
             </div>

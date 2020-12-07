@@ -15,7 +15,6 @@ import {
     RequestHelper,
     locale,
 } from './utils';
-import { promises } from 'fs';
 import clone from 'lodash/clone';
 
 interface ISoundEventData {
@@ -28,6 +27,7 @@ interface ISoundEventData {
 }
 
 let copySoundEvents: KeyValues3[] = [];
+let copySoundFiles: string[] = [];
 
 export type { ISoundEventData };
 
@@ -200,9 +200,9 @@ export class SoundEventsEditorService {
     }
 
     /**
-     * Remove a sound file
+     * Remove sound files
      */
-    private removeSoundFile(soundIndex: number, fileIndexes: number[]) {
+    private removeSoundFiles(soundIndex: number, fileIndexes: number[]) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
@@ -214,6 +214,51 @@ export class SoundEventsEditorService {
                 vsnd_files.Value = vsnd_files.Value.filter((v, i) => {
                     return !fileIndexes.includes(i);
                 });
+            }
+        }
+    }
+
+    /**
+     * Copy sound files
+     */
+    private copySoundFiles(soundIndex: number, fileIndexes: number[]) {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return;
+        }
+        const kv = root.Value[soundIndex];
+        if (kv && Array.isArray(kv.Value)) {
+            const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
+            if (vsnd_files && Array.isArray(vsnd_files.Value)) {
+                const list = vsnd_files.Value.filter((v, i) => {
+                    return fileIndexes.includes(i);
+                });
+                copySoundFiles = list.map((v) => String(v.Value));
+                vscode.env.clipboard.writeText(copySoundFiles.join('\n'));
+            }
+        }
+    }
+
+    /**
+     * Paste sound files
+     */
+    private pasteSoundFiles(soundIndex: number, fileIndexes: number[]) {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return;
+        }
+        const kv = root.Value[soundIndex];
+        if (kv && Array.isArray(kv.Value)) {
+            const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
+            if (vsnd_files && Array.isArray(vsnd_files.Value)) {
+                const i = fileIndexes.sort().pop();
+                if (i) {
+                    vsnd_files.Value.splice(
+                        i + 1,
+                        0,
+                        ...copySoundFiles.map((v) => NewKeyValue('', v))
+                    );
+                }
             }
         }
     }
@@ -291,7 +336,7 @@ export class SoundEventsEditorService {
     }
 
     /**
-     * Move a sound event
+     * Move sound events
      */
     private moveSoundEvents(
         soundIndexes: number[],
@@ -317,6 +362,48 @@ export class SoundEventsEditorService {
             targetIndex += 1;
         }
         root.Value.splice(targetIndex, 0, ...list.reverse());
+        return {
+            startIndex: targetIndex,
+            length: list.length,
+        };
+    }
+
+    /**
+     * Move sound files
+     */
+    private moveSoundFiles(
+        soundIndex: number,
+        fileIndexes: number[],
+        targetIndex: number,
+        isTop: boolean
+    ) {
+        const root = this.kvList[1];
+        if (!root || !Array.isArray(root.Value)) {
+            return;
+        }
+        const eventKV = root.Value[soundIndex];
+        if (!eventKV || !Array.isArray(eventKV.Value)) {
+            return;
+        }
+        const vsndFiles = eventKV.Value.find((v) => v.Key === 'vsnd_files');
+        if (!vsndFiles || !Array.isArray(vsndFiles.Value)) {
+            return;
+        }
+        const kv = vsndFiles.Value[targetIndex];
+        if (!kv) {
+            return;
+        }
+        const list: KeyValues3[] = [];
+        for (const soundIndex of fileIndexes.sort().reverse()) {
+            if (vsndFiles.Value[soundIndex] && soundIndex !== targetIndex) {
+                list.push(...vsndFiles.Value.splice(soundIndex, 1));
+            }
+        }
+        targetIndex = vsndFiles.Value.indexOf(kv);
+        if (!isTop) {
+            targetIndex += 1;
+        }
+        vsndFiles.Value.splice(targetIndex, 0, ...list.reverse());
         return {
             startIndex: targetIndex,
             length: list.length,
@@ -481,14 +568,35 @@ export class SoundEventsEditorService {
             return copySoundEvents.length > 0;
         });
 
-        // Remove a sound file
+        // Remove sound files
         this.request.listenRequest('remove-sound-files', (...args: any[]) => {
             const soundIndex = args[0];
             const fileIndexes = args[1];
             if (typeof soundIndex !== 'number' || !Array.isArray(fileIndexes)) {
                 return;
             }
-            this.removeSoundFile(soundIndex, fileIndexes);
+            this.removeSoundFiles(soundIndex, fileIndexes);
+            writeDocument(document, formatKeyValues(this.kvList));
+        });
+
+        // Copy sound files
+        this.request.listenRequest('copy-sound-files', (...args: any[]) => {
+            const soundIndex = args[0];
+            const fileIndexes = args[1];
+            if (typeof soundIndex !== 'number' || !Array.isArray(fileIndexes)) {
+                return;
+            }
+            this.copySoundFiles(soundIndex, fileIndexes);
+        });
+
+        // Paste sound files
+        this.request.listenRequest('paste-sound-files', (...args: any[]) => {
+            const soundIndex = args[0];
+            const fileIndexes = args[1];
+            if (typeof soundIndex !== 'number' || !Array.isArray(fileIndexes)) {
+                return;
+            }
+            this.pasteSoundFiles(soundIndex, fileIndexes);
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
@@ -524,6 +632,30 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
+        // Move sound files
+        this.request.listenRequest('move-sound-files', (...args: any[]) => {
+            const soundIndex = args[0];
+            const fileIndexes = args[1];
+            const targetIndex = args[2];
+            const isTop = args[3];
+            if (
+                typeof soundIndex !== 'number' ||
+                !Array.isArray(fileIndexes) ||
+                typeof targetIndex !== 'number' ||
+                typeof isTop !== 'boolean'
+            ) {
+                return;
+            }
+            let result = this.moveSoundFiles(
+                soundIndex,
+                fileIndexes,
+                targetIndex,
+                isTop
+            );
+            writeDocument(document, formatKeyValues(this.kvList));
+            return result;
+        });
+
         // Add or change a sound key
         this.request.listenRequest('change-sound-key', (...args: any[]) => {
             const soundIndex = args[0];
@@ -551,7 +683,7 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
-        // Move a sound event
+        // Move sound events
         this.request.listenRequest('move-sound-events', (...args: any[]) => {
             const soundIndexes = args[0];
             const targetIndex = args[1];
