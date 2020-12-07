@@ -144,6 +144,15 @@ export function CellInput({
                     if (stopKeyDownPropagation) {
                         evt.stopPropagation();
                     }
+                    if (evt.ctrlKey) {
+                        switch (evt.key) {
+                            case 'z':
+                            case 'x':
+                            case 'y':
+                                evt.stopPropagation();
+                                break;
+                        }
+                    }
                     if (onComplete) {
                         if (evt.key === 'Enter') {
                             setEditable(false);

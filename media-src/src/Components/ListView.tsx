@@ -3,6 +3,7 @@ import { css, cx } from '@emotion/css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { BaseElementAttributes } from './utils';
 import { ThreeDots } from 'react-bootstrap-icons';
+import { ShowContextMenu } from './ContextMenu';
 
 /**
  * The data format of each row of the list item
@@ -17,7 +18,10 @@ export interface ListViewMethods<T> {
 type ListViewProps<T> = BaseElementAttributes & {
     title: string;
     smallTitle?: boolean;
-    titleMenu?: { id: string | number | symbol; text: string }[];
+    titleMenu?: (
+        offset: { top: number; left: number },
+        methods: ListViewMethods<T>
+    ) => void;
     titleStyle?: BaseElementAttributes['style'];
     items: ListViewItemData<T>[];
     onSelected?: (keys: T[]) => void;
@@ -111,7 +115,18 @@ export function ListView<T>({
                 {title}
                 {titleMenu ? (
                     <ListViewTitleMenu>
-                        <ThreeDots />
+                        <ThreeDots
+                            onClick={(evt) => {
+                                const elem = evt.currentTarget.parentElement;
+                                if (!elem) {
+                                    return;
+                                }
+                                const rect = elem.getBoundingClientRect();
+                                const left = rect.x + rect.width;
+                                const top = rect.y + rect.height;
+                                titleMenu({ left, top }, listViewsmethods);
+                            }}
+                        />
                     </ListViewTitleMenu>
                 ) : null}
             </ListViewTitle>
@@ -324,7 +339,7 @@ const ListViewTitleMenu = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
-    padding: 9px 5px;
+    padding: 9px 20px;
     cursor: pointer;
 `;
 
@@ -338,7 +353,7 @@ const ListViewTitle = styled.div`
     position: relative;
 
     &.hasTitleMenu {
-        padding-right: 40px;
+        padding-right: 60px;
     }
 
     &.small {

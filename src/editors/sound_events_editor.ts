@@ -251,8 +251,8 @@ export class SoundEventsEditorService {
         if (kv && Array.isArray(kv.Value)) {
             const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
             if (vsnd_files && Array.isArray(vsnd_files.Value)) {
-                const i = fileIndexes.sort().pop();
-                if (i) {
+                const i = fileIndexes.sort().pop() || vsnd_files.Value.length;
+                if (typeof i === 'number') {
                     vsnd_files.Value.splice(
                         i + 1,
                         0,

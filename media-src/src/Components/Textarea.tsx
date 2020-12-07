@@ -106,6 +106,15 @@ export function Textarea({
                 if (stopKeyDownPropagation) {
                     evt.stopPropagation();
                 }
+                if (evt.ctrlKey) {
+                    switch (evt.key) {
+                        case 'z':
+                        case 'x':
+                        case 'y':
+                            evt.stopPropagation();
+                            break;
+                    }
+                }
             }}
         />
     );

@@ -44,7 +44,7 @@ export type ContextMenuData =
 
 function ContextMenu(props: {
     menu: ContextMenuData[];
-    offset: { top: number; left: number };
+    options: { top: number; left: number; alignRight?: boolean };
     onClick: (id: number | string | symbol) => void;
 }) {
     let menuPanel = useRef<HTMLDivElement>(null);
@@ -56,13 +56,20 @@ function ContextMenu(props: {
         const ctxPanel = GetContextPanel();
         ctxPanel.style.display = 'block';
 
-        let top = props.offset.top;
-        let left = props.offset.left;
+        let top = props.options.top;
+        let left = props.options.left;
 
         let panelRect = menuPanel.current.getBoundingClientRect();
         let bodyRect = ctxPanel.getBoundingClientRect();
-        if (left + panelRect.width > bodyRect.width) {
-            left -= panelRect.width;
+        if (!props.options.alignRight) {
+            if (left + panelRect.width > bodyRect.width) {
+                left -= panelRect.width;
+            }
+        } else {
+            left = props.options.left - panelRect.width;
+            if (left < 0) {
+                left = props.options.left;
+            }
         }
         if (top + panelRect.height > bodyRect.height) {
             top -= top + panelRect.height - bodyRect.height;
@@ -133,7 +140,7 @@ function ContextMenu(props: {
 
 export function ShowContextMenu(props: {
     menu: ContextMenuData[];
-    offset: { top: number; left: number };
+    options: { top: number; left: number; alignRight?: boolean };
     onClick: (id: number | string | symbol) => void;
 }) {
     ReactDOM.render(
@@ -153,7 +160,7 @@ const MenuPanel = styled.div`
     position: fixed;
     flex-direction: column;
     background: var(--vscode-menu-background);
-    box-shadow: 0px 3px 3px #000000;
+    box-shadow: 0px 1px 1px #000000, 1px 0px 1px #000000, -1px 0px 1px #000000;
     min-width: 200px;
     padding: 5px 0px;
     user-select: none;

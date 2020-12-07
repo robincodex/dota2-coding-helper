@@ -24,6 +24,17 @@ function GetContextPanel() {
         elem.style.pointerEvents = 'none';
         elem.style.justifyContent = 'center';
         elem.style.alignItems = 'center';
+        elem.addEventListener('keydown', (evt) => {
+            if (evt.ctrlKey) {
+                switch (evt.key) {
+                    case 'z':
+                    case 'x':
+                    case 'y':
+                        evt.stopPropagation();
+                        break;
+                }
+            }
+        });
     }
     return elem;
 }

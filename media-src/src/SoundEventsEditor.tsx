@@ -112,7 +112,12 @@ function SoundEvent({
             height: 100,
             ok: (text) => {
                 const list = text.split('\n').map((v) => v.trim());
-                request('add-sound-files', index, indexes.sort().pop(), list);
+                request(
+                    'add-sound-files',
+                    index,
+                    indexes.sort().pop() || soundData.vsnd_files.length,
+                    list
+                );
             },
             renderValue(text) {
                 return text.replace(/\"/g, '');
@@ -188,6 +193,29 @@ function SoundEvent({
                 <ListView
                     title={localText.sounds}
                     titleStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
+                    titleMenu={(offset) => {
+                        ShowContextMenu({
+                            menu: [
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'add',
+                                    text: commonText.add,
+                                },
+                            ],
+                            options: {
+                                top: offset.top,
+                                left: offset.left,
+                                alignRight: true,
+                            },
+                            onClick(id) {
+                                switch (id) {
+                                    case 'add':
+                                        addSoundFile([]);
+                                        break;
+                                }
+                            },
+                        });
+                    }}
                     smallTitle
                     items={soundData.vsnd_files.map((v, i) => {
                         return {
@@ -260,7 +288,7 @@ function SoundEvent({
                                     hotkey: 'Del',
                                 },
                             ],
-                            offset: { top: evt.clientY, left: evt.clientX },
+                            options: { top: evt.clientY, left: evt.clientX },
                             onClick(id) {
                                 switch (id) {
                                     case 'select_all':
@@ -363,7 +391,7 @@ function SoundEventsEditor() {
     ) {
         const list = await request<number[]>(
             'paste-sound-events',
-            indexes.sort().pop()
+            indexes.sort().pop() || soundEvents.length
         );
         methods.select(list);
     }
@@ -376,7 +404,7 @@ function SoundEventsEditor() {
         ShowInputDialog({
             title: localText.add_sound_event,
             ok: (text) => {
-                request('add-event', indexes.sort().pop(), text);
+                request('add-event', indexes.sort().pop() || soundEvents.length, text);
             },
             renderValue(text) {
                 return text.trim().replace(/\"/g, '');
@@ -389,6 +417,29 @@ function SoundEventsEditor() {
             <EditorView>
                 <ListView
                     title={localText.title}
+                    titleMenu={(offset) => {
+                        ShowContextMenu({
+                            menu: [
+                                {
+                                    type: ContextMenuType.Normal,
+                                    id: 'add',
+                                    text: commonText.add,
+                                },
+                            ],
+                            options: {
+                                top: offset.top,
+                                left: offset.left,
+                                alignRight: true,
+                            },
+                            onClick(id) {
+                                switch (id) {
+                                    case 'add':
+                                        addSoundEvent([]);
+                                        break;
+                                }
+                            },
+                        });
+                    }}
                     items={soundEvents.map((v, i) => {
                         return {
                             key: i,
@@ -471,7 +522,7 @@ function SoundEventsEditor() {
                                     hotkey: 'Del',
                                 },
                             ],
-                            offset: {
+                            options: {
                                 top: event.clientY,
                                 left: event.clientX,
                             },

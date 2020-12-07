@@ -108,6 +108,15 @@ export function EditableText({
                 if (stopKeyDownPropagation) {
                     evt.stopPropagation();
                 }
+                if (evt.ctrlKey) {
+                    switch (evt.key) {
+                        case 'z':
+                        case 'x':
+                        case 'y':
+                            evt.stopPropagation();
+                            break;
+                    }
+                }
                 if (onComplete) {
                     if (completeValue === value) {
                         return;
