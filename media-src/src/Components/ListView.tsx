@@ -358,10 +358,10 @@ const ListViewTitle = styled.div`
 
     &.small {
         font-size: 14px;
-        padding: 3px;
+        padding: 3px 8px;
 
         ${ListViewTitleMenu} {
-            padding: 4px 5px;
+            padding: 4px 8px;
         }
     }
 `;
@@ -424,6 +424,10 @@ const ListViewRoot = styled.div`
             color: var(--vscode-list-hoverForeground);
             background: var(--vscode-list-hoverBackground);
         }
+    }
+
+    &:focus {
+        border: 1px solid var(--vscode-inputValidation-infoBorder);
     }
 
     &.drag-start {

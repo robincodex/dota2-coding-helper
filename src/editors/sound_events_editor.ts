@@ -23,7 +23,7 @@ interface ISoundEventData {
     vsnd_files: string[];
     volume: string;
     pitch: string;
-    params: Record<string, string>;
+    params: Array<{ key: string; value: string }>;
 }
 
 let copySoundEvents: KeyValues3[] = [];
@@ -72,7 +72,7 @@ export class SoundEventsEditorService {
                 pitch: '1.0000',
                 volume: '1.0000',
                 type: '',
-                params: {},
+                params: [],
             };
             result.push(data);
 
@@ -101,7 +101,10 @@ export class SoundEventsEditorService {
                                 data[child.Key] = child.Value;
                                 break;
                             default:
-                                data.params[child.Key] = child.Value;
+                                data.params.push({
+                                    key: child.Key,
+                                    value: child.Value,
+                                });
                                 break;
                         }
                     }
@@ -321,21 +324,6 @@ export class SoundEventsEditorService {
     }
 
     /**
-     * Remove a sound key
-     */
-    private removeSoundKey(event: string, key: string) {
-        const root = this.kvList[1];
-        if (!root || !Array.isArray(root.Value)) {
-            return;
-        }
-        event = `"${event}"`;
-        const kv = root.Value.find((v) => v.Key === event);
-        if (kv && Array.isArray(kv.Value)) {
-            kv.Value = kv.Value.filter((v) => v.Key !== key);
-        }
-    }
-
-    /**
      * Move sound events
      */
     private moveSoundEvents(
@@ -420,6 +408,7 @@ export class SoundEventsEditorService {
         }
 
         let i = 0;
+        let result: number[] = [];
         for (const soundIndex of soundIndexes.sort()) {
             const kv = root.Value[soundIndex + i];
             if (!kv || !Array.isArray(kv.Value)) {
@@ -469,8 +458,11 @@ export class SoundEventsEditorService {
             cloneKV.Key = `"${prefix + suffix}"`;
 
             root.Value.splice(soundIndex + i + 1, 0, cloneKV);
+            result.push(soundIndex + i + 1);
             i++;
         }
+
+        return result;
     }
 
     /**
@@ -672,17 +664,6 @@ export class SoundEventsEditorService {
             writeDocument(document, formatKeyValues(this.kvList));
         });
 
-        // Remove a sound key
-        this.request.listenRequest('remove-sound-key', (...args: any[]) => {
-            const event = args[0];
-            const key = args[1];
-            if (typeof event !== 'string' && typeof key !== 'string') {
-                return;
-            }
-            this.removeSoundKey(event, key);
-            writeDocument(document, formatKeyValues(this.kvList));
-        });
-
         // Move sound events
         this.request.listenRequest('move-sound-events', (...args: any[]) => {
             const soundIndexes = args[0];
@@ -706,8 +687,9 @@ export class SoundEventsEditorService {
             if (!Array.isArray(soundIndexes)) {
                 return;
             }
-            this.duplicateSoundEvents(soundIndexes);
+            let result = this.duplicateSoundEvents(soundIndexes);
             writeDocument(document, formatKeyValues(this.kvList));
+            return result;
         });
 
         const onChangeDocument = vscode.workspace.onDidChangeTextDocument((e) => {

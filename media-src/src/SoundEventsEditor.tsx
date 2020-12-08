@@ -189,7 +189,7 @@ function SoundEvent({
                     }}
                 />
             </div>
-            <div>
+            <div style={{ marginBottom: 10 }}>
                 <ListView
                     title={localText.sounds}
                     titleStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
@@ -325,6 +325,32 @@ function SoundEvent({
                     }}
                 />
             </div>
+            {/* <div>
+                <ListView
+                    title={localText.other_kv}
+                    smallTitle
+                    titleStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
+                    titleMenu={(offset) => {}}
+                    items={soundData.params.map((v, i) => {
+                        return {
+                            key: i,
+                            content: (
+                                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                    <CellInput
+                                        style={{ minWidth: 50 }}
+                                        defaultValue={v.key}
+                                    />
+                                    {' = '}
+                                    <CellInput
+                                        style={{ minWidth: 50 }}
+                                        defaultValue={v.value}
+                                    />
+                                </div>
+                            ),
+                        };
+                    })}
+                />
+            </div> */}
         </SoundCard>
     );
 }
@@ -411,6 +437,15 @@ function SoundEventsEditor() {
             },
         });
     }
+    async function duplicateSoundEvents(
+        indexes: number[],
+        methods: ListViewMethods<number>
+    ) {
+        const result = await request<number[]>('duplicate-sound-events', indexes);
+        if (result) {
+            methods.select(result);
+        }
+    }
 
     return (
         <CacheProvider value={editorCache}>
@@ -465,6 +500,8 @@ function SoundEventsEditor() {
                                 copySoundEvents(keys);
                             } else if (evt.key === 'v') {
                                 pasteSoundEvents(keys, methods);
+                            } else if (evt.key === 'd') {
+                                duplicateSoundEvents(keys, methods);
                             }
                         }
                         if (evt.key === 'Delete') {
@@ -500,6 +537,7 @@ function SoundEventsEditor() {
                                     type: ContextMenuType.Normal,
                                     id: 'duplicate',
                                     text: localText.duplicate_sound_events,
+                                    hotkey: 'Ctrl+D',
                                 },
                                 {
                                     type: ContextMenuType.Separator,
@@ -547,7 +585,7 @@ function SoundEventsEditor() {
                                         addSoundEvent(keys);
                                         break;
                                     case 'duplicate':
-                                        request('duplicate-sound-events', keys);
+                                        duplicateSoundEvents(keys, methods);
                                         break;
                                 }
                             },
