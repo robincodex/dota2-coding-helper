@@ -12,8 +12,6 @@ import type {
     GameAPIChangeEvent,
 } from '../../src/editors/custom_game_settings';
 
-let documentText = '';
-
 enum SettingValueType {
     Boolean,
     String,
@@ -51,44 +49,53 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: true,
+        description:
+            'Sets a flag to enable/disable the default music handling code for custom games',
     },
     {
         func: 'SetCustomGameAllowHeroPickMusic',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: true,
+        description:
+            'Sets a flag to enable/disable the default music handling code for custom games',
     },
     {
         func: 'SetCustomGameAllowMusicAtGameStart',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: true,
+        description:
+            'Sets a flag to enable/disable the default music handling code for custom games',
     },
     {
         func: 'SetFirstBloodActive',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: true,
-        description: 'Is first blood active?',
+        description: 'Control if the normal DOTA hero respawn rules apply.',
     },
     {
         func: 'SetHeroRespawnEnabled',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: true,
-        description: 'Do heroes automatically respawn?',
+        description: 'Control if the normal DOTA hero respawn rules apply.',
     },
     {
         func: 'SetHideKillMessageHeaders',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: false,
+        description:
+            'Sets whether the multikill, streak, and first-blood banners appear at the top of the screen.',
     },
     {
         func: 'SetSameHeroSelectionEnabled',
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: false,
+        description: 'When true, players can repeatedly pick the same hero.',
     },
     {
         func: 'SetUseBaseGoldBountyOnHeroes',
@@ -102,12 +109,15 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: false,
+        description:
+            'When true, all items are available at as long as any shop is in range.',
     },
     {
         func: 'SetCustomGameEndDelay',
         namespace: GameRules,
         type: SettingValueType.Number,
         default: 180,
+        description: 'Sets the game end delay.',
     },
     {
         func: 'SetGoldPerTick',
@@ -156,6 +166,7 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Number,
         default: 0,
+        description: 'Sets amount of penalty time before randoming a hero',
     },
     {
         func: 'SetHeroSelectionTime',
@@ -169,12 +180,15 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Number,
         default: 0,
+        // prettier-ignore
+        description: 'Time in seconds for between the hero selection and entering the showcase phase.',
     },
     {
         func: 'SetShowcaseTime',
         namespace: GameRules,
         type: SettingValueType.Number,
         default: 0,
+        description: 'Time in seconds for team showcase.',
     },
     {
         func: 'SetPreGameTime',
@@ -195,6 +209,7 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Number,
         default: 120,
+        description: 'Time in seconds for spawn runes.',
     },
     {
         func: 'SetTimeOfDay',
@@ -216,7 +231,9 @@ const SettingContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 5px;
-    min-width: 400px;
+    width: 400px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 `;
 
 const SettingFunction = styled.div`
@@ -228,6 +245,11 @@ const SettingFunctionName = styled.div`
     color: var(--vscode-terminal-ansiCyan);
 `;
 
+const SettingDescription = styled.div`
+    color: var(--vscode-descriptionForeground);
+    font-size: 11px;
+`;
+
 const BooleanIcon = styled.div`
     font-size: 20px;
     padding-left: 10px;
@@ -235,7 +257,7 @@ const BooleanIcon = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: var(--vscode-panel-border);
+    color: var(--vscode-descriptionForeground);
 
     &.is-true {
         color: var(--vscode-terminal-ansiGreen);
@@ -302,6 +324,9 @@ function Setting(props: SettingProps) {
                 <SettingValueNumber api={props.api} value={props.value} />
                 {' )'}
             </SettingFunction>
+            <SettingDescription>
+                {props.api.description ? props.api.description : <span>&nbsp;</span>}
+            </SettingDescription>
         </SettingContainer>
     );
 }
