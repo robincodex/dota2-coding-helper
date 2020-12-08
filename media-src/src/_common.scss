@@ -7,4 +7,13 @@
 body {
     background: var(--vscode-editor-background);
     color: var(--vscode-editor-foreground);
+    font-family: var(--vsocde-font-family);
+    font-weight: var(--vscode-font-weight);
+    font-size: var(--vscode-font-size);
+}
+
+.code-block {
+    font-family: var(--vsocde-editor-font-family);
+    font-weight: var(--vscode-editor-font-weight);
+    font-size: var(--vscode-editor-font-size);
 }

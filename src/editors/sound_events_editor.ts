@@ -762,7 +762,7 @@ export class SoundEventsEditorService {
                 <script nonce="${nonce}">window._nonce_ = "${nonce}"</script>
                 <script nonce="${nonce}" type="module" src="${indexJs}" defer></script>
             </head>
-            <body class="bp3-dark">
+            <body>
                 <div id="app" />
             </body>
             </html>

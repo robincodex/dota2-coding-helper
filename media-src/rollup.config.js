@@ -13,6 +13,7 @@ export default {
     input: [
         'src/Demo.tsx',
         'src/SoundEventsEditor.tsx',
+        'src/CustomGameSettings.tsx',
     ],
     output: {
         dir: "../media/bundle",

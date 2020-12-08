@@ -21,7 +21,8 @@
         "onCommand:dota2CodingHelper.panoramaCSS",
         "onCommand:dota2CodingHelper.abilitiesDataDriven",
         "onCommand:dota2CodingHelper.documents",
-        "onCustomEditor:dota2CodingHelper.editSoundEvents"
+        "onCustomEditor:dota2CodingHelper.editSoundEvents",
+        "onCustomEditor:dota2CodingHelper.editCustomGameSettings"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -65,6 +66,16 @@
                 "selector": [
                     {
                         "filenamePattern": "**/*.vsndevts"
+                    }
+                ]
+            },
+            {
+                "viewType": "dota2CodingHelper.editCustomGameSettings",
+                "displayName": "Dota2 Custom Game Setting GUI",
+                "priority": "option",
+                "selector": [
+                    {
+                        "filenamePattern": "**/custom_game_settings_gui.lua"
                     }
                 ]
             }
