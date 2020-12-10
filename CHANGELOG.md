@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.1.7
+- Add Sound Events Editor
+- Add Custom Game Settings GUI
+- Update API and document
+
 ## v0.0.5
 - Add image lightbox to Custom Game Documents
 

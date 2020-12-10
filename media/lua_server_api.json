@@ -6,10 +6,10 @@
       "return":"int"
     }],
   "Globals":[{
-      "desc":"Add temporary vision for a given team ( nTeamID, vLocation, flRadius, flDuration, bObstructedVision)",
+      "desc":"Add temporary vision for a given team, returns a ViewerID ( nTeamID, vLocation, flRadius, flDuration, bObstructedVision)",
       "func":"( int_1, Vector_2, float_3, float_4, bool_5 )",
       "name":"AddFOWViewer",
-      "return":"void"
+      "return":"int"
     },{
       "desc":"Returns the number of degrees difference between two yaw angles",
       "func":"( float_1, float_2 )",
@@ -144,6 +144,11 @@
       "desc":"CreateTriggerRadiusApproximate( vecOrigin, flRadius ) : Creates and returns an AABB trigger thats bigger than the radius provided",
       "func":"( Vector_1, float_2 )",
       "name":"CreateTriggerRadiusApproximate",
+      "return":"handle"
+    },{
+      "desc":"( iSeed ) - Creates a separate random number stream.",
+      "func":"( int_1 )",
+      "name":"CreateUniformRandomStream",
       "return":"handle"
     },{
       "desc":"Creates a DOTA unit by its dota_npc_units.txt name",
@@ -486,6 +491,11 @@
       "name":"GetPhysVelocity",
       "return":"Vector"
     },{
+      "desc":"Given the item tier and the team, roll for the name of a valid neutral item drop, considering previous drops and consumables.",
+      "func":"( int_1, int_2 )",
+      "name":"GetPotentialNeutralItemDrop",
+      "return":"string"
+    },{
       "desc":"Get the current real world date",
       "func":"()",
       "name":"GetSystemDate",
@@ -574,6 +584,11 @@
       "desc":"Ask fog of war if a location is visible to a certain team (nTeamNumber, vLocation).",
       "func":"( int_1, Vector_2 )",
       "name":"IsLocationVisible",
+      "return":"bool"
+    },{
+      "desc":"Is this entity a mango tree? (hEntity).",
+      "func":"( handle_1 )",
+      "name":"IsMangoTree",
       "return":"bool"
     },{
       "desc":"Returns true if the entity is valid and marked for deletion.",
@@ -744,6 +759,11 @@
       "desc":"Reloads the MotD file",
       "func":"()",
       "name":"ReloadMOTD",
+      "return":"void"
+    },{
+      "desc":"Remove temporary vision for a given team ( nTeamID, nViewerID )",
+      "func":"( int_1, int_2 )",
+      "name":"RemoveFOWViewer",
       "return":"void"
     },{
       "desc":"Remove the C proxy for a script-based spawn group filter",
@@ -1132,12 +1152,6 @@
       "name":"SetHTTPRequestRawPostBody",
       "return":"bool"
     }],
-  "CPropHMDAvatar":[{
-      "desc":"Get VR hand by ID",
-      "func":"( int nHandID )",
-      "name":"GetVRHand",
-      "return":"handle"
-    }],
   "CEntityInstance":[{
       "desc":"Adds an I/O connection that will call the named function on this entity when the specified output fires.",
       "func":"( string_1, string_2 )",
@@ -1430,6 +1444,11 @@
       "name":"SetItemState",
       "return":"void"
     },{
+      "desc":"",
+      "func":"( bool bOnlyPlayerHero )",
+      "name":"SetOnlyPlayerHeroPickup",
+      "return":"void"
+    },{
       "desc":"Set the purchase time of this item",
       "func":"( float flTime )",
       "name":"SetPurchaseTime",
@@ -1475,12 +1494,638 @@
       "name":"Think",
       "return":"void"
     }],
-  "CBaseAnimating":[{
-      "desc":"Returns the duration in seconds of the active sequence.",
+  "CDOTABaseAbility":[{
+      "desc":"",
       "func":"()",
-      "name":"ActiveSequenceDuration",
+      "name":"CanAbilityBeUpgraded",
+      "return":"<unknown>"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"CastAbility",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ContinueCasting",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( Vector vLocation, float fRadius, float fDuration )",
+      "name":"CreateVisibilityNode",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"DecrementModifierRefCount",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bInterrupted )",
+      "name":"EndChannel",
+      "return":"void"
+    },{
+      "desc":"Clear the cooldown remaining on this ability.",
+      "func":"()",
+      "name":"EndCooldown",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAOERadius",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityDamage",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityDamageType",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityIndex",
+      "return":"int"
+    },{
+      "desc":"Gets the key values definition for this ability.",
+      "func":"()",
+      "name":"GetAbilityKeyValues",
+      "return":"table"
+    },{
+      "desc":"Returns the name of this ability.",
+      "func":"()",
+      "name":"GetAbilityName",
+      "return":"string"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityTargetFlags",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityTargetTeam",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityTargetType",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAbilityType",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAnimationIgnoresModelScale",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAssociatedPrimaryAbilities",
+      "return":"string"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAssociatedSecondaryAbilities",
+      "return":"string"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetAutoCastState",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetBackswingTime",
       "return":"float"
     },{
+      "desc":"",
+      "func":"()",
+      "name":"GetBehavior",
+      "return":"int"
+    },{
+      "desc":"Get ability behavior flags as an int for compatability.",
+      "func":"()",
+      "name":"GetBehaviorInt",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCastPoint",
+      "return":"float"
+    },{
+      "desc":"Gets the cast range of the ability.",
+      "func":"( Vector vLocation, handle hTarget )",
+      "name":"GetCastRange",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCaster",
+      "return":"handle"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetChannelStartTime",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetChannelTime",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"( int iLevel )",
+      "name":"GetChannelledManaCostPerSecond",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCloneSource",
+      "return":"handle"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetConceptRecipientType",
+      "return":"int"
+    },{
+      "desc":"Get the cooldown duration for this ability at a given level, not the amount of cooldown actually left.",
+      "func":"( int iLevel )",
+      "name":"GetCooldown",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCooldownTime",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCooldownTimeRemaining",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCurrentAbilityCharges",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCursorPosition",
+      "return":"Vector"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCursorTarget",
+      "return":"handle"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetCursorTargetingNothing",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetDuration",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"( int iLevel )",
+      "name":"GetEffectiveCooldown",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"( int iLevel )",
+      "name":"GetGoldCost",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"( int iLevel )",
+      "name":"GetGoldCostForUpgrade",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetHeroLevelRequiredToUpgrade",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetIntrinsicModifierName",
+      "return":"string"
+    },{
+      "desc":"Get the current level of the ability.",
+      "func":"()",
+      "name":"GetLevel",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"( string szName, int nLevel )",
+      "name":"GetLevelSpecialValueFor",
+      "return":"table"
+    },{
+      "desc":"",
+      "func":"( string szName, int nLevel )",
+      "name":"GetLevelSpecialValueNoOverride",
+      "return":"table"
+    },{
+      "desc":"",
+      "func":"( int iLevel )",
+      "name":"GetManaCost",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetMaxLevel",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetModifierValue",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetModifierValueBonus",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetPlaybackRateOverride",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetSharedCooldownName",
+      "return":"string"
+    },{
+      "desc":"Gets a value from this ability's special value block for its current level.",
+      "func":"( string szName )",
+      "name":"GetSpecialValueFor",
+      "return":"table"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetStolenActivityModifier",
+      "return":"string"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetToggleState",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetUpgradeRecommended",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( float flXP )",
+      "name":"HeroXPChange",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IncrementModifierRefCount",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsActivated",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsAttributeBonus",
+      "return":"bool"
+    },{
+      "desc":"Returns whether the ability is currently channeling.",
+      "func":"()",
+      "name":"IsChanneling",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsCooldownReady",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( handle hEntity )",
+      "name":"IsCosmetic",
+      "return":"bool"
+    },{
+      "desc":"Returns whether the ability can be cast.",
+      "func":"()",
+      "name":"IsFullyCastable",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsHidden",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsHiddenAsSecondaryAbility",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsHiddenWhenStolen",
+      "return":"bool"
+    },{
+      "desc":"Returns whether the ability is currently casting.",
+      "func":"()",
+      "name":"IsInAbilityPhase",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsItem",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( int nIssuerPlayerID )",
+      "name":"IsOwnersGoldEnough",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsOwnersGoldEnoughForUpgrade",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsOwnersManaEnough",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsPassive",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsRefreshable",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsSharedWithTeammates",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsStealable",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsStolen",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsToggle",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsTrained",
+      "return":"bool"
+    },{
+      "desc":"Mark the ability button for this ability as needing a refresh.",
+      "func":"()",
+      "name":"MarkAbilityButtonDirty",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"NumModifiersUsingAbility",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnAbilityPhaseInterrupted",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnAbilityPhaseStart",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( int nPlayerID, bool bCtrlHeld )",
+      "name":"OnAbilityPinged",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bInterrupted )",
+      "name":"OnChannelFinish",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( float flInterval )",
+      "name":"OnChannelThink",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnHeroCalculateStatBonus",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnHeroLevelUp",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnOwnerDied",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnOwnerSpawned",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnSpellStart",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnToggle",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"OnUpgrade",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"PayGoldCost",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"PayGoldCostForUpgrade",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"PayManaCost",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"PlaysDefaultAnimWhenStolen",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ProcsMagicStick",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"RefCountsModifiers",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"RefreshCharges",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"RefreshIntrinsicModifier",
+      "return":"<unknown>"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"RefundManaCost",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ResetToggleOnRespawn",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( int iIndex )",
+      "name":"SetAbilityIndex",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bActivated )",
+      "name":"SetActivated",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bChanneling )",
+      "name":"SetChanneling",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( int nCharges )",
+      "name":"SetCurrentAbilityCharges",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bFrozenCooldown )",
+      "name":"SetFrozenCooldown",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bHidden )",
+      "name":"SetHidden",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bInAbilityPhase )",
+      "name":"SetInAbilityPhase",
+      "return":"void"
+    },{
+      "desc":"Sets the level of this ability.",
+      "func":"( int iLevel )",
+      "name":"SetLevel",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( float flCastPoint )",
+      "name":"SetOverrideCastPoint",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bRefCounts )",
+      "name":"SetRefCountsModifiers",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bStealable )",
+      "name":"SetStealable",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bStolen )",
+      "name":"SetStolen",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bUpgradeRecommended )",
+      "name":"SetUpgradeRecommended",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ShouldUseResources",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( int iConcept )",
+      "name":"SpeakAbilityConcept",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"SpeakTrigger",
+      "return":"<unknown>"
+    },{
+      "desc":"",
+      "func":"( float flCooldown )",
+      "name":"StartCooldown",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ToggleAbility",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"ToggleAutoCast",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bSupressSpeech )",
+      "name":"UpgradeAbility",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( bool bMana, bool bGold, bool bCooldown )",
+      "name":"UseResources",
+      "return":"void"
+    }],
+  "CBaseModelEntity":[{
       "desc":"Get the attachment id's angles as a p,y,r vector.",
       "func":"( int iAttachment )",
       "name":"GetAttachmentAngles",
@@ -1496,107 +2141,6 @@
       "name":"GetAttachmentOrigin",
       "return":"Vector"
     },{
-      "desc":"Get the cycle of the animation.",
-      "func":"()",
-      "name":"GetCycle",
-      "return":"float"
-    },{
-      "desc":"Get the value of the given animGraph parameter",
-      "func":"( string pszParam )",
-      "name":"GetGraphParameter",
-      "return":"table"
-    },{
-      "desc":"Get scale of entity's model.",
-      "func":"()",
-      "name":"GetModelScale",
-      "return":"float"
-    },{
-      "desc":"Returns the name of the active sequence.",
-      "func":"()",
-      "name":"GetSequence",
-      "return":"string"
-    },{
-      "desc":"Ask whether the main sequence is done playing.",
-      "func":"()",
-      "name":"IsSequenceFinished",
-      "return":"bool"
-    },{
-      "desc":"Sets the active sequence by name, resetting the current cycle.",
-      "func":"( string pSequenceName )",
-      "name":"ResetSequence",
-      "return":"void"
-    },{
-      "desc":"Get the named attachment id.",
-      "func":"( string pAttachmentName )",
-      "name":"ScriptLookupAttachment",
-      "return":"int"
-    },{
-      "desc":"Returns the duration in seconds of the given sequence name.",
-      "func":"( string pSequenceName )",
-      "name":"SequenceDuration",
-      "return":"float"
-    },{
-      "desc":"Set the cycle of the animation.",
-      "func":"( float flCycle )",
-      "name":"SetCycle",
-      "return":"void"
-    },{
-      "desc":"Pass the desired look target in world space to the graph",
-      "func":"( Vector vValue )",
-      "name":"SetGraphLookTarget",
-      "return":"void"
-    },{
-      "desc":"Set the specific param value, type is inferred from the type in script",
-      "func":"( string pszParam, table svArg )",
-      "name":"SetGraphParameter",
-      "return":"void"
-    },{
-      "desc":"Set the specific param on or off",
-      "func":"( string szName, bool bValue )",
-      "name":"SetGraphParameterBool",
-      "return":"void"
-    },{
-      "desc":"Pass the enum (int) value to the specified param",
-      "func":"( string szName, int nValue )",
-      "name":"SetGraphParameterEnum",
-      "return":"void"
-    },{
-      "desc":"Pass the float value to the specified param",
-      "func":"( string szName, float flValue )",
-      "name":"SetGraphParameterFloat",
-      "return":"void"
-    },{
-      "desc":"Pass the int value to the specified param",
-      "func":"( string szName, int nValue )",
-      "name":"SetGraphParameterInt",
-      "return":"void"
-    },{
-      "desc":"Pass the vector value to the specified param in the graph",
-      "func":"( string szName, Vector vValue )",
-      "name":"SetGraphParameterVector",
-      "return":"void"
-    },{
-      "desc":"Set scale of entity's model.",
-      "func":"( float flScale )",
-      "name":"SetModelScale",
-      "return":"void"
-    },{
-      "desc":"Set the specified pose parameter to the specified value.",
-      "func":"( string szName, float fValue )",
-      "name":"SetPoseParameter",
-      "return":"float"
-    },{
-      "desc":"Sets the active sequence by name, keeping the current cycle.",
-      "func":"( string pSequenceName )",
-      "name":"SetSequence",
-      "return":"void"
-    },{
-      "desc":"Stop the current animation by setting playback rate to 0.0.",
-      "func":"()",
-      "name":"StopAnimation",
-      "return":"void"
-    }],
-  "CBaseModelEntity":[{
       "desc":"GetMaterialGroupHash(): Get the material group hash of this entity.",
       "func":"()",
       "name":"GetMaterialGroupHash",
@@ -1607,6 +2151,11 @@
       "name":"GetMaterialGroupMask",
       "return":"uint64"
     },{
+      "desc":"Get scale of entity's model.",
+      "func":"()",
+      "name":"GetModelScale",
+      "return":"float"
+    },{
       "desc":"GetRenderAlpha(): Get the alpha modulation of this entity.",
       "func":"()",
       "name":"GetRenderAlpha",
@@ -1616,6 +2165,11 @@
       "func":"()",
       "name":"GetRenderColor",
       "return":"Vector"
+    },{
+      "desc":"Get the named attachment id.",
+      "func":"( string pAttachmentName )",
+      "name":"ScriptLookupAttachment",
+      "return":"int"
     },{
       "desc":"Sets a bodygroup.",
       "func":"( int iGroup, int iValue )",
@@ -1652,6 +2206,11 @@
       "name":"SetModel",
       "return":"void"
     },{
+      "desc":"Set scale of entity's model.",
+      "func":"( float flScale )",
+      "name":"SetModelScale",
+      "return":"void"
+    },{
       "desc":"SetRenderAlpha( int ): Set the alpha modulation of this entity.",
       "func":"( int nAlpha )",
       "name":"SetRenderAlpha",
@@ -1680,6 +2239,17 @@
       "desc":"Set skin (int).",
       "func":"( int iSkin )",
       "name":"SetSkin",
+      "return":"void"
+    }],
+  "CInfoPlayerStartDota":[{
+      "desc":"Returns whether the object is currently active",
+      "func":"()",
+      "name":"IsEnabled",
+      "return":"bool"
+    },{
+      "desc":"Enable or disable the obstruction",
+      "func":"( bool bEnabled )",
+      "name":"SetEnabled",
       "return":"void"
     }],
   "CScriptPrecacheContext":[{
@@ -2300,511 +2870,31 @@
       "name":"SetEnabled",
       "return":"void"
     }],
-  "CDOTAGamerules":[{
-      "desc":"Spawn a bot player of the passed hero name, player name, and team.",
-      "func":"( string_1, string_2, int_3, string_4, bool_5 )",
-      "name":"AddBotPlayerWithEntityScript",
+  "CDOTA_Unit_Diretide_Portal":[{
+      "desc":"",
+      "func":"()",
+      "name":"GetPartnerPortal",
       "return":"handle"
     },{
-      "desc":"Event-only ( string szNameSuffix, int nStars, int nMaxStars, int nExtraData1, int nExtraData2 )",
-      "func":"( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8, unsigned_9 )",
-      "name":"AddEventMetadataLeaderboardEntry",
-      "return":"bool"
-    },{
-      "desc":"Event-only ( string szNameSuffix, int nScore, int nExtraData1, int nExtraData2 )",
-      "func":"( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8 )",
-      "name":"AddEventMetadataLeaderboardEntryRawScore",
-      "return":"bool"
-    },{
-      "desc":"Add an item to the whitelist",
-      "func":"( string_1 )",
-      "name":"AddItemToWhiteList",
-      "return":"void"
-    },{
-      "desc":"Add a point on the minimap.",
-      "func":"( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7 )",
-      "name":"AddMinimapDebugPoint",
-      "return":"void"
-    },{
-      "desc":"Add a point on the minimap for a specific team.",
-      "func":"( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7, int_8 )",
-      "name":"AddMinimapDebugPointForTeam",
-      "return":"void"
-    },{
-      "desc":"Begin night stalker night.",
-      "func":"( float_1 )",
-      "name":"BeginNightstalkerNight",
-      "return":"void"
-    },{
-      "desc":"Begin temporary night.",
-      "func":"( float_1 )",
-      "name":"BeginTemporaryNight",
-      "return":"void"
-    },{
-      "desc":"Fills all the teams with bots if cheat mode is enabled.",
+      "desc":"",
       "func":"()",
-      "name":"BotPopulate",
+      "name":"ResetPortal",
       "return":"void"
     },{
-      "desc":"Kills the ancient, etc.",
-      "func":"()",
-      "name":"Defeated",
+      "desc":"",
+      "func":"( int nRuneType )",
+      "name":"SetInvasionRuneType",
       "return":"void"
     },{
-      "desc":"true when we have waited some time after end of the game and not received signout",
-      "func":"()",
-      "name":"DidMatchSignoutTimeOut",
-      "return":"bool"
-    },{
-      "desc":"Enabled (true) or disable (false) auto launch for custom game setup.",
-      "func":"( bool_1 )",
-      "name":"EnableCustomGameSetupAutoLaunch",
+      "desc":"",
+      "func":"( handle hPortal )",
+      "name":"SetPartnerPortal",
       "return":"void"
     },{
-      "desc":"Indicate that the custom game setup phase is complete, and advance to the game.",
-      "func":"()",
-      "name":"FinishCustomGameSetup",
+      "desc":"",
+      "func":"( bool bActive )",
+      "name":"SetPortalActive",
       "return":"void"
-    },{
-      "desc":"Spawn the next wave of creeps.",
-      "func":"()",
-      "name":"ForceCreepSpawn",
-      "return":"void"
-    },{
-      "desc":"Transition game state to DOTA_GAMERULES_STATE_GAME_IN_PROGRESS",
-      "func":"()",
-      "name":"ForceGameStart",
-      "return":"void"
-    },{
-      "desc":"Get the announcer for a team",
-      "func":"( int_1 )",
-      "name":"GetAnnouncer",
-      "return":"handle"
-    },{
-      "desc":"Returns the difficulty level of the custom game mode",
-      "func":"()",
-      "name":"GetCustomGameDifficulty",
-      "return":"int"
-    },{
-      "desc":"Get whether a team is selectable during game setup",
-      "func":"( int_1 )",
-      "name":"GetCustomGameTeamMaxPlayers",
-      "return":"int"
-    },{
-      "desc":"(b IncludePregameTime b IncludeNegativeTime) Returns the actual DOTA in-game clock time.",
-      "func":"( bool_1, bool_2 )",
-      "name":"GetDOTATime",
-      "return":"float"
-    },{
-      "desc":"Returns difficulty level of the custom game mode",
-      "func":"()",
-      "name":"GetDifficulty",
-      "return":"int"
-    },{
-      "desc":"Gets the Xth dropped item",
-      "func":"( int_1 )",
-      "name":"GetDroppedItem",
-      "return":"handle"
-    },{
-      "desc":"Returns the number of seconds elapsed since the last frame was renderered. This time doesn't count up when the game is paused",
-      "func":"()",
-      "name":"GetGameFrameTime",
-      "return":"float"
-    },{
-      "desc":"Get the game mode entity",
-      "func":"()",
-      "name":"GetGameModeEntity",
-      "return":"handle"
-    },{
-      "desc":"Get a string value from the game session config (map options)",
-      "func":"( string_1, string_2 )",
-      "name":"GetGameSessionConfigValue",
-      "return":"string"
-    },{
-      "desc":"Returns the number of seconds elapsed since map start. This time doesn't count up when the game is paused",
-      "func":"()",
-      "name":"GetGameTime",
-      "return":"float"
-    },{
-      "desc":"Get the MatchID for this game.",
-      "func":"()",
-      "name":"GetMatchID",
-      "return":"uint64"
-    },{
-      "desc":"Have we received the post match signout message that includes reward information",
-      "func":"()",
-      "name":"GetMatchSignoutComplete",
-      "return":"bool"
-    },{
-      "desc":"For New Bloom, get total damage taken by the Nian / Year Beast",
-      "func":"()",
-      "name":"GetNianTotalDamageTaken",
-      "return":"int"
-    },{
-      "desc":"(Preview/Unreleased) Gets the player's custom game account record, as it looked at the start of this session",
-      "func":"( int_1 )",
-      "name":"GetPlayerCustomGameAccountRecord",
-      "return":"table"
-    },{
-      "desc":"Get time remaining between state changes.",
-      "func":"()",
-      "name":"GetStateTransitionTime",
-      "return":"float"
-    },{
-      "desc":"Get the time of day",
-      "func":"()",
-      "name":"GetTimeOfDay",
-      "return":"float"
-    },{
-      "desc":"Get Weather Wind Direction Vector",
-      "func":"()",
-      "name":"GetWeatherWindDirection",
-      "return":"Vector"
-    },{
-      "desc":"Increase an item's stock count, clamped to item max (nTeamNumber, szItemName, nCount, nPlayerID .",
-      "func":"( int_1, string_2, int_3, int_4 )",
-      "name":"IncreaseItemStock",
-      "return":"void"
-    },{
-      "desc":"Are cheats enabled on the server",
-      "func":"()",
-      "name":"IsCheatMode",
-      "return":"bool"
-    },{
-      "desc":"Is it day time?",
-      "func":"()",
-      "name":"IsDaytime",
-      "return":"bool"
-    },{
-      "desc":"Returns whether the game is paused.",
-      "func":"()",
-      "name":"IsGamePaused",
-      "return":"bool"
-    },{
-      "desc":"Returns whether hero respawn is enabled.",
-      "func":"()",
-      "name":"IsHeroRespawnEnabled",
-      "return":"bool"
-    },{
-      "desc":"Are we in the ban phase of hero pick?",
-      "func":"()",
-      "name":"IsInBanPhase",
-      "return":"bool"
-    },{
-      "desc":"Query an item in the whitelist",
-      "func":"( string_1 )",
-      "name":"IsItemInWhiteList",
-      "return":"bool"
-    },{
-      "desc":"Is it night stalker night-time?",
-      "func":"()",
-      "name":"IsNightstalkerNight",
-      "return":"bool"
-    },{
-      "desc":"Is it temporarily night-time?",
-      "func":"()",
-      "name":"IsTemporaryNight",
-      "return":"bool"
-    },{
-      "desc":"Lock (true) or unlock (false) team assignemnt. If team assignment is locked players cannot change teams.",
-      "func":"( bool_1 )",
-      "name":"LockCustomGameSetupTeamAssignment",
-      "return":"void"
-    },{
-      "desc":"Makes the specified team lose",
-      "func":"( int_1 )",
-      "name":"MakeTeamLose",
-      "return":"void"
-    },{
-      "desc":"Returns the number of items currently dropped on the ground",
-      "func":"()",
-      "name":"NumDroppedItems",
-      "return":"int"
-    },{
-      "desc":"Whether a player has custom game host privileges (shuffle teams, etc.)",
-      "func":"( handle_1 )",
-      "name":"PlayerHasCustomGameHostPrivileges",
-      "return":"bool"
-    },{
-      "desc":"Updates custom hero, unit and ability KeyValues in memory with the latest values from disk",
-      "func":"()",
-      "name":"Playtesting_UpdateAddOnKeyValues",
-      "return":"void"
-    },{
-      "desc":"Prepare Dota lane style spawners with a given interval",
-      "func":"( float_1 )",
-      "name":"PrepareSpawners",
-      "return":"void"
-    },{
-      "desc":"Removes a fake client",
-      "func":"( int_1 )",
-      "name":"RemoveFakeClient",
-      "return":"void"
-    },{
-      "desc":"Remove an item from the whitelist",
-      "func":"( string_1 )",
-      "name":"RemoveItemFromWhiteList",
-      "return":"void"
-    },{
-      "desc":"Restart after killing the ancient, etc.",
-      "func":"()",
-      "name":"ResetDefeated",
-      "return":"void"
-    },{
-      "desc":"Restart gametime from 0",
-      "func":"()",
-      "name":"ResetGameTime",
-      "return":"void"
-    },{
-      "desc":"Restart at custom game setup.",
-      "func":"()",
-      "name":"ResetToCustomGameSetup",
-      "return":"void"
-    },{
-      "desc":"Restart the game at hero selection",
-      "func":"()",
-      "name":"ResetToHeroSelection",
-      "return":"void"
-    },{
-      "desc":"Sends a message on behalf of a player.",
-      "func":"( string_1, int_2, int_3 )",
-      "name":"SendCustomMessage",
-      "return":"void"
-    },{
-      "desc":"Sends a message on behalf of a player to the specified team.",
-      "func":"( string_1, int_2, int_3, int_4 )",
-      "name":"SendCustomMessageToTeam",
-      "return":"void"
-    },{
-      "desc":"(flMinimapCreepIconScale) - Scale the creep icons on the minimap.",
-      "func":"( float_1 )",
-      "name":"SetCreepMinimapIconScale",
-      "return":"void"
-    },{
-      "desc":"Sets whether the regular Dota creeps spawn.",
-      "func":"( bool_1 )",
-      "name":"SetCreepSpawningEnabled",
-      "return":"void"
-    },{
-      "desc":"(Preview/Unreleased) Sets a callback to handle saving custom game account records (callback is passed a Player ID and should return a flat simple table)",
-      "func":"( handle_1, handle_2 )",
-      "name":"SetCustomGameAccountRecordSaveFunction",
-      "return":"void"
-    },{
-      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
-      "func":"( bool_1 )",
-      "name":"SetCustomGameAllowBattleMusic",
-      "return":"void"
-    },{
-      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
-      "func":"( bool_1 )",
-      "name":"SetCustomGameAllowHeroPickMusic",
-      "return":"void"
-    },{
-      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
-      "func":"( bool_1 )",
-      "name":"SetCustomGameAllowMusicAtGameStart",
-      "return":"void"
-    },{
-      "desc":"Set the difficulty level of the custom game mode",
-      "func":"( int_1 )",
-      "name":"SetCustomGameDifficulty",
-      "return":"void"
-    },{
-      "desc":"Sets the game end delay.",
-      "func":"( float_1 )",
-      "name":"SetCustomGameEndDelay",
-      "return":"void"
-    },{
-      "desc":"Set the amount of time to wait for auto launch.",
-      "func":"( float_1 )",
-      "name":"SetCustomGameSetupAutoLaunchDelay",
-      "return":"void"
-    },{
-      "desc":"Set the amount of remaining time, in seconds, for custom game setup. 0 = finish immediately, -1 = wait forever",
-      "func":"( float_1 )",
-      "name":"SetCustomGameSetupRemainingTime",
-      "return":"void"
-    },{
-      "desc":"Setup (pre-gameplay) phase timeout. 0 = instant, -1 = forever (until FinishCustomGameSetup is called)",
-      "func":"( float_1 )",
-      "name":"SetCustomGameSetupTimeout",
-      "return":"void"
-    },{
-      "desc":"Set whether a team is selectable during game setup",
-      "func":"( int_1, int_2 )",
-      "name":"SetCustomGameTeamMaxPlayers",
-      "return":"void"
-    },{
-      "desc":"Sets the victory message.",
-      "func":"( string_1 )",
-      "name":"SetCustomVictoryMessage",
-      "return":"void"
-    },{
-      "desc":"Sets the victory message duration.",
-      "func":"( float_1 )",
-      "name":"SetCustomVictoryMessageDuration",
-      "return":"void"
-    },{
-      "desc":"Event-only ( table hMetadataTable )",
-      "func":"( handle_1 )",
-      "name":"SetEventMetadataCustomTable",
-      "return":"bool"
-    },{
-      "desc":"Event-only ( table hMetadataTable )",
-      "func":"( handle_1 )",
-      "name":"SetEventSignoutCustomTable",
-      "return":"bool"
-    },{
-      "desc":"Sets whether First Blood has been triggered.",
-      "func":"( bool_1 )",
-      "name":"SetFirstBloodActive",
-      "return":"void"
-    },{
-      "desc":"Freeze the game time.",
-      "func":"( bool_1 )",
-      "name":"SetGameTimeFrozen",
-      "return":"void"
-    },{
-      "desc":"Makes the specified team win",
-      "func":"( int_1 )",
-      "name":"SetGameWinner",
-      "return":"void"
-    },{
-      "desc":"Set the auto gold increase per timed interval.",
-      "func":"( int_1 )",
-      "name":"SetGoldPerTick",
-      "return":"void"
-    },{
-      "desc":"Set the time interval between auto gold increases.",
-      "func":"( float_1 )",
-      "name":"SetGoldTickTime",
-      "return":"void"
-    },{
-      "desc":"(flMinimapHeroIconScale) - Scale the hero minimap icons on the minimap.",
-      "func":"( float_1 )",
-      "name":"SetHeroMinimapIconScale",
-      "return":"void"
-    },{
-      "desc":"Control if the normal DOTA hero respawn rules apply.",
-      "func":"( bool_1 )",
-      "name":"SetHeroRespawnEnabled",
-      "return":"void"
-    },{
-      "desc":"Sets amount of penalty time before randoming a hero",
-      "func":"( float_1 )",
-      "name":"SetHeroSelectPenaltyTime",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time players have to pick their hero.",
-      "func":"( float_1 )",
-      "name":"SetHeroSelectionTime",
-      "return":"void"
-    },{
-      "desc":"Sets whether the multikill, streak, and first-blood banners appear at the top of the screen.",
-      "func":"( bool_1 )",
-      "name":"SetHideKillMessageHeaders",
-      "return":"void"
-    },{
-      "desc":"Show this unit's health on the overlay health bar",
-      "func":"( handle_1, int_2 )",
-      "name":"SetOverlayHealthBarUnit",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time players have between the game ending and the server disconnecting them.",
-      "func":"( float_1 )",
-      "name":"SetPostGameTime",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time players have between picking their hero and game start.",
-      "func":"( float_1 )",
-      "name":"SetPreGameTime",
-      "return":"void"
-    },{
-      "desc":"(flMinimapRuneIconScale) - Scale the rune icons on the minimap.",
-      "func":"( float_1 )",
-      "name":"SetRuneMinimapIconScale",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time between rune spawns.",
-      "func":"( float_1 )",
-      "name":"SetRuneSpawnTime",
-      "return":"void"
-    },{
-      "desc":"(bSafeToLeave) - Mark this game as safe to leave.",
-      "func":"( bool_1 )",
-      "name":"SetSafeToLeave",
-      "return":"void"
-    },{
-      "desc":"When true, players can repeatedly pick the same hero.",
-      "func":"( bool_1 )",
-      "name":"SetSameHeroSelectionEnabled",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time players have between the strategy phase and entering the pre-game phase.",
-      "func":"( float_1 )",
-      "name":"SetShowcaseTime",
-      "return":"void"
-    },{
-      "desc":"Set the starting gold amount.",
-      "func":"( int_1 )",
-      "name":"SetStartingGold",
-      "return":"void"
-    },{
-      "desc":"Sets the amount of time players have between the hero selection and entering the showcase phase.",
-      "func":"( float_1 )",
-      "name":"SetStrategyTime",
-      "return":"void"
-    },{
-      "desc":"Set the time of day.",
-      "func":"( float_1 )",
-      "name":"SetTimeOfDay",
-      "return":"void"
-    },{
-      "desc":"Sets the tree regrow time in seconds.",
-      "func":"( float_1 )",
-      "name":"SetTreeRegrowTime",
-      "return":"void"
-    },{
-      "desc":"Heroes will use the basic NPC functionality for determining their bounty, rather than DOTA specific formulas.",
-      "func":"( bool_1 )",
-      "name":"SetUseBaseGoldBountyOnHeroes",
-      "return":"void"
-    },{
-      "desc":"Allows heroes in the map to give a specific amount of XP (this value must be set).",
-      "func":"( bool_1 )",
-      "name":"SetUseCustomHeroXPValues",
-      "return":"void"
-    },{
-      "desc":"When true, all items are available at as long as any shop is in range.",
-      "func":"( bool_1 )",
-      "name":"SetUseUniversalShopMode",
-      "return":"void"
-    },{
-      "desc":"Set Weather Wind Direction Vector",
-      "func":"( Vector_1 )",
-      "name":"SetWeatherWindDirection",
-      "return":"void"
-    },{
-      "desc":"Item whitelist functionality enable/disable",
-      "func":"( bool_1 )",
-      "name":"SetWhiteListEnabled",
-      "return":"void"
-    },{
-      "desc":"Spawn and release the next creep wave from Dota lane style spawners.",
-      "func":"()",
-      "name":"SpawnAndReleaseCreeps",
-      "return":"void"
-    },{
-      "desc":"Spawn and release the next set of neutral camps.",
-      "func":"()",
-      "name":"SpawnNeutralCreeps",
-      "return":"void"
-    },{
-      "desc":"Get the current Gamerules state",
-      "func":"()",
-      "name":"State_Get",
-      "return":"int"
     }],
   "CLogicRelay":[{
       "desc":"Trigger( hActivator, hCaller ) : Triggers the logic_relay",
@@ -3203,6 +3293,12 @@
       "desc":"",
       "func":"( Vector_1 )",
       "name":"SetVelocity",
+      "return":"void"
+    }],
+  "CDOTA_Item_BagOfGold":[{
+      "desc":"Set the life time of this item",
+      "func":"( float flTime )",
+      "name":"SetLifeTime",
       "return":"void"
     }],
   "Constants":{
@@ -4619,8 +4715,7 @@
         "value":1048576
       },{
         "desc":"",
-        "name":"DMG_AIRBOAT",
-        "value":33554432
+        "name":"DMG_AIRBOAT"
       },{
         "desc":"",
         "name":"DMG_ALWAYSGIB",
@@ -4631,12 +4726,10 @@
         "value":64
       },{
         "desc":"",
-        "name":"DMG_BLAST_SURFACE",
-        "value":134217728
+        "name":"DMG_BLAST_SURFACE"
       },{
         "desc":"",
-        "name":"DMG_BUCKSHOT",
-        "value":536870912
+        "name":"DMG_BUCKSHOT"
       },{
         "desc":"",
         "name":"DMG_BULLET",
@@ -4655,12 +4748,10 @@
         "value":1
       },{
         "desc":"",
-        "name":"DMG_DIRECT",
-        "value":268435456
+        "name":"DMG_DIRECT"
       },{
         "desc":"",
-        "name":"DMG_DISSOLVE",
-        "value":67108864
+        "name":"DMG_DISSOLVE"
       },{
         "desc":"",
         "name":"DMG_DROWN",
@@ -5114,8 +5205,12 @@
         "value":8
       },{
         "desc":"",
-        "name":"DOTA_SPEECH_RECIPIENT_TYPE_MAX",
+        "name":"DOTA_SPEECH_USER_TEAM_NOSPECTATOR",
         "value":9
+      },{
+        "desc":"",
+        "name":"DOTA_SPEECH_RECIPIENT_TYPE_MAX",
+        "value":10
       }],
     "DotaDefaultUIElement_t":[{
         "desc":"",
@@ -6379,280 +6474,304 @@
         "value":14
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_BODY_HEAD",
+        "name":"DOTA_LOADOUT_TYPE_COSTUME",
         "value":15
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MOUNT",
+        "name":"DOTA_LOADOUT_TYPE_BODY_HEAD",
         "value":16
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_SUMMON",
+        "name":"DOTA_LOADOUT_TYPE_MOUNT",
         "value":17
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_SHAPESHIFT",
+        "name":"DOTA_LOADOUT_TYPE_SUMMON",
         "value":18
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_TAUNT",
+        "name":"DOTA_LOADOUT_TYPE_SHAPESHIFT",
         "value":19
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_AMBIENT_EFFECTS",
+        "name":"DOTA_LOADOUT_TYPE_TAUNT",
         "value":20
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY_ATTACK",
+        "name":"DOTA_LOADOUT_TYPE_AMBIENT_EFFECTS",
         "value":21
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY_ATTACK",
         "value":22
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY2",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY1",
         "value":23
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY3",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY2",
         "value":24
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY4",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY3",
         "value":25
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY_ULTIMATE",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY4",
         "value":26
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_VOICE",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY_ULTIMATE",
         "value":27
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_WEAPON_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_VOICE",
         "value":28
       },{
         "desc":"",
         "name":"DOTA_LOADOUT_PERSONA_1_START",
-        "value":28
-      },{
-        "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_OFFHAND_WEAPON_PERSONA_1",
         "value":29
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_WEAPON2_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_WEAPON_PERSONA_1",
+        "value":29
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_OFFHAND_WEAPON_PERSONA_1",
         "value":30
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_OFFHAND_WEAPON2_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_WEAPON2_PERSONA_1",
         "value":31
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_HEAD_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_OFFHAND_WEAPON2_PERSONA_1",
         "value":32
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_SHOULDER_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_HEAD_PERSONA_1",
         "value":33
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ARMS_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_SHOULDER_PERSONA_1",
         "value":34
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ARMOR_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ARMS_PERSONA_1",
         "value":35
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_BELT_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ARMOR_PERSONA_1",
         "value":36
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_NECK_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_BELT_PERSONA_1",
         "value":37
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_BACK_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_NECK_PERSONA_1",
         "value":38
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_LEGS_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_BACK_PERSONA_1",
         "value":39
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_GLOVES_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_LEGS_PERSONA_1",
         "value":40
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_TAIL_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_GLOVES_PERSONA_1",
         "value":41
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MISC_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_TAIL_PERSONA_1",
         "value":42
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_BODY_HEAD_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_MISC_PERSONA_1",
         "value":43
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MOUNT_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_BODY_HEAD_PERSONA_1",
         "value":44
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_SUMMON_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_MOUNT_PERSONA_1",
         "value":45
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_SHAPESHIFT_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_SUMMON_PERSONA_1",
         "value":46
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_TAUNT_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_SHAPESHIFT_PERSONA_1",
         "value":47
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_AMBIENT_EFFECTS_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_TAUNT_PERSONA_1",
         "value":48
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY_ATTACK_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_AMBIENT_EFFECTS_PERSONA_1",
         "value":49
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY1_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY_ATTACK_PERSONA_1",
         "value":50
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY2_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY1_PERSONA_1",
         "value":51
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY3_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY2_PERSONA_1",
         "value":52
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY4_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY3_PERSONA_1",
         "value":53
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ABILITY_ULTIMATE_PERSONA_1",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY4_PERSONA_1",
         "value":54
       },{
         "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_ABILITY_ULTIMATE_PERSONA_1",
+        "value":55
+      },{
+        "desc":"",
         "name":"DOTA_LOADOUT_TYPE_VOICE_PERSONA_1",
-        "value":55
-      },{
-        "desc":"",
-        "name":"DOTA_LOADOUT_PERSONA_1_END",
-        "value":55
-      },{
-        "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_PERSONA_SELECTOR",
         "value":56
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_COURIER",
+        "name":"DOTA_LOADOUT_PERSONA_1_END",
+        "value":56
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_PERSONA_SELECTOR",
         "value":57
       },{
         "desc":"",
         "name":"DOTA_PLAYER_LOADOUT_START",
-        "value":57
-      },{
-        "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_ANNOUNCER",
         "value":58
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MEGA_KILLS",
+        "name":"DOTA_LOADOUT_TYPE_COURIER",
+        "value":58
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_ANNOUNCER",
         "value":59
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MUSIC",
+        "name":"DOTA_LOADOUT_TYPE_MEGA_KILLS",
         "value":60
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_WARD",
+        "name":"DOTA_LOADOUT_TYPE_MUSIC",
         "value":61
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_HUD_SKIN",
+        "name":"DOTA_LOADOUT_TYPE_WARD",
         "value":62
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_LOADING_SCREEN",
+        "name":"DOTA_LOADOUT_TYPE_HUD_SKIN",
         "value":63
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_WEATHER",
+        "name":"DOTA_LOADOUT_TYPE_LOADING_SCREEN",
         "value":64
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_HEROIC_STATUE",
+        "name":"DOTA_LOADOUT_TYPE_WEATHER",
         "value":65
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_MULTIKILL_BANNER",
+        "name":"DOTA_LOADOUT_TYPE_HEROIC_STATUE",
         "value":66
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_CURSOR_PACK",
+        "name":"DOTA_LOADOUT_TYPE_MULTIKILL_BANNER",
         "value":67
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_TELEPORT_EFFECT",
+        "name":"DOTA_LOADOUT_TYPE_CURSOR_PACK",
         "value":68
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_BLINK_EFFECT",
+        "name":"DOTA_LOADOUT_TYPE_TELEPORT_EFFECT",
         "value":69
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_EMBLEM",
+        "name":"DOTA_LOADOUT_TYPE_BLINK_EFFECT",
         "value":70
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_TERRAIN",
+        "name":"DOTA_LOADOUT_TYPE_EMBLEM",
         "value":71
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_RADIANT_CREEPS",
+        "name":"DOTA_LOADOUT_TYPE_TERRAIN",
         "value":72
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_DIRE_CREEPS",
+        "name":"DOTA_LOADOUT_TYPE_RADIANT_CREEPS",
         "value":73
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_RADIANT_TOWER",
+        "name":"DOTA_LOADOUT_TYPE_DIRE_CREEPS",
         "value":74
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_DIRE_TOWER",
+        "name":"DOTA_LOADOUT_TYPE_RADIANT_TOWER",
         "value":75
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_VERSUS_SCREEN",
+        "name":"DOTA_LOADOUT_TYPE_DIRE_TOWER",
         "value":76
       },{
         "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_VERSUS_SCREEN",
+        "value":77
+      },{
+        "desc":"",
         "name":"DOTA_LOADOUT_TYPE_STREAK_EFFECT",
-        "value":77
-      },{
-        "desc":"",
-        "name":"DOTA_PLAYER_LOADOUT_END",
-        "value":77
-      },{
-        "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_NONE",
         "value":78
       },{
         "desc":"",
-        "name":"DOTA_LOADOUT_TYPE_COUNT",
+        "name":"DOTA_LOADOUT_TYPE_KILL_EFFECT",
         "value":79
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_DEATH_EFFECT",
+        "value":80
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_HEAD_EFFECT",
+        "value":81
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_MAP_EFFECT",
+        "value":82
+      },{
+        "desc":"",
+        "name":"DOTA_PLAYER_LOADOUT_END",
+        "value":83
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_COURIER_EFFECT",
+        "value":83
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_NONE",
+        "value":84
+      },{
+        "desc":"",
+        "name":"DOTA_LOADOUT_TYPE_COUNT",
+        "value":85
       }],
     "DOTADamageFlag_t":[{
         "desc":"",
@@ -6885,785 +7004,793 @@
         "name":"MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT",
         "value":35
       },{
+        "desc":"GetModifierBonusDamageOutgoing_Percentage",
+        "name":"MODIFIER_PROPERTY_BONUSDAMAGEOUTGOING_PERCENTAGE",
+        "value":36
+      },{
         "desc":"GetModifierDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE",
-        "value":36
+        "value":37
       },{
         "desc":"GetModifierDamageOutgoing_Percentage_Illusion",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION",
-        "value":37
+        "value":38
       },{
         "desc":"GetModifierDamageOutgoing_Percentage_Illusion_Amplify",
         "name":"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION_AMPLIFY",
-        "value":38
+        "value":39
       },{
         "desc":"GetModifierTotalDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE",
-        "value":39
+        "value":40
       },{
         "desc":"GetModifierSpellAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE",
-        "value":40
+        "value":41
       },{
         "desc":"GetModifierSpellAmplify_PercentageUnique",
         "name":"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE_UNIQUE",
-        "value":41
+        "value":42
       },{
         "desc":"GetModifierHealAmplify_PercentageSource",
         "name":"MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_SOURCE",
-        "value":42
+        "value":43
       },{
         "desc":"GetModifierHealAmplify_PercentageTarget",
         "name":"MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET",
-        "value":43
+        "value":44
       },{
         "desc":"GetModifierHPRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE",
-        "value":44
+        "value":45
       },{
         "desc":"GetModifierLifestealRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE",
-        "value":45
+        "value":46
       },{
         "desc":"GetModifierSpellLifestealRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_SPELL_LIFESTEAL_AMPLIFY_PERCENTAGE",
-        "value":46
+        "value":47
       },{
         "desc":"GetModifierMPRegenAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE",
-        "value":47
+        "value":48
       },{
         "desc":"GetModifierManaDrainAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_MANA_DRAIN_AMPLIFY_PERCENTAGE",
-        "value":48
+        "value":49
       },{
         "desc":"GetModifierMPRestoreAmplify_Percentage",
         "name":"MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE",
-        "value":49
+        "value":50
       },{
         "desc":"GetModifierBaseDamageOutgoing_Percentage",
         "name":"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE",
-        "value":50
+        "value":51
       },{
         "desc":"GetModifierBaseDamageOutgoing_PercentageUnique",
         "name":"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE_UNIQUE",
-        "value":51
+        "value":52
       },{
         "desc":"GetModifierIncomingDamage_Percentage",
         "name":"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE",
-        "value":52
+        "value":53
       },{
         "desc":"GetModifierIncomingPhysicalDamage_Percentage",
         "name":"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE",
-        "value":53
+        "value":54
       },{
         "desc":"GetModifierIncomingPhysicalDamageConstant",
         "name":"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT",
-        "value":54
+        "value":55
       },{
         "desc":"GetModifierIncomingSpellDamageConstant",
         "name":"MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT",
-        "value":55
+        "value":56
       },{
         "desc":"GetModifierEvasion_Constant",
         "name":"MODIFIER_PROPERTY_EVASION_CONSTANT",
-        "value":56
+        "value":57
       },{
         "desc":"GetModifierNegativeEvasion_Constant",
         "name":"MODIFIER_PROPERTY_NEGATIVE_EVASION_CONSTANT",
-        "value":57
+        "value":58
       },{
         "desc":"GetModifierStatusResistance",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE",
-        "value":58
+        "value":59
       },{
         "desc":"GetModifierStatusResistanceStacking",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING",
-        "value":59
+        "value":60
       },{
         "desc":"GetModifierStatusResistanceCaster",
         "name":"MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER",
-        "value":60
+        "value":61
       },{
         "desc":"GetModifierAvoidDamage",
         "name":"MODIFIER_PROPERTY_AVOID_DAMAGE",
-        "value":61
+        "value":62
       },{
         "desc":"GetModifierAvoidSpell",
         "name":"MODIFIER_PROPERTY_AVOID_SPELL",
-        "value":62
+        "value":63
       },{
         "desc":"GetModifierMiss_Percentage",
         "name":"MODIFIER_PROPERTY_MISS_PERCENTAGE",
-        "value":63
+        "value":64
       },{
         "desc":"GetModifierPhysicalArmorBase_Percentage",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BASE_PERCENTAGE",
-        "value":64
+        "value":65
       },{
         "desc":"GetModifierPhysicalArmorTotal_Percentage",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_TOTAL_PERCENTAGE",
-        "value":65
+        "value":66
       },{
         "desc":"GetModifierPhysicalArmorBonus",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS",
-        "value":66
+        "value":67
       },{
         "desc":"GetModifierPhysicalArmorBonusUnique",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE",
-        "value":67
+        "value":68
       },{
         "desc":"GetModifierPhysicalArmorBonusUniqueActive",
         "name":"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE",
-        "value":68
+        "value":69
       },{
         "desc":"GetModifierIgnorePhysicalArmor",
         "name":"MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR",
-        "value":69
+        "value":70
       },{
         "desc":"GetModifierMagicalResistanceBaseReduction",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BASE_REDUCTION",
-        "value":70
+        "value":71
       },{
         "desc":"GetModifierMagicalResistanceDirectModification",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION",
-        "value":71
+        "value":72
       },{
         "desc":"GetModifierMagicalResistanceBonus",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS",
-        "value":72
+        "value":73
       },{
         "desc":"GetModifierMagicalResistanceBonusIllusions",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS_ILLUSIONS",
-        "value":73
+        "value":74
       },{
         "desc":"GetModifierMagicalResistanceDecrepifyUnique",
         "name":"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE",
-        "value":74
+        "value":75
       },{
         "desc":"GetModifierBaseRegen",
         "name":"MODIFIER_PROPERTY_BASE_MANA_REGEN",
-        "value":75
+        "value":76
       },{
         "desc":"GetModifierConstantManaRegen",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT",
-        "value":76
+        "value":77
       },{
         "desc":"GetModifierConstantManaRegenUnique",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE",
-        "value":77
+        "value":78
       },{
         "desc":"GetModifierTotalPercentageManaRegen",
         "name":"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE",
-        "value":78
+        "value":79
       },{
         "desc":"GetModifierConstantHealthRegen",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT",
-        "value":79
+        "value":80
       },{
         "desc":"GetModifierHealthRegenPercentage",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE",
-        "value":80
+        "value":81
       },{
         "desc":"GetModifierHealthRegenPercentageUnique",
         "name":"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE_UNIQUE",
-        "value":81
+        "value":82
       },{
         "desc":"GetModifierHealthBonus",
         "name":"MODIFIER_PROPERTY_HEALTH_BONUS",
-        "value":82
+        "value":83
       },{
         "desc":"GetModifierManaBonus",
         "name":"MODIFIER_PROPERTY_MANA_BONUS",
-        "value":83
+        "value":84
       },{
         "desc":"GetModifierExtraStrengthBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS",
-        "value":84
+        "value":85
       },{
         "desc":"GetModifierExtraHealthBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS",
-        "value":85
+        "value":86
       },{
         "desc":"GetModifierExtraManaBonus",
         "name":"MODIFIER_PROPERTY_EXTRA_MANA_BONUS",
-        "value":86
+        "value":87
       },{
         "desc":"GetModifierExtraHealthPercentage",
         "name":"MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE",
-        "value":87
+        "value":88
       },{
         "desc":"GetModifierExtraManaPercentage",
         "name":"MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE",
-        "value":88
+        "value":89
       },{
         "desc":"GetModifierBonusStats_Strength",
         "name":"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS",
-        "value":89
+        "value":90
       },{
         "desc":"GetModifierBonusStats_Agility",
         "name":"MODIFIER_PROPERTY_STATS_AGILITY_BONUS",
-        "value":90
+        "value":91
       },{
         "desc":"GetModifierBonusStats_Intellect",
         "name":"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS",
-        "value":91
+        "value":92
       },{
         "desc":"GetModifierBonusStats_Strength_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE",
-        "value":92
+        "value":93
       },{
         "desc":"GetModifierBonusStats_Agility_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE",
-        "value":93
+        "value":94
       },{
         "desc":"GetModifierBonusStats_Intellect_Percentage",
         "name":"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE",
-        "value":94
+        "value":95
       },{
         "desc":"GetModifierCastRangeBonus",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS",
-        "value":95
+        "value":96
       },{
         "desc":"GetModifierCastRangeBonusTarget",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS_TARGET",
-        "value":96
+        "value":97
       },{
         "desc":"GetModifierCastRangeBonusStacking",
         "name":"MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING",
-        "value":97
+        "value":98
       },{
         "desc":"GetModifierAttackRangeOverride",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE",
-        "value":98
+        "value":99
       },{
         "desc":"GetModifierAttackRangeBonus",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS",
-        "value":99
+        "value":100
       },{
         "desc":"GetModifierAttackRangeBonusUnique",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE",
-        "value":100
+        "value":101
       },{
         "desc":"GetModifierAttackRangeBonusPercentage",
         "name":"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE",
-        "value":101
+        "value":102
       },{
         "desc":"GetModifierMaxAttackRange",
         "name":"MODIFIER_PROPERTY_MAX_ATTACK_RANGE",
-        "value":102
+        "value":103
       },{
         "desc":"GetModifierProjectileSpeedBonus",
         "name":"MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS",
-        "value":103
+        "value":104
       },{
         "desc":"GetModifierProjectileSpeedBonusPercentage",
         "name":"MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE",
-        "value":104
+        "value":105
       },{
         "desc":"GetModifierProjectileName",
         "name":"MODIFIER_PROPERTY_PROJECTILE_NAME",
-        "value":105
+        "value":106
       },{
         "desc":"ReincarnateTime",
         "name":"MODIFIER_PROPERTY_REINCARNATION",
-        "value":106
+        "value":107
       },{
         "desc":"GetModifierConstantRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME",
-        "value":107
+        "value":108
       },{
         "desc":"GetModifierPercentageRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE",
-        "value":108
+        "value":109
       },{
         "desc":"GetModifierStackingRespawnTime",
         "name":"MODIFIER_PROPERTY_RESPAWNTIME_STACKING",
-        "value":109
+        "value":110
       },{
         "desc":"GetModifierPercentageCooldown",
         "name":"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE",
-        "value":110
+        "value":111
       },{
         "desc":"GetModifierPercentageCooldownOngoing",
         "name":"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING",
-        "value":111
+        "value":112
       },{
         "desc":"GetModifierPercentageCasttime",
         "name":"MODIFIER_PROPERTY_CASTTIME_PERCENTAGE",
-        "value":112
+        "value":113
       },{
         "desc":"GetModifierPercentageManacost",
         "name":"MODIFIER_PROPERTY_MANACOST_PERCENTAGE",
-        "value":113
+        "value":114
       },{
         "desc":"GetModifierPercentageManacostStacking",
         "name":"MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING",
-        "value":114
+        "value":115
       },{
         "desc":"GetModifierConstantDeathGoldCost",
         "name":"MODIFIER_PROPERTY_DEATHGOLDCOST",
-        "value":115
+        "value":116
       },{
         "desc":"GetModifierPercentageExpRateBoost",
         "name":"MODIFIER_PROPERTY_EXP_RATE_BOOST",
-        "value":116
+        "value":117
       },{
         "desc":"GetModifierPreAttack_CriticalStrike",
         "name":"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE",
-        "value":117
+        "value":118
       },{
         "desc":"GetModifierPreAttack_Target_CriticalStrike",
         "name":"MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE",
-        "value":118
+        "value":119
       },{
         "desc":"GetModifierMagical_ConstantBlock",
         "name":"MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK",
-        "value":119
+        "value":120
       },{
         "desc":"GetModifierPhysical_ConstantBlock",
         "name":"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK",
-        "value":120
+        "value":121
       },{
         "desc":"GetModifierPhysical_ConstantBlockSpecial",
         "name":"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL",
-        "value":121
+        "value":122
       },{
         "desc":"GetModifierPhysical_ConstantBlockUnavoidablePreArmor",
         "name":"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR",
-        "value":122
+        "value":123
       },{
         "desc":"GetModifierTotal_ConstantBlock",
         "name":"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK",
-        "value":123
+        "value":124
       },{
         "desc":"GetOverrideAnimation",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION",
-        "value":124
+        "value":125
       },{
         "desc":"GetOverrideAnimationWeight",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT",
-        "value":125
+        "value":126
       },{
         "desc":"GetOverrideAnimationRate",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE",
-        "value":126
+        "value":127
       },{
         "desc":"GetAbsorbSpell",
         "name":"MODIFIER_PROPERTY_ABSORB_SPELL",
-        "value":127
+        "value":128
       },{
         "desc":"GetReflectSpell",
         "name":"MODIFIER_PROPERTY_REFLECT_SPELL",
-        "value":128
+        "value":129
       },{
         "desc":"GetDisableAutoAttack",
         "name":"MODIFIER_PROPERTY_DISABLE_AUTOATTACK",
-        "value":129
+        "value":130
       },{
         "desc":"GetBonusDayVision",
         "name":"MODIFIER_PROPERTY_BONUS_DAY_VISION",
-        "value":130
+        "value":131
       },{
         "desc":"GetBonusNightVision",
         "name":"MODIFIER_PROPERTY_BONUS_NIGHT_VISION",
-        "value":131
+        "value":132
       },{
         "desc":"GetBonusNightVisionUnique",
         "name":"MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE",
-        "value":132
+        "value":133
       },{
         "desc":"GetBonusVisionPercentage",
         "name":"MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE",
-        "value":133
+        "value":134
       },{
         "desc":"GetFixedDayVision",
         "name":"MODIFIER_PROPERTY_FIXED_DAY_VISION",
-        "value":134
+        "value":135
       },{
         "desc":"GetFixedNightVision",
         "name":"MODIFIER_PROPERTY_FIXED_NIGHT_VISION",
-        "value":135
+        "value":136
       },{
         "desc":"GetMinHealth",
         "name":"MODIFIER_PROPERTY_MIN_HEALTH",
-        "value":136
+        "value":137
       },{
         "desc":"GetAbsoluteNoDamagePhysical",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL",
-        "value":137
+        "value":138
       },{
         "desc":"GetAbsoluteNoDamageMagical",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL",
-        "value":138
+        "value":139
       },{
         "desc":"GetAbsoluteNoDamagePure",
         "name":"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE",
-        "value":139
+        "value":140
       },{
         "desc":"GetIsIllusion",
         "name":"MODIFIER_PROPERTY_IS_ILLUSION",
-        "value":140
+        "value":141
       },{
         "desc":"GetModifierIllusionLabel",
         "name":"MODIFIER_PROPERTY_ILLUSION_LABEL",
-        "value":141
+        "value":142
       },{
         "desc":"GetModifierStrongIllusion",
         "name":"MODIFIER_PROPERTY_STRONG_ILLUSION",
-        "value":142
+        "value":143
       },{
         "desc":"GetModifierSuperIllusion",
         "name":"MODIFIER_PROPERTY_SUPER_ILLUSION",
-        "value":143
+        "value":144
       },{
         "desc":"GetModifierSuperIllusionWithUltimate",
         "name":"MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE",
-        "value":144
+        "value":145
       },{
         "desc":"GetModifierTurnRate_Percentage",
         "name":"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE",
-        "value":145
+        "value":146
       },{
         "desc":"GetModifierTurnRate_Override",
         "name":"MODIFIER_PROPERTY_TURN_RATE_OVERRIDE",
-        "value":146
+        "value":147
       },{
         "desc":"GetDisableHealing",
         "name":"MODIFIER_PROPERTY_DISABLE_HEALING",
-        "value":147
+        "value":148
       },{
         "desc":"GetAlwaysAllowAttack",
         "name":"MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK",
-        "value":148
+        "value":149
       },{
         "desc":"GetAllowEtherealAttack",
         "name":"MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK",
-        "value":149
+        "value":150
       },{
         "desc":"GetOverrideAttackMagical",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL",
-        "value":150
+        "value":151
       },{
         "desc":"GetModifierUnitStatsNeedsRefresh",
         "name":"MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH",
-        "value":151
-      },{
-        "desc":"Unused",
-        "name":"MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER",
         "value":152
       },{
         "desc":"Unused",
-        "name":"MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER",
+        "name":"MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER",
         "value":153
+      },{
+        "desc":"Unused",
+        "name":"MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER",
+        "value":154
       },{
         "desc":"GetModifierUnitDisllowUpgrading",
         "name":"MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING",
-        "value":154
+        "value":155
       },{
         "desc":"GetModifierDodgeProjectile",
         "name":"MODIFIER_PROPERTY_DODGE_PROJECTILE",
-        "value":155
+        "value":156
       },{
         "desc":"GetTriggerCosmeticAndEndAttack",
         "name":"MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK",
-        "value":156
+        "value":157
       },{
         "desc":"OnSpellTargetReady",
         "name":"MODIFIER_EVENT_ON_SPELL_TARGET_READY",
-        "value":157
+        "value":158
       },{
         "desc":"OnAttackRecord",
         "name":"MODIFIER_EVENT_ON_ATTACK_RECORD",
-        "value":158
+        "value":159
       },{
         "desc":"OnAttackStart",
         "name":"MODIFIER_EVENT_ON_ATTACK_START",
-        "value":159
+        "value":160
       },{
         "desc":"OnAttack",
         "name":"MODIFIER_EVENT_ON_ATTACK",
-        "value":160
+        "value":161
       },{
         "desc":"OnAttackLanded",
         "name":"MODIFIER_EVENT_ON_ATTACK_LANDED",
-        "value":161
+        "value":162
       },{
         "desc":"OnAttackFail",
         "name":"MODIFIER_EVENT_ON_ATTACK_FAIL",
-        "value":162
+        "value":163
       },{
         "desc":"OnAttackAllied",
         "name":"MODIFIER_EVENT_ON_ATTACK_ALLIED",
-        "value":163
+        "value":164
       },{
         "desc":"OnProjectileDodge",
         "name":"MODIFIER_EVENT_ON_PROJECTILE_DODGE",
-        "value":164
+        "value":165
       },{
         "desc":"OnOrder",
         "name":"MODIFIER_EVENT_ON_ORDER",
-        "value":165
+        "value":166
       },{
         "desc":"OnUnitMoved",
         "name":"MODIFIER_EVENT_ON_UNIT_MOVED",
-        "value":166
+        "value":167
       },{
         "desc":"OnAbilityStart",
         "name":"MODIFIER_EVENT_ON_ABILITY_START",
-        "value":167
+        "value":168
       },{
         "desc":"OnAbilityExecuted",
         "name":"MODIFIER_EVENT_ON_ABILITY_EXECUTED",
-        "value":168
+        "value":169
       },{
         "desc":"OnAbilityFullyCast",
         "name":"MODIFIER_EVENT_ON_ABILITY_FULLY_CAST",
-        "value":169
+        "value":170
       },{
         "desc":"OnBreakInvisibility",
         "name":"MODIFIER_EVENT_ON_BREAK_INVISIBILITY",
-        "value":170
+        "value":171
       },{
         "desc":"OnAbilityEndChannel",
         "name":"MODIFIER_EVENT_ON_ABILITY_END_CHANNEL",
-        "value":171
-      },{
-        "desc":"Unused",
-        "name":"MODIFIER_EVENT_ON_PROCESS_UPGRADE",
         "value":172
       },{
         "desc":"Unused",
-        "name":"MODIFIER_EVENT_ON_REFRESH",
+        "name":"MODIFIER_EVENT_ON_PROCESS_UPGRADE",
         "value":173
+      },{
+        "desc":"Unused",
+        "name":"MODIFIER_EVENT_ON_REFRESH",
+        "value":174
       },{
         "desc":"OnTakeDamage",
         "name":"MODIFIER_EVENT_ON_TAKEDAMAGE",
-        "value":174
+        "value":175
       },{
         "desc":"OnDamagePrevented",
         "name":"MODIFIER_EVENT_ON_DEATH_PREVENTED",
-        "value":175
+        "value":176
       },{
         "desc":"OnStateChanged",
         "name":"MODIFIER_EVENT_ON_STATE_CHANGED",
-        "value":176
+        "value":177
       },{
         "desc":"Unused",
         "name":"MODIFIER_EVENT_ON_ORB_EFFECT",
-        "value":177
+        "value":178
       },{
         "desc":"OnProcessCleave",
         "name":"MODIFIER_EVENT_ON_PROCESS_CLEAVE",
-        "value":178
+        "value":179
       },{
         "desc":"OnDamageCalculated",
         "name":"MODIFIER_EVENT_ON_DAMAGE_CALCULATED",
-        "value":179
+        "value":180
       },{
         "desc":"OnAttacked",
         "name":"MODIFIER_EVENT_ON_ATTACKED",
-        "value":180
+        "value":181
       },{
         "desc":"OnDeath",
         "name":"MODIFIER_EVENT_ON_DEATH",
-        "value":181
+        "value":182
       },{
         "desc":"OnRespawn",
         "name":"MODIFIER_EVENT_ON_RESPAWN",
-        "value":182
+        "value":183
       },{
         "desc":"OnSpentMana",
         "name":"MODIFIER_EVENT_ON_SPENT_MANA",
-        "value":183
+        "value":184
       },{
         "desc":"OnTeleporting",
         "name":"MODIFIER_EVENT_ON_TELEPORTING",
-        "value":184
+        "value":185
       },{
         "desc":"OnTeleported",
         "name":"MODIFIER_EVENT_ON_TELEPORTED",
-        "value":185
+        "value":186
       },{
         "desc":"OnSetLocation",
         "name":"MODIFIER_EVENT_ON_SET_LOCATION",
-        "value":186
+        "value":187
       },{
         "desc":"OnHealthGained",
         "name":"MODIFIER_EVENT_ON_HEALTH_GAINED",
-        "value":187
+        "value":188
       },{
         "desc":"OnManaGained",
         "name":"MODIFIER_EVENT_ON_MANA_GAINED",
-        "value":188
+        "value":189
       },{
         "desc":"OnTakeDamageKillCredit",
         "name":"MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT",
-        "value":189
+        "value":190
       },{
         "desc":"OnHeroKilled",
         "name":"MODIFIER_EVENT_ON_HERO_KILLED",
-        "value":190
+        "value":191
       },{
         "desc":"OnHealReceived",
         "name":"MODIFIER_EVENT_ON_HEAL_RECEIVED",
-        "value":191
+        "value":192
       },{
         "desc":"OnBuildingKilled",
         "name":"MODIFIER_EVENT_ON_BUILDING_KILLED",
-        "value":192
+        "value":193
       },{
         "desc":"OnModelChanged",
         "name":"MODIFIER_EVENT_ON_MODEL_CHANGED",
-        "value":193
+        "value":194
       },{
         "desc":"OnModifierAdded",
         "name":"MODIFIER_EVENT_ON_MODIFIER_ADDED",
-        "value":194
+        "value":195
       },{
         "desc":"OnTooltip",
         "name":"MODIFIER_PROPERTY_TOOLTIP",
-        "value":195
+        "value":196
       },{
         "desc":"GetModifierModelChange",
         "name":"MODIFIER_PROPERTY_MODEL_CHANGE",
-        "value":196
+        "value":197
       },{
         "desc":"GetModifierModelScale",
         "name":"MODIFIER_PROPERTY_MODEL_SCALE",
-        "value":197
+        "value":198
       },{
         "desc":"GetModifierScepter",
         "name":"MODIFIER_PROPERTY_IS_SCEPTER",
-        "value":198
+        "value":199
       },{
         "desc":"GetModifierRadarCooldownReduction",
         "name":"MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION",
-        "value":199
+        "value":200
       },{
         "desc":"GetActivityTranslationModifiers",
         "name":"MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS",
-        "value":200
+        "value":201
       },{
         "desc":"GetAttackSound",
         "name":"MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND",
-        "value":201
+        "value":202
       },{
         "desc":"GetUnitLifetimeFraction",
         "name":"MODIFIER_PROPERTY_LIFETIME_FRACTION",
-        "value":202
+        "value":203
       },{
         "desc":"GetModifierProvidesFOWVision",
         "name":"MODIFIER_PROPERTY_PROVIDES_FOW_POSITION",
-        "value":203
+        "value":204
       },{
         "desc":"GetModifierSpellsRequireHP",
         "name":"MODIFIER_PROPERTY_SPELLS_REQUIRE_HP",
-        "value":204
+        "value":205
       },{
         "desc":"GetForceDrawOnMinimap",
         "name":"MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP",
-        "value":205
+        "value":206
       },{
         "desc":"GetModifierDisableTurning",
         "name":"MODIFIER_PROPERTY_DISABLE_TURNING",
-        "value":206
+        "value":207
       },{
         "desc":"GetModifierIgnoreCastAngle",
         "name":"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE",
-        "value":207
+        "value":208
       },{
         "desc":"GetModifierChangeAbilityValue",
         "name":"MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE",
-        "value":208
+        "value":209
       },{
         "desc":"GetModifierOverrideAbilitySpecial",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL",
-        "value":209
+        "value":210
       },{
         "desc":"GetModifierOverrideAbilitySpecialValue",
         "name":"MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE",
-        "value":210
+        "value":211
       },{
         "desc":"GetModifierAbilityLayout",
         "name":"MODIFIER_PROPERTY_ABILITY_LAYOUT",
-        "value":211
+        "value":212
       },{
         "desc":"OnDominated",
         "name":"MODIFIER_EVENT_ON_DOMINATED",
-        "value":212
+        "value":213
       },{
         "desc":"GetModifierTempestDouble",
         "name":"MODIFIER_PROPERTY_TEMPEST_DOUBLE",
-        "value":213
+        "value":214
       },{
         "desc":"PreserveParticlesOnModelChanged",
         "name":"MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE",
-        "value":214
+        "value":215
       },{
         "desc":"OnAttackFinished",
         "name":"MODIFIER_EVENT_ON_ATTACK_FINISHED",
-        "value":215
+        "value":216
       },{
         "desc":"GetModifierIgnoreCooldown",
         "name":"MODIFIER_PROPERTY_IGNORE_COOLDOWN",
-        "value":216
+        "value":217
       },{
         "desc":"GetModifierCanAttackTrees",
         "name":"MODIFIER_PROPERTY_CAN_ATTACK_TREES",
-        "value":217
+        "value":218
       },{
         "desc":"GetVisualZDelta",
         "name":"MODIFIER_PROPERTY_VISUAL_Z_DELTA",
-        "value":218
+        "value":219
       },{
         "desc":"",
         "name":"MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION",
-        "value":219
+        "value":220
       },{
         "desc":"GetModifierNoVisionOfAttacker",
         "name":"MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER",
-        "value":220
+        "value":221
       },{
         "desc":"OnTooltip2",
         "name":"MODIFIER_PROPERTY_TOOLTIP2",
-        "value":221
+        "value":222
       },{
         "desc":"OnAttackRecordDestroy",
         "name":"MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY",
-        "value":222
+        "value":223
       },{
         "desc":"OnProjectileObstructionHit",
         "name":"MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT",
-        "value":223
+        "value":224
       },{
         "desc":"GetSuppressTeleport",
         "name":"MODIFIER_PROPERTY_SUPPRESS_TELEPORT",
-        "value":224
+        "value":225
       },{
         "desc":"OnAttackCancelled",
         "name":"MODIFIER_EVENT_ON_ATTACK_CANCELLED",
-        "value":225
+        "value":226
       },{
         "desc":"GetSuppressCleave",
         "name":"MODIFIER_PROPERTY_SUPPRESS_CLEAVE",
-        "value":226
+        "value":227
       },{
         "desc":"BotAttackScoreBonus",
         "name":"MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS",
-        "value":227
+        "value":228
       },{
         "desc":"GetModifierAttackSpeedReductionPercentage",
         "name":"MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE",
-        "value":228
+        "value":229
       },{
         "desc":"GetModifierMoveSpeedReductionPercentage",
         "name":"MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE",
-        "value":229
+        "value":230
+      },{
+        "desc":"",
+        "name":"MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET",
+        "value":231
       },{
         "desc":"",
         "name":"MODIFIER_FUNCTION_LAST",
-        "value":230
+        "value":232
       },{
         "desc":"",
         "name":"MODIFIER_FUNCTION_INVALID",
@@ -7807,6 +7934,10 @@
         "value":-2147483648
       },{
         "desc":"",
+        "name":"DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE",
+        "value":0
+      },{
+        "desc":"",
         "name":"DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE",
         "value":0
       },{
@@ -7819,15 +7950,15 @@
         "value":0
       },{
         "desc":"",
+        "name":"DOTA_ABILITY_BEHAVIOR_NONE",
+        "value":0
+      },{
+        "desc":"",
         "name":"DOTA_ABILITY_BEHAVIOR_CAN_SELF_CAST",
         "value":0
       },{
         "desc":"",
         "name":"DOTA_ABILITY_BEHAVIOR_UNLOCKED_BY_EFFECT_INDEX",
-        "value":0
-      },{
-        "desc":"",
-        "name":"DOTA_ABILITY_BEHAVIOR_NONE",
         "value":0
       },{
         "desc":"",
@@ -8049,6 +8180,67 @@
         "value":16
       }]
   },
+  "ProjectileManager":[{
+      "desc":"Update speed",
+      "func":"( handle_1, int_2 )",
+      "name":"ChangeTrackingProjectileSpeed",
+      "return":"void"
+    },{
+      "desc":"Creates a linear projectile and returns the projectile ID",
+      "func":"( handle_1 )",
+      "name":"CreateLinearProjectile",
+      "return":"int"
+    },{
+      "desc":"Creates a tracking projectile",
+      "func":"( handle_1 )",
+      "name":"CreateTrackingProjectile",
+      "return":"int"
+    },{
+      "desc":"Destroys the linear projectile matching the argument ID",
+      "func":"( int_1 )",
+      "name":"DestroyLinearProjectile",
+      "return":"void"
+    },{
+      "desc":"Destroy a tracking projectile early",
+      "func":"( int_1 )",
+      "name":"DestroyTrackingProjectile",
+      "return":"void"
+    },{
+      "desc":"Returns current location of projectile",
+      "func":"( int_1 )",
+      "name":"GetLinearProjectileLocation",
+      "return":"Vector"
+    },{
+      "desc":"Returns current radius of projectile",
+      "func":"( int_1 )",
+      "name":"GetLinearProjectileRadius",
+      "return":"float"
+    },{
+      "desc":"Returns a vector representing the current velocity of the projectile.",
+      "func":"( int_1 )",
+      "name":"GetLinearProjectileVelocity",
+      "return":"Vector"
+    },{
+      "desc":"Returns current location of projectile",
+      "func":"( int_1 )",
+      "name":"GetTrackingProjectileLocation",
+      "return":"Vector"
+    },{
+      "desc":"Is this a valid projectile?",
+      "func":"( int_1 )",
+      "name":"IsValidProjectile",
+      "return":"bool"
+    },{
+      "desc":"Makes the specified unit dodge projectiles",
+      "func":"( handle_1 )",
+      "name":"ProjectileDodge",
+      "return":"void"
+    },{
+      "desc":"Update velocity",
+      "func":"( int_1, Vector_2, float_3 )",
+      "name":"UpdateLinearProjectileDirection",
+      "return":"void"
+    }],
   "CDOTA_Buff":[{
       "desc":"(index, bDestroyImmediately, bStatusEffect, priority, bHeroEffect, bOverheadEffect",
       "func":"( int i, bool bDestroyImmediately, bool bStatusEffect, int iPriority, bool bHeroEffect, bool bOverheadEffect )",
@@ -8064,6 +8256,11 @@
       "func":"()",
       "name":"Destroy",
       "return":"void"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"DestroyOnExpire",
+      "return":"bool"
     },{
       "desc":"Run all associated refresh functions on this modifier as if it was re-applied.",
       "func":"()",
@@ -8196,70 +8393,20 @@
       "name":"GetEquippedWeapons",
       "return":"table"
     },{
-      "desc":"Get the combat character faction.",
-      "func":"()",
-      "name":"GetFaction",
-      "return":"int"
-    },{
       "desc":"GetWeaponCount() : Gets the number of weapons currently equipped",
       "func":"()",
       "name":"GetWeaponCount",
       "return":"int"
-    },{
-      "desc":"Returns the shoot position eyes (or hand in VR).",
-      "func":"( int nHand, int nMuzzle )",
-      "name":"ShootPosition",
-      "return":"Vector"
     }],
   "CBasePlayer":[{
-      "desc":"Returns whether this player's chaperone bounds are visible.",
-      "func":"()",
-      "name":"AreChaperoneBoundsVisible",
-      "return":"bool"
-    },{
-      "desc":"Returns the HMD anchor entity for this player if it exists.",
-      "func":"()",
-      "name":"GetHMDAnchor",
-      "return":"handle"
-    },{
-      "desc":"Returns the HMD Avatar entity for this player if it exists.",
-      "func":"()",
-      "name":"GetHMDAvatar",
-      "return":"handle"
-    },{
-      "desc":"Returns the Vector position of the point you ask for. Pass 0-3 to get the four points.",
-      "func":"( int nPoint )",
-      "name":"GetPlayArea",
-      "return":"Vector"
-    },{
       "desc":"Returns the player's user id.",
       "func":"()",
       "name":"GetUserID",
       "return":"int"
     },{
-      "desc":"Returns the type of controller being used while in VR.",
-      "func":"()",
-      "name":"GetVRControllerType",
-      "return":"<unknown>"
-    },{
       "desc":"Returns true if the player is in noclip mode.",
       "func":"()",
       "name":"IsNoclipping",
-      "return":"bool"
-    },{
-      "desc":"Returns true if the use key is pressed.",
-      "func":"()",
-      "name":"IsUsePressed",
-      "return":"bool"
-    },{
-      "desc":"Returns true if the controller button is pressed.",
-      "func":"( int nButton )",
-      "name":"IsVRControllerButtonPressed",
-      "return":"bool"
-    },{
-      "desc":"Returns true if the SteamVR dashboard is showing for this player.",
-      "func":"()",
-      "name":"IsVRDashboardShowing",
       "return":"bool"
     }],
   "CBaseTrigger":[{
@@ -8277,68 +8424,6 @@
       "func":"( handle hEnt )",
       "name":"IsTouching",
       "return":"bool"
-    }],
-  "CDOTA_Item_BagOfGold":[{
-      "desc":"Set the life time of this item",
-      "func":"( float flTime )",
-      "name":"SetLifeTime",
-      "return":"void"
-    }],
-  "ProjectileManager":[{
-      "desc":"Update speed",
-      "func":"( handle_1, int_2 )",
-      "name":"ChangeTrackingProjectileSpeed",
-      "return":"void"
-    },{
-      "desc":"Creates a linear projectile and returns the projectile ID",
-      "func":"( handle_1 )",
-      "name":"CreateLinearProjectile",
-      "return":"int"
-    },{
-      "desc":"Creates a tracking projectile",
-      "func":"( handle_1 )",
-      "name":"CreateTrackingProjectile",
-      "return":"int"
-    },{
-      "desc":"Destroys the linear projectile matching the argument ID",
-      "func":"( int_1 )",
-      "name":"DestroyLinearProjectile",
-      "return":"void"
-    },{
-      "desc":"Destroy a tracking projectile early",
-      "func":"( int_1 )",
-      "name":"DestroyTrackingProjectile",
-      "return":"void"
-    },{
-      "desc":"Returns current location of projectile",
-      "func":"( int_1 )",
-      "name":"GetLinearProjectileLocation",
-      "return":"Vector"
-    },{
-      "desc":"Returns current radius of projectile",
-      "func":"( int_1 )",
-      "name":"GetLinearProjectileRadius",
-      "return":"float"
-    },{
-      "desc":"Returns a vector representing the current velocity of the projectile.",
-      "func":"( int_1 )",
-      "name":"GetLinearProjectileVelocity",
-      "return":"Vector"
-    },{
-      "desc":"Returns current location of projectile",
-      "func":"( int_1 )",
-      "name":"GetTrackingProjectileLocation",
-      "return":"Vector"
-    },{
-      "desc":"Makes the specified unit dodge projectiles",
-      "func":"( handle_1 )",
-      "name":"ProjectileDodge",
-      "return":"void"
-    },{
-      "desc":"Update velocity",
-      "func":"( int_1, Vector_2, float_3 )",
-      "name":"UpdateLinearProjectileDirection",
-      "return":"void"
     }],
   "GridNav":[{
       "desc":"Determine if it is possible to reach the specified end point from the specified start point. bool (vStart, vEnd)",
@@ -8401,6 +8486,28 @@
       "name":"WorldToGridPosY",
       "return":"int"
     }],
+  "CLogicScript":[],
+  "CScriptUniformRandomStream":[{
+      "desc":"",
+      "func":"( float flMinVal, float flMaxVal )",
+      "name":"RandomFloat",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"( float flMinVal, float flMaxVal, float flExponent )",
+      "name":"RandomFloatExp",
+      "return":"float"
+    },{
+      "desc":"",
+      "func":"( int iMinVal, int iMaxVal )",
+      "name":"RandomInt",
+      "return":"int"
+    },{
+      "desc":"",
+      "func":"( int iPercentage )",
+      "name":"RollPercentage",
+      "return":"bool"
+    }],
   "CDOTA_Item_Physical":[{
       "desc":"Returned the contained item.",
       "func":"()",
@@ -8417,15 +8524,95 @@
       "name":"SetContainedItem",
       "return":"void"
     }],
-  "CNativeOutputs":[{
-      "desc":"Add an output",
-      "func":"( string_1, string_2 )",
-      "name":"AddOutput",
+  "CBaseAnimating":[{
+      "desc":"Returns the duration in seconds of the active sequence.",
+      "func":"()",
+      "name":"ActiveSequenceDuration",
+      "return":"float"
+    },{
+      "desc":"Get the cycle of the animation.",
+      "func":"()",
+      "name":"GetCycle",
+      "return":"float"
+    },{
+      "desc":"Get the value of the given animGraph parameter",
+      "func":"( string pszParam )",
+      "name":"GetGraphParameter",
+      "return":"table"
+    },{
+      "desc":"Returns the name of the active sequence.",
+      "func":"()",
+      "name":"GetSequence",
+      "return":"string"
+    },{
+      "desc":"Ask whether the main sequence is done playing.",
+      "func":"()",
+      "name":"IsSequenceFinished",
+      "return":"bool"
+    },{
+      "desc":"Sets the active sequence by name, resetting the current cycle.",
+      "func":"( string pSequenceName )",
+      "name":"ResetSequence",
       "return":"void"
     },{
-      "desc":"Initialize with number of outputs",
-      "func":"( int_1 )",
-      "name":"Init",
+      "desc":"Returns the duration in seconds of the given sequence name.",
+      "func":"( string pSequenceName )",
+      "name":"SequenceDuration",
+      "return":"float"
+    },{
+      "desc":"Set the cycle of the animation.",
+      "func":"( float flCycle )",
+      "name":"SetCycle",
+      "return":"void"
+    },{
+      "desc":"Pass the desired look target in world space to the graph",
+      "func":"( Vector vValue )",
+      "name":"SetGraphLookTarget",
+      "return":"void"
+    },{
+      "desc":"Set the specific param value, type is inferred from the type in script",
+      "func":"( string pszParam, table svArg )",
+      "name":"SetGraphParameter",
+      "return":"void"
+    },{
+      "desc":"Set the specific param on or off",
+      "func":"( string szName, bool bValue )",
+      "name":"SetGraphParameterBool",
+      "return":"void"
+    },{
+      "desc":"Pass the enum (int) value to the specified param",
+      "func":"( string szName, int nValue )",
+      "name":"SetGraphParameterEnum",
+      "return":"void"
+    },{
+      "desc":"Pass the float value to the specified param",
+      "func":"( string szName, float flValue )",
+      "name":"SetGraphParameterFloat",
+      "return":"void"
+    },{
+      "desc":"Pass the int value to the specified param",
+      "func":"( string szName, int nValue )",
+      "name":"SetGraphParameterInt",
+      "return":"void"
+    },{
+      "desc":"Pass the vector value to the specified param in the graph",
+      "func":"( string szName, Vector vValue )",
+      "name":"SetGraphParameterVector",
+      "return":"void"
+    },{
+      "desc":"Set the specified pose parameter to the specified value.",
+      "func":"( string szName, float fValue )",
+      "name":"SetPoseParameter",
+      "return":"float"
+    },{
+      "desc":"Sets the active sequence by name, keeping the current cycle.",
+      "func":"( string pSequenceName )",
+      "name":"SetSequence",
+      "return":"void"
+    },{
+      "desc":"Stop the current animation by setting playback rate to 0.0.",
+      "func":"()",
+      "name":"StopAnimation",
       "return":"void"
     }],
   "CCustomNetTableManager":[{
@@ -8438,227 +8625,6 @@
       "func":"( string_1, string_2, handle_3 )",
       "name":"SetTableValue",
       "return":"bool"
-    }],
-  "CDOTA_Item_Lua":[{
-      "desc":"Returns true if this item can be picked up by the target unit.",
-      "func":"( handle hUnit )",
-      "name":"CanUnitPickUp",
-      "return":"bool"
-    },{
-      "desc":"Determine whether an issued command with no target is valid.",
-      "func":"()",
-      "name":"CastFilterResult",
-      "return":"int"
-    },{
-      "desc":"(Vector vLocation) Determine whether an issued command on a location is valid.",
-      "func":"( Vector vLocation )",
-      "name":"CastFilterResultLocation",
-      "return":"int"
-    },{
-      "desc":"(HSCRIPT hTarget) Determine whether an issued command on a target is valid.",
-      "func":"( handle hTarget )",
-      "name":"CastFilterResultTarget",
-      "return":"int"
-    },{
-      "desc":"Returns abilities that are stolen simultaneously, or otherwise related in functionality.",
-      "func":"()",
-      "name":"GetAssociatedPrimaryAbilities",
-      "return":"string"
-    },{
-      "desc":"Returns other abilities that are stolen simultaneously, or otherwise related in functionality.  Generally hidden abilities.",
-      "func":"()",
-      "name":"GetAssociatedSecondaryAbilities",
-      "return":"string"
-    },{
-      "desc":"Return cast behavior type of this ability.",
-      "func":"()",
-      "name":"GetBehavior",
-      "return":"int"
-    },{
-      "desc":"Return cast range of this ability.",
-      "func":"( Vector vLocation, handle hTarget )",
-      "name":"GetCastRange",
-      "return":"int"
-    },{
-      "desc":"Return the channel time of this ability.",
-      "func":"()",
-      "name":"GetChannelTime",
-      "return":"float"
-    },{
-      "desc":"Return mana cost at the given level per second while channeling (-1 is current).",
-      "func":"( int iLevel )",
-      "name":"GetChannelledManaCostPerSecond",
-      "return":"int"
-    },{
-      "desc":"Return who hears speech when this spell is cast.",
-      "func":"()",
-      "name":"GetConceptRecipientType",
-      "return":"int"
-    },{
-      "desc":"Return cooldown of this ability.",
-      "func":"( int iLevel )",
-      "name":"GetCooldown",
-      "return":"float"
-    },{
-      "desc":"Return the error string of a failed command with no target.",
-      "func":"()",
-      "name":"GetCustomCastError",
-      "return":"string"
-    },{
-      "desc":"(Vector vLocation) Return the error string of a failed command on a location.",
-      "func":"( Vector vLocation )",
-      "name":"GetCustomCastErrorLocation",
-      "return":"string"
-    },{
-      "desc":"(HSCRIPT hTarget) Return the error string of a failed command on a target.",
-      "func":"( handle hTarget )",
-      "name":"GetCustomCastErrorTarget",
-      "return":"string"
-    },{
-      "desc":"Return gold cost at the given level (-1 is current).",
-      "func":"( int iLevel )",
-      "name":"GetGoldCost",
-      "return":"int"
-    },{
-      "desc":"Returns the name of the modifier applied passively by this ability.",
-      "func":"()",
-      "name":"GetIntrinsicModifierName",
-      "return":"string"
-    },{
-      "desc":"Return mana cost at the given level (-1 is current).",
-      "func":"( int iLevel )",
-      "name":"GetManaCost",
-      "return":"int"
-    },{
-      "desc":"Return the animation rate of the cast animation.",
-      "func":"()",
-      "name":"GetPlaybackRateOverride",
-      "return":"float"
-    },{
-      "desc":"Returns true if this ability can be used when not on the action panel.",
-      "func":"()",
-      "name":"IsHiddenAbilityCastable",
-      "return":"bool"
-    },{
-      "desc":"Returns true if this ability is hidden when stolen by Spell Steal.",
-      "func":"()",
-      "name":"IsHiddenWhenStolen",
-      "return":"bool"
-    },{
-      "desc":"Returns whether this item is muted or not.",
-      "func":"()",
-      "name":"IsMuted",
-      "return":"bool"
-    },{
-      "desc":"Returns true if this ability is refreshed by Refresher Orb.",
-      "func":"()",
-      "name":"IsRefreshable",
-      "return":"bool"
-    },{
-      "desc":"Returns true if this ability can be stolen by Spell Steal.",
-      "func":"()",
-      "name":"IsStealable",
-      "return":"bool"
-    },{
-      "desc":"Cast time did not complete successfully.",
-      "func":"()",
-      "name":"OnAbilityPhaseInterrupted",
-      "return":"void"
-    },{
-      "desc":"Cast time begins (return true for successful cast).",
-      "func":"()",
-      "name":"OnAbilityPhaseStart",
-      "return":"bool"
-    },{
-      "desc":"(bool bInterrupted) Channel finished.",
-      "func":"( bool bInterrupted )",
-      "name":"OnChannelFinish",
-      "return":"void"
-    },{
-      "desc":"(float flInterval) Channeling is taking place.",
-      "func":"( float flInterval )",
-      "name":"OnChannelThink",
-      "return":"void"
-    },{
-      "desc":"Caster (hero only) gained a level, skilled an ability, or received a new stat bonus.",
-      "func":"()",
-      "name":"OnHeroCalculateStatBonus",
-      "return":"void"
-    },{
-      "desc":"A hero has died in the vicinity (ie Urn), takes table of params.",
-      "func":"( handle unit, handle attacker, handle table )",
-      "name":"OnHeroDiedNearby",
-      "return":"void"
-    },{
-      "desc":"Caster gained a level.",
-      "func":"()",
-      "name":"OnHeroLevelUp",
-      "return":"void"
-    },{
-      "desc":"Caster inventory changed.",
-      "func":"()",
-      "name":"OnInventoryContentsChanged",
-      "return":"void"
-    },{
-      "desc":"( HSCRIPT hItem ) Caster equipped item.",
-      "func":"( handle hItem )",
-      "name":"OnItemEquipped",
-      "return":"void"
-    },{
-      "desc":"Caster died.",
-      "func":"()",
-      "name":"OnOwnerDied",
-      "return":"void"
-    },{
-      "desc":"Caster respawned or spawned for the first time.",
-      "func":"()",
-      "name":"OnOwnerSpawned",
-      "return":"void"
-    },{
-      "desc":"(HSCRIPT hTarget, Vector vLocation) Projectile has collided with a given target or reached its destination (target is invalid).",
-      "func":"( handle hTarget, Vector vLocation )",
-      "name":"OnProjectileHit",
-      "return":"bool"
-    },{
-      "desc":"(Vector vLocation) Projectile is actively moving.",
-      "func":"( Vector vLocation )",
-      "name":"OnProjectileThink",
-      "return":"void"
-    },{
-      "desc":"Cast time finished, spell effects begin.",
-      "func":"()",
-      "name":"OnSpellStart",
-      "return":"void"
-    },{
-      "desc":"( HSCRIPT hAbility ) Special behavior when stolen by Spell Steal.",
-      "func":"( handle hSourceAbility )",
-      "name":"OnStolen",
-      "return":"void"
-    },{
-      "desc":"Ability is toggled on/off.",
-      "func":"()",
-      "name":"OnToggle",
-      "return":"void"
-    },{
-      "desc":"Special behavior when lost by Spell Steal.",
-      "func":"()",
-      "name":"OnUnStolen",
-      "return":"void"
-    },{
-      "desc":"Ability gained a level.",
-      "func":"()",
-      "name":"OnUpgrade",
-      "return":"void"
-    },{
-      "desc":"Returns true if this ability will generate magic stick charges for nearby enemies.",
-      "func":"()",
-      "name":"ProcsMagicStick",
-      "return":"bool"
-    },{
-      "desc":"Return the type of speech used.",
-      "func":"()",
-      "name":"SpeakTrigger",
-      "return":"int"
     }],
   "CScriptKeyValues":[{
       "desc":"Reads a spawn key",
@@ -8681,33 +8647,6 @@
       "func":"()",
       "name":"GetHeroCount",
       "return":"int"
-    }],
-  "CInfoWorldLayer":[{
-      "desc":"Hides this layer",
-      "func":"()",
-      "name":"HideWorldLayer",
-      "return":"void"
-    },{
-      "desc":"Shows this layer",
-      "func":"()",
-      "name":"ShowWorldLayer",
-      "return":"void"
-    }],
-  "CBaseFlex":[{
-      "desc":"Returns the instance of the oldest active scene entity (if any).",
-      "func":"()",
-      "name":"GetCurrentScene",
-      "return":"handle"
-    },{
-      "desc":"Returns the instance of the scene entity at the specified index.",
-      "func":"( int index )",
-      "name":"GetSceneByIndex",
-      "return":"handle"
-    },{
-      "desc":"( vcd file, delay ) - play specified vcd file",
-      "func":"( string pszScene, float flDelay )",
-      "name":"ScriptPlayScene",
-      "return":"float"
     }],
   "CScriptHTTPRequest":[{
       "desc":"Send a HTTP request.",
@@ -8739,6 +8678,84 @@
       "func":"( string_1, string_2 )",
       "name":"SetHTTPRequestRawPostBody",
       "return":"bool"
+    }],
+  "CInfoWorldLayer":[{
+      "desc":"Hides this layer",
+      "func":"()",
+      "name":"HideWorldLayer",
+      "return":"void"
+    },{
+      "desc":"Shows this layer",
+      "func":"()",
+      "name":"ShowWorldLayer",
+      "return":"void"
+    }],
+  "CBaseFlex":[{
+      "desc":"Returns the instance of the oldest active scene entity (if any).",
+      "func":"()",
+      "name":"GetCurrentScene",
+      "return":"handle"
+    },{
+      "desc":"Returns the instance of the scene entity at the specified index.",
+      "func":"( int index )",
+      "name":"GetSceneByIndex",
+      "return":"handle"
+    },{
+      "desc":"( vcd file, delay ) - play specified vcd file",
+      "func":"( string pszScene, float flDelay )",
+      "name":"ScriptPlayScene",
+      "return":"float"
+    }],
+  "CSceneEntity":[{
+      "desc":"Adds a team (by index) to the broadcast list",
+      "func":"( int_1 )",
+      "name":"AddBroadcastTeamTarget",
+      "return":"void"
+    },{
+      "desc":"Cancel scene playback",
+      "func":"()",
+      "name":"Cancel",
+      "return":"void"
+    },{
+      "desc":"Returns length of this scene in seconds.",
+      "func":"()",
+      "name":"EstimateLength",
+      "return":"float"
+    },{
+      "desc":"Get the camera",
+      "func":"()",
+      "name":"FindCamera",
+      "return":"handle"
+    },{
+      "desc":"given an entity reference, such as !target, get actual entity from scene object",
+      "func":"( string_1 )",
+      "name":"FindNamedEntity",
+      "return":"handle"
+    },{
+      "desc":"If this scene is currently paused.",
+      "func":"()",
+      "name":"IsPaused",
+      "return":"bool"
+    },{
+      "desc":"If this scene is currently playing.",
+      "func":"()",
+      "name":"IsPlayingBack",
+      "return":"bool"
+    },{
+      "desc":"given a dummy scene name and a vcd string, load the scene",
+      "func":"( string_1, string_2 )",
+      "name":"LoadSceneFromString",
+      "return":"bool"
+    },{
+      "desc":"Removes a team (by index) from the broadcast list",
+      "func":"( int_1 )",
+      "name":"RemoveBroadcastTeamTarget",
+      "return":"void"
+    },{
+      "desc":"Start scene playback, takes activatorEntity as param",
+      "func":"( handle_1 )",
+      "name":"Start",
+      "return":"void"
     }],
   "CDOTA_Ability_Lua":[{
       "desc":"Determine whether an issued command with no target is valid.",
@@ -8774,7 +8791,7 @@
       "desc":"Return cast behavior type of this ability.",
       "func":"()",
       "name":"GetBehavior",
-      "return":"int"
+      "return":"uint64"
     },{
       "desc":"Return casting animation of this ability.",
       "func":"()",
@@ -9027,132 +9044,27 @@
       "name":"RemoveCSSClasses",
       "return":"void"
     }],
-  "CSceneEntity":[{
-      "desc":"Adds a team (by index) to the broadcast list",
-      "func":"( int_1 )",
-      "name":"AddBroadcastTeamTarget",
-      "return":"void"
-    },{
-      "desc":"Cancel scene playback",
-      "func":"()",
-      "name":"Cancel",
-      "return":"void"
-    },{
-      "desc":"Returns length of this scene in seconds.",
-      "func":"()",
-      "name":"EstimateLength",
-      "return":"float"
-    },{
-      "desc":"Get the camera",
-      "func":"()",
-      "name":"FindCamera",
-      "return":"handle"
-    },{
-      "desc":"given an entity reference, such as !target, get actual entity from scene object",
-      "func":"( string_1 )",
-      "name":"FindNamedEntity",
-      "return":"handle"
-    },{
-      "desc":"If this scene is currently paused.",
-      "func":"()",
-      "name":"IsPaused",
-      "return":"bool"
-    },{
-      "desc":"If this scene is currently playing.",
-      "func":"()",
-      "name":"IsPlayingBack",
-      "return":"bool"
-    },{
-      "desc":"given a dummy scene name and a vcd string, load the scene",
-      "func":"( string_1, string_2 )",
-      "name":"LoadSceneFromString",
-      "return":"bool"
-    },{
-      "desc":"Removes a team (by index) from the broadcast list",
-      "func":"( int_1 )",
-      "name":"RemoveBroadcastTeamTarget",
-      "return":"void"
-    },{
-      "desc":"Start scene playback, takes activatorEntity as param",
-      "func":"( handle_1 )",
-      "name":"Start",
-      "return":"void"
-    }],
+  "CPointEntity":[],
   "CDOTA_Ability_Nian_Leap":[{
       "desc":"Override playbackrate",
       "func":"( float flRate )",
       "name":"SetPlaybackRate",
       "return":"void"
     }],
-  "CPropVRHand":[{
-      "desc":"Add the attachment to this hand",
-      "func":"( handle hAttachment )",
-      "name":"AddHandAttachment",
+  "CPhysicsProp":[{
+      "desc":"Disable motion for the prop",
+      "func":"()",
+      "name":"DisableMotion",
       "return":"void"
     },{
-      "desc":"Add a model override for this hand",
-      "func":"( string pModelName )",
-      "name":"AddHandModelOverride",
-      "return":"handle"
-    },{
-      "desc":"Find a specific model override for this hand",
-      "func":"( string pModelName )",
-      "name":"FindHandModelOverride",
-      "return":"handle"
-    },{
-      "desc":"Fire a haptic pulse on this hand. [0,2] for strength.",
-      "func":"( int nStrength )",
-      "name":"FireHapticPulse",
+      "desc":"Enable motion for the prop",
+      "func":"()",
+      "name":"EnableMotion",
       "return":"void"
     },{
-      "desc":"Fire a haptic pulse on this hand. Specify the duration in micro seconds.",
-      "func":"( int nPulseDuration )",
-      "name":"FireHapticPulsePrecise",
-      "return":"void"
-    },{
-      "desc":"Get the attachment on this hand",
-      "func":"()",
-      "name":"GetHandAttachment",
-      "return":"handle"
-    },{
-      "desc":"Get hand ID",
-      "func":"()",
-      "name":"GetHandID",
-      "return":"int"
-    },{
-      "desc":"Get literal type for this hand",
-      "func":"()",
-      "name":"GetLiteralHandType",
-      "return":"int"
-    },{
-      "desc":"Get the player for this hand",
-      "func":"()",
-      "name":"GetPlayer",
-      "return":"handle"
-    },{
-      "desc":"Get the filtered controller velocity.",
-      "func":"()",
-      "name":"GetVelocity",
-      "return":"Vector"
-    },{
-      "desc":"Remove all model overrides for this hand",
-      "func":"()",
-      "name":"RemoveAllHandModelOverrides",
-      "return":"void"
-    },{
-      "desc":"Remove hand attachment by handle",
-      "func":"( handle hAttachment )",
-      "name":"RemoveHandAttachmentByHandle",
-      "return":"void"
-    },{
-      "desc":"Remove a model override for this hand",
-      "func":"( string pModelName )",
-      "name":"RemoveHandModelOverride",
-      "return":"void"
-    },{
-      "desc":"Set the attachment for this hand",
-      "func":"( handle hAttachment )",
-      "name":"SetHandAttachment",
+      "desc":"Enable/disable dynamic vs dynamic continuous collision traces",
+      "func":"( bool bIsDynamicVsDynamicContinuousEnabled )",
+      "name":"SetDynamicVsDynamicContinuous",
       "return":"void"
     }],
   "CDOTA_Ability_Animation_Attack":[{
@@ -9165,6 +9077,11 @@
       "desc":"",
       "func":"( int iPlayerID )",
       "name":"AddAegisPickup",
+      "return":"void"
+    },{
+      "desc":"",
+      "func":"( int iPlayerID, int nReason )",
+      "name":"AddCandyEvent",
       "return":"void"
     },{
       "desc":"",
@@ -9857,22 +9774,7 @@
       "name":"WhoSelectedHero",
       "return":"int"
     }],
-  "CPhysicsProp":[{
-      "desc":"Disable motion for the prop",
-      "func":"()",
-      "name":"DisableMotion",
-      "return":"void"
-    },{
-      "desc":"Enable motion for the prop",
-      "func":"()",
-      "name":"EnableMotion",
-      "return":"void"
-    },{
-      "desc":"Enable/disable dynamic vs dynamic continuous collision traces",
-      "func":"( bool bIsDynamicVsDynamicContinuousEnabled )",
-      "name":"SetDynamicVsDynamicContinuous",
-      "return":"void"
-    }],
+  "CParticleSystem":[],
   "CDOTA_Modifier_Lua_Horizontal_Motion":[{
       "desc":"Starts the horizontal motion controller effects for this buff.  Returns true if successful.",
       "func":"()",
@@ -9899,7 +9801,17 @@
       "name":"UpdateHorizontalMotion",
       "return":"void"
     }],
-  "CParticleSystem":[],
+  "CNativeOutputs":[{
+      "desc":"Add an output",
+      "func":"( string_1, string_2 )",
+      "name":"AddOutput",
+      "return":"void"
+    },{
+      "desc":"Initialize with number of outputs",
+      "func":"( int_1 )",
+      "name":"Init",
+      "return":"void"
+    }],
   "CDOTA_Unit_CustomGameAnnouncer":[{
       "desc":"Determines whether response criteria is matched on server or client",
       "func":"( bool bIsServerAuthoritative )",
@@ -9967,617 +9879,231 @@
       "name":"SetStr",
       "return":"void"
     }],
-  "CLogicScript":[],
-  "CDOTABaseAbility":[{
-      "desc":"",
-      "func":"()",
-      "name":"CanAbilityBeUpgraded",
-      "return":"<unknown>"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"CastAbility",
+  "CDOTA_Item_Lua":[{
+      "desc":"Returns true if this item can be picked up by the target unit.",
+      "func":"( handle hUnit )",
+      "name":"CanUnitPickUp",
       "return":"bool"
     },{
-      "desc":"",
+      "desc":"Determine whether an issued command with no target is valid.",
       "func":"()",
-      "name":"ContinueCasting",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( Vector vLocation, float fRadius, float fDuration )",
-      "name":"CreateVisibilityNode",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"DecrementModifierRefCount",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bInterrupted )",
-      "name":"EndChannel",
-      "return":"void"
-    },{
-      "desc":"Clear the cooldown remaining on this ability.",
-      "func":"()",
-      "name":"EndCooldown",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAOERadius",
+      "name":"CastFilterResult",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityDamage",
+      "desc":"(Vector vLocation) Determine whether an issued command on a location is valid.",
+      "func":"( Vector vLocation )",
+      "name":"CastFilterResultLocation",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityDamageType",
+      "desc":"(HSCRIPT hTarget) Determine whether an issued command on a target is valid.",
+      "func":"( handle hTarget )",
+      "name":"CastFilterResultTarget",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityIndex",
-      "return":"int"
-    },{
-      "desc":"Gets the key values definition for this ability.",
-      "func":"()",
-      "name":"GetAbilityKeyValues",
-      "return":"table"
-    },{
-      "desc":"Returns the name of this ability.",
-      "func":"()",
-      "name":"GetAbilityName",
-      "return":"string"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityTargetFlags",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityTargetTeam",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityTargetType",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAbilityType",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAnimationIgnoresModelScale",
-      "return":"bool"
-    },{
-      "desc":"",
+      "desc":"Returns abilities that are stolen simultaneously, or otherwise related in functionality.",
       "func":"()",
       "name":"GetAssociatedPrimaryAbilities",
       "return":"string"
     },{
-      "desc":"",
+      "desc":"Returns other abilities that are stolen simultaneously, or otherwise related in functionality.  Generally hidden abilities.",
       "func":"()",
       "name":"GetAssociatedSecondaryAbilities",
       "return":"string"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetAutoCastState",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetBackswingTime",
-      "return":"float"
-    },{
-      "desc":"",
+      "desc":"Return cast behavior type of this ability.",
       "func":"()",
       "name":"GetBehavior",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCastPoint",
-      "return":"float"
-    },{
-      "desc":"Gets the cast range of the ability.",
+      "desc":"Return cast range of this ability.",
       "func":"( Vector vLocation, handle hTarget )",
       "name":"GetCastRange",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCaster",
-      "return":"handle"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetChannelStartTime",
-      "return":"float"
-    },{
-      "desc":"",
+      "desc":"Return the channel time of this ability.",
       "func":"()",
       "name":"GetChannelTime",
       "return":"float"
     },{
-      "desc":"",
+      "desc":"Return mana cost at the given level per second while channeling (-1 is current).",
       "func":"( int iLevel )",
       "name":"GetChannelledManaCostPerSecond",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCloneSource",
-      "return":"handle"
-    },{
-      "desc":"",
+      "desc":"Return who hears speech when this spell is cast.",
       "func":"()",
       "name":"GetConceptRecipientType",
       "return":"int"
     },{
-      "desc":"Get the cooldown duration for this ability at a given level, not the amount of cooldown actually left.",
+      "desc":"Return cooldown of this ability.",
       "func":"( int iLevel )",
       "name":"GetCooldown",
       "return":"float"
     },{
-      "desc":"",
+      "desc":"Return the error string of a failed command with no target.",
       "func":"()",
-      "name":"GetCooldownTime",
-      "return":"float"
+      "name":"GetCustomCastError",
+      "return":"string"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCooldownTimeRemaining",
-      "return":"float"
+      "desc":"(Vector vLocation) Return the error string of a failed command on a location.",
+      "func":"( Vector vLocation )",
+      "name":"GetCustomCastErrorLocation",
+      "return":"string"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCursorPosition",
-      "return":"Vector"
+      "desc":"(HSCRIPT hTarget) Return the error string of a failed command on a target.",
+      "func":"( handle hTarget )",
+      "name":"GetCustomCastErrorTarget",
+      "return":"string"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCursorTarget",
-      "return":"handle"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetCursorTargetingNothing",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetDuration",
-      "return":"float"
-    },{
-      "desc":"",
-      "func":"( int iLevel )",
-      "name":"GetEffectiveCooldown",
-      "return":"float"
-    },{
-      "desc":"",
+      "desc":"Return gold cost at the given level (-1 is current).",
       "func":"( int iLevel )",
       "name":"GetGoldCost",
       "return":"int"
     },{
-      "desc":"",
-      "func":"( int iLevel )",
-      "name":"GetGoldCostForUpgrade",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetHeroLevelRequiredToUpgrade",
-      "return":"int"
-    },{
-      "desc":"",
+      "desc":"Returns the name of the modifier applied passively by this ability.",
       "func":"()",
       "name":"GetIntrinsicModifierName",
       "return":"string"
     },{
-      "desc":"Get the current level of the ability.",
-      "func":"()",
-      "name":"GetLevel",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"( string szName, int nLevel )",
-      "name":"GetLevelSpecialValueFor",
-      "return":"table"
-    },{
-      "desc":"",
-      "func":"( string szName, int nLevel )",
-      "name":"GetLevelSpecialValueNoOverride",
-      "return":"table"
-    },{
-      "desc":"",
+      "desc":"Return mana cost at the given level (-1 is current).",
       "func":"( int iLevel )",
       "name":"GetManaCost",
       "return":"int"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetMaxLevel",
-      "return":"int"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetModifierValue",
-      "return":"float"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetModifierValueBonus",
-      "return":"float"
-    },{
-      "desc":"",
+      "desc":"Return the animation rate of the cast animation.",
       "func":"()",
       "name":"GetPlaybackRateOverride",
       "return":"float"
     },{
-      "desc":"",
+      "desc":"Returns true if this ability can be used when not on the action panel.",
       "func":"()",
-      "name":"GetSharedCooldownName",
-      "return":"string"
-    },{
-      "desc":"Gets a value from this ability's special value block for its current level.",
-      "func":"( string szName )",
-      "name":"GetSpecialValueFor",
-      "return":"table"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetStolenActivityModifier",
-      "return":"string"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"GetToggleState",
+      "name":"IsHiddenAbilityCastable",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"GetUpgradeRecommended",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( float flXP )",
-      "name":"HeroXPChange",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IncrementModifierRefCount",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsActivated",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsAttributeBonus",
-      "return":"bool"
-    },{
-      "desc":"Returns whether the ability is currently channeling.",
-      "func":"()",
-      "name":"IsChanneling",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsCooldownReady",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( handle hEntity )",
-      "name":"IsCosmetic",
-      "return":"bool"
-    },{
-      "desc":"Returns whether the ability can be cast.",
-      "func":"()",
-      "name":"IsFullyCastable",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsHidden",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsHiddenAsSecondaryAbility",
-      "return":"bool"
-    },{
-      "desc":"",
+      "desc":"Returns true if this ability is hidden when stolen by Spell Steal.",
       "func":"()",
       "name":"IsHiddenWhenStolen",
       "return":"bool"
     },{
-      "desc":"Returns whether the ability is currently casting.",
+      "desc":"Returns whether this item is muted or not.",
       "func":"()",
-      "name":"IsInAbilityPhase",
+      "name":"IsMuted",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"IsItem",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( int nIssuerPlayerID )",
-      "name":"IsOwnersGoldEnough",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsOwnersGoldEnoughForUpgrade",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsOwnersManaEnough",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsPassive",
-      "return":"bool"
-    },{
-      "desc":"",
+      "desc":"Returns true if this ability is refreshed by Refresher Orb.",
       "func":"()",
       "name":"IsRefreshable",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"IsSharedWithTeammates",
-      "return":"bool"
-    },{
-      "desc":"",
+      "desc":"Returns true if this ability can be stolen by Spell Steal.",
       "func":"()",
       "name":"IsStealable",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"IsStolen",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsToggle",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"IsTrained",
-      "return":"bool"
-    },{
-      "desc":"Mark the ability button for this ability as needing a refresh.",
-      "func":"()",
-      "name":"MarkAbilityButtonDirty",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"NumModifiersUsingAbility",
-      "return":"int"
-    },{
-      "desc":"",
+      "desc":"Cast time did not complete successfully.",
       "func":"()",
       "name":"OnAbilityPhaseInterrupted",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"Cast time begins (return true for successful cast).",
       "func":"()",
       "name":"OnAbilityPhaseStart",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"( int nPlayerID, bool bCtrlHeld )",
-      "name":"OnAbilityPinged",
-      "return":"void"
-    },{
-      "desc":"",
+      "desc":"(bool bInterrupted) Channel finished.",
       "func":"( bool bInterrupted )",
       "name":"OnChannelFinish",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"(float flInterval) Channeling is taking place.",
       "func":"( float flInterval )",
       "name":"OnChannelThink",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"Runs when item's charge count changes.",
+      "func":"()",
+      "name":"OnChargeCountChanged",
+      "return":"void"
+    },{
+      "desc":"Caster (hero only) gained a level, skilled an ability, or received a new stat bonus.",
       "func":"()",
       "name":"OnHeroCalculateStatBonus",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"A hero has died in the vicinity (ie Urn), takes table of params.",
+      "func":"( handle unit, handle attacker, handle table )",
+      "name":"OnHeroDiedNearby",
+      "return":"void"
+    },{
+      "desc":"Caster gained a level.",
       "func":"()",
       "name":"OnHeroLevelUp",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"Caster inventory changed.",
+      "func":"()",
+      "name":"OnInventoryContentsChanged",
+      "return":"void"
+    },{
+      "desc":"( HSCRIPT hItem ) Caster equipped item.",
+      "func":"( handle hItem )",
+      "name":"OnItemEquipped",
+      "return":"void"
+    },{
+      "desc":"Caster died.",
       "func":"()",
       "name":"OnOwnerDied",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"Caster respawned or spawned for the first time.",
       "func":"()",
       "name":"OnOwnerSpawned",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"(HSCRIPT hTarget, Vector vLocation) Projectile has collided with a given target or reached its destination (target is invalid).",
+      "func":"( handle hTarget, Vector vLocation )",
+      "name":"OnProjectileHit",
+      "return":"bool"
+    },{
+      "desc":"(Vector vLocation) Projectile is actively moving.",
+      "func":"( Vector vLocation )",
+      "name":"OnProjectileThink",
+      "return":"void"
+    },{
+      "desc":"Cast time finished, spell effects begin.",
       "func":"()",
       "name":"OnSpellStart",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"( HSCRIPT hAbility ) Special behavior when stolen by Spell Steal.",
+      "func":"( handle hSourceAbility )",
+      "name":"OnStolen",
+      "return":"void"
+    },{
+      "desc":"Ability is toggled on/off.",
       "func":"()",
       "name":"OnToggle",
       "return":"void"
     },{
-      "desc":"",
+      "desc":"Special behavior when lost by Spell Steal.",
+      "func":"()",
+      "name":"OnUnStolen",
+      "return":"void"
+    },{
+      "desc":"Ability gained a level.",
       "func":"()",
       "name":"OnUpgrade",
       "return":"void"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"PayGoldCost",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"PayGoldCostForUpgrade",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"PayManaCost",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"PlaysDefaultAnimWhenStolen",
-      "return":"bool"
-    },{
-      "desc":"",
+      "desc":"Returns true if this ability will generate magic stick charges for nearby enemies.",
       "func":"()",
       "name":"ProcsMagicStick",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"RefCountsModifiers",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"RefreshCharges",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"RefundManaCost",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"ResetToggleOnRespawn",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( int iIndex )",
-      "name":"SetAbilityIndex",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bActivated )",
-      "name":"SetActivated",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bChanneling )",
-      "name":"SetChanneling",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bFrozenCooldown )",
-      "name":"SetFrozenCooldown",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bHidden )",
-      "name":"SetHidden",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bInAbilityPhase )",
-      "name":"SetInAbilityPhase",
-      "return":"void"
-    },{
-      "desc":"Sets the level of this ability.",
-      "func":"( int iLevel )",
-      "name":"SetLevel",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( float flCastPoint )",
-      "name":"SetOverrideCastPoint",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bRefCounts )",
-      "name":"SetRefCountsModifiers",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bStealable )",
-      "name":"SetStealable",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bStolen )",
-      "name":"SetStolen",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bUpgradeRecommended )",
-      "name":"SetUpgradeRecommended",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"ShouldUseResources",
-      "return":"bool"
-    },{
-      "desc":"",
-      "func":"( int iConcept )",
-      "name":"SpeakAbilityConcept",
-      "return":"void"
-    },{
-      "desc":"",
+      "desc":"Return the type of speech used.",
       "func":"()",
       "name":"SpeakTrigger",
-      "return":"<unknown>"
-    },{
-      "desc":"",
-      "func":"( float flCooldown )",
-      "name":"StartCooldown",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"ToggleAbility",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"()",
-      "name":"ToggleAutoCast",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bSupressSpeech )",
-      "name":"UpgradeAbility",
-      "return":"void"
-    },{
-      "desc":"",
-      "func":"( bool bMana, bool bGold, bool bCooldown )",
-      "name":"UseResources",
-      "return":"void"
+      "return":"int"
     }],
   "CDOTA_BaseNPC_Hero":[{
       "desc":"Params: Float XP, Bool applyBotDifficultyScaling",
@@ -10725,6 +10251,11 @@
       "name":"GetGoldBounty",
       "return":"int"
     },{
+      "desc":"",
+      "func":"()",
+      "name":"GetHeroID",
+      "return":"int"
+    },{
       "desc":"Hero attack speed is also affected by agility.",
       "func":"()",
       "name":"GetIncreasedAttackSpeed",
@@ -10794,6 +10325,11 @@
       "func":"()",
       "name":"GetPrimaryStatValue",
       "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"GetReplicatingOtherHero",
+      "return":"handle"
     },{
       "desc":"",
       "func":"()",
@@ -10930,6 +10466,11 @@
       "name":"ModifyGold",
       "return":"int"
     },{
+      "desc":"Gives this hero some gold, using the gold filter if extra filtering is on.  Args: int nGoldChange, bool bReliable, int reason",
+      "func":"( int iGoldChange, bool bReliabe, int iReason )",
+      "name":"ModifyGoldFiltered",
+      "return":"int"
+    },{
       "desc":"Adds passed value to base attribute value, then calls CalculateStatBonus.",
       "func":"( float flNewIntellect )",
       "name":"ModifyIntellect",
@@ -11055,6 +10596,32 @@
       "name":"WillReincarnate",
       "return":"bool"
     }],
+  "CDOTA_Modifier_Lua_Vertical_Motion":[{
+      "desc":"Starts the vertical motion controller effects for this buff.  Returns true if successful.",
+      "func":"()",
+      "name":"ApplyVerticalMotionController",
+      "return":"bool"
+    },{
+      "desc":"Get the priority",
+      "func":"()",
+      "name":"GetMotionPriority",
+      "return":"int"
+    },{
+      "desc":"Called when the motion gets interrupted.",
+      "func":"()",
+      "name":"OnVerticalMotionInterrupted",
+      "return":"void"
+    },{
+      "desc":"Set the priority",
+      "func":"( int nMotionPriority )",
+      "name":"SetMotionPriority",
+      "return":"void"
+    },{
+      "desc":"Perform any motion from the given interval on the NPC.",
+      "func":"( handle me, float dt )",
+      "name":"UpdateVerticalMotion",
+      "return":"void"
+    }],
   "CDOTAVoteSystem":[{
       "desc":"Starts a vote, based upon a table of parameters",
       "func":"( handle_1 )",
@@ -11072,185 +10639,595 @@
       "name":"SetInvulnCount",
       "return":"void"
     }],
-  "CDOTA_Modifier_Lua":[{
-      "desc":"True/false if this modifier is active on illusions.",
-      "func":"()",
-      "name":"AllowIllusionDuplicate",
+  "CDOTAGamerules":[{
+      "desc":"Spawn a bot player of the passed hero name, player name, and team.",
+      "func":"( string_1, string_2, int_3, string_4, bool_5 )",
+      "name":"AddBotPlayerWithEntityScript",
+      "return":"handle"
+    },{
+      "desc":"Event-only ( string szNameSuffix, int nStars, int nMaxStars, int nExtraData1, int nExtraData2 )",
+      "func":"( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8, unsigned_9 )",
+      "name":"AddEventMetadataLeaderboardEntry",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"CanParentBeAutoAttacked",
+      "desc":"Event-only ( string szNameSuffix, int nScore, int nExtraData1, int nExtraData2 )",
+      "func":"( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8 )",
+      "name":"AddEventMetadataLeaderboardEntryRawScore",
       "return":"bool"
     },{
-      "desc":"True/false if this buff is removed when the duration expires.",
+      "desc":"Add an item to the whitelist",
+      "func":"( string_1 )",
+      "name":"AddItemToWhiteList",
+      "return":"void"
+    },{
+      "desc":"Add a point on the minimap.",
+      "func":"( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7 )",
+      "name":"AddMinimapDebugPoint",
+      "return":"void"
+    },{
+      "desc":"Add a point on the minimap for a specific team.",
+      "func":"( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7, int_8 )",
+      "name":"AddMinimapDebugPointForTeam",
+      "return":"void"
+    },{
+      "desc":"Begin night stalker night.",
+      "func":"( float_1 )",
+      "name":"BeginNightstalkerNight",
+      "return":"void"
+    },{
+      "desc":"Begin temporary night.",
+      "func":"( float_1 )",
+      "name":"BeginTemporaryNight",
+      "return":"void"
+    },{
+      "desc":"Fills all the teams with bots if cheat mode is enabled.",
       "func":"()",
-      "name":"DestroyOnExpire",
+      "name":"BotPopulate",
+      "return":"void"
+    },{
+      "desc":"Kills the ancient, etc.",
+      "func":"()",
+      "name":"Defeated",
+      "return":"void"
+    },{
+      "desc":"true when we have waited some time after end of the game and not received signout",
+      "func":"()",
+      "name":"DidMatchSignoutTimeOut",
       "return":"bool"
     },{
-      "desc":"Return the types of attributes applied to this modifier (enum value from DOTAModifierAttribute_t",
+      "desc":"Enabled (true) or disable (false) auto launch for custom game setup.",
+      "func":"( bool_1 )",
+      "name":"EnableCustomGameSetupAutoLaunch",
+      "return":"void"
+    },{
+      "desc":"Sends a minimap ping to all players on the team",
+      "func":"( int_1, float_2, float_3, handle_4, int_5 )",
+      "name":"ExecuteTeamPing",
+      "return":"void"
+    },{
+      "desc":"Indicate that the custom game setup phase is complete, and advance to the game.",
       "func":"()",
-      "name":"GetAttributes",
+      "name":"FinishCustomGameSetup",
+      "return":"void"
+    },{
+      "desc":"Spawn the next wave of creeps.",
+      "func":"()",
+      "name":"ForceCreepSpawn",
+      "return":"void"
+    },{
+      "desc":"Transition game state to DOTA_GAMERULES_STATE_GAME_IN_PROGRESS",
+      "func":"()",
+      "name":"ForceGameStart",
+      "return":"void"
+    },{
+      "desc":"Get the announcer for a team",
+      "func":"( int_1 )",
+      "name":"GetAnnouncer",
+      "return":"handle"
+    },{
+      "desc":"Returns the hero unit names banned in this game, if any",
+      "func":"()",
+      "name":"GetBannedHeroes",
+      "return":"table"
+    },{
+      "desc":"Returns the difficulty level of the custom game mode",
+      "func":"()",
+      "name":"GetCustomGameDifficulty",
       "return":"int"
     },{
-      "desc":"Returns aura stickiness",
-      "func":"()",
-      "name":"GetAuraDuration",
+      "desc":"Get whether a team is selectable during game setup",
+      "func":"( int_1 )",
+      "name":"GetCustomGameTeamMaxPlayers",
+      "return":"int"
+    },{
+      "desc":"(b IncludePregameTime b IncludeNegativeTime) Returns the actual DOTA in-game clock time.",
+      "func":"( bool_1, bool_2 )",
+      "name":"GetDOTATime",
       "return":"float"
     },{
-      "desc":"Return true/false if this entity should receive the aura under specific conditions",
-      "func":"( handle hEntity )",
-      "name":"GetAuraEntityReject",
-      "return":"bool"
-    },{
-      "desc":"Return the range around the parent this aura tries to apply its buff.",
+      "desc":"Returns difficulty level of the custom game mode",
       "func":"()",
-      "name":"GetAuraRadius",
+      "name":"GetDifficulty",
       "return":"int"
     },{
-      "desc":"Return the unit flags this aura respects when placing buffs.",
-      "func":"()",
-      "name":"GetAuraSearchFlags",
-      "return":"int"
+      "desc":"Gets the Xth dropped item",
+      "func":"( int_1 )",
+      "name":"GetDroppedItem",
+      "return":"handle"
     },{
-      "desc":"Return the teams this aura applies its buff to.",
+      "desc":"Returns the number of seconds elapsed since the last frame was renderered. This time doesn't count up when the game is paused",
       "func":"()",
-      "name":"GetAuraSearchTeam",
-      "return":"int"
+      "name":"GetGameFrameTime",
+      "return":"float"
     },{
-      "desc":"Return the unit classifications this aura applies its buff to.",
+      "desc":"Get the game mode entity",
       "func":"()",
-      "name":"GetAuraSearchType",
-      "return":"int"
+      "name":"GetGameModeEntity",
+      "return":"handle"
     },{
-      "desc":"Return the attach type of the particle system from GetEffectName.",
-      "func":"()",
-      "name":"GetEffectAttachType",
-      "return":"int"
-    },{
-      "desc":"Return the name of the particle system that is created while this modifier is active.",
-      "func":"()",
-      "name":"GetEffectName",
+      "desc":"Get a string value from the game session config (map options)",
+      "func":"( string_1, string_2 )",
+      "name":"GetGameSessionConfigValue",
       "return":"string"
     },{
-      "desc":"Return the name of the hero effect particle system that is created while this modifier is active.",
+      "desc":"Returns the number of seconds elapsed since map start. This time doesn't count up when the game is paused",
       "func":"()",
-      "name":"GetHeroEffectName",
-      "return":"string"
+      "name":"GetGameTime",
+      "return":"float"
     },{
-      "desc":"The name of the secondary modifier that will be applied by this modifier (if it is an aura).",
-      "func":"()",
-      "name":"GetModifierAura",
-      "return":"string"
-    },{
-      "desc":"Return the priority order this modifier will be applied over others.",
-      "func":"()",
-      "name":"GetPriority",
+      "desc":"Get the stock count of the item",
+      "func":"( int_1, string_2, int_3 )",
+      "name":"GetItemStockCount",
       "return":"int"
     },{
-      "desc":"Return the name of the status effect particle system that is created while this modifier is active.",
-      "func":"()",
-      "name":"GetStatusEffectName",
-      "return":"string"
+      "desc":"Get the time it takes to add a new item to stock",
+      "func":"( int_1, string_2, int_3 )",
+      "name":"GetItemStockDuration",
+      "return":"float"
     },{
-      "desc":"Return the name of the buff icon to be shown for this modifier.",
-      "func":"()",
-      "name":"GetTexture",
-      "return":"string"
+      "desc":"Get the time an item will be added to stock",
+      "func":"( int_1, string_2, int_3 )",
+      "name":"GetItemStockTime",
+      "return":"float"
     },{
-      "desc":"Relationship of this hero effect with those from other buffs (higher is more likely to be shown).",
+      "desc":"Get the MatchID for this game.",
       "func":"()",
-      "name":"HeroEffectPriority",
+      "name":"GetMatchID",
+      "return":"uint64"
+    },{
+      "desc":"Have we received the post match signout message that includes reward information",
+      "func":"()",
+      "name":"GetMatchSignoutComplete",
+      "return":"bool"
+    },{
+      "desc":"Gets next bounty rune spawn time",
+      "func":"()",
+      "name":"GetNextBountyRuneSpawnTime",
+      "return":"float"
+    },{
+      "desc":"Gets next rune spawn time",
+      "func":"()",
+      "name":"GetNextRuneSpawnTime",
+      "return":"float"
+    },{
+      "desc":"For New Bloom, get total damage taken by the Nian / Year Beast",
+      "func":"()",
+      "name":"GetNianTotalDamageTaken",
       "return":"int"
     },{
-      "desc":"True/false if this modifier is an aura.",
-      "func":"()",
-      "name":"IsAura",
-      "return":"bool"
+      "desc":"(Preview/Unreleased) Gets the player's custom game account record, as it looked at the start of this session",
+      "func":"( int_1 )",
+      "name":"GetPlayerCustomGameAccountRecord",
+      "return":"table"
     },{
-      "desc":"True/false if this aura provides buffs when the parent is dead.",
+      "desc":"Get time remaining between state changes.",
       "func":"()",
-      "name":"IsAuraActiveOnDeath",
-      "return":"bool"
+      "name":"GetStateTransitionTime",
+      "return":"float"
     },{
-      "desc":"True/false if this modifier should be displayed as a debuff.",
+      "desc":"Get the time of day",
       "func":"()",
-      "name":"IsDebuff",
-      "return":"bool"
+      "name":"GetTimeOfDay",
+      "return":"float"
     },{
-      "desc":"True/false if this modifier should be displayed on the buff bar.",
+      "desc":"Get Weather Wind Direction Vector",
       "func":"()",
-      "name":"IsHidden",
-      "return":"bool"
+      "name":"GetWeatherWindDirection",
+      "return":"Vector"
     },{
-      "desc":"",
-      "func":"()",
-      "name":"IsPermanent",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier can be purged.",
-      "func":"()",
-      "name":"IsPurgable",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier can be purged by strong dispels.",
-      "func":"()",
-      "name":"IsPurgeException",
-      "return":"bool"
-    },{
-      "desc":"True/false if this modifier is considered a stun for purge reasons.",
-      "func":"()",
-      "name":"IsStunDebuff",
-      "return":"bool"
-    },{
-      "desc":"Runs when the modifier is created.",
-      "func":"( handle table )",
-      "name":"OnCreated",
+      "desc":"Increase an item's stock count, clamped to item max (nTeamNumber, szItemName, nCount, nPlayerID .",
+      "func":"( int_1, string_2, int_3, int_4 )",
+      "name":"IncreaseItemStock",
       "return":"void"
     },{
-      "desc":"Runs when the modifier is destroyed (after unit loses modifier).",
+      "desc":"Are cheats enabled on the server",
       "func":"()",
-      "name":"OnDestroy",
-      "return":"void"
-    },{
-      "desc":"Runs when the think interval occurs.",
-      "func":"()",
-      "name":"OnIntervalThink",
-      "return":"void"
-    },{
-      "desc":"Runs when the modifier is refreshed.",
-      "func":"( handle table )",
-      "name":"OnRefresh",
-      "return":"void"
-    },{
-      "desc":"Runs when the modifier is destroyed (before unit loses modifier).",
-      "func":"()",
-      "name":"OnRemoved",
-      "return":"void"
-    },{
-      "desc":"Runs when stack count changes (param is old count).",
-      "func":"( int iStackCount )",
-      "name":"OnStackCountChanged",
-      "return":"void"
-    },{
-      "desc":"True/false if this modifier is removed when the parent dies.",
-      "func":"()",
-      "name":"RemoveOnDeath",
+      "name":"IsCheatMode",
       "return":"bool"
     },{
-      "desc":"",
-      "func":"( bool bHasCustomData )",
-      "name":"SetHasCustomTransmitterData",
-      "return":"void"
-    },{
-      "desc":"Apply the overhead offset to the attached effect.",
+      "desc":"Is it day time?",
       "func":"()",
-      "name":"ShouldUseOverheadOffset",
+      "name":"IsDaytime",
       "return":"bool"
     },{
-      "desc":"Relationship of this status effect with those from other buffs (higher is more likely to be shown).",
+      "desc":"Returns whether the game is paused.",
       "func":"()",
-      "name":"StatusEffectPriority",
+      "name":"IsGamePaused",
+      "return":"bool"
+    },{
+      "desc":"Returns whether hero respawn is enabled.",
+      "func":"()",
+      "name":"IsHeroRespawnEnabled",
+      "return":"bool"
+    },{
+      "desc":"Are we in the ban phase of hero pick?",
+      "func":"()",
+      "name":"IsInBanPhase",
+      "return":"bool"
+    },{
+      "desc":"Query an item in the whitelist",
+      "func":"( string_1 )",
+      "name":"IsItemInWhiteList",
+      "return":"bool"
+    },{
+      "desc":"Is it night stalker night-time?",
+      "func":"()",
+      "name":"IsNightstalkerNight",
+      "return":"bool"
+    },{
+      "desc":"Is it temporarily night-time?",
+      "func":"()",
+      "name":"IsTemporaryNight",
+      "return":"bool"
+    },{
+      "desc":"Lock (true) or unlock (false) team assignemnt. If team assignment is locked players cannot change teams.",
+      "func":"( bool_1 )",
+      "name":"LockCustomGameSetupTeamAssignment",
+      "return":"void"
+    },{
+      "desc":"Makes the specified team lose",
+      "func":"( int_1 )",
+      "name":"MakeTeamLose",
+      "return":"void"
+    },{
+      "desc":"Like ModifyGold, but will use the gold filter if SetFilterMoreGold has been set true",
+      "func":"( int_1, int_2, bool_3, int_4 )",
+      "name":"ModifyGoldFiltered",
+      "return":"int"
+    },{
+      "desc":"Returns the number of items currently dropped on the ground",
+      "func":"()",
+      "name":"NumDroppedItems",
+      "return":"int"
+    },{
+      "desc":"Whether a player has custom game host privileges (shuffle teams, etc.)",
+      "func":"( handle_1 )",
+      "name":"PlayerHasCustomGameHostPrivileges",
+      "return":"bool"
+    },{
+      "desc":"Updates custom hero, unit and ability KeyValues in memory with the latest values from disk",
+      "func":"()",
+      "name":"Playtesting_UpdateAddOnKeyValues",
+      "return":"void"
+    },{
+      "desc":"Prepare Dota lane style spawners with a given interval",
+      "func":"( float_1 )",
+      "name":"PrepareSpawners",
+      "return":"void"
+    },{
+      "desc":"Removes a fake client",
+      "func":"( int_1 )",
+      "name":"RemoveFakeClient",
+      "return":"void"
+    },{
+      "desc":"Remove an item from the whitelist",
+      "func":"( string_1 )",
+      "name":"RemoveItemFromWhiteList",
+      "return":"void"
+    },{
+      "desc":"Restart after killing the ancient, etc.",
+      "func":"()",
+      "name":"ResetDefeated",
+      "return":"void"
+    },{
+      "desc":"Restart gametime from 0",
+      "func":"()",
+      "name":"ResetGameTime",
+      "return":"void"
+    },{
+      "desc":"Restart at custom game setup.",
+      "func":"()",
+      "name":"ResetToCustomGameSetup",
+      "return":"void"
+    },{
+      "desc":"Restart the game at hero selection",
+      "func":"()",
+      "name":"ResetToHeroSelection",
+      "return":"void"
+    },{
+      "desc":"Sends a message on behalf of a player.",
+      "func":"( string_1, int_2, int_3 )",
+      "name":"SendCustomMessage",
+      "return":"void"
+    },{
+      "desc":"Sends a message on behalf of a player to the specified team.",
+      "func":"( string_1, int_2, int_3, int_4 )",
+      "name":"SendCustomMessageToTeam",
+      "return":"void"
+    },{
+      "desc":"(flMinimapCreepIconScale) - Scale the creep icons on the minimap.",
+      "func":"( float_1 )",
+      "name":"SetCreepMinimapIconScale",
+      "return":"void"
+    },{
+      "desc":"Sets whether the regular Dota creeps spawn.",
+      "func":"( bool_1 )",
+      "name":"SetCreepSpawningEnabled",
+      "return":"void"
+    },{
+      "desc":"(Preview/Unreleased) Sets a callback to handle saving custom game account records (callback is passed a Player ID and should return a flat simple table)",
+      "func":"( handle_1, handle_2 )",
+      "name":"SetCustomGameAccountRecordSaveFunction",
+      "return":"void"
+    },{
+      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
+      "func":"( bool_1 )",
+      "name":"SetCustomGameAllowBattleMusic",
+      "return":"void"
+    },{
+      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
+      "func":"( bool_1 )",
+      "name":"SetCustomGameAllowHeroPickMusic",
+      "return":"void"
+    },{
+      "desc":"Sets a flag to enable/disable the default music handling code for custom games",
+      "func":"( bool_1 )",
+      "name":"SetCustomGameAllowMusicAtGameStart",
+      "return":"void"
+    },{
+      "desc":"Sets a flag to enable/disable the casting secondary abilities from units other than the player's own hero.",
+      "func":"( bool_1 )",
+      "name":"SetCustomGameAllowSecondaryAbilitiesOnOtherUnits",
+      "return":"void"
+    },{
+      "desc":"Set number of hero bans each team gets",
+      "func":"( int_1 )",
+      "name":"SetCustomGameBansPerTeam",
+      "return":"void"
+    },{
+      "desc":"Set the difficulty level of the custom game mode",
+      "func":"( int_1 )",
+      "name":"SetCustomGameDifficulty",
+      "return":"void"
+    },{
+      "desc":"Sets the game end delay.",
+      "func":"( float_1 )",
+      "name":"SetCustomGameEndDelay",
+      "return":"void"
+    },{
+      "desc":"Set the amount of time to wait for auto launch.",
+      "func":"( float_1 )",
+      "name":"SetCustomGameSetupAutoLaunchDelay",
+      "return":"void"
+    },{
+      "desc":"Set the amount of remaining time, in seconds, for custom game setup. 0 = finish immediately, -1 = wait forever",
+      "func":"( float_1 )",
+      "name":"SetCustomGameSetupRemainingTime",
+      "return":"void"
+    },{
+      "desc":"Setup (pre-gameplay) phase timeout. 0 = instant, -1 = forever (until FinishCustomGameSetup is called)",
+      "func":"( float_1 )",
+      "name":"SetCustomGameSetupTimeout",
+      "return":"void"
+    },{
+      "desc":"Set whether a team is selectable during game setup",
+      "func":"( int_1, int_2 )",
+      "name":"SetCustomGameTeamMaxPlayers",
+      "return":"void"
+    },{
+      "desc":"Sets the victory message.",
+      "func":"( string_1 )",
+      "name":"SetCustomVictoryMessage",
+      "return":"void"
+    },{
+      "desc":"Sets the victory message duration.",
+      "func":"( float_1 )",
+      "name":"SetCustomVictoryMessageDuration",
+      "return":"void"
+    },{
+      "desc":"Event-only ( table hMetadataTable )",
+      "func":"( handle_1 )",
+      "name":"SetEventMetadataCustomTable",
+      "return":"bool"
+    },{
+      "desc":"Event-only ( table hMetadataTable )",
+      "func":"( handle_1 )",
+      "name":"SetEventSignoutCustomTable",
+      "return":"bool"
+    },{
+      "desc":"Sets whether to filter more gold events than normal",
+      "func":"( bool_1 )",
+      "name":"SetFilterMoreGold",
+      "return":"void"
+    },{
+      "desc":"Sets whether First Blood has been triggered.",
+      "func":"( bool_1 )",
+      "name":"SetFirstBloodActive",
+      "return":"void"
+    },{
+      "desc":"Freeze the game time.",
+      "func":"( bool_1 )",
+      "name":"SetGameTimeFrozen",
+      "return":"void"
+    },{
+      "desc":"Makes the specified team win",
+      "func":"( int_1 )",
+      "name":"SetGameWinner",
+      "return":"void"
+    },{
+      "desc":"Set Glyph cooldown for team",
+      "func":"( int_1, float_2 )",
+      "name":"SetGlyphCooldown",
+      "return":"void"
+    },{
+      "desc":"Set the auto gold increase per timed interval.",
+      "func":"( int_1 )",
+      "name":"SetGoldPerTick",
+      "return":"void"
+    },{
+      "desc":"Set the time interval between auto gold increases.",
+      "func":"( float_1 )",
+      "name":"SetGoldTickTime",
+      "return":"void"
+    },{
+      "desc":"(flMinimapHeroIconScale) - Scale the hero minimap icons on the minimap.",
+      "func":"( float_1 )",
+      "name":"SetHeroMinimapIconScale",
+      "return":"void"
+    },{
+      "desc":"Control if the normal DOTA hero respawn rules apply.",
+      "func":"( bool_1 )",
+      "name":"SetHeroRespawnEnabled",
+      "return":"void"
+    },{
+      "desc":"Sets amount of penalty time before randoming a hero",
+      "func":"( float_1 )",
+      "name":"SetHeroSelectPenaltyTime",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time players have to pick their hero.",
+      "func":"( float_1 )",
+      "name":"SetHeroSelectionTime",
+      "return":"void"
+    },{
+      "desc":"Sets whether the multikill, streak, and first-blood banners appear at the top of the screen.",
+      "func":"( bool_1 )",
+      "name":"SetHideKillMessageHeaders",
+      "return":"void"
+    },{
+      "desc":"Set whether custom and event games should ignore Lobby teams when assigning players to teams. Defaults to true.",
+      "func":"( bool_1 )",
+      "name":"SetIgnoreLobbyTeamsInCustomGame",
+      "return":"void"
+    },{
+      "desc":"Set the stock count of the item",
+      "func":"( int_1, int_2, string_3, int_4 )",
+      "name":"SetItemStockCount",
+      "return":"void"
+    },{
+      "desc":"Sets next bounty rune spawn time",
+      "func":"( float_1 )",
+      "name":"SetNextBountyRuneSpawnTime",
+      "return":"void"
+    },{
+      "desc":"Sets next rune spawn time",
+      "func":"( float_1 )",
+      "name":"SetNextRuneSpawnTime",
+      "return":"void"
+    },{
+      "desc":"Show this unit's health on the overlay health bar",
+      "func":"( handle_1, int_2 )",
+      "name":"SetOverlayHealthBarUnit",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time players have between the game ending and the server disconnecting them.",
+      "func":"( float_1 )",
+      "name":"SetPostGameTime",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time players have between picking their hero and game start.",
+      "func":"( float_1 )",
+      "name":"SetPreGameTime",
+      "return":"void"
+    },{
+      "desc":"(flMinimapRuneIconScale) - Scale the rune icons on the minimap.",
+      "func":"( float_1 )",
+      "name":"SetRuneMinimapIconScale",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time between rune spawns.",
+      "func":"( float_1 )",
+      "name":"SetRuneSpawnTime",
+      "return":"void"
+    },{
+      "desc":"(bSafeToLeave) - Mark this game as safe to leave.",
+      "func":"( bool_1 )",
+      "name":"SetSafeToLeave",
+      "return":"void"
+    },{
+      "desc":"When true, players can repeatedly pick the same hero.",
+      "func":"( bool_1 )",
+      "name":"SetSameHeroSelectionEnabled",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time players have between the strategy phase and entering the pre-game phase.",
+      "func":"( float_1 )",
+      "name":"SetShowcaseTime",
+      "return":"void"
+    },{
+      "desc":"Set whether to speak a Spawn concept instead of a Respawn concept on respawn.",
+      "func":"( bool_1 )",
+      "name":"SetSpeechUseSpawnInsteadOfRespawnConcept",
+      "return":"void"
+    },{
+      "desc":"Set the starting gold amount.",
+      "func":"( int_1 )",
+      "name":"SetStartingGold",
+      "return":"void"
+    },{
+      "desc":"Sets the amount of time players have between the hero selection and entering the showcase phase.",
+      "func":"( float_1 )",
+      "name":"SetStrategyTime",
+      "return":"void"
+    },{
+      "desc":"Set the time of day.",
+      "func":"( float_1 )",
+      "name":"SetTimeOfDay",
+      "return":"void"
+    },{
+      "desc":"Sets the tree regrow time in seconds.",
+      "func":"( float_1 )",
+      "name":"SetTreeRegrowTime",
+      "return":"void"
+    },{
+      "desc":"Heroes will use the basic NPC functionality for determining their bounty, rather than DOTA specific formulas.",
+      "func":"( bool_1 )",
+      "name":"SetUseBaseGoldBountyOnHeroes",
+      "return":"void"
+    },{
+      "desc":"Allows heroes in the map to give a specific amount of XP (this value must be set).",
+      "func":"( bool_1 )",
+      "name":"SetUseCustomHeroXPValues",
+      "return":"void"
+    },{
+      "desc":"When true, all items are available at as long as any shop is in range.",
+      "func":"( bool_1 )",
+      "name":"SetUseUniversalShopMode",
+      "return":"void"
+    },{
+      "desc":"Set Weather Wind Direction Vector",
+      "func":"( Vector_1 )",
+      "name":"SetWeatherWindDirection",
+      "return":"void"
+    },{
+      "desc":"Item whitelist functionality enable/disable",
+      "func":"( bool_1 )",
+      "name":"SetWhiteListEnabled",
+      "return":"void"
+    },{
+      "desc":"Spawn and release the next creep wave from Dota lane style spawners.",
+      "func":"()",
+      "name":"SpawnAndReleaseCreeps",
+      "return":"void"
+    },{
+      "desc":"Spawn and release the next set of neutral camps.",
+      "func":"()",
+      "name":"SpawnNeutralCreeps",
+      "return":"void"
+    },{
+      "desc":"Get the current Gamerules state",
+      "func":"()",
+      "name":"State_Get",
       "return":"int"
     }],
   "CDOTA_BaseNPC":[{
@@ -11313,6 +11290,11 @@
       "func":"()",
       "name":"BoundingRadius2D",
       "return":"float"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"CalculateGenericBonuses",
+      "return":"void"
     },{
       "desc":"Check FoW to see if an entity is visible.",
       "func":"( handle hEntity )",
@@ -11603,6 +11585,16 @@
       "func":"()",
       "name":"GetCursorTargetingNothing",
       "return":"bool"
+    },{
+      "desc":"Get the maximum attack damage of this unit.",
+      "func":"()",
+      "name":"GetDamageMax",
+      "return":"int"
+    },{
+      "desc":"Get the minimum attack damage of this unit.",
+      "func":"()",
+      "name":"GetDamageMin",
+      "return":"int"
     },{
       "desc":"Returns the vision range after modifiers.",
       "func":"()",
@@ -12044,6 +12036,11 @@
       "name":"IsCreep",
       "return":"bool"
     },{
+      "desc":"Is this unit a creep hero?",
+      "func":"()",
+      "name":"IsCreepHero",
+      "return":"bool"
+    },{
       "desc":"",
       "func":"()",
       "name":"IsCurrentlyHorizontalMotionControlled",
@@ -12389,7 +12386,7 @@
       "name":"ProvidesVision",
       "return":"bool"
     },{
-      "desc":"(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions",
+      "desc":"(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)",
       "func":"( bool bRemovePositiveBuffs, bool bRemoveDebuffs, bool bFrameOnly, bool bRemoveStuns, bool bRemoveExceptions )",
       "name":"Purge",
       "return":"void"
@@ -12397,6 +12394,16 @@
       "desc":"Queue a response system concept with the TLK_DOTA_CUSTOM concept, after a delay.",
       "func":"( float flDelay, handle hCriteriaTable, handle hCompletionCallbackFn, handle hContext, handle hCallbackInfo )",
       "name":"QueueConcept",
+      "return":"void"
+    },{
+      "desc":"Queue a response system concept with the TLK_DOTA_CUSTOM concept, after a delay, for the same team this speaker is on.",
+      "func":"( float flDelay, handle hCriteriaTable, handle hCompletionCallbackFn, handle hContext, handle hCallbackInfo )",
+      "name":"QueueTeamConcept",
+      "return":"void"
+    },{
+      "desc":"Queue a response system concept with the TLK_DOTA_CUSTOM concept, after a delay, for the same team this speaker is on. Is not played for spectators.",
+      "func":"( float flDelay, handle hCriteriaTable, handle hCompletionCallbackFn, handle hContext, handle hCallbackInfo )",
+      "name":"QueueTeamConceptNoSpectators",
       "return":"void"
     },{
       "desc":"Remove mana from this unit, this can be used for involuntary mana loss, not for mana that is spent.",
@@ -12417,6 +12424,11 @@
       "desc":"",
       "func":"( string pszAbilityName )",
       "name":"RemoveAbilityFromIndexByName",
+      "return":"void"
+    },{
+      "desc":"(int targets [0=all, 1=enemy, 2=ally], bool bNow, bool bPermanent, bool bDeath)",
+      "func":"( int targets, bool bNow, bool bPermanent, bool bDeath )",
+      "name":"RemoveAllModifiers",
       "return":"void"
     },{
       "desc":"Remove the given gesture activity.",
@@ -12797,6 +12809,11 @@
       "desc":"",
       "func":"()",
       "name":"UnitCanRespawn",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"WasKilledPassively",
       "return":"bool"
     }],
   "CInfoData":[{
@@ -13182,6 +13199,11 @@
       "name":"GetCustomBuybackCostEnabled",
       "return":"bool"
     },{
+      "desc":"Get the topbar score display value for dire.",
+      "func":"()",
+      "name":"GetCustomDireScore",
+      "return":"int"
+    },{
       "desc":"Get the current custom glyph cooldown.",
       "func":"()",
       "name":"GetCustomGlyphCooldown",
@@ -13190,6 +13212,11 @@
       "desc":"Allows definition of the max level heroes can achieve (default is 25).",
       "func":"()",
       "name":"GetCustomHeroMaxLevel",
+      "return":"int"
+    },{
+      "desc":"Get the topbar score display value for radiant.",
+      "func":"()",
+      "name":"GetCustomRadiantScore",
       "return":"int"
     },{
       "desc":"Get the current custom scan cooldown.",
@@ -13317,6 +13344,11 @@
       "name":"SetAbilityTuningValueFilter",
       "return":"void"
     },{
+      "desc":"If set to true, neutral items will be dropped on killing neutral monsters.  Otherwise nothing will be dropped.",
+      "func":"( bool bEnabled )",
+      "name":"SetAllowNeutralItemDrops",
+      "return":"void"
+    },{
       "desc":"Show the player hero's inventory in the HUD, regardless of what unit is selected.",
       "func":"( bool bAlwaysShow )",
       "name":"SetAlwaysShowPlayerInventory",
@@ -13407,6 +13439,11 @@
       "name":"SetCustomBuybackCostEnabled",
       "return":"void"
     },{
+      "desc":"Sets the topbar score display value for dire.",
+      "func":"( int nScore )",
+      "name":"SetCustomDireScore",
+      "return":"void"
+    },{
       "desc":"Force all players to use the specified hero and disable the normal hero selection process. Must be used before hero selection.",
       "func":"( string pHeroName )",
       "name":"SetCustomGameForceHero",
@@ -13420,6 +13457,11 @@
       "desc":"Allows definition of the max level heroes can achieve (default is 25).",
       "func":"( int_1 )",
       "name":"SetCustomHeroMaxLevel",
+      "return":"void"
+    },{
+      "desc":"Sets the topbar score display value for radiant.",
+      "func":"( int nScore )",
+      "name":"SetCustomRadiantScore",
       "return":"void"
     },{
       "desc":"Set a custom cooldown for team Scan ability.",
@@ -13707,31 +13749,186 @@
       "name":"SetWeatherEffectsDisabled",
       "return":"void"
     }],
-  "CDOTA_Modifier_Lua_Vertical_Motion":[{
-      "desc":"Starts the vertical motion controller effects for this buff.  Returns true if successful.",
+  "CDOTA_Modifier_Lua":[{
+      "desc":"True/false if this modifier is active on illusions.",
       "func":"()",
-      "name":"ApplyVerticalMotionController",
+      "name":"AllowIllusionDuplicate",
       "return":"bool"
     },{
-      "desc":"Get the priority",
+      "desc":"",
       "func":"()",
-      "name":"GetMotionPriority",
+      "name":"CanParentBeAutoAttacked",
+      "return":"bool"
+    },{
+      "desc":"True/false if this buff is removed when the duration expires.",
+      "func":"()",
+      "name":"DestroyOnExpire",
+      "return":"bool"
+    },{
+      "desc":"Return the types of attributes applied to this modifier (enum value from DOTAModifierAttribute_t",
+      "func":"()",
+      "name":"GetAttributes",
       "return":"int"
     },{
-      "desc":"Called when the motion gets interrupted.",
+      "desc":"Returns aura stickiness",
       "func":"()",
-      "name":"OnVerticalMotionInterrupted",
+      "name":"GetAuraDuration",
+      "return":"float"
+    },{
+      "desc":"Return true/false if this entity should receive the aura under specific conditions",
+      "func":"( handle hEntity )",
+      "name":"GetAuraEntityReject",
+      "return":"bool"
+    },{
+      "desc":"Return the range around the parent this aura tries to apply its buff.",
+      "func":"()",
+      "name":"GetAuraRadius",
+      "return":"int"
+    },{
+      "desc":"Return the unit flags this aura respects when placing buffs.",
+      "func":"()",
+      "name":"GetAuraSearchFlags",
+      "return":"int"
+    },{
+      "desc":"Return the teams this aura applies its buff to.",
+      "func":"()",
+      "name":"GetAuraSearchTeam",
+      "return":"int"
+    },{
+      "desc":"Return the unit classifications this aura applies its buff to.",
+      "func":"()",
+      "name":"GetAuraSearchType",
+      "return":"int"
+    },{
+      "desc":"Return the attach type of the particle system from GetEffectName.",
+      "func":"()",
+      "name":"GetEffectAttachType",
+      "return":"int"
+    },{
+      "desc":"Return the name of the particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetEffectName",
+      "return":"string"
+    },{
+      "desc":"Return the name of the hero effect particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetHeroEffectName",
+      "return":"string"
+    },{
+      "desc":"The name of the secondary modifier that will be applied by this modifier (if it is an aura).",
+      "func":"()",
+      "name":"GetModifierAura",
+      "return":"string"
+    },{
+      "desc":"Return the priority order this modifier will be applied over others.",
+      "func":"()",
+      "name":"GetPriority",
+      "return":"int"
+    },{
+      "desc":"Return the name of the status effect particle system that is created while this modifier is active.",
+      "func":"()",
+      "name":"GetStatusEffectName",
+      "return":"string"
+    },{
+      "desc":"Return the name of the buff icon to be shown for this modifier.",
+      "func":"()",
+      "name":"GetTexture",
+      "return":"string"
+    },{
+      "desc":"Relationship of this hero effect with those from other buffs (higher is more likely to be shown).",
+      "func":"()",
+      "name":"HeroEffectPriority",
+      "return":"int"
+    },{
+      "desc":"True/false if this modifier is an aura.",
+      "func":"()",
+      "name":"IsAura",
+      "return":"bool"
+    },{
+      "desc":"True/false if this aura provides buffs when the parent is dead.",
+      "func":"()",
+      "name":"IsAuraActiveOnDeath",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier should be displayed as a debuff.",
+      "func":"()",
+      "name":"IsDebuff",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier should be displayed on the buff bar.",
+      "func":"()",
+      "name":"IsHidden",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"()",
+      "name":"IsPermanent",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier can be purged.",
+      "func":"()",
+      "name":"IsPurgable",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier can be purged by strong dispels.",
+      "func":"()",
+      "name":"IsPurgeException",
+      "return":"bool"
+    },{
+      "desc":"True/false if this modifier is considered a stun for purge reasons.",
+      "func":"()",
+      "name":"IsStunDebuff",
+      "return":"bool"
+    },{
+      "desc":"Runs when the modifier is created.",
+      "func":"( handle table )",
+      "name":"OnCreated",
       "return":"void"
     },{
-      "desc":"Set the priority",
-      "func":"( int nMotionPriority )",
-      "name":"SetMotionPriority",
+      "desc":"Runs when the modifier is destroyed (after unit loses modifier).",
+      "func":"()",
+      "name":"OnDestroy",
       "return":"void"
     },{
-      "desc":"Perform any motion from the given interval on the NPC.",
-      "func":"( handle me, float dt )",
-      "name":"UpdateVerticalMotion",
+      "desc":"Runs when the think interval occurs.",
+      "func":"()",
+      "name":"OnIntervalThink",
       "return":"void"
+    },{
+      "desc":"Runs when the modifier is refreshed.",
+      "func":"( handle table )",
+      "name":"OnRefresh",
+      "return":"void"
+    },{
+      "desc":"Runs when the modifier is destroyed (before unit loses modifier).",
+      "func":"()",
+      "name":"OnRemoved",
+      "return":"void"
+    },{
+      "desc":"Runs when stack count changes (param is old count).",
+      "func":"( int iStackCount )",
+      "name":"OnStackCountChanged",
+      "return":"void"
+    },{
+      "desc":"True/false if this modifier is removed when the parent dies.",
+      "func":"()",
+      "name":"RemoveOnDeath",
+      "return":"bool"
+    },{
+      "desc":"",
+      "func":"( bool bHasCustomData )",
+      "name":"SetHasCustomTransmitterData",
+      "return":"void"
+    },{
+      "desc":"Apply the overhead offset to the attached effect.",
+      "func":"()",
+      "name":"ShouldUseOverheadOffset",
+      "return":"bool"
+    },{
+      "desc":"Relationship of this status effect with those from other buffs (higher is more likely to be shown).",
+      "func":"()",
+      "name":"StatusEffectPriority",
+      "return":"int"
     }],
   "CDotaSubquestBase":[{
       "desc":"Mark this subquest complete",

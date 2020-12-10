@@ -14,8 +14,8 @@ import {
     writeDocument,
     RequestHelper,
     locale,
+    cloneObject,
 } from './utils';
-import clone from 'lodash/clone';
 
 interface ISoundEventData {
     event: string;
@@ -175,7 +175,7 @@ export class SoundEventsEditorService {
         for (const index of soundIndexes) {
             const kv = root.Value[index];
             if (kv) {
-                copySoundEvents.push(clone(kv));
+                copySoundEvents.push(cloneObject(kv));
             }
         }
         vscode.env.clipboard.writeText(formatKeyValues(copySoundEvents));

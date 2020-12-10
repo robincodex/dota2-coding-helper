@@ -36,7 +36,11 @@ async function generate_docs() {
             const $ = cheerio.load(html);
             $("pre code").each((_, e) => {
                 const code = $(e);
-                const hlCode = hljs.highlightAuto(code.text(), code.attr('class').split(/\s+/));
+                const classText = code.attr('class');
+                if (!classText) {
+                    return;
+                }
+                const hlCode = hljs.highlightAuto(code.text(), classText.split(/\s+/));
                 code.html(hlCode.value);
             });
 

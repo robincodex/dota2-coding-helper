@@ -59,3 +59,24 @@ export function initializeKV3ToDocument(document: vscode.TextDocument) {
     );
     vscode.workspace.applyEdit(edit);
 }
+
+export function cloneObject(src: any): any {
+    if (Array.isArray(src)) {
+        let ary: any[] = Object.assign([], src);
+        for (let i = 0; i < ary.length; i++) {
+            const child = ary[i];
+            if (typeof child === 'object') {
+                ary[i] = cloneObject(child);
+            }
+        }
+        return ary;
+    }
+    let obj = Object.assign({}, src);
+    for (const k in obj) {
+        const child = obj[k];
+        if (typeof child === 'object') {
+            obj[k] = cloneObject(child);
+        }
+    }
+    return obj;
+}
