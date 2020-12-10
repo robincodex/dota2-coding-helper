@@ -82,6 +82,26 @@ export class CustomGameSettingsService {
         writeDocument(document, text.replace(result[0], changeText));
     }
 
+    private SetCustomGameTeamMaxPlayers(
+        document: vscode.TextDocument,
+        data: { team: string; value: number }
+    ) {
+        const text = document.getText();
+        const result = text.match(
+            new RegExp(
+                `^GameRules:SetCustomGameTeamMaxPlayers\\(\\s*${data.team}\\s*,.+\\);?$`,
+                'm'
+            )
+        );
+        const changeText = `GameRules:SetCustomGameTeamMaxPlayers(${data.team}, ${data.value})`;
+
+        if (!result) {
+            writeDocument(document, text + '\n' + changeText);
+            return;
+        }
+        writeDocument(document, text.replace(result[0], changeText));
+    }
+
     /**
      * When editor is opened
      * @param document
@@ -122,6 +142,14 @@ export class CustomGameSettingsService {
                 return;
             }
             this.changeNumber(document, data);
+        });
+
+        this.request.listenRequest('SetCustomGameTeamMaxPlayers', (...args: any[]) => {
+            const data = args[0];
+            if (typeof data !== 'object') {
+                return;
+            }
+            this.SetCustomGameTeamMaxPlayers(document, data);
         });
 
         const onChangeDocument = vscode.workspace.onDidChangeTextDocument((e) => {
