@@ -8,6 +8,7 @@ const i18n: {
         add: string;
         ok: string;
         cancel: string;
+        help: string;
     };
 } = {
     en: {
@@ -19,6 +20,7 @@ const i18n: {
         add: 'Add',
         ok: 'OK',
         cancel: 'Cancel',
+        help: 'Help',
     },
     'zh-cn': {
         copy: '复制',
@@ -29,6 +31,7 @@ const i18n: {
         add: '添加',
         ok: '确定',
         cancel: '取消',
+        help: '帮助',
     },
 };
 

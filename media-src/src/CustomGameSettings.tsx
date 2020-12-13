@@ -2,7 +2,7 @@ import { cx } from '@emotion/css';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useRef, useState } from 'react';
-import { Toggle2Off, Toggle2On } from 'react-bootstrap-icons';
+import { QuestionOctagon, Toggle2Off, Toggle2On } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
 import { EditableText } from './Components/EditableText';
 import { renderNumericState, TextInput } from './Components/TextInput';
@@ -11,6 +11,9 @@ import type {
     GameAPI,
     GameAPIChangeEvent,
 } from '../../src/editors/custom_game_settings';
+import { Drawer } from './Components/Drawer';
+import commonText from './common_i18n';
+import { Chinese, English, Localization } from './Components/Localization';
 
 enum SettingValueType {
     Boolean,
@@ -972,6 +975,7 @@ const SettingsRoot = styled.div`
 
 function CustomGameSettings() {
     const [apiList, setAPIList] = useState<GameAPI[]>([]);
+    const [showHelp, setShowHelp] = useState(false);
 
     useWindowEvent('message', (evt) => {
         if (evt.data.label === 'update') {
@@ -1105,9 +1109,95 @@ function CustomGameSettings() {
                     </SettingContainer>
                 </div>
             </SettingsRoot>
+            {/* Help */}
+            <Drawer
+                title={commonText.help}
+                showable={showHelp}
+                onClose={() => setShowHelp(false)}
+            >
+                <div>
+                    <BooleanIcon style={{ verticalAlign: 'middle' }}>
+                        <Toggle2Off />
+                    </BooleanIcon>{' '}
+                    <span style={{ verticalAlign: 'middle' }}>= false</span>
+                </div>
+                <div style={{ marginTop: 10 }}>
+                    <BooleanIcon
+                        className="is-true"
+                        style={{ verticalAlign: 'middle' }}
+                    >
+                        <Toggle2On />
+                    </BooleanIcon>{' '}
+                    <span style={{ verticalAlign: 'middle' }}>= true</span>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <Localization>
+                                <English>
+                                    The API that does not exist in the file will display
+                                    the default value. The default value refers to the
+                                    setting of DOTA2. The displayed default value is not
+                                    necessarily correct. Generally <code>-1</code>{' '}
+                                    represents using the default value of DOTA2.
+                                </English>
+                                <Chinese>
+                                    不存在文件中的API会显示默认值，该默认值参考DOTA2的设置，显示的默认值不一定是正确的，一般
+                                    <code>-1</code>代表使用DOTA2的默认值。
+                                </Chinese>
+                            </Localization>
+                        </li>
+                        <li>
+                            <Localization>
+                                <English>
+                                    In the numeric input, press enter to change the
+                                    value.
+                                </English>
+                                <Chinese>
+                                    数字输入框在修改数值之后按回车键即可更改数值。
+                                </Chinese>
+                            </Localization>
+                        </li>
+                        <li>
+                            <Localization>
+                                <English>
+                                    <code>
+                                        local GameMode = GameRules:GetGameModeEntity()
+                                    </code>
+                                    must be on top
+                                </English>
+                                <Chinese>
+                                    必须将
+                                    <code>
+                                        local GameMode = GameRules:GetGameModeEntity()
+                                    </code>
+                                    放在最前面
+                                </Chinese>
+                            </Localization>
+                        </li>
+                    </ul>
+                </div>
+            </Drawer>
+            <HelpButton onClick={() => setShowHelp(!showHelp)}>
+                <QuestionOctagon />
+            </HelpButton>
         </CacheProvider>
     );
 }
+
+const HelpButton = styled.div`
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+
+    &:hover {
+        color: var(--vscode-terminal-ansiGreen);
+    }
+`;
 
 const app = document.getElementById('app');
 ReactDOM.render(<CustomGameSettings />, app);

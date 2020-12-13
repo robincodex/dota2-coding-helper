@@ -17,3 +17,12 @@ body {
     font-weight: var(--vscode-editor-font-weight);
     font-size: var(--vscode-editor-font-size);
 }
+
+code {
+    background: var(--vscode-textCodeBlock-background);
+    font-family: var(--vsocde-editor-font-family);
+    font-weight: var(--vscode-editor-font-weight);
+    font-size: var(--vscode-editor-font-size);
+    border-radius: 3px;
+    padding: 1px 4px;
+}
