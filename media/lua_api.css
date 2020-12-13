@@ -109,6 +109,7 @@
 
 .func-name {
     color: #eec773;
+    display: inline-block;
 }
 
 .func-params {
@@ -129,6 +130,6 @@
 }
 
 .constant-value {
-    color: #cfcfcf;
-    float: right;
+    color: #a1a1a1;
+    display: inline-block;
 }
