@@ -1,5 +1,8 @@
 # DOTA2 Coding Helper
 
+> ⚠️ 请在使用此扩展前备份好你的文件  
+> ⚠️ Please backup your files before using this extension.
+
 ## Sound Events Editor
 
 - Right click any `*.vsndevts` file and select `Open with`
