@@ -102,6 +102,26 @@ export class CustomGameSettingsService {
         writeDocument(document, text.replace(result[0], changeText));
     }
 
+    private SetCustomAttributeDerivedStatValue(
+        document: vscode.TextDocument,
+        data: { enum: string; value: number }
+    ) {
+        const text = document.getText();
+        const result = text.match(
+            new RegExp(
+                `^GameMode:SetCustomAttributeDerivedStatValue\\(\\s*${data.enum}\\s*,.+\\);?$`,
+                'm'
+            )
+        );
+        const changeText = `GameMode:SetCustomAttributeDerivedStatValue(${data.enum}, ${data.value})`;
+
+        if (!result) {
+            writeDocument(document, text + '\n' + changeText);
+            return;
+        }
+        writeDocument(document, text.replace(result[0], changeText));
+    }
+
     /**
      * When editor is opened
      * @param document
@@ -151,6 +171,17 @@ export class CustomGameSettingsService {
             }
             this.SetCustomGameTeamMaxPlayers(document, data);
         });
+
+        this.request.listenRequest(
+            'SetCustomAttributeDerivedStatValue',
+            (...args: any[]) => {
+                const data = args[0];
+                if (typeof data !== 'object') {
+                    return;
+                }
+                this.SetCustomAttributeDerivedStatValue(document, data);
+            }
+        );
 
         const onChangeDocument = vscode.workspace.onDidChangeTextDocument((e) => {
             if (e.contentChanges.length <= 0) {

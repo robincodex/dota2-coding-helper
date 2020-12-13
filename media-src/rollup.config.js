@@ -23,8 +23,6 @@ export default {
     plugins: [
         replace({
             'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
-            'process.env.BLUEPRINT_NAMESPACE': '"bp3"',
-            'process.env.REACT_APP_BLUEPRINT_NAMESPACE': '"bp3"',
         }),
         nodeResolve({
             extensions,
@@ -57,12 +55,12 @@ export default {
                 ['@babel/plugin-proposal-object-rest-spread', {
                     useBuiltIns: true,
                 }],
-                ['@babel/plugin-transform-runtime', {
-                    corejs: 3,
-                    helpers: true,
-                    regenerator: true,
-                    useESModules: false,
-                }],
+                // ['@babel/plugin-transform-runtime', {
+                //     // corejs: 3,
+                //     helpers: true,
+                //     regenerator: true,
+                //     useESModules: false,
+                // }],
                 ["@emotion"]
             ],
         }),

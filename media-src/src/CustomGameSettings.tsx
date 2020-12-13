@@ -139,7 +139,7 @@ const SettingList: SettingType[] = [
         func: 'SetBuybackEnabled',
         namespace: GameMode,
         type: SettingValueType.Boolean,
-        default: false,
+        default: true,
         description: 'Enables or disables buyback completely.',
     },
     {
@@ -349,7 +349,7 @@ const SettingList: SettingType[] = [
         func: 'SetCustomGameEndDelay',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 180,
+        default: -1,
         description: 'Sets the game end delay.',
     },
     {
@@ -398,21 +398,21 @@ const SettingList: SettingType[] = [
         func: 'SetHeroSelectPenaltyTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Sets amount of penalty time before randoming a hero',
     },
     {
         func: 'SetHeroSelectionTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 60,
+        default: -1,
         description: 'Time in seconds for hero selection.',
     },
     {
         func: 'SetStrategyTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         // prettier-ignore
         description: 'Time in seconds for between the hero selection and entering the showcase phase.',
     },
@@ -420,49 +420,49 @@ const SettingList: SettingType[] = [
         func: 'SetShowcaseTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Time in seconds for team showcase.',
     },
     {
         func: 'SetPreGameTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 90,
+        default: -1,
         description: 'Time in seconds before the game begins.',
     },
     {
         func: 'SetPostGameTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 60,
+        default: -1,
         description: 'Time in seconds after the game ends before the server.',
     },
     {
         func: 'SetRuneSpawnTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 120,
+        default: -1,
         description: 'Time in seconds for spawn runes.',
     },
     {
         func: 'SetTimeOfDay',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Current time of day.',
     },
     {
         func: 'SetTreeRegrowTime',
         namespace: GameRules,
         type: SettingValueType.Number,
-        default: 300,
+        default: -1,
         description: 'Time in seconds for a tree to regrow.',
     },
     {
         func: 'SetBountyRuneSpawnInterval',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 60,
+        default: -1,
         description: 'Set bounty rune spawn rate',
     },
     {
@@ -480,59 +480,52 @@ const SettingList: SettingType[] = [
         description: 'Set a different camera smooth count; dota default is 8.',
     },
     {
-        func: 'SetCameraZRange',
-        namespace: GameMode,
-        type: SettingValueType.Number,
-        default: 0,
-        description: 'Sets the camera Z range',
-    },
-    {
         func: 'SetCustomBackpackCooldownPercent',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Set the rate cooldown ticks down for items in the backpack.',
     },
     {
         func: 'SetCustomBackpackSwapCooldown',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Set a custom cooldown for swapping items into the backpack.',
     },
     {
         func: 'SetCustomGlyphCooldown',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Set a custom cooldown for team Glyph ability.',
     },
     {
         func: 'SetCustomScanCooldown',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Set a custom cooldown for team Scan ability.',
     },
     {
         func: 'SetDraftingBanningTimeOverride',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 30,
+        default: -1,
         description: 'Set drafting hero banning time',
     },
     {
         func: 'SetDraftingHeroPickSelectTimeOverride',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 30,
+        default: -1,
         description: 'Set drafting hero pick time',
     },
     {
         func: 'SetFixedRespawnTime',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 0,
+        default: -1,
         description: 'Set a fixed delay for all players to respawn after.',
     },
     {
@@ -563,7 +556,7 @@ const SettingList: SettingType[] = [
         func: 'SetMaximumAttackSpeed',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 1000,
+        default: 0,
         description: 'Set the maximum attack speed for units.',
     },
     {
@@ -577,7 +570,7 @@ const SettingList: SettingType[] = [
         func: 'SetPowerRuneSpawnInterval',
         namespace: GameMode,
         type: SettingValueType.Number,
-        default: 120,
+        default: -1,
         description: 'Set power rune spawn rate',
     },
     {
@@ -593,8 +586,8 @@ const SettingList: SettingType[] = [
 const SetCustomGameTeamMaxPlayers = {
     description: 'Set whether a team is selectable during game setup.',
     teams: [
-        { enum: 'DOTA_TEAM_GOODGUYS', default: 5 },
-        { enum: 'DOTA_TEAM_BADGUYS', default: 5 },
+        { enum: 'DOTA_TEAM_GOODGUYS', default: 0 },
+        { enum: 'DOTA_TEAM_BADGUYS', default: 0 },
         { enum: 'DOTA_TEAM_NEUTRALS', default: 0 },
         { enum: 'DOTA_TEAM_CUSTOM_1', default: 0 },
         { enum: 'DOTA_TEAM_CUSTOM_2', default: 0 },
@@ -607,7 +600,25 @@ const SetCustomGameTeamMaxPlayers = {
     ],
 };
 
+const SetCustomAttributeDerivedStatValue = {
+    description: 'Modify derived stat value constants.',
+    values: [
+        { enum: 'DOTA_ATTRIBUTE_STRENGTH_DAMAGE', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_STRENGTH_HP', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_STRENGTH_HP_REGEN', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_AGILITY_DAMAGE', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_AGILITY_ARMOR', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_INTELLIGENCE_MANA', default: -1 },
+        { enum: 'DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN', default: -1 },
+    ],
+};
+
 const DescriptionLocalize: Record<string, { 'zh-cn': string }> = {
+    'Modify derived stat value constants.': {
+        'zh-cn': '修改力量，敏捷，智力的属性加成',
+    },
     'Sets a flag to enable/disable the default music handling code for custom games': {
         'zh-cn': '禁用该类型的音乐',
     },
@@ -1024,6 +1035,66 @@ function CustomGameSettings() {
                                                     team: v.enum,
                                                     value: parseInt(text) || 0,
                                                 });
+                                            }}
+                                        />
+                                        {')'}
+                                    </SettingFunction>
+                                </SettingContainer>
+                            );
+                        })}
+                    </SettingContainer>
+                </div>
+                {/* SetCustomAttributeDerivedStatValue */}
+                <div>
+                    <SettingContainer>
+                        <SettingFunction>
+                            <SettingFunctionName>
+                                SetCustomAttributeDerivedStatValue
+                            </SettingFunctionName>
+                        </SettingFunction>
+                        <SettingDescription>
+                            {getLocalize(
+                                SetCustomAttributeDerivedStatValue.description
+                            )}
+                        </SettingDescription>
+                        {SetCustomAttributeDerivedStatValue.values.map((v, i) => {
+                            const api = apiList.find(
+                                (v2) =>
+                                    v2.Namespace === GameMode &&
+                                    v2.FuncName ===
+                                        'SetCustomAttributeDerivedStatValue' &&
+                                    v2.Params[0] === v.enum
+                            );
+                            let value = v.default;
+                            if (api && typeof api.Params[1] === 'string') {
+                                value = parseInt(api.Params[1]);
+                                if (isNaN(value)) {
+                                    value = v.default;
+                                }
+                            }
+                            return (
+                                <SettingContainer key={i}>
+                                    <SettingFunction>
+                                        <SettingFunctionName style={{ width: 342 }}>
+                                            {'- ' + v.enum}
+                                        </SettingFunctionName>
+                                        {'('}
+                                        <EditableText
+                                            style={{
+                                                width: 50,
+                                                textAlign: 'center',
+                                                borderRadius: 10000,
+                                            }}
+                                            renderState={renderNumericState}
+                                            defaultValue={value.toString()}
+                                            onComplete={(text) => {
+                                                request(
+                                                    'SetCustomAttributeDerivedStatValue',
+                                                    {
+                                                        enum: v.enum,
+                                                        value: parseInt(text) || 0,
+                                                    }
+                                                );
                                             }}
                                         />
                                         {')'}
