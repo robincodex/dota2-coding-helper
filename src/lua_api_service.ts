@@ -46,7 +46,7 @@ export class LuaAPI {
         );
 
         const apiUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, `lua_${this.isServer?'server':'client'}_api.json`))
+            vscode.Uri.file(path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_${vscode.env.language}.json`))
         );
 
         this.webviewPanel.webview.html = `<!DOCTYPE html>
