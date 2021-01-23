@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { loadLocale, loadLocaleJSON } from './utils';
+import fs from 'fs';
 
 export class LuaAPI {
     private webviewPanel: vscode.WebviewPanel;
@@ -45,8 +46,12 @@ export class LuaAPI {
             vscode.Uri.file(path.join(media, 'lua_api.css'))
         );
 
+        var apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_${vscode.env.language}.json`);
+        if (!fs.existsSync(apiUriPath)) { 
+            apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_en.json`);
+        }
         const apiUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, `lua_${this.isServer?'server':'client'}_api.json`))
+            vscode.Uri.file(apiUriPath)
         );
 
         this.webviewPanel.webview.html = `<!DOCTYPE html>
