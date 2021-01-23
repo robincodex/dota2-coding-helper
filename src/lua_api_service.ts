@@ -47,7 +47,9 @@ export class LuaAPI {
         );
 
         var apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_${vscode.env.language}.json`);
-        if (!fs.existsSync(apiUriPath)) { apiUriPath.replace(`${vscode.env.language}`, 'en')}
+        if (!fs.existsSync(apiUriPath)) { 
+            apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_en.json`);
+        }
         const apiUri = this.webviewPanel.webview.asWebviewUri(
             vscode.Uri.file(apiUriPath)
         );
