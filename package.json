@@ -2,7 +2,7 @@
     "name": "dota2-coding-helper",
     "displayName": "Dota2 Coding Helper",
     "description": "View some document for Dota2 custom game",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "publisher": "robincode",
     "icon": "media/logo.png",
     "engines": {
@@ -15,7 +15,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:dota2CodingHelper.luaServerAPI",
+        "onCommand:dota2CodingHelper.luaServerAPI-en",
+        "onCommand:dota2CodingHelper.luaServerAPI-zh-cn",
         "onCommand:dota2CodingHelper.luaClientAPI",
         "onCommand:dota2CodingHelper.jsAPI",
         "onCommand:dota2CodingHelper.panoramaCSS",
@@ -28,8 +29,13 @@
     "contributes": {
         "commands": [
             {
-                "command": "dota2CodingHelper.luaServerAPI",
-                "title": "Lua Server API",
+                "command": "dota2CodingHelper.luaServerAPI-en",
+                "title": "Lua Server API (English)",
+                "category": "Dota2 Coding Helper"
+            },
+            {
+                "command": "dota2CodingHelper.luaServerAPI-zh-cn",
+                "title": "Lua Server API (简体中文)",
                 "category": "Dota2 Coding Helper"
             },
             {
@@ -54,7 +60,7 @@
             },
             {
                 "command": "dota2CodingHelper.documents",
-                "title": "Custom Game Documents (Chinese)",
+                "title": "Custom Game Documents (简体中文)",
                 "category": "Dota2 Coding Helper"
             }
         ],

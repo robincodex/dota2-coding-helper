@@ -10,8 +10,10 @@ import { CustomGameSettingsProvider } from './editors/custom_game_settings';
 
 export function activate(context: vscode.ExtensionContext) {
     loadLocale();
-    context.subscriptions.push(new LuaAPI(context, false).register());
-    context.subscriptions.push(new LuaAPI(context, true).register());
+    context.subscriptions.push(new LuaAPI(context, false, 'en').register());
+    context.subscriptions.push(new LuaAPI(context, false, 'zh-cn').register());
+    context.subscriptions.push(new LuaAPI(context, true, 'en').register());
+    context.subscriptions.push(new LuaAPI(context, true, 'zh-cn').register());
     context.subscriptions.push(new JavascriptAPI(context).register());
     context.subscriptions.push(new PanoramaCSS(context).register());
     context.subscriptions.push(new AbilitiesDataDriven(context).register());

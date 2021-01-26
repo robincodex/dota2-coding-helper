@@ -9,29 +9,30 @@ export class LuaAPI {
 
     constructor(
         private readonly context: vscode.ExtensionContext,
-        private readonly isServer: boolean
-    ){
+        private readonly isServer: boolean,
+        private readonly language: string
+    ) {
         // @ts-ignore
         this.webviewPanel = null;
-        this.viewType = `dota2CodingHelper.${isServer?'luaServerAPI':'luaClientAPI'}`;
+        this.viewType = `dota2CodingHelper.${
+            isServer ? 'luaServerAPI' : 'luaClientAPI'
+        }-${language}`;
     }
 
     public register() {
-        return vscode.commands.registerCommand(
-            this.viewType,
-            this.start.bind(this),
-        );
+        return vscode.commands.registerCommand(this.viewType, this.start.bind(this));
     }
 
     private start(): void {
         this.webviewPanel = vscode.window.createWebviewPanel(
             this.viewType,
-            `Dota2 Lua ${this.isServer?'Server':'Client'} API`,
+            `Dota2 Lua ${this.isServer ? 'Server' : 'Client'} API`,
             vscode.ViewColumn.One,
             {
                 enableScripts: true,
                 retainContextWhenHidden: true,
-            });
+            }
+        );
         this.renderHTML();
     }
 
@@ -46,9 +47,15 @@ export class LuaAPI {
             vscode.Uri.file(path.join(media, 'lua_api.css'))
         );
 
-        var apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_${vscode.env.language}.json`);
-        if (!fs.existsSync(apiUriPath)) { 
-            apiUriPath = path.join(media, `lua_api_${this.isServer ? 'server' : 'client'}_en.json`);
+        var apiUriPath = path.join(
+            media,
+            `lua_api_${this.isServer ? 'server' : 'client'}_${this.language}.json`
+        );
+        if (!fs.existsSync(apiUriPath)) {
+            apiUriPath = path.join(
+                media,
+                `lua_api_${this.isServer ? 'server' : 'client'}_en.json`
+            );
         }
         const apiUri = this.webviewPanel.webview.asWebviewUri(
             vscode.Uri.file(apiUriPath)
