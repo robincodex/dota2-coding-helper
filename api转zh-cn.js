@@ -3,10 +3,14 @@ const fs = require('fs-extra');
 let v1 = null;
 let v2 = null;
 
+/**
+ * 把传入的对象转化为拼接起来的字符串
+ */
 function Msg(arr){
     let str = '';
     let type = arr.constructor
     if (type==Number||type==String) return arr;
+    if (type==Array)return arr.join();
     for(let i in arr){
         str += `${i}=> `
         if (typeof(arr[i])=='object'){
@@ -18,6 +22,13 @@ function Msg(arr){
     return str
 }
 
+/**
+ * 检测及复制
+ * @param {object} _tar1 复制来源
+ * @param {object} _tar2 被覆盖的对象
+ * @param {Array} dir 路径的深度
+ * @returns {object} 覆盖后的参数2
+ */
 function check(_tar1,_tar2,dir) {
     for (let i in _tar1){
         
