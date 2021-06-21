@@ -114,6 +114,7 @@ function renderAPI(title, data) {
                     <span class="func-name">${v.name}</span><span class="func-params">${v.func}</span>
                 </div>
                 <div>${v.desc}</div>
+                <div>${v.zhcn||''}</div>
             </td>
         </tr>`;
     };
@@ -163,6 +164,7 @@ function renderJavascriptAPI(title, data) {
                     <span class="func-return"> ${v.return}</span>
                 </div>
                 <div>${v.desc}</div>
+                <div>${v.zhcn||''}</div>
             </td>
         </tr>`;
     };
@@ -194,6 +196,7 @@ function renderConstants(title, data) {
                     <span class="constant-value">${v.value}</span>
                 </div>
                 <div>${v.desc}</div>
+                <div>${v.zhcn||''}</div>
             </td>
         </tr>`;
     };
@@ -311,7 +314,7 @@ function onSearch( value ) {
                 for(const v of data) {
                     let find = true;
                     for(const e of list) {
-                        if (v.desc.search(e) < 0 && v.name.search(e) < 0) {
+                        if (v.desc.search(e) < 0 && (!v.zhcn || v.zhcn.search(e) < 0) && v.name.search(e) < 0) {
                             find = false;
                             break;
                         }
@@ -332,8 +335,11 @@ function onSearch( value ) {
         for(const v of data) {
             let find = true;
             for(const e of list) {
-                if (v.desc.search(e) < 0 && v.name.search(e) < 0 && 
-                    v.func.search(e) < 0 && v.return.search(e) < 0) {
+                if( v.desc.search(e) < 0
+                 && (!v.zhcn || v.zhcn.search(e) < 0)
+                 && v.name.search(e) < 0 
+                 && v.func.search(e) < 0
+                 && v.return.search(e) < 0) {
                     find = false;
                     break;
                 }
