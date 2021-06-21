@@ -15,9 +15,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:dota2CodingHelper.luaServerAPI-en",
-        "onCommand:dota2CodingHelper.luaServerAPI-zh-cn",
-        "onCommand:dota2CodingHelper.luaClientAPI",
+        "onCommand:dota2CodingHelper.lua_serverAPI",
+        "onCommand:dota2CodingHelper.lua_clientAPI",
         "onCommand:dota2CodingHelper.jsAPI",
         "onCommand:dota2CodingHelper.panoramaCSS",
         "onCommand:dota2CodingHelper.abilitiesDataDriven",
@@ -29,17 +28,12 @@
     "contributes": {
         "commands": [
             {
-                "command": "dota2CodingHelper.luaServerAPI-en",
-                "title": "Lua Server API (English)",
+                "command": "dota2CodingHelper.lua_serverAPI",
+                "title": "Lua Server API",
                 "category": "Dota2 Coding Helper"
             },
             {
-                "command": "dota2CodingHelper.luaServerAPI-zh-cn",
-                "title": "Lua Server API (简体中文)",
-                "category": "Dota2 Coding Helper"
-            },
-            {
-                "command": "dota2CodingHelper.luaClientAPI",
+                "command": "dota2CodingHelper.lua_clientAPI",
                 "title": "Lua Client API",
                 "category": "Dota2 Coding Helper"
             },
