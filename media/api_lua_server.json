@@ -1957,12 +1957,19 @@
       "zhcn": "刷新这个技能"
     },
     { "desc": "", "func": "()", "name": "GetAOERadius", "return": "int" },
-    { "desc": "", "func": "()", "name": "GetAbilityDamage", "return": "int" },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetAbilityDamage",
+      "return": "int",
+      "zhcn": "得到技能伤害"
+    },
     {
       "desc": "",
       "func": "()",
       "name": "GetAbilityDamageType",
-      "return": "int"
+      "return": "int",
+      "zhcn": "得到技能伤害类型"
     },
     { "desc": "", "func": "()", "name": "GetAbilityIndex", "return": "int" },
     {
@@ -2113,8 +2120,7 @@
       "desc": "",
       "func": "()",
       "name": "GetIntrinsicModifierName",
-      "return": "string",
-      "zhcn": "返回内置修改器名字"
+      "return": "string"
     },
     {
       "desc": "Get the current level of the ability.",
@@ -2165,8 +2171,7 @@
       "desc": "Gets a value from this ability's special value block for its current level.",
       "func": "( string szName )",
       "name": "GetSpecialValueFor",
-      "return": "table",
-      "zhcn": "获取 技能的特殊值 当前等级的值"
+      "return": "table"
     },
     {
       "desc": "",
@@ -2236,13 +2241,7 @@
       "return": "bool",
       "zhcn": "返回技能目前是否在被释放"
     },
-    {
-      "desc": "",
-      "func": "()",
-      "name": "IsItem",
-      "return": "bool",
-      "zhcn": "返回这是否是附加到装备的能力。"
-    },
+    { "desc": "", "func": "()", "name": "IsItem", "return": "bool" },
     {
       "desc": "",
       "func": "( int nIssuerPlayerID )",
@@ -2269,20 +2268,8 @@
       "name": "IsSharedWithTeammates",
       "return": "bool"
     },
-    {
-      "desc": "",
-      "func": "()",
-      "name": "IsStealable",
-      "return": "bool",
-      "zhcn": "返回此技能是否可以被窃取(byRubick'sultimate)."
-    },
-    {
-      "desc": "",
-      "func": "()",
-      "name": "IsStolen",
-      "return": "bool",
-      "zhcn": "返回此技能是否被盗。"
-    },
+    { "desc": "", "func": "()", "name": "IsStealable", "return": "bool" },
+    { "desc": "", "func": "()", "name": "IsStolen", "return": "bool" },
     { "desc": "", "func": "()", "name": "IsToggle", "return": "bool" },
     { "desc": "", "func": "()", "name": "IsTrained", "return": "bool" },
     {
@@ -2512,22 +2499,19 @@
       "desc": "GetMaterialGroupHash(): Get the material group hash of this entity.",
       "func": "()",
       "name": "GetMaterialGroupHash",
-      "return": "unsigned",
-      "zhcn": "获取此实体的物料组哈希。"
+      "return": "unsigned"
     },
     {
       "desc": "GetMaterialGroupMask(): Get the mesh group mask of this entity.",
       "func": "()",
       "name": "GetMaterialGroupMask",
-      "return": "uint64",
-      "zhcn": "获取此实体的网格组掩码。"
+      "return": "uint64"
     },
     {
       "desc": "Get scale of entity's model.",
       "func": "()",
       "name": "GetModelScale",
-      "return": "float",
-      "zhcn": "获取实体模型的比例。"
+      "return": "float"
     },
     {
       "desc": "GetRenderAlpha(): Get the alpha modulation of this entity.",
@@ -2570,22 +2554,19 @@
       "desc": "SetMaterialGroup( string ): Set the material group of this entity.",
       "func": "( string pMaterialGroup )",
       "name": "SetMaterialGroup",
-      "return": "void",
-      "zhcn": "设置此实体的材质组。"
+      "return": "void"
     },
     {
       "desc": "SetMaterialGroupHash( uint32 ): Set the material group hash of this entity.",
       "func": "( unsigned nHash )",
       "name": "SetMaterialGroupHash",
-      "return": "void",
-      "zhcn": "设置此实体的物料组哈希。"
+      "return": "void"
     },
     {
       "desc": "SetMaterialGroupMask( uint64 ): Set the mesh group mask of this entity.",
       "func": "( uint64 nMeshGroupMask )",
       "name": "SetMaterialGroupMask",
-      "return": "void",
-      "zhcn": "设置此实体的网格组遮罩。"
+      "return": "void"
     },
     {
       "desc": "",
@@ -2930,36 +2911,82 @@
       "desc": "",
       "func": "( float flAddAmount )",
       "name": "AddDamage",
-      "return": "void"
+      "return": "void",
+      "zhcn": "增加伤害"
     },
     {
       "desc": "",
       "func": "( int bitsDamageType )",
       "name": "AddDamageType",
-      "return": "void"
+      "return": "void",
+      "zhcn": "增加伤害类型"
     },
     { "desc": "", "func": "()", "name": "AllowFriendlyFire", "return": "bool" },
     { "desc": "", "func": "()", "name": "CanBeBlocked", "return": "bool" },
     { "desc": "", "func": "()", "name": "GetAmmoType", "return": "int" },
-    { "desc": "", "func": "()", "name": "GetAttacker", "return": "handle" },
-    { "desc": "", "func": "()", "name": "GetDamage", "return": "float" },
-    { "desc": "", "func": "()", "name": "GetDamageCustom", "return": "int" },
-    { "desc": "", "func": "()", "name": "GetDamageForce", "return": "Vector" },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetAttacker",
+      "return": "handle",
+      "zhcn": "获得攻击者"
+    },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetDamage",
+      "return": "float",
+      "zhcn": "得到伤害"
+    },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetDamageCustom",
+      "return": "int",
+      "zhcn": "得到自定义伤害"
+    },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetDamageForce",
+      "return": "Vector",
+      "zhcn": "得到伤害力量"
+    },
     {
       "desc": "",
       "func": "()",
       "name": "GetDamagePosition",
-      "return": "Vector"
+      "return": "Vector",
+      "zhcn": "得到伤害位置"
     },
-    { "desc": "", "func": "()", "name": "GetDamageTaken", "return": "float" },
-    { "desc": "", "func": "()", "name": "GetDamageType", "return": "int" },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetDamageTaken",
+      "return": "float",
+      "zhcn": "取走伤害"
+    },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetDamageType",
+      "return": "int",
+      "zhcn": "得到伤害类型"
+    },
     { "desc": "", "func": "()", "name": "GetInflictor", "return": "handle" },
-    { "desc": "", "func": "()", "name": "GetMaxDamage", "return": "float" },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "GetMaxDamage",
+      "return": "float",
+      "zhcn": "得到最大伤害"
+    },
     {
       "desc": "",
       "func": "()",
       "name": "GetOriginalDamage",
-      "return": "float"
+      "return": "float",
+      "zhcn": "获得原始伤害"
     },
     { "desc": "", "func": "()", "name": "GetRadius", "return": "float" },
     {
@@ -2972,25 +2999,29 @@
       "desc": "",
       "func": "()",
       "name": "GetStabilityDamage",
-      "return": "float"
+      "return": "float",
+      "zhcn": "得到稳定的伤害"
     },
     {
       "desc": "",
       "func": "( int bitsToTest )",
       "name": "HasDamageType",
-      "return": "bool"
+      "return": "bool",
+      "zhcn": "伤害类型"
     },
     {
       "desc": "",
       "func": "( float flScaleAmount )",
       "name": "ScaleDamage",
-      "return": "void"
+      "return": "void",
+      "zhcn": "伤害范围"
     },
     {
       "desc": "",
       "func": "( bool bAllow )",
       "name": "SetAllowFriendlyFire",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置允许友军开火"
     },
     {
       "desc": "",
@@ -3020,43 +3051,50 @@
       "desc": "",
       "func": "( int iDamageCustom )",
       "name": "SetDamageCustom",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置伤害习惯"
     },
     {
       "desc": "",
       "func": "( Vector damageForce )",
       "name": "SetDamageForce",
-      "return": "void"
+      "return": "void",
+      "zhcn": "让伤害开始"
     },
     {
       "desc": "",
       "func": "( Vector damagePosition )",
       "name": "SetDamagePosition",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置损伤点"
     },
     {
       "desc": "",
       "func": "( int nDamageTaken )",
       "name": "SetDamageTaken",
-      "return": "void"
+      "return": "void",
+      "zhcn": "拿出伤害设置"
     },
     {
       "desc": "",
       "func": "( int bitsDamageType )",
       "name": "SetDamageType",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置伤害类型"
     },
     {
       "desc": "",
       "func": "( float flMaxDamage )",
       "name": "SetMaxDamage",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置最高伤害"
     },
     {
       "desc": "",
       "func": "( float flOriginalDamage )",
       "name": "SetOriginalDamage",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置基础伤害"
     },
     {
       "desc": "",
@@ -3074,7 +3112,8 @@
       "desc": "",
       "func": "( float flStabilityDamage )",
       "name": "SetStabilityDamage",
-      "return": "void"
+      "return": "void",
+      "zhcn": "设置稳定的伤害"
     }
   ],
   "CDOTA_CustomUIManager": [
@@ -5479,72 +5518,86 @@
       {
         "desc": "GetModifierPreAttack_BonusDamage",
         "name": "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE",
-        "value": 0
+        "value": 0,
+        "zhcn": ",修改附加攻击力"
       },
       {
         "desc": "GetModifierPreAttack_BonusDamage_Target",
         "name": "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_TARGET",
-        "value": 1
+        "value": 1,
+        "zhcn": "，修改目标的附加攻击力"
       },
       {
         "desc": "GetModifierPreAttack_BonusDamage_Proc",
         "name": "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_PROC",
-        "value": 2
+        "value": 2,
+        "zhcn": "，修正攻击前的加成伤害"
       },
       {
         "desc": "GetModifierPreAttack_BonusDamagePostCrit",
         "name": "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT",
-        "value": 3
+        "value": 3,
+        "zhcn": "，以增加伤害的方式修改伤害值，不计入暴击计算"
       },
       {
         "desc": "GetModifierBaseAttack_BonusDamage",
         "name": "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE",
-        "value": 4
+        "value": 4,
+        "zhcn": "，修改基础攻击力"
       },
       {
         "desc": "GetModifierProcAttack_BonusDamage_Physical",
         "name": "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL",
-        "value": 5
+        "value": 5,
+        "zhcn": "，修改在普通攻击后计算的物理伤害"
       },
       {
         "desc": "GetModifierProcAttack_BonusDamage_Magical",
         "name": "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL",
-        "value": 6
+        "value": 6,
+        "zhcn": "，修改在普通攻击后计算的魔法伤害"
       },
       {
         "desc": "GetModifierProcAttack_BonusDamage_Pure",
         "name": "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE",
-        "value": 7
+        "value": 7,
+        "zhcn": "，修改在普通攻击后计算的纯粹伤害"
       },
       {
         "desc": "GetModifierProcAttack_Feedback",
         "name": "MODIFIER_PROPERTY_PROCATTACK_FEEDBACK",
-        "value": 8
+        "value": 8,
+        "zhcn": "，修改攻击触发特效"
       },
       {
         "desc": "GetModifierOverrideAttackDamage",
         "name": "MODIFIER_PROPERTY_OVERRIDE_ATTACK_DAMAGE",
-        "value": 9
+        "value": 9,
+        "zhcn": "，覆盖攻击伤害"
       },
       {
         "desc": "GetModifierPreAttack",
         "name": "MODIFIER_PROPERTY_PRE_ATTACK",
-        "value": 10
+        "value": 10,
+        "zhcn": "，获得修饰器现在攻击"
       },
       {
         "desc": "GetModifierInvisibilityLevel",
         "name": "MODIFIER_PROPERTY_INVISIBILITY_LEVEL",
-        "value": 11
+        "value": 11,
+        "zhcn": "，修改修饰器不可见级别"
       },
       {
         "desc": "GetModifierInvisibilityAttackBehaviorException",
         "name": "MODIFIER_PROPERTY_INVISIBILITY_ATTACK_BEHAVIOR_EXCEPTION",
-        "value": 12
+        "value": 12,
+        "zhcn": "，修改不可见攻击行为异常"
       },
       {
         "desc": "GetModifierPersistentInvisibility",
         "name": "MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY",
-        "value": 13
+        "value": 13,
+        "zhcn": "，永久性隐身"
       },
       {
         "desc": "GetModifierMoveSpeedBonus_Constant",
@@ -5634,7 +5687,8 @@
       {
         "desc": "GetModifierCooldownReduction_Constant",
         "name": "MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT",
-        "value": 31
+        "value": 31,
+        "zhcn": "，减少技能和物品冷却时间，正降负升"
       },
       {
         "desc": "GetModifierManacostReduction_Constant",
@@ -5664,22 +5718,26 @@
       {
         "desc": "GetModifierDamageOutgoing_Percentage",
         "name": "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE",
-        "value": 37
+        "value": 37,
+        "zhcn": "，百分比修改攻击力，负降正升"
       },
       {
         "desc": "GetModifierDamageOutgoing_Percentage_Illusion",
         "name": "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION",
-        "value": 38
+        "value": 38,
+        "zhcn": "，百分比修改幻象攻击力"
       },
       {
         "desc": "GetModifierDamageOutgoing_Percentage_Illusion_Amplify",
         "name": "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION_AMPLIFY",
-        "value": 39
+        "value": 39,
+        "zhcn": "，百分比增强幻象攻击力"
       },
       {
         "desc": "GetModifierTotalDamageOutgoing_Percentage",
         "name": "MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE",
-        "value": 40
+        "value": 40,
+        "zhcn": "，百分比伤害输出"
       },
       {
         "desc": "GetModifierSpellAmplify_PercentageCreep",
@@ -5739,7 +5797,8 @@
       {
         "desc": "GetModifierBaseDamageOutgoing_Percentage",
         "name": "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE",
-        "value": 52
+        "value": 52,
+        "zhcn": "，百分比修改基础伤害"
       },
       {
         "desc": "GetModifierBaseDamageOutgoing_PercentageUnique",
@@ -5749,7 +5808,8 @@
       {
         "desc": "GetModifierIncomingDamage_Percentage",
         "name": "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE",
-        "value": 54
+        "value": 54,
+        "zhcn": "，百分比修改受到所有伤害，负降正升"
       },
       {
         "desc": "GetModifierIncomingPhysicalDamage_Percentage",
@@ -5769,7 +5829,8 @@
       {
         "desc": "GetModifierEvasion_Constant",
         "name": "MODIFIER_PROPERTY_EVASION_CONSTANT",
-        "value": 58
+        "value": 58,
+        "zhcn": "，闪避几率，正降负升"
       },
       {
         "desc": "GetModifierNegativeEvasion_Constant",
@@ -5864,7 +5925,8 @@
       {
         "desc": "GetModifierBaseRegen",
         "name": "MODIFIER_PROPERTY_BASE_MANA_REGEN",
-        "value": 77
+        "value": 77,
+        "zhcn": "，修改基础魔法恢复数值"
       },
       {
         "desc": "GetModifierConstantManaRegen",
@@ -5884,12 +5946,14 @@
       {
         "desc": "GetModifierConstantHealthRegen",
         "name": "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT",
-        "value": 81
+        "value": 81,
+        "zhcn": "，固定的生命回复数值"
       },
       {
         "desc": "GetModifierHealthRegenPercentage",
         "name": "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE",
-        "value": 82
+        "value": 82,
+        "zhcn": "，基于最大生命值百分比的生命恢复"
       },
       {
         "desc": "GetModifierHealthRegenPercentageUnique",
@@ -5899,7 +5963,8 @@
       {
         "desc": "GetModifierHealthBonus",
         "name": "MODIFIER_PROPERTY_HEALTH_BONUS",
-        "value": 84
+        "value": 84,
+        "zhcn": "，生命值奖励"
       },
       {
         "desc": "GetModifierManaBonus",
@@ -5909,17 +5974,20 @@
       {
         "desc": "GetModifierExtraStrengthBonus",
         "name": "MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS",
-        "value": 86
+        "value": 86,
+        "zhcn": "，额外力量（无效）"
       },
       {
         "desc": "GetModifierExtraHealthBonus",
         "name": "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS",
-        "value": 87
+        "value": 87,
+        "zhcn": "，额外生命值（无效）"
       },
       {
         "desc": "GetModifierExtraManaBonus",
         "name": "MODIFIER_PROPERTY_EXTRA_MANA_BONUS",
-        "value": 88
+        "value": 88,
+        "zhcn": "，额外魔法值（无效）"
       },
       {
         "desc": "GetModifierExtraHealthPercentage",
@@ -6069,7 +6137,8 @@
       {
         "desc": "GetModifierConstantDeathGoldCost",
         "name": "MODIFIER_PROPERTY_DEATHGOLDCOST",
-        "value": 118
+        "value": 118,
+        "zhcn": "，修改死亡损失的金钱"
       },
       {
         "desc": "GetModifierPercentageExpRateBoost",
@@ -6079,7 +6148,8 @@
       {
         "desc": "GetModifierPreAttack_CriticalStrike",
         "name": "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE",
-        "value": 120
+        "value": 120,
+        "zhcn": ",修改暴击伤害"
       },
       {
         "desc": "GetModifierPreAttack_Target_CriticalStrike",
@@ -6139,17 +6209,20 @@
       {
         "desc": "GetDisableAutoAttack",
         "name": "MODIFIER_PROPERTY_DISABLE_AUTOATTACK",
-        "value": 132
+        "value": 132,
+        "zhcn": "，禁止自动攻击"
       },
       {
         "desc": "GetBonusDayVision",
         "name": "MODIFIER_PROPERTY_BONUS_DAY_VISION",
-        "value": 133
+        "value": 133,
+        "zhcn": "，奖励白天视野"
       },
       {
         "desc": "GetBonusNightVision",
         "name": "MODIFIER_PROPERTY_BONUS_NIGHT_VISION",
-        "value": 134
+        "value": 134,
+        "zhcn": "，奖励黑夜视野"
       },
       {
         "desc": "GetBonusNightVisionUnique",
@@ -6159,7 +6232,8 @@
       {
         "desc": "GetBonusVisionPercentage",
         "name": "MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE",
-        "value": 136
+        "value": 136,
+        "zhcn": "百分比奖励视野"
       },
       {
         "desc": "GetFixedDayVision",
@@ -6234,7 +6308,8 @@
       {
         "desc": "GetDisableHealing",
         "name": "MODIFIER_PROPERTY_DISABLE_HEALING",
-        "value": 151
+        "value": 151,
+        "zhcn": "，禁止生命回复"
       },
       {
         "desc": "GetAlwaysAllowAttack",
@@ -6304,7 +6379,8 @@
       {
         "desc": "OnAttackStart",
         "name": "MODIFIER_EVENT_ON_ATTACK_START",
-        "value": 165
+        "value": 165,
+        "zhcn": "，开始攻击"
       },
       { "desc": "OnAttack", "name": "MODIFIER_EVENT_ON_ATTACK", "value": 166 },
       {
@@ -6523,22 +6599,26 @@
       {
         "desc": "GetForceDrawOnMinimap",
         "name": "MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP",
-        "value": 212
+        "value": 212,
+        "zhcn": "，强制显示在小地图"
       },
       {
         "desc": "GetModifierDisableTurning",
         "name": "MODIFIER_PROPERTY_DISABLE_TURNING",
-        "value": 213
+        "value": 213,
+        "zhcn": "，禁止转身（无效）"
       },
       {
         "desc": "GetModifierIgnoreCastAngle",
         "name": "MODIFIER_PROPERTY_IGNORE_CAST_ANGLE",
-        "value": 214
+        "value": 214,
+        "zhcn": "，忽略施法面向"
       },
       {
         "desc": "GetModifierChangeAbilityValue",
         "name": "MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE",
-        "value": 215
+        "value": 215,
+        "zhcn": "，改变技能数值"
       },
       {
         "desc": "GetModifierOverrideAbilitySpecial",
@@ -7096,13 +7176,7 @@
       "zhcn": "使Mordifier的叠加层数+1。"
     },
     { "desc": "", "func": "()", "name": "IsDebuff", "return": "bool" },
-    {
-      "desc": "",
-      "func": "()",
-      "name": "IsHexDebuff",
-      "return": "bool",
-      "zhcn": "是妖术负面状态"
-    },
+    { "desc": "", "func": "()", "name": "IsHexDebuff", "return": "bool" },
     { "desc": "", "func": "()", "name": "IsStunDebuff", "return": "bool" },
     {
       "desc": "",
@@ -7480,43 +7554,37 @@
       "desc": "Send a HTTP request.",
       "func": "( handle_1 )",
       "name": "Send",
-      "return": "bool",
-      "zhcn": "发送HTTP请求。"
+      "return": "bool"
     },
     {
       "desc": "Set the total timeout on the request.",
       "func": "( unsigned_1 )",
       "name": "SetHTTPRequestAbsoluteTimeoutMS",
-      "return": "bool",
-      "zhcn": "设置请求的总超时时间。"
+      "return": "bool"
     },
     {
       "desc": "Set a POST or GET parameter on the request.",
       "func": "( string_1, string_2 )",
       "name": "SetHTTPRequestGetOrPostParameter",
-      "return": "bool",
-      "zhcn": "对请求设置POST或GET参数。"
+      "return": "bool"
     },
     {
       "desc": "Set a header value on the request.",
       "func": "( string_1, string_2 )",
       "name": "SetHTTPRequestHeaderValue",
-      "return": "bool",
-      "zhcn": "在请求上设置header。"
+      "return": "bool"
     },
     {
       "desc": "Set the network timeout on the request - this timer is reset when any data is received.",
       "func": "( unsigned_1 )",
       "name": "SetHTTPRequestNetworkActivityTimeout",
-      "return": "bool",
-      "zhcn": "设置请求的网络超时-当接收到任何数据时，此计时器将重置。"
+      "return": "bool"
     },
     {
       "desc": "Set the literal body of a post - invalid after setting a post parameter.",
       "func": "( string_1, string_2 )",
       "name": "SetHTTPRequestRawPostBody",
-      "return": "bool",
-      "zhcn": "设置POST的文本体-设置POST参数后无效。"
+      "return": "bool"
     }
   ],
   "CInfoWorldLayer": [
@@ -10270,7 +10338,8 @@
       "desc": "For New Bloom, get total damage taken by the Nian / Year Beast",
       "func": "()",
       "name": "GetNianTotalDamageTaken",
-      "return": "int"
+      "return": "int",
+      "zhcn": ",获得年兽/年兽的全部伤害"
     },
     {
       "desc": "(Preview/Unreleased) Gets the player's custom game account record, as it looked at the start of this session",
@@ -10384,8 +10453,7 @@
       "desc": "Updates custom hero, unit and ability KeyValues in memory with the latest values from disk",
       "func": "()",
       "name": "Playtesting_UpdateAddOnKeyValues",
-      "return": "void",
-      "zhcn": "从磁盘中更新自定义英雄，单位和技能的关键值在内存与最新的值"
+      "return": "void"
     },
     {
       "desc": "Prepare Dota lane style spawners with a given interval",
@@ -10709,8 +10777,7 @@
       "desc": "Set the starting gold amount.",
       "func": "( int_1 )",
       "name": "SetStartingGold",
-      "return": "void",
-      "zhcn": "设置起始金币数量。"
+      "return": "void"
     },
     {
       "desc": "Sets the amount of time players have between the hero selection and entering the showcase phase.",
@@ -11054,7 +11121,7 @@
       "func": "()",
       "name": "GetAttackCapability",
       "return": "int",
-      "zhcn": "获取单位的攻击力。"
+      "zhcn": "获取单位的攻击能力。"
     },
     {
       "desc": "Returns a random integer between the minimum and maximum base damage of the unit.",
@@ -11096,7 +11163,7 @@
       "func": "( handle hTarget )",
       "name": "GetAverageTrueAttackDamage",
       "return": "int",
-      "zhcn": "获取该单位最大伤害值与最小伤害值的平均数。"
+      "zhcn": "获取该单位最大伤害值与最小伤害值的平均数。(当前攻击）"
     },
     {
       "desc": "",
@@ -11244,13 +11311,15 @@
       "desc": "Get the maximum attack damage of this unit.",
       "func": "()",
       "name": "GetDamageMax",
-      "return": "int"
+      "return": "int",
+      "zhcn": "获得该单位的最大攻击伤害。"
     },
     {
       "desc": "Get the minimum attack damage of this unit.",
       "func": "()",
       "name": "GetDamageMin",
-      "return": "int"
+      "return": "int",
+      "zhcn": "获得该单位的最小攻击伤害。"
     },
     {
       "desc": "Returns the vision range after modifiers.",
@@ -11364,7 +11433,8 @@
       "desc": "Get the last time this NPC took damage",
       "func": "()",
       "name": "GetLastDamageTime",
-      "return": "float"
+      "return": "float",
+      "zhcn": ",得到这个NPC最后一次受到伤害的时间"
     },
     {
       "desc": "Get the last game time that this unit switched to/from idle state.",
@@ -11662,7 +11732,13 @@
       "return": "void",
       "zhcn": "命令单位在原地待命。"
     },
-    { "desc": "", "func": "()", "name": "Interrupt", "return": "void" },
+    {
+      "desc": "",
+      "func": "()",
+      "name": "Interrupt",
+      "return": "void",
+      "zhcn": "打断施法"
+    },
     { "desc": "", "func": "()", "name": "InterruptChannel", "return": "void" },
     {
       "desc": "",
@@ -11675,7 +11751,7 @@
       "func": "()",
       "name": "IsAlive",
       "return": "bool",
-      "zhcn": "此单位是否还活着?"
+      "zhcn": "此单位是否还活着?没有死亡"
     },
     {
       "desc": "Is this unit an Ancient?",
@@ -11797,13 +11873,7 @@
       "return": "bool",
       "zhcn": "此单位是否为英雄或英雄幻象?"
     },
-    {
-      "desc": "",
-      "func": "()",
-      "name": "IsHexed",
-      "return": "bool",
-      "zhcn": "被妖术"
-    },
+    { "desc": "", "func": "()", "name": "IsHexed", "return": "bool" },
     {
       "desc": "Is this creature currently idle?",
       "func": "()",
@@ -12401,8 +12471,7 @@
       "desc": "Set waypoint position for this NPC.",
       "func": "( Vector vPosition )",
       "name": "SetInitialGoalPosition",
-      "return": "void",
-      "zhcn": "设置该单位的初始路径坐标。"
+      "return": "void"
     },
     {
       "desc": "Set the mana on this unit.",
@@ -14176,7 +14245,8 @@
       "desc": "Plays a sound from this entity.",
       "func": "( string soundname )",
       "name": "EmitSound",
-      "return": "void"
+      "return": "void",
+      "zhcn": "播放这个实体的声音。"
     },
     {
       "desc": "Plays/modifies a sound from this entity. changes sound if nPitch and/or flVol or flSoundTime is > 0.",
@@ -14397,7 +14467,8 @@
       "desc": "Get the team number of this entity.",
       "func": "()",
       "name": "GetTeamNumber",
-      "return": "int"
+      "return": "int",
+      "zhcn": "获取此实体的队伍编号"
     },
     {
       "desc": "Get the up vector of the entity.",
@@ -14620,7 +14691,8 @@
       "desc": "Apply damage to this entity. Use CreateDamageInfo() to create a damageinfo object.",
       "func": "( handle hInfo )",
       "name": "TakeDamage",
-      "return": "int"
+      "return": "int",
+      "zhcn": "将损坏应用于此实体。使用CreateDamageInfo()创建一个damageinfo对象。"
     },
     {
       "desc": "Returns the input Vector transformed from entity to world space",
