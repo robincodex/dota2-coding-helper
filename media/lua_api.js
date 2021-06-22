@@ -305,46 +305,9 @@ function onSearch( value ) {
 
     const list = value.split(/\s+/).map((v) => new RegExp(v, 'i'));
     const resultList = {};
-
-    for(const k in apiData) {
-        if (k === 'Constants') {
-            const Constants = apiData[k];
-            for(const c in Constants) {
-                const data = Constants[c];
-                for(const v of data) {
-                    let find = true;
-                    for(const e of list) {
-                        if (v.desc.search(e) < 0 && (!v.zhcn || v.zhcn.search(e) < 0) && v.name.search(e) < 0) {
-                            find = false;
-                            break;
-                        }
-                    }
-                    if (find) {
-                        let apiList = resultList[c];
-                        if (!apiList) {
-                            resultList[c] = apiList = [];
-                        }
-                        apiList.push(v);
-                    }
-                }
-            }
-            continue;
-        }
-
-        const data = apiData[k];
-        for(const v of data) {
-            let find = true;
-            for(const e of list) {
-                if( v.desc.search(e) < 0
-                 && (!v.zhcn || v.zhcn.search(e) < 0)
-                 && v.name.search(e) < 0 
-                 && v.func.search(e) < 0
-                 && v.return.search(e) < 0) {
-                    find = false;
-                    break;
-                }
-            }
-            if (find) {
+    const search_datas =(datas,k,find)=>{
+        for(const v of datas) {
+            if (find(v)) {
                 let apiList = resultList[k];
                 if (!apiList) {
                     resultList[k] = apiList = [];
@@ -352,6 +315,32 @@ function onSearch( value ) {
                 apiList.push(v);
             }
         }
+
+    }
+    for(const k in apiData) {
+        if (k === 'Constants') {
+            const Constants = apiData[k];
+            for(const c in Constants) {
+                search_datas(Constants[c],c,
+                    v=>list.filter(e=>
+                        (v.zhcn && v.zhcn.search(e) >= 0)
+                        || v.desc.search(e) >= 0
+                        || v.name.search(e) >= 0
+                        ).length>0
+                )
+            }
+            continue;
+        }
+
+        search_datas(apiData[k],k,
+            v=>list.filter(e=>
+                (v.zhcn && v.zhcn.search(e) >= 0)
+                || v.desc.search(e) >= 0
+                || v.name.search(e) >= 0
+                || v.func.search(e) >= 0
+                || v.return.search(e) >= 0
+                ).length>0
+        )
     }
 
     // Sort keys
