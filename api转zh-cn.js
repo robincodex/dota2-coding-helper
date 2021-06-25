@@ -113,15 +113,17 @@ function transform(arr_a,arr_b) {
             const data = arr_a[className]
             let Constants = arr_r[className] = {};
             for(const constantName in data){
-                Constants[constantName] = [];
+                Constants[constantName] = {__self:''};
                 data[constantName].forEach(
-                    api=>{Constants[constantName].push({...api,zhcn:find(arr_b,['Constants',constantName,api.name],api)})}
+                    api=>Constants[constantName][api.name] =api.zhcn || ''
                     )
             }
             continue
         }
-        arr_r[className] = [];
-        arr_a[className].forEach(api=>arr_r[className].push({...api,zhcn:find(arr_b,[className,api.name],api)}))
+        arr_r[className] = {__self:'',__extends:'',__globalAccessorVariable:''};
+        arr_a[className].forEach(
+            api=>arr_r[className][api.name] =api.zhcn || ''
+            )
     }
     return arr_r
 }
@@ -130,10 +132,11 @@ function transform(arr_a,arr_b) {
     ele=>{
         var arr_a = `media/api_${ele}.json`;
         var arr_b = `media/api_${ele} - 副本.json`;
-        if (!fs.existsSync(arr_b)) return;
+        var arr_c = `media/i18n/${ele}_zh-cn.json`;
+        // if (!fs.existsSync(arr_b)) return;
         // let tararr = check(arr_a,arr_b,{},[]);
-        let tararr = transform(require('./'+arr_a),require('./'+arr_b));
+        let tararr = transform(require('./'+arr_a));//,require('./'+arr_b)
         console.log(`完成 打印如下`);
-        fs.writeFileSync(arr_a,JSON.stringify(tararr))
+        fs.writeFileSync(arr_c,JSON.stringify(tararr))
     }
 )

@@ -4,43 +4,37 @@
       "func": "( pEventName: string, callback: Function )",
       "name": "Subscribe",
       "return": "number",
-      "desc": "Subscribe to a game event",
-      "zhcn": "注册一个监听事件，事件名和回调函数"
+      "desc": "Subscribe to a game event"
     },
     {
       "func": "( nCallbackHandle: number )",
       "name": "Unsubscribe",
       "return": "void",
-      "desc": "Unsubscribe from a game event",
-      "zhcn": " (取消订阅游戏活动)"
+      "desc": "Unsubscribe from a game event"
     },
     {
       "func": "( pEventName: string, jsObject: object )",
       "name": "SendCustomGameEventToServer",
       "return": "void",
-      "desc": "Send a custom game event to the server",
-      "zhcn": " (向服务器发送自定义游戏事件)"
+      "desc": "Send a custom game event to the server"
     },
     {
       "func": "( pEventName: string, jsObject: object )",
       "name": "SendCustomGameEventToAllClients",
       "return": "void",
-      "desc": "Send a custom game event to the server, which will send it to all clients",
-      "zhcn": " (将自定义游戏事件发送到服务器，服务器会将其发送到所有客户端)"
+      "desc": "Send a custom game event to the server, which will send it to all clients"
     },
     {
       "func": "( pEventName: string, playerIndex: number, jsObject: object )",
       "name": "SendCustomGameEventToClient",
       "return": "void",
-      "desc": "Send a custom game event to the server, which will then send it to one client",
-      "zhcn": " (将自定义游戏事件发送到服务器，然后服务器将其发送到一个客户端)"
+      "desc": "Send a custom game event to the server, which will then send it to one client"
     },
     {
       "func": "( pEventName: string, jsObject: object )",
       "name": "SendEventClientSide",
       "return": "void",
-      "desc": "Send a client-side event using gameeventmanager (only useful for a few specific events)",
-      "zhcn": " (使用gameeventmanager发送客户端事件（仅对少数特定事件有用）)"
+      "desc": "Send a client-side event using gameeventmanager (only useful for a few specific events)"
     }
   ],
   "CustomNetTables": [
@@ -160,15 +154,13 @@
       "func": "( pchSteamID: string, callback: Function )",
       "name": "RequestPersonaName",
       "return": "void",
-      "desc": "Requests the user&apos;s persona name",
-      "zhcn": "   (请求用户的角色名称)"
+      "desc": "Requests the user&apos;s persona name"
     },
     {
       "func": "( ...args: any[] )",
       "name": "SetLargeAvatarImage",
       "return": "void",
-      "desc": "Sets the avatar image on the image panel",
-      "zhcn": "  (在图像面板上设置化身图像)"
+      "desc": "Sets the avatar image on the image panel"
     }
   ],
   "SteamUtils": [
@@ -176,15 +168,13 @@
       "func": "()",
       "name": "GetConnectedUniverse",
       "return": "any",
-      "desc": "Returns the connected universe",
-      "zhcn": "  (返回连接的宇宙)"
+      "desc": "Returns the connected universe"
     },
     {
       "func": "()",
       "name": "GetAppID",
       "return": "number",
-      "desc": "Returns the appid of the current app",
-      "zhcn": "  (返回当前应用的appID)"
+      "desc": "Returns the appid of the current app"
     }
   ],
   "VRUtils": [
@@ -192,15 +182,13 @@
       "func": "( nAppID: number )",
       "name": "GetVRAppPropertyData",
       "return": "any",
-      "desc": "Get application properties for a VR app with the specified appID",
-      "zhcn": "  (获取具有指定appID的VR应用程序的应用程序属性)"
+      "desc": "Get application properties for a VR app with the specified appID"
     },
     {
       "func": "( nAppID: number, pszLaunchSource: string )",
       "name": "LaunchSteamApp",
       "return": "any",
-      "desc": "Launches a Steam application using OpenVR.",
-      "zhcn": "  (使用OpenVR启动Steam应用程序)"
+      "desc": "Launches a Steam application using OpenVR."
     }
   ],
   "Buffs": [
@@ -208,99 +196,85 @@
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetName",
       "return": "string",
-      "desc": "",
-      "zhcn": "获取Name"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetClass",
       "return": "string",
-      "desc": "",
-      "zhcn": "获取Class"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetTexture",
       "return": "string",
-      "desc": "",
-      "zhcn": "获取纹理"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetDuration",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取持续时间"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetDieTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取饮食时间"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetRemainingTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取剩余时间"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetElapsedTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取过期时间"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetCreationTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取创作时间"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetStackCount",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取大量计数"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "IsDebuff",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否拥有负面BUFF"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "IsHidden",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否隐藏"
+      "desc": ""
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetCaster",
       "return": "number",
-      "desc": "Get the owner of the ability responsible for the modifier.",
-      "zhcn": "  (获得负责修饰符的技能的拥有者)"
+      "desc": "Get the owner of the ability responsible for the modifier."
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetParent",
       "return": "number",
-      "desc": "Get the unit the modifier is parented to.",
-      "zhcn": "  (获取修饰符的父级单位)"
+      "desc": "Get the unit the modifier is parented to."
     },
     {
       "func": "( nEntity: number, nBuff: number )",
       "name": "GetAbility",
       "return": "number",
-      "desc": "Get the ability that generated the modifier.",
-      "zhcn": "  (获得生成修改器的技能)"
+      "desc": "Get the ability that generated the modifier."
     }
   ],
   "Players": [
@@ -308,169 +282,145 @@
       "func": "()",
       "name": "GetMaxPlayers",
       "return": "number",
-      "desc": "Get the maximum number of players in the game.",
-      "zhcn": "获取游戏中的最大玩家数"
+      "desc": "Get the maximum number of players in the game."
     },
     {
       "func": "()",
       "name": "GetMaxTeamPlayers",
       "return": "number",
-      "desc": "Get the maximum number of players on teams.",
-      "zhcn": "获取团队中的最大玩家数"
+      "desc": "Get the maximum number of players on teams."
     },
     {
       "func": "()",
       "name": "GetLocalPlayer",
       "return": "number",
-      "desc": "Get the local player ID.",
-      "zhcn": "获取本地玩家ID"
+      "desc": "Get the local player ID."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "IsValidPlayerID",
       "return": "boolean",
-      "desc": "Is the nth player a valid player?",
-      "zhcn": "第n个玩家是有效玩家吗？"
+      "desc": "Is the nth player a valid player?"
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetPlayerName",
       "return": "string",
-      "desc": "Return the name of a player.",
-      "zhcn": "获取该玩家的名称"
+      "desc": "Return the name of a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetPlayerHeroEntityIndex",
       "return": "number",
-      "desc": "Get the entity index of the hero controlled by this player.",
-      "zhcn": "获取该玩家控制的英雄实体索引"
+      "desc": "Get the entity index of the hero controlled by this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetSelectedEntities",
       "return": "number[]",
-      "desc": "Get the entities this player has selected.",
-      "zhcn": "获取该玩家选择的实体"
+      "desc": "Get the entities this player has selected."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetQueryUnit",
       "return": "number",
-      "desc": "Get the entities this player is querying.",
-      "zhcn": "获取该玩家正在查询的实体"
+      "desc": "Get the entities this player is querying."
     },
     {
       "func": "()",
       "name": "GetLocalPlayerPortraitUnit",
       "return": "number",
-      "desc": "Get local player current portrait unit. (ie. Player&apos;s hero or primary selected unit.)",
-      "zhcn": "获取本地玩家当前的画像单位(即玩家的英雄或初选单位)"
+      "desc": "Get local player current portrait unit. (ie. Player&apos;s hero or primary selected unit.)"
     },
     {
       "func": "( iPlayerID: number )",
       "name": "CanPlayerBuyback",
       "return": "boolean",
-      "desc": "Can the player buy back?",
-      "zhcn": " (玩家能买回吗？)"
+      "desc": "Can the player buy back?"
     },
     {
       "func": "( iPlayerID: number )",
       "name": "HasCustomGameTicketForPlayerID",
       "return": "boolean",
-      "desc": "Does this player have a custom game ticket?",
-      "zhcn": "这个玩家有定制的游戏票吗？"
+      "desc": "Does this player have a custom game ticket?"
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetAssists",
       "return": "number",
-      "desc": "The number of assists credited to a player.",
-      "zhcn": "一个玩家的助攻次数"
+      "desc": "The number of assists credited to a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetClaimedDenies",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取索赔"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetClaimedMisses",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取请求权限"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetDeaths",
       "return": "any",
-      "desc": "The number of deaths a player has suffered.",
-      "zhcn": "玩家遭受的死亡人数"
+      "desc": "The number of deaths a player has suffered."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetDenies",
       "return": "number",
-      "desc": "The number of denies credited to a player.",
-      "zhcn": "一个玩家被拒绝的次数"
+      "desc": "The number of denies credited to a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetGold",
       "return": "number",
-      "desc": "The amount of gold a player has.",
-      "zhcn": "玩家拥有的金币数量"
+      "desc": "The amount of gold a player has."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetKills",
       "return": "number",
-      "desc": "The number of kills credited to a player.",
-      "zhcn": "一个玩家被杀的次数"
+      "desc": "The number of kills credited to a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetLastBuybackTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取上次回购时间"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetLastHitMultikill",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取最后一击"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetLastHits",
       "return": "number",
-      "desc": "The number of last hits credited to a player.",
-      "zhcn": "一个玩家最后一次点击玩家的次数"
+      "desc": "The number of last hits credited to a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetLastHitStreak",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得获得最后一击"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetLevel",
       "return": "number",
-      "desc": "The current level of a player.",
-      "zhcn": "玩家的当前等级"
+      "desc": "The current level of a player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetMisses",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取未命中"
+      "desc": ""
     },
     {
       "func": "( iPlayerID: number )",
@@ -482,8 +432,7 @@
       "func": "( iPlayerID: number )",
       "name": "GetReliableGold",
       "return": "number",
-      "desc": "Total reliable gold for this player.",
-      "zhcn": "此玩家的可用的总金币数"
+      "desc": "Total reliable gold for this player."
     },
     {
       "func": "( iPlayerID: number )",
@@ -501,106 +450,91 @@
       "func": "( iPlayerID: number )",
       "name": "GetTotalEarnedGold",
       "return": "number",
-      "desc": "Total gold earned in this game by this player.",
-      "zhcn": "此玩家在此游戏中获得的总金币数"
+      "desc": "Total gold earned in this game by this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetTotalEarnedXP",
       "return": "number",
-      "desc": "Total xp earned in this game by this player.",
-      "zhcn": "此玩家在此游戏中获得的总经验值"
+      "desc": "Total xp earned in this game by this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetUnreliableGold",
       "return": "number",
-      "desc": "Total unreliable gold for this player.",
-      "zhcn": "此玩家的不可用的总金币"
+      "desc": "Total unreliable gold for this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetTeam",
       "return": "DOTATeam_t",
-      "desc": "Get the team this player is on.",
-      "zhcn": "获得该玩家所在的团队"
+      "desc": "Get the team this player is on."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetGoldPerMin",
       "return": "number",
-      "desc": "Average gold earned per minute for this player.",
-      "zhcn": "该玩家每分钟平均赢得的金币"
+      "desc": "Average gold earned per minute for this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetXPPerMin",
       "return": "number",
-      "desc": "Average xp earned per minute for this player.",
-      "zhcn": "该玩家每分钟平均获得经验值"
+      "desc": "Average xp earned per minute for this player."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetPlayerSelectedHero",
       "return": "number",
-      "desc": "Return the name of the hero a player is controlling.",
-      "zhcn": "获取该玩家控制的英雄的名字"
+      "desc": "Return the name of the hero a player is controlling."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "GetPlayerColor",
       "return": "number",
-      "desc": "Get the player color.",
-      "zhcn": "获取玩家的颜色"
+      "desc": "Get the player color."
     },
     {
       "func": "( iPlayerID: number )",
       "name": "IsSpectator",
       "return": "boolean",
-      "desc": "Is this player a spectator.",
-      "zhcn": "这个玩家是否为观众？"
+      "desc": "Is this player a spectator."
     },
     {
       "func": "( nClickedPlayerID: number, bHoldingCtrl: boolean, bHoldingAlt: boolean )",
       "name": "PlayerPortraitClicked",
       "return": "void",
-      "desc": ".",
-      "zhcn": "点击玩家图像"
+      "desc": "."
     },
     {
       "func": "( nEntity: number, nBuffSerial: number, bAlert: boolean )",
       "name": "BuffClicked",
       "return": "void",
-      "desc": ".",
-      "zhcn": "点击BUFF"
+      "desc": "."
     },
     {
       "func": "()",
       "name": "IsLocalPlayerLiveSpectating",
       "return": "boolean",
-      "desc": "Is the local player live spectating?",
-      "zhcn": "本地玩家是否在现场观看？"
+      "desc": "Is the local player live spectating?"
     },
     {
       "func": "()",
       "name": "IsLocalPlayerInPerspectiveCamera",
       "return": "boolean",
-      "desc": "If local player is in perspective camera, returns true. Else, false",
-      "zhcn": "如果本地玩家在透视摄影机中，则返回true。否则，false"
+      "desc": "If local player is in perspective camera, returns true. Else, false"
     },
     {
       "func": "()",
       "name": "GetPerspectivePlayerEntityIndex",
       "return": "number",
-      "desc": "If player is in perspective mode, returns the followed players entity index.  Else, -1.",
-      "zhcn": "如果玩家处于透视模式，则返回后面的玩家实体索引。否则，-1"
+      "desc": "If player is in perspective mode, returns the followed players entity index.  Else, -1."
     },
     {
       "func": "()",
       "name": "GetPerspectivePlayerId",
       "return": "number",
-      "desc": "If player is in perspective mode, returns the followed players id.  Else, -1.",
-      "zhcn": "如果玩家处于透视模式，则返回后面的玩家id。否则，-1"
+      "desc": "If player is in perspective mode, returns the followed players id.  Else, -1."
     }
   ],
   "Entities": [
@@ -608,253 +542,217 @@
       "func": "( nEntityIndex: number )",
       "name": "GetAbsOrigin",
       "return": "Vector",
-      "desc": "Get the world origin of the entity.",
-      "zhcn": "获取实体的世界原点"
+      "desc": "Get the world origin of the entity."
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAbsAngles",
       "return": "QAngle",
-      "desc": "Get the world angles of the entity.",
-      "zhcn": "获取实体的世界角度"
+      "desc": "Get the world angles of the entity."
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetForward",
       "return": "Vector",
-      "desc": "Get the forward vector of the entity.",
-      "zhcn": "获取实体的正方向向量"
+      "desc": "Get the forward vector of the entity."
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetRight",
       "return": "Vector",
-      "desc": "Get the right vector of the entity.",
-      "zhcn": "获取实体的右方向向量"
+      "desc": "Get the right vector of the entity."
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetUp",
       "return": "Vector",
-      "desc": "Get the up vector of the entity.",
-      "zhcn": "获取实体的上方向向量"
+      "desc": "Get the up vector of the entity."
     },
     {
       "func": "()",
       "name": "GetAllBuildingEntities",
       "return": "number[]",
-      "desc": "Get all the building entities.",
-      "zhcn": "获取所有建筑实体"
+      "desc": "Get all the building entities."
     },
     {
       "func": "()",
       "name": "GetAllHeroEntities",
       "return": "number[]",
-      "desc": "Get all the hero entities.",
-      "zhcn": "获取所有英雄实体"
+      "desc": "Get all the hero entities."
     },
     {
       "func": "( pszName: string )",
       "name": "GetAllEntitiesByName",
       "return": "number[]",
-      "desc": "Get all the entities with a given name.",
-      "zhcn": "获取具有给定名称的所有实体"
+      "desc": "Get all the entities with a given name."
     },
     {
       "func": "( pszName: string )",
       "name": "GetAllEntitiesByClassname",
       "return": "number[]",
-      "desc": "Get all the entities with a given classname.",
-      "zhcn": "获取具有给定类名的所有实体"
+      "desc": "Get all the entities with a given classname."
     },
     {
       "func": "()",
       "name": "GetAllCreatureEntities",
       "return": "number[]",
-      "desc": "Get all the creature entities.",
-      "zhcn": "获取所有生物实体"
+      "desc": "Get all the creature entities."
     },
     {
       "func": "()",
       "name": "GetAllEntities",
       "return": "number[]",
-      "desc": "Get all the entities.",
-      "zhcn": "获取所有实体"
+      "desc": "Get all the entities."
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "CanBeDominated",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否可以支配"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasAttackCapability",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有攻击能力"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasCastableAbilities",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有激活技能"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasFlyingVision",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有飞行视野"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasFlyMovementCapability",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有飞行能力"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasGroundMovementCapability",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有地面移动能力"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasMovementCapability",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有移动能力"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasScepter",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有A杖"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasUpgradeableAbilities",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有可升级技能"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "HasUpgradeableAbilitiesThatArentMaxed",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否具有非混合的可升级技能"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsAlive",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否活着"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsAncient",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否远古生物"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsAttackImmune",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否攻击免疫"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsBarracks",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在训练营"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsBlind",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否致盲"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsBoss",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为Boss"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsRoshan",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为肉山"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsBuilding",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为建筑物"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsCommandRestricted",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否命令受限"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsConsideredHero",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为创建类英雄"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsControllableByAnyPlayer",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否可由任何玩家控制"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsCourier",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为信使"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsCreature",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为创建类生物"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsCreep",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为野生生物"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsCreepHero",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为野生英雄"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -866,22 +764,19 @@
       "func": "( nEntityIndex: number )",
       "name": "IsDominated",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否受控"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsEnemy",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为敌人"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsEvadeDisabled",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被回避禁用"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -893,8 +788,7 @@
       "func": "( nEntityIndex: number )",
       "name": "IsFrozen",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被冰冻"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -906,22 +800,19 @@
       "func": "( nEntityIndex: number )",
       "name": "IsHallofFame",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在名人堂"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsDisarmed",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被繳械"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsHero",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为英雄"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -933,36 +824,31 @@
       "func": "( nEntityIndex: number )",
       "name": "IsIllusion",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为幻象"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsInRangeOfFountain",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在可及的范围内"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsInventoryEnabled",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否已启用库存"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsInvisible",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为可见的"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsInvulnerable",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否处于弱势"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -974,29 +860,25 @@
       "func": "( nEntityIndex: number )",
       "name": "IsLowAttackPriority",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否低攻击优先级"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsMagicImmune",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否魔法免疫"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsMuted",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否静音"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsNeutralUnitType",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为中立生物"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -1008,71 +890,61 @@
       "func": "( nEntityIndex: number )",
       "name": "IsOther",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为守卫"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsOutOfGame",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否出局"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsOwnedByAnyPlayer",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否属于任何玩家"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsPhantom",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为幻象"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsRangedAttacker",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为远程攻击者"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsRealHero",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为真正的英雄"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsRooted",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被缠绕"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsSelectable",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为可选"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsShop",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为商店"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsSilenced",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被沉默"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -1084,50 +956,43 @@
       "func": "( nEntityIndex: number )",
       "name": "IsStunned",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被晕眩"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsSummoned",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被召唤"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsTower",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为塔楼"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsUnselectable",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为不可选择"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsWard",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被格挡"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsZombie",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否为僵尸"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "NoHealthBar",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否没有血条"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -1139,267 +1004,229 @@
       "func": "( nEntityIndex: number )",
       "name": "NoTeamSelect",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "没有团队选择"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "NotOnMinimap",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否不在小地图上"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "NotOnMinimapForEnemies",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否不在敌人的小地图上"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "NoUnitCollision",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否无单位冲突"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "PassivesDisabled",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否被动禁用"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "ProvidesVision",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否提供视野"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "UsesHeroAbilityNumbers",
       "return": "number[]",
-      "desc": "",
-      "zhcn": "是否能使用的英雄技能数量"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsMoving",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否正在移动"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAbilityCount",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取技能计数"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetCombatClassAttack",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得战斗等级攻击"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetCombatClassDefend",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得战斗等级防御"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetCurrentVisionRange",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取当前视野范围"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetDamageBonus",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得伤害加成"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetDamageMax",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得最大伤害"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetDamageMin",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得最小伤害"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetDayTimeVisionRange",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取白天视野范围"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHealth",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得血量值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHealthPercent",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取血量值百分比"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHealthThinkRegen",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得血量回复值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetLevel",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取等级"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetMaxHealth",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得最大血量值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetNightTimeVisionRange",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取夜间视野范围"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetPlayerOwnerID",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取玩家所有者ID"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetStates",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取状态"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetTotalPurchasedUpgradeGoldCost",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得总购买升级金成本"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetTeamNumber",
       "return": "DOTATeam_t",
-      "desc": "",
-      "zhcn": "获取团队编号"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHealthBarOffset",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取血量值偏移量"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAttackRange",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取攻击范围"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAttackSpeed",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取攻击速度"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAttacksPerSecond",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取每秒攻击数"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetBaseAttackTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取攻击间隔"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetBaseMagicalResistanceValue",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取基础魔法抵抗值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetBaseMoveSpeed",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取基础移动速度"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetBonusPhysicalArmor",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取基础物理护甲值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetCollisionPadding",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取碰撞填充值"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetEffectiveInvisibilityLevel",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取有效可视度"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHasteFactor",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取加速因子"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetHullRadius",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取外部半径"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
@@ -1603,85 +1430,73 @@
       "func": "( nEntityIndex: number, nSlotIndex: number )",
       "name": "GetItemInSlot",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取插槽中的项目"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number, nSlotIndex: number )",
       "name": "GetAbility",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得技能"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number, pszAbilityName: string )",
       "name": "GetAbilityByName",
       "return": "number",
-      "desc": "",
-      "zhcn": "按名称获取技能"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetNumBuffs",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得BUFF的数量"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number, nBufIndex: number )",
       "name": "GetBuff",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得BUFF"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetAbilityPoints",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得技能点"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetCurrentXP",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取当前经验"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetNeededXPToLevel",
       "return": "number",
-      "desc": "",
-      "zhcn": "获得所需的经验级别"
+      "desc": ""
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetSelectionEntities",
       "return": "number[]",
-      "desc": "Get the currently selected entities",
-      "zhcn": "获取当前选定的实体"
+      "desc": "Get the currently selected entities"
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsValidEntity",
       "return": "boolean",
-      "desc": "Is this a valid entity index?",
-      "zhcn": "这是有效的实体索引吗？"
+      "desc": "Is this a valid entity index?"
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "IsItemPhysical",
       "return": "boolean",
-      "desc": "Is this entity an item container in the world?",
-      "zhcn": "这个实体是世界上的物品容器吗？"
+      "desc": "Is this entity an item container in the world?"
     },
     {
       "func": "( nEntityIndex: number )",
       "name": "GetContainedItem",
       "return": "number",
-      "desc": "Get the item contained in this physical item container.",
-      "zhcn": "获取此物理项容器中包含的项。"
+      "desc": "Get the item contained in this physical item container."
     }
   ],
   "Abilities": [
@@ -2073,8 +1888,7 @@
       "func": "()",
       "name": "GetLocalPlayerActiveAbility",
       "return": "number",
-      "desc": "Get the local player&apos;s current active ability. (Pre-cast targetting state.)",
-      "zhcn": "获取本地玩家当前的激活技能(预制目标状态）"
+      "desc": "Get the local player&apos;s current active ability. (Pre-cast targetting state.)"
     },
     {
       "func": "( nAbilityIndex: string )",
@@ -2110,29 +1924,25 @@
       "func": "( nAbilityEntIndex: number, nCasterEntIndex: number, bIsQuickCast: boolean )",
       "name": "ExecuteAbility",
       "return": "void",
-      "desc": "Attempt to execute the specified ability (Equivalent to clicking the ability in the HUD action bar)",
-      "zhcn": "尝试执行指定的技能（相当于单击HUD操作栏中的技能）"
+      "desc": "Attempt to execute the specified ability (Equivalent to clicking the ability in the HUD action bar)"
     },
     {
       "func": "( nAbilityEntIndex: number, nCasterEntIndex: number )",
       "name": "CreateDoubleTapCastOrder",
       "return": "void",
-      "desc": "Attempt to double-tap (self-cast) the specified ability (Equivalent to double-clicking the ability in the HUD action bar)",
-      "zhcn": "尝试双击（自动投射）指定的技能（相当于双击HUD操作栏中的技能）"
+      "desc": "Attempt to double-tap (self-cast) the specified ability (Equivalent to double-clicking the ability in the HUD action bar)"
     },
     {
       "func": "( nAbilityIndex: number )",
       "name": "PingAbility",
       "return": "void",
-      "desc": "Ping the specified ability (Equivalent to alt-clicking the ability in the HUD action bar)",
-      "zhcn": "Ping指定的技能（相当于alt单击HUD操作栏中的技能）"
+      "desc": "Ping the specified ability (Equivalent to alt-clicking the ability in the HUD action bar)"
     },
     {
       "func": "( nAbilityEntIndex: number )",
       "name": "GetKeybind",
       "return": "string",
-      "desc": "Returns the keybind (as a string) for the specified ability.",
-      "zhcn": "返回指定功能的键绑定（作为字符串）"
+      "desc": "Returns the keybind (as a string) for the specified ability."
     }
   ],
   "Items": [
@@ -2370,449 +2180,385 @@
       "func": "()",
       "name": "Time",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取时间"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetGameTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取游戏总时间"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetGameFrameTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取游戏帧时间"
+      "desc": ""
     },
     {
       "func": "( bIncludePreGame: boolean, bIncludeNegativeTime: boolean )",
       "name": "GetDOTATime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取DOTA时间"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "IsGamePaused",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否游戏暂停"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "IsInToolsMode",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "在开发工具模式中"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "IsInBanPhase",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "正在进行禁选阶段"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetGameWinner",
       "return": "number",
-      "desc": "Return the team id of the winning team.",
-      "zhcn": "返回获胜团队的团队id"
+      "desc": "Return the team id of the winning team."
     },
     {
       "func": "()",
       "name": "GetStateTransitionTime",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取状态转换时间"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetCustomGameDifficulty",
       "return": "number",
-      "desc": "Get the difficulty setting of the game.",
-      "zhcn": "获得游戏的难度设置"
+      "desc": "Get the difficulty setting of the game."
     },
     {
       "func": "()",
       "name": "IsHUDFlipped",
       "return": "boolean",
-      "desc": "Returns true if the user has enabled flipped HUD",
-      "zhcn": "如果用户已启用翻转HUD，则返回true"
+      "desc": "Returns true if the user has enabled flipped HUD"
     },
     {
       "func": "()",
       "name": "GetScreenWidth",
       "return": "number",
-      "desc": "Returns the width of the display.",
-      "zhcn": "返回显示的宽度"
+      "desc": "Returns the width of the display."
     },
     {
       "func": "()",
       "name": "GetScreenHeight",
       "return": "number",
-      "desc": "Returns the height of the display.",
-      "zhcn": "返回显示的高度"
+      "desc": "Returns the height of the display."
     },
     {
       "func": "( x: number, y: number, z: number )",
       "name": "WorldToScreenX",
       "return": "number",
-      "desc": "Converts the specified x,y,z world co-ordinate into an x screen coordinate. Returns -1 if behind the camera",
-      "zhcn": "指定的x、y、z世界坐标转换为x屏幕坐标。如果在摄像头后面返回-1"
+      "desc": "Converts the specified x,y,z world co-ordinate into an x screen coordinate. Returns -1 if behind the camera"
     },
     {
       "func": "( x: number, y: number, z: number )",
       "name": "WorldToScreenY",
       "return": "number",
-      "desc": "Converts the specified x,y,z world co-ordinate into a y screen coordinate. Returns -1 if behind the camera",
-      "zhcn": "将指定的x、y、z世界坐标转换为y屏幕坐标。如果在摄像机后面返回-1"
+      "desc": "Converts the specified x,y,z world co-ordinate into a y screen coordinate. Returns -1 if behind the camera"
     },
     {
       "func": "( nX: number, nY: number )",
       "name": "ScreenXYToWorld",
       "return": "number[]",
-      "desc": "Converts the specified x, y screen coordinates into a x, y, z world coordinates.",
-      "zhcn": "将指定的x，y屏幕坐标转换为x，y，z全局坐标"
+      "desc": "Converts the specified x, y screen coordinates into a x, y, z world coordinates."
     },
     {
       "func": "( iSlot: number )",
       "name": "GetKeybindForAbility",
       "return": "string",
-      "desc": "Returns the keybind (as a string) for the requested ability slot.",
-      "zhcn": "获取技能栏的绑定键位（作为字符串）"
+      "desc": "Returns the keybind (as a string) for the requested ability slot."
     },
     {
       "func": "( iSlot: number )",
       "name": "GetKeybindForInventorySlot",
       "return": "string",
-      "desc": "Returns the keybind (as a string) for the requested inventory slot.",
-      "zhcn": "获取装备栏的的绑定键位（作为字符串）"
+      "desc": "Returns the keybind (as a string) for the requested inventory slot."
     },
     {
       "func": "( nCommand: DOTAKeybindCommand_t )",
       "name": "GetKeybindForCommand",
       "return": "string",
-      "desc": "Returns the keybind (as a string).",
-      "zhcn": "获取绑定键位的命令（作为字符串）"
+      "desc": "Returns the keybind (as a string)."
     },
     {
       "func": "( pszKey: string, pszCommand: string )",
       "name": "CreateCustomKeyBind",
       "return": "void",
-      "desc": "Create a new keybind.",
-      "zhcn": "创建自定义键绑定"
+      "desc": "Create a new keybind."
     },
     {
       "func": "()",
       "name": "GetNianFightTimeLeft",
       "return": "void",
-      "desc": "",
-      "zhcn": "从左开始战斗"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetState",
       "return": "DOTA_GameState",
-      "desc": "",
-      "zhcn": "获取状态"
+      "desc": ""
     },
     {
       "func": "( nState: DOTA_GameState )",
       "name": "GameStateIs",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在游戏状态"
+      "desc": ""
     },
     {
       "func": "( nState: DOTA_GameState )",
       "name": "GameStateIsBefore",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在游戏状态之前"
+      "desc": ""
     },
     {
       "func": "( nState: DOTA_GameState )",
       "name": "GameStateIsAfter",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在游戏状态后"
+      "desc": ""
     },
     {
       "func": "( pszCommandName: string, callback: Function, pszDescription: string, nFlags: number )",
       "name": "AddCommand",
       "return": "void",
-      "desc": "",
-      "zhcn": "添加命令"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetLocalPlayerID",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取本地玩家ID"
+      "desc": ""
     },
     {
       "func": "( nTeamID: DOTATeam_t )",
       "name": "PlayerJoinTeam",
       "return": "void",
-      "desc": "Assign the local player to the specified team",
-      "zhcn": "将本地玩家分配到指定的团队"
+      "desc": "Assign the local player to the specified team"
     },
     {
       "func": "()",
       "name": "AutoAssignPlayersToTeams",
       "return": "void",
-      "desc": "Assign the currently unassigned players to teams",
-      "zhcn": "将当前未分配的玩家分配给团队"
+      "desc": "Assign the currently unassigned players to teams"
     },
     {
       "func": "()",
       "name": "ShufflePlayerTeamAssignments",
       "return": "void",
-      "desc": "Shuffle the team assignments of all of the players currently assigned to a team.",
-      "zhcn": "洗牌当前分配给一个团队的所有玩家的团队分配"
+      "desc": "Shuffle the team assignments of all of the players currently assigned to a team."
     },
     {
       "func": "( flSeconds: number )",
       "name": "SetRemainingSetupTime",
       "return": "void",
-      "desc": "Set the remaining seconds in team setup before the game starts. -1 to stop the countdown timer",
-      "zhcn": "在游戏开始前，在团队设置中设置剩余的秒数。-1到停止倒计时"
+      "desc": "Set the remaining seconds in team setup before the game starts. -1 to stop the countdown timer"
     },
     {
       "func": "( flSeconds: number )",
       "name": "SetAutoLaunchDelay",
       "return": "void",
-      "desc": "Set the amount of time in seconds that will be set as the remaining time when all players are assigned to a team.",
-      "zhcn": "以秒为单位设置所有玩家分配到一个团队时的剩余时间"
+      "desc": "Set the amount of time in seconds that will be set as the remaining time when all players are assigned to a team."
     },
     {
       "func": "( bEnable: boolean )",
       "name": "SetAutoLaunchEnabled",
       "return": "void",
-      "desc": "Enable or disable automatically starting the game once all players are assigned to a team",
-      "zhcn": "启用或禁用所有玩家分配到一个团队后自动启动游戏"
+      "desc": "Enable or disable automatically starting the game once all players are assigned to a team"
     },
     {
       "func": "()",
       "name": "GetAutoLaunchEnabled",
       "return": "boolean",
-      "desc": "Return true of false indicating if automatically starting the game is enabled.",
-      "zhcn": "返回true或false，表示是否启用了自动启动游戏"
+      "desc": "Return true of false indicating if automatically starting the game is enabled."
     },
     {
       "func": "( bLockTeams: boolean )",
       "name": "SetTeamSelectionLocked",
       "return": "void",
-      "desc": "Lock the team selection preventing players from swiching teams.",
-      "zhcn": "锁定团队选择，阻止玩家切换团队"
+      "desc": "Lock the team selection preventing players from swiching teams."
     },
     {
       "func": "()",
       "name": "GetTeamSelectionLocked",
       "return": "boolean",
-      "desc": "Returns true or false to indicate if team selection is locked",
-      "zhcn": "返回true或false，来表示团队选择是否已锁定"
+      "desc": "Returns true or false to indicate if team selection is locked"
     },
     {
       "func": "()",
       "name": "GetAllTeamIDs",
       "return": "DOTATeam_t[]",
-      "desc": "Get all team IDs",
-      "zhcn": "获取所有团队ID"
+      "desc": "Get all team IDs"
     },
     {
       "func": "()",
       "name": "GetAllPlayerIDs",
       "return": "number[]",
-      "desc": "Get all player IDs",
-      "zhcn": "获取所有玩家ID"
+      "desc": "Get all player IDs"
     },
     {
       "func": "()",
       "name": "GetUnassignedPlayerIDs",
       "return": "number[]",
-      "desc": "Get unassigned player IDs",
-      "zhcn": "获取未分配的玩家ID"
+      "desc": "Get unassigned player IDs"
     },
     {
       "func": "( nPlayerID: number )",
       "name": "GetPlayerUltimateStateOrTime",
       "return": "number",
-      "desc": "Get info about the player hero ultimate ability",
-      "zhcn": "获取有关玩家英雄终极技能的信息"
+      "desc": "Get info about the player hero ultimate ability"
     },
     {
       "func": "( nPlayerID: number )",
       "name": "IsPlayerMuted",
       "return": "boolean",
-      "desc": "Whether the local player has muted text and voice chat for the specified player id",
-      "zhcn": "本地玩家是否为指定的玩家id禁用了文本和语音聊天"
+      "desc": "Whether the local player has muted text and voice chat for the specified player id"
     },
     {
       "func": "( nPlayerID: number, bMuted: boolean )",
       "name": "SetPlayerMuted",
       "return": "void",
-      "desc": "Set whether the local player has muted text and voice chat for the specified player id",
-      "zhcn": "设置本地玩家是否为指定的玩家id禁用了文本和语音聊天"
+      "desc": "Set whether the local player has muted text and voice chat for the specified player id"
     },
     {
       "func": "( nTeam: DOTATeam_t )",
       "name": "GetTeamDetails",
       "return": "ITeamDetails",
-      "desc": "Get detailed information for the given team",
-      "zhcn": "获取给定团队的详细信息"
+      "desc": "Get detailed information for the given team"
     },
     {
       "func": "()",
       "name": "GetLocalPlayerInfo",
       "return": "IPlayerInfo",
-      "desc": "Get details for the local player",
-      "zhcn": "获取本地玩家的详细信息"
+      "desc": "Get details for the local player"
     },
     {
       "func": "( nPlayerID: number )",
       "name": "GetPlayerItems",
       "return": "number[]",
-      "desc": "Get info about the player items.",
-      "zhcn": "获取有关玩家物品的信息"
+      "desc": "Get info about the player items."
     },
     {
       "func": "( nPlayerID: number )",
       "name": "GetPlayerInfo",
       "return": "IPlayerInfo",
-      "desc": "Get info about the given player",
-      "zhcn": "获取指定玩家的信息"
+      "desc": "Get info about the given player"
     },
     {
       "func": "( nTeam: DOTATeam_t )",
       "name": "GetPlayerIDsOnTeam",
       "return": "number[]",
-      "desc": "Get player IDs for the given team",
-      "zhcn": "获取指定团队的玩家ID"
+      "desc": "Get player IDs for the given team"
     },
     {
       "func": "( pMsg: string )",
       "name": "ServerCmd",
       "return": "void",
-      "desc": "",
-      "zhcn": "服务器命令"
+      "desc": ""
     },
     {
       "func": "( bEnabled: boolean )",
       "name": "SetDotaRefractHeroes",
       "return": "void",
-      "desc": "",
-      "zhcn": "设置Dota折射率"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "FinishGame",
       "return": "void",
-      "desc": "",
-      "zhcn": "结束游戏"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "Disconnect",
       "return": "void",
-      "desc": "",
-      "zhcn": "断开"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "FindEventMatch",
       "return": "any",
-      "desc": "",
-      "zhcn": "查找事件匹配"
+      "desc": ""
     },
     {
       "func": "( pSoundEventName: string )",
       "name": "EmitSound",
       "return": "number",
-      "desc": "Emit a sound for the local player. Returns an integer handle that can be passed to StopSound. (Returns 0 on failure.)",
-      "zhcn": "为本地玩家发出声音。返回可传递到停止声音的整数处理(失败时返回0)"
+      "desc": "Emit a sound for the local player. Returns an integer handle that can be passed to StopSound. (Returns 0 on failure.)"
     },
     {
       "func": "( nHandle: number )",
       "name": "StopSound",
       "return": "void",
-      "desc": "Stop a current playing sound on the local player. Takes handle from a call to EmitSound.",
-      "zhcn": "停止当前本地玩家播放的声音。控制语音对话"
+      "desc": "Stop a current playing sound on the local player. Takes handle from a call to EmitSound."
     },
     {
       "func": "()",
       "name": "IsShopOpen",
       "return": "boolean",
-      "desc": "Ask whether the in game shop is open.",
-      "zhcn": "询问游戏商城是否打开"
+      "desc": "Ask whether the in game shop is open."
     },
     {
       "func": "( pszCustomShopEntityString: string )",
       "name": "SetCustomShopEntityString",
       "return": "string",
-      "desc": "Set custom shop context.",
-      "zhcn": "设置商店自定义背景"
+      "desc": "Set custom shop context."
     },
     {
       "func": "()",
       "name": "GetMapInfo",
       "return": "IMapInfo",
-      "desc": "Return information about the current map.",
-      "zhcn": "返回有关当前地图的信息"
+      "desc": "Return information about the current map."
     },
     {
       "func": "( args: PrepareUnitOrdersArgument )",
       "name": "PrepareUnitOrders",
       "return": "void",
-      "desc": "Orders from the local player - takes a single arguments object that supports: dotaunitorder_t OrderType, ent_index TargetIndex, vector Position, ent_index AbilityIndex, OrderIssuer_t OrderIssuer, ent_index UnitIndex, OrderQueueBehavior_t QueueBehavior, bool ShowEffects.",
-      "zhcn": "来自本地玩家的命令-采用支持的单个参数对象: dotaunitorder_t OrderType, ent_index TargetIndex, vector Position, ent_index AbilityIndex, OrderIssuer_t OrderIssuer, ent_index UnitIndex, OrderQueueBehavior_t QueueBehavior, bool ShowEffects."
+      "desc": "Orders from the local player - takes a single arguments object that supports: dotaunitorder_t OrderType, ent_index TargetIndex, vector Position, ent_index AbilityIndex, OrderIssuer_t OrderIssuer, ent_index UnitIndex, OrderQueueBehavior_t QueueBehavior, bool ShowEffects."
     },
     {
       "func": "( nControlledUnitEnt: number, nItemEnt: number )",
       "name": "DropItemAtCursor",
       "return": "void",
-      "desc": "Order a unit to drop the specified item at the current cursor location.",
-      "zhcn": "命令一个实体将指定物品放到当前光标位置"
+      "desc": "Order a unit to drop the specified item at the current cursor location."
     },
     {
       "func": "( vec1: Vector, vec2: Vector )",
       "name": "Length2D",
       "return": "number",
-      "desc": "Calculate 2D length.",
-      "zhcn": "计算2D长度"
+      "desc": "Calculate 2D length."
     },
     {
       "func": "( vec: Vector )",
       "name": "Normalized",
       "return": "number[]",
-      "desc": "Returns normalized vector.",
-      "zhcn": "返回标准化向量"
+      "desc": "Returns normalized vector."
     },
     {
       "func": "()",
       "name": "EnterAbilityLearnMode",
       "return": "void",
-      "desc": "",
-      "zhcn": "进入技能学习模式"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "EndAbilityLearnMode",
       "return": "void",
-      "desc": "",
-      "zhcn": "结束技能学习模式"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "IsInAbilityLearnMode",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否在技能学习模式中"
+      "desc": ""
     }
   ],
   "GameUI": [
@@ -2820,253 +2566,217 @@
       "func": "( nElementType: number, bVisible: boolean )",
       "name": "SetDefaultUIEnabled",
       "return": "void",
-      "desc": "Control whether the default UI is enabled",
-      "zhcn": "控制是否启用默认UI"
+      "desc": "Control whether the default UI is enabled"
     },
     {
       "func": "()",
       "name": "CustomUIConfig",
       "return": "any",
-      "desc": "Get the current UI configuration",
-      "zhcn": "获取当前UI配置"
+      "desc": "Get the current UI configuration"
     },
     {
       "func": "( vec: Vector )",
       "name": "PingMinimapAtLocation",
       "return": "void",
-      "desc": "Create a minimap ping at the given location",
-      "zhcn": "在给定位置创建最小ping"
+      "desc": "Create a minimap ping at the given location"
     },
     {
       "func": "( callback: (eventName: MouseCallbackEventType, mouseButton: number) => boolean )",
       "name": "SetMouseCallback",
       "return": "void",
-      "desc": "Install a mouse input filter",
-      "zhcn": "设置鼠标回调"
+      "desc": "Install a mouse input filter"
     },
     {
       "func": "( bEnable: boolean, nPort: number, offsetVal: number, flScale: number )",
       "name": "EnableAliMode",
       "return": "void",
-      "desc": "",
-      "zhcn": "启用限制模式"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetCursorPosition",
       "return": "number[]",
-      "desc": "Get the current mouse position.",
-      "zhcn": "获取当前鼠标位置"
+      "desc": "Get the current mouse position."
     },
     {
       "func": "( target: Vector )",
       "name": "FindScreenEntities",
       "return": "{entityIndex: number;accurateCollision: boolean;}[]",
-      "desc": "Return the entity index of the entity under the given screen position.",
-      "zhcn": "返回给定屏幕位置下实体的实体索引"
+      "desc": "Return the entity index of the entity under the given screen position."
     },
     {
       "func": "()",
       "name": "GetScreenWorldPosition",
       "return": "number[]",
-      "desc": "Get the world position of the screen position, or null if the cursor is out of the world.",
-      "zhcn": "获取屏幕位置的全局位置，如果光标不在全局范围内，则为空"
+      "desc": "Get the world position of the screen position, or null if the cursor is out of the world."
     },
     {
       "func": "( nButtonNum: number )",
       "name": "WasMousePressed",
       "return": "boolean",
-      "desc": "Install a mouse input filter",
-      "zhcn": "是否单击鼠标"
+      "desc": "Install a mouse input filter"
     },
     {
       "func": "( nButtonNum: number )",
       "name": "WasMouseDoublePressed",
       "return": "boolean",
-      "desc": "Install a mouse input filter",
-      "zhcn": "是否双击鼠标"
+      "desc": "Install a mouse input filter"
     },
     {
       "func": "( nButtonNum: number )",
       "name": "IsMouseDown",
       "return": "boolean",
-      "desc": "Install a mouse input filter",
-      "zhcn": "是否按下鼠标"
+      "desc": "Install a mouse input filter"
     },
     {
       "func": "()",
       "name": "IsShiftDown",
       "return": "boolean",
-      "desc": "Is the shift button pressed?",
-      "zhcn": "是否按下了shift按键？"
+      "desc": "Is the shift button pressed?"
     },
     {
       "func": "()",
       "name": "IsAltDown",
       "return": "boolean",
-      "desc": "Is the alt button pressed?",
-      "zhcn": "是否按下了alt按键？"
+      "desc": "Is the alt button pressed?"
     },
     {
       "func": "()",
       "name": "IsControlDown",
       "return": "boolean",
-      "desc": "Is the control button pressed?",
-      "zhcn": "是否按下了control按键？"
+      "desc": "Is the control button pressed?"
     },
     {
       "func": "()",
       "name": "GetClickBehaviors",
       "return": "CLICK_BEHAVIORS",
-      "desc": "Get the current UI click interaction mode.",
-      "zhcn": "获取当前UI点击交互模式"
+      "desc": "Get the current UI click interaction mode."
     },
     {
       "func": "( nEntityIndex: number, bAddToGroup: boolean )",
       "name": "SelectUnit",
       "return": "void",
-      "desc": "Select a unit, adding it to the group or replacing the current selection.",
-      "zhcn": "选择一个单位，将其添加到组或替换当前选择"
+      "desc": "Select a unit, adding it to the group or replacing the current selection."
     },
     {
       "func": "()",
       "name": "GetCameraLookAtPosition",
       "return": "number[]",
-      "desc": "Get the current look at position.",
-      "zhcn": "获取当前查看位置"
+      "desc": "Get the current look at position."
     },
     {
       "func": "()",
       "name": "GetCameraPosition",
       "return": "number[]",
-      "desc": "Get the current camera position.",
-      "zhcn": "获取当前相机位置"
+      "desc": "Get the current camera position."
     },
     {
       "func": "()",
       "name": "GetCameraLookAtPositionHeightOffset",
       "return": "number",
-      "desc": "Get the current look at position height offset.",
-      "zhcn": "获取当前查看位置高度偏移"
+      "desc": "Get the current look at position height offset."
     },
     {
       "func": "( flPitchMin: number )",
       "name": "SetCameraPitchMin",
       "return": "void",
-      "desc": "Set the minimum camera pitch angle.",
-      "zhcn": "设置最小摄像机俯仰角"
+      "desc": "Set the minimum camera pitch angle."
     },
     {
       "func": "( flPitchMax: number )",
       "name": "SetCameraPitchMax",
       "return": "void",
-      "desc": "Set the maximum camera pitch angle.",
-      "zhcn": "设置最大摄像机俯仰角"
+      "desc": "Set the maximum camera pitch angle."
     },
     {
       "func": "( flCameraYaw: number )",
       "name": "SetCameraYaw",
       "return": "void",
-      "desc": "Set the camera&apos;s yaw.",
-      "zhcn": "设置相机的偏转角度。"
+      "desc": "Set the camera&apos;s yaw."
     },
     {
       "func": "()",
       "name": "GetCameraYaw",
       "return": "number",
-      "desc": "Get the camera&apos;s yaw.",
-      "zhcn": "返回相机的偏转角度。"
+      "desc": "Get the camera&apos;s yaw."
     },
     {
       "func": "( flCameraLookAtHeightOffset: number )",
       "name": "SetCameraLookAtPositionHeightOffset",
       "return": "void",
-      "desc": "Offset the camera&apos;s look at point.",
-      "zhcn": "偏移相机的注视点。默认0"
+      "desc": "Offset the camera&apos;s look at point."
     },
     {
       "func": "( x: number, y: number )",
       "name": "SetCameraPositionFromLateralLookAtPosition",
       "return": "void",
-      "desc": "Set the camera from a lateral position.",
-      "zhcn": "设置相机的世界坐标。"
+      "desc": "Set the camera from a lateral position."
     },
     {
       "func": "( bEnabled: boolean )",
       "name": "SetCameraTerrainAdjustmentEnabled",
       "return": "void",
-      "desc": "Set whether the camera should automatically adjust to average terrain height.",
-      "zhcn": "设置相机是否自动调整到平均地形高度。"
+      "desc": "Set whether the camera should automatically adjust to average terrain height."
     },
     {
       "func": "( flDistance: number )",
       "name": "SetCameraDistance",
       "return": "void",
-      "desc": "Set the camera distance from the look at point.",
-      "zhcn": "设置相机高度。"
+      "desc": "Set the camera distance from the look at point."
     },
     {
       "func": "( nInset: number )",
       "name": "SetRenderBottomInsetOverride",
       "return": "void",
-      "desc": "Set the gap between the bottom of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)",
-      "zhcn": "设置屏幕底部和“游戏渲染”视口之间的间隙(在规格化的1024x768视口中以像素表示的值)"
+      "desc": "Set the gap between the bottom of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)"
     },
     {
       "func": "( nInset: number )",
       "name": "SetRenderTopInsetOverride",
       "return": "void",
-      "desc": "Set the gap between the top of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)",
-      "zhcn": "设置屏幕顶部和“游戏渲染”视口之间的间隙(在规格化的1024x768视口中以像素表示的值)"
+      "desc": "Set the gap between the top of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)"
     },
     {
       "func": "( nTargetEntIndex: number )",
       "name": "SetCameraTarget",
       "return": "void",
-      "desc": "Set the camera target for the local player, or -1 to clear.",
-      "zhcn": "为本地玩家设置相机目标，或-1清除"
+      "desc": "Set the camera target for the local player, or -1 to clear."
     },
     {
       "func": "( vec: Vector, flLerp: number )",
       "name": "SetCameraTargetPosition",
       "return": "void",
-      "desc": "Set the camera target as position for the local player over specified lerp.",
-      "zhcn": "lerp之后,为本地玩家将摄像机目标设置在指定位置。"
+      "desc": "Set the camera target as position for the local player over specified lerp."
     },
     {
       "func": "( nTargetEntIndex: number )",
       "name": "MoveCameraToEntity",
       "return": "void",
-      "desc": "Moves the camera to an entity, but doesn&apos;t lock the camera on that entity.",
-      "zhcn": "将相机移动到实体，但不将相机锁定在该实体上"
+      "desc": "Moves the camera to an entity, but doesn&apos;t lock the camera on that entity."
     },
     {
       "func": "( vec: Vector )",
       "name": "WorldToScreenXYClamped",
       "return": "number[]",
-      "desc": "Converts the specified x,y,z world co-ordinate into an x,y screen coordinate. Will clamp position to always be in front of camera.  Position returned as 0-&gt;1.0",
-      "zhcn": "将指定的x、y、z世界坐标转换为x、y屏幕坐标。将固定位置始终放在摄像机前面。位置返回为0->1.0"
+      "desc": "Converts the specified x,y,z world co-ordinate into an x,y screen coordinate. Will clamp position to always be in front of camera.  Position returned as 0-&gt;1.0"
     },
     {
       "func": "( pszScoreboardName: string )",
       "name": "GetPlayerScoreboardScore",
       "return": "any",
-      "desc": "Get the current players scoreboard score for the specified zone.",
-      "zhcn": "获取指定区域的当前玩家记分牌分数"
+      "desc": "Get the current players scoreboard score for the specified zone."
     },
     {
       "func": "( pszErrorText: string, pszErrorSound: string )",
       "name": "SendCustomHUDError",
       "return": "void",
-      "desc": "Send a custom client side error message with passed string and soundevent.",
-      "zhcn": "使用传递的字符串和soundevent发送自定义客户端错误消息"
+      "desc": "Send a custom client side error message with passed string and soundevent."
     },
     {
       "func": "( ability: number )",
       "name": "ReplaceDOTAAbilitySpecialValues",
       "return": "void",
-      "desc": "Given a passed ability, replace the special value variables in the passed localized text.",
-      "zhcn": "给定传递的技能，替换传递的本地化文本中的特殊值变量"
+      "desc": "Given a passed ability, replace the special value variables in the passed localized text."
     }
   ],
   "Particles": [
@@ -3074,50 +2784,43 @@
       "func": "( pParticleName: string, nAttachType: number, nEntityToAttach: number)",
       "name": "CreateParticle",
       "return": "number",
-      "desc": "Create a particle system",
-      "zhcn": "创建粒子系统"
+      "desc": "Create a particle system"
     },
     {
       "func": "( iIndex: number )",
       "name": "ReleaseParticleIndex",
       "return": "void",
-      "desc": "Release a particle system",
-      "zhcn": "释放粒子系统"
+      "desc": "Release a particle system"
     },
     {
       "func": "( iIndex: number, bDestroyImmediately: boolean )",
       "name": "DestroyParticleEffect",
       "return": "void",
-      "desc": "Destroy a particle system",
-      "zhcn": "破坏粒子系统"
+      "desc": "Destroy a particle system"
     },
     {
       "func": "( iIndex: number, iPoint: number, vPosVal: Vector )",
       "name": "SetParticleControl",
       "return": "void",
-      "desc": "Set a control point on a particle system",
-      "zhcn": "在粒子系统上设置控制点"
+      "desc": "Set a control point on a particle system"
     },
     {
       "func": "( iIndex: number, iPoint: number, vForwardVal: Vector )",
       "name": "SetParticleControlForward",
       "return": "void",
-      "desc": "Set the orientation on a control point on a particle system",
-      "zhcn": "在粒子系统的控制点上设置方向"
+      "desc": "Set the orientation on a control point on a particle system"
     },
     {
       "func": "( iIndex: number )",
       "name": "SetParticleAlwaysSimulate",
       "return": "void",
-      "desc": "",
-      "zhcn": "在粒子系统上设置始终模拟"
+      "desc": ""
     },
     {
       "func": "( iIndex: number, iPoint: number, iEntIndex: number, iAttachType: number, pszAttachName: string, vecFallbackPositionVal: Vector, bIncludeWearables: boolean )",
       "name": "SetParticleControlEnt",
       "return": "void",
-      "desc": "Set a control point to track an entity on a particle system",
-      "zhcn": "设置控制点以跟踪粒子系统上的实体"
+      "desc": "Set a control point to track an entity on a particle system"
     }
   ],
   "EventData": [
@@ -3125,22 +2828,19 @@
       "func": "( unEventID: number, unActionID: number )",
       "name": "GetEventActionScore",
       "return": "any",
-      "desc": "Get the score of an EventAction",
-      "zhcn": "获取操作事件的比分"
+      "desc": "Get the score of an EventAction"
     },
     {
       "func": "( unPeriodicResourceID: number )",
       "name": "GetPeriodicResourceUsed",
       "return": "any",
-      "desc": "Get a periodic resource value used",
-      "zhcn": "定期获取使用的资源值"
+      "desc": "Get a periodic resource value used"
     },
     {
       "func": "( unPeriodicResourceID: number )",
       "name": "GetPeriodicResourceMax",
       "return": "any",
-      "desc": "Get a periodic resource value max",
-      "zhcn": "定期获取资源值最大值"
+      "desc": "Get a periodic resource value max"
     }
   ],
   "LocalInventory": [
@@ -3148,8 +2848,7 @@
       "func": "( nDefIndex: number )",
       "name": "HasItemByDefinition",
       "return": "boolean",
-      "desc": "Does the player have an inventory item of a given item definition index?",
-      "zhcn": "玩家是否有给定物品定义索引的库存物品?"
+      "desc": "Does the player have an inventory item of a given item definition index?"
     }
   ],
   "$": [
@@ -3157,169 +2856,145 @@
       "func": "( ...args: any[] )",
       "name": "Msg",
       "return": "void",
-      "desc": "Log a message",
-      "zhcn": "打印信息"
+      "desc": "Log a message"
     },
     {
       "func": "( ...args: any[] )",
       "name": "AssertHelper",
       "return": "void",
-      "desc": "Trigger an assert",
-      "zhcn": "触发断言"
+      "desc": "Trigger an assert"
     },
     {
       "func": "( ...args: any[] )",
       "name": "Warning",
       "return": "void",
-      "desc": "Log a warning message to specified channel",
-      "zhcn": "将警告消息记录到指定通道"
+      "desc": "Log a warning message to specified channel"
     },
     {
       "func": "( event: string, panel: Panel, ...args: any[] )",
       "name": "DispatchEvent",
       "return": "void",
-      "desc": "Dispatch an event",
-      "zhcn": "发送事件"
+      "desc": "Dispatch an event"
     },
     {
       "func": "( event: string, panelID?: string, ...args: any[] )",
       "name": "DispatchEvent",
       "return": "void",
-      "desc": "Dispatch an event",
-      "zhcn": "发送事件"
+      "desc": "Dispatch an event"
     },
     {
       "func": "( delay: number, event: string, panelID?: string, ...args: any[] )",
       "name": "DispatchEventAsync",
       "return": "void",
-      "desc": "Dispatch an event to occur later",
-      "zhcn": "将事件分派到以后发生"
+      "desc": "Dispatch an event to occur later"
     },
     {
       "func": "( delay: number, event: string, panel: Panel, ...args: any[] )",
       "name": "DispatchEventAsync",
       "return": "void",
-      "desc": "Dispatch an event to occur later",
-      "zhcn": "将事件分派到以后发生"
+      "desc": "Dispatch an event to occur later"
     },
     {
       "func": "( event: string, parent: Panel, handler: (...args: any[]) => void )",
       "name": "RegisterEventHandler",
       "return": "void",
-      "desc": "Register an event handler",
-      "zhcn": "注册事件处理程序"
+      "desc": "Register an event handler"
     },
     {
       "func": "( event: string, handler: (...args: any[]) => void )",
       "name": "RegisterForUnhandledEvent",
       "return": "number",
-      "desc": "Register a handler for an event that is not otherwise handled",
-      "zhcn": "为未以其他方式处理的事件注册处理程序"
+      "desc": "Register a handler for an event that is not otherwise handled"
     },
     {
       "func": "( event: string, handle: number )",
       "name": "UnregisterForUnhandledEvent",
       "return": "void",
-      "desc": "Remove an unhandled event handler",
-      "zhcn": "删除未处理的事件处理程序"
+      "desc": "Remove an unhandled event handler"
     },
     {
       "func": "( selector: string )",
       "name": "FindChildInContext",
       "return": "Panel | undefined",
-      "desc": "Find an element",
-      "zhcn": "查找元素"
+      "desc": "Find an element"
     },
     {
       "func": "( url: string, args: IAsyncWebRequestData )",
       "name": "AsyncWebRequest",
       "return": "void",
-      "desc": "Make a web request",
-      "zhcn": "发出web请求"
+      "desc": "Make a web request"
     },
     {
       "func": "( tagName: string, parent: Panel, id: string )",
       "name": "CreatePanel",
       "return": "Panel | undefined",
-      "desc": "Create a new panel",
-      "zhcn": "创建新面板"
+      "desc": "Create a new panel"
     },
     {
       "func": "( tagName: string, parent: Panel, id: string, properties: {[key: string]: string} )",
       "name": "CreatePanelWithProperties",
       "return": "Panel | undefined",
-      "desc": "Create a new panel supplying a JS object as a fourth parameter containing properties to be applied to the panel",
-      "zhcn": "创建一个新面板，提供一个JS对象作为包含要应用于该面板的属性的第四个参数"
+      "desc": "Create a new panel supplying a JS object as a fourth parameter containing properties to be applied to the panel"
     },
     {
       "func": "( key: string, panel?: Panel )",
       "name": "Localize",
       "return": "string",
-      "desc": "Localize a string",
-      "zhcn": "本地化字符串"
+      "desc": "Localize a string"
     },
     {
       "func": "()",
       "name": "Language",
       "return": "string",
-      "desc": "Get the current language",
-      "zhcn": "获取当前语言"
+      "desc": "Get the current language"
     },
     {
       "func": "(delay: number, callback: () => void)",
       "name": "Schedule",
       "return": "number",
-      "desc": "Schedule a function to be called later",
-      "zhcn": "安排稍后调用的函数"
+      "desc": "Schedule a function to be called later"
     },
     {
       "func": "( scheduledId: number )",
       "name": "CancelScheduled",
       "return": "void",
-      "desc": "Cancelse a scheduled function",
-      "zhcn": "取消预定功能"
+      "desc": "Cancelse a scheduled function"
     },
     {
       "func": "()",
       "name": "GetContextPanel",
       "return": "Panel",
-      "desc": "Get the current panel context",
-      "zhcn": "获取当前面板上下文"
+      "desc": "Get the current panel context"
     },
     {
       "func": "( context: Panel, keyName: string, callback: Function )",
       "name": "RegisterKeyBind",
       "return": "void",
-      "desc": "Register a key binding",
-      "zhcn": "注册绑定键位"
+      "desc": "Register a key binding"
     },
     {
       "func": "( ...args: any[] )",
       "name": "Each",
       "return": "void",
-      "desc": "Call a function on each given item",
-      "zhcn": "对每个给定项调用函数"
+      "desc": "Call a function on each given item"
     },
     {
       "func": "()",
       "name": "DbgIsReloadingScript",
       "return": "boolean",
-      "desc": "Call during JS startup code to check if script is being reloaded",
-      "zhcn": "在JS启动代码期间调用以检查脚本是否正在重新加载"
+      "desc": "Call during JS startup code to check if script is being reloaded"
     },
     {
       "func": "( text: string )",
       "name": "HTMLEscape",
       "return": "string",
-      "desc": "Convert a string to HTML-safe",
-      "zhcn": "将字符串转换为HTML安全格式"
+      "desc": "Convert a string to HTML-safe"
     },
     {
       "func": "( ...args: any[] )",
       "name": "LogChannel",
       "return": "any",
-      "desc": "Create a logging channel",
-      "zhcn": "创建日志通道"
+      "desc": "Create a logging channel"
     }
   ],
   "Panel": [
@@ -3327,197 +3002,169 @@
       "func": "()",
       "name": "IsValid",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断板子是否有效"
+      "desc": ""
     },
     {
       "func": "",
       "name": "visible",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断板子是否显示"
+      "desc": ""
     },
     {
       "func": "",
       "name": "enabled",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断板子是否能够使用"
+      "desc": ""
     },
     {
       "func": "",
       "name": "checked",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断板子是否被选中"
+      "desc": ""
     },
     {
       "func": "",
       "name": "defaultfocus",
       "return": "string",
-      "desc": "",
-      "zhcn": "默认焦点"
+      "desc": ""
     },
     {
       "func": "",
       "name": "inputnamespace",
       "return": "string",
-      "desc": "",
-      "zhcn": "输入框的内容"
+      "desc": ""
     },
     {
       "func": "",
       "name": "hittest",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断是否板子被击穿"
+      "desc": ""
     },
     {
       "func": "",
       "name": "hittestchildren",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "判断是否板子的子板被击穿"
+      "desc": ""
     },
     {
       "func": "",
       "name": "tabindex",
       "return": "number",
-      "desc": "",
-      "zhcn": "标签索引"
+      "desc": ""
     },
     {
       "func": "",
       "name": "selectionpos_x",
       "return": "number",
-      "desc": "",
-      "zhcn": "选择位置_x轴"
+      "desc": ""
     },
     {
       "func": "",
       "name": "selectionpos_y",
       "return": "number",
-      "desc": "",
-      "zhcn": "选择位置_y轴"
+      "desc": ""
     },
     {
       "func": "",
       "name": "id",
       "return": "string",
-      "desc": "",
-      "zhcn": "板子的ID"
+      "desc": ""
     },
     {
       "func": "",
       "name": "layoutfile",
       "return": "string",
-      "desc": "",
-      "zhcn": "布局文件"
+      "desc": ""
     },
     {
       "func": "",
       "name": "contentwidth",
       "return": "number",
-      "desc": "",
-      "zhcn": "内容宽度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "contentheight",
       "return": "number",
-      "desc": "",
-      "zhcn": "内容高度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "desiredlayoutwidth",
       "return": "number",
-      "desc": "",
-      "zhcn": "所需布局宽度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "desiredlayoutheight",
       "return": "number",
-      "desc": "",
-      "zhcn": "所需布局高度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actuallayoutwidth",
       "return": "number",
-      "desc": "",
-      "zhcn": "实际布局宽度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actuallayoutheight",
       "return": "number",
-      "desc": "",
-      "zhcn": "实际布局高度"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actualxoffset",
       "return": "number",
-      "desc": "",
-      "zhcn": "实际x轴偏移量"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actualyoffset",
       "return": "number",
-      "desc": "",
-      "zhcn": "实际y轴偏移量"
+      "desc": ""
     },
     {
       "func": "",
       "name": "scrolloffset_y",
       "return": "number",
-      "desc": "",
-      "zhcn": "y轴滚动偏移量"
+      "desc": ""
     },
     {
       "func": "",
       "name": "scrolloffset_x",
       "return": "number",
-      "desc": "",
-      "zhcn": "x轴滚动偏移量"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actualuiscale_y",
       "return": "number",
-      "desc": "",
-      "zhcn": "y轴实际用户界面比例"
+      "desc": ""
     },
     {
       "func": "",
       "name": "actualuiscale_x",
       "return": "number",
-      "desc": "",
-      "zhcn": "x轴实际用户界面比例"
+      "desc": ""
     },
     {
       "func": "",
       "name": "style",
       "return": "CSSProperties",
-      "desc": "",
-      "zhcn": "样式"
+      "desc": ""
     },
     {
       "func": "( name: string )",
       "name": "AddClass",
       "return": "void",
-      "desc": "",
-      "zhcn": "添加class名"
+      "desc": ""
     },
     {
       "func": "( name: string )",
       "name": "RemoveClass",
       "return": "void",
-      "desc": "",
-      "zhcn": "删除class名"
+      "desc": ""
     },
     {
       "func": "( name: string )",
@@ -3559,29 +3206,25 @@
       "func": "( name: string )",
       "name": "ClearPanelEvent",
       "return": "void",
-      "desc": "",
-      "zhcn": "清除面板事件"
+      "desc": ""
     },
     {
       "func": "( enable: boolean )",
       "name": "SetDraggable",
       "return": "void",
-      "desc": "",
-      "zhcn": "设置拖动"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "IsDraggable",
       "return": "boolean",
-      "desc": "",
-      "zhcn": "是否可以拖动"
+      "desc": ""
     },
     {
       "func": "()",
       "name": "GetChildCount",
       "return": "number",
-      "desc": "",
-      "zhcn": "获取子板计数"
+      "desc": ""
     },
     {
       "func": "( index: number )",
@@ -3731,8 +3374,7 @@
       "func": "( b: boolean )",
       "name": "SetDisableFocusOnMouseDown",
       "return": "void",
-      "desc": "",
-      "zhcn": "设置按下鼠标无效聚焦"
+      "desc": ""
     },
     {
       "func": "()",
@@ -3965,607 +3607,608 @@
   ],
   "TabButton": [
     {
-      "func": "",
-      "name": "visible",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "enabled",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "checked",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "defaultfocus",
-      "return": "string",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "inputnamespace",
-      "return": "string",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "hittest",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "hittestchildren",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "tabindex",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "selectionpos_x",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "selectionpos_y",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "id",
-      "return": "string",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "layoutfile",
-      "return": "string",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "contentwidth",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "contentheight",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "desiredlayoutwidth",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "desiredlayoutheight",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actuallayoutwidth",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actuallayoutheight",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actualxoffset",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actualyoffset",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "scrolloffset_y",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "scrolloffset_x",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actualuiscale_y",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "actualuiscale_x",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "style",
-      "return": "CSSProperties",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "AddClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "RemoveClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "BHasClass",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "BAscendantHasClass",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( name: string, enable: boolean )",
-      "name": "SetHasClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "ToggleClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name1: string, name2: string )",
-      "name": "SwitchClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "TriggerClass",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "ClearPanelEvent",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( b?: boolean )",
-      "name": "SetDraggable",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "IsDraggable",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "GetChildCount",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "( index: number )",
-      "name": "GetChild",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "(child: Panel)",
-      "name": "GetChildIndex",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "Children",
-      "return": "Panel[]",
-      "desc": ""
-    },
-    {
-      "func": "( className: string )",
-      "name": "FindChildrenWithClassTraverse",
-      "return": "Panel | undefined",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "GetParent",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "( panel: Panel )",
-      "name": "SetParent",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( id: string )",
-      "name": "FindChild",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "( id: string )",
-      "name": "FindChildTraverse",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "( f: string )",
-      "name": "FindChildInLayoutFile",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "( f: string )",
-      "name": "FindPanelInLayoutFile",
-      "return": "Panel",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "RemoveAndDeleteChildren",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( source: Panel, target: Panel )",
-      "name": "MoveChildBefore",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( source: Panel, target: Panel )",
-      "name": "MoveChildAfter",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "GetPositionWithinWindow",
-      "return": "number[]",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "ApplyStyles",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( ...args: any[] )",
-      "name": "ClearPropertyFromCode",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( delay: number )",
-      "name": "DeleteAsync",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BIsTransparent",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BAcceptsInput",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BAcceptsFocus",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "SetFocus",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "UpdateFocusInContext",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BHasHoverStyle",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "SetAcceptsFocus",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "SetDisableFocusOnMouseDown",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BHasKeyFocus",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "SetScrollParentToFitWhenFocused",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BScrollParentToFitWhenFocused",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "IsSelected",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BHasDescendantKeyFocus",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( filePath: string, reload: boolean, usingParentContext: boolean )",
-      "name": "BLoadLayout",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( content: string, reload: boolean, usingParentContext: boolean )",
-      "name": "BLoadLayoutFromString",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( content: string, reload: boolean, usingParentContext: boolean )",
-      "name": "LoadLayoutFromStringAsync",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( filePath: string, reload: boolean, usingParentContext: boolean )",
-      "name": "LoadLayoutAsync",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "BLoadLayoutSnippet",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "BHasLayoutSnippet",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( content: string )",
-      "name": "BCreateChildren",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "SetTopOfInputContext",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: string )",
-      "name": "SetDialogVariable",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: number )",
-      "name": "SetDialogVariableInt",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: number )",
-      "name": "SetDialogVariableTime",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "ScrollToTop",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "ScrollToBottom",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "ScrollToLeftEdge",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "ScrollToRightEdge",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( unknownParam: any, b: boolean )",
-      "name": "ScrollParentToMakePanelFit",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BCanSeeInParentScroll",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, defaultValue: number )",
-      "name": "GetAttributeInt",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, defaultValue: string )",
-      "name": "GetAttributeString",
-      "return": "string",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, defaultValue: number )",
-      "name": "GetAttributeUInt32",
-      "return": "number",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: number )",
-      "name": "SetAttributeInt",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: string )",
-      "name": "SetAttributeString",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( key: string, value: number )",
-      "name": "SetAttributeUInt32",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( name: string )",
-      "name": "SetInputNamespace",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "RegisterForReadyEvents",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "BReadyForDisplay",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "( b: boolean )",
-      "name": "SetReadyForDisplay",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( x: number, y: number, z: number )",
-      "name": "SetPositionInPixels",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "()",
-      "name": "Data",
-      "return": "any",
-      "desc": ""
-    },
-    {
-      "func": "( eventName: string, callback: Function)",
-      "name": "SetPanelEvent",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "( ...args: any[] )",
-      "name": "RunScriptInPanelContext",
-      "return": "void",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "rememberchildfocus",
-      "return": "boolean",
-      "desc": ""
-    },
-    {
-      "func": "",
-      "name": "paneltype",
-      "return": "string",
-      "desc": ""
-    }
+			"func": "",
+			"name": "visible",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "enabled",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "checked",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "defaultfocus",
+			"return": "string",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "inputnamespace",
+			"return": "string",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "hittest",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "hittestchildren",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "tabindex",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "selectionpos_x",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "selectionpos_y",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "id",
+			"return": "string",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "layoutfile",
+			"return": "string",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "contentwidth",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "contentheight",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "desiredlayoutwidth",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "desiredlayoutheight",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actuallayoutwidth",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actuallayoutheight",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actualxoffset",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actualyoffset",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "scrolloffset_y",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "scrolloffset_x",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actualuiscale_y",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "actualuiscale_x",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "style",
+			"return": "CSSProperties",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "AddClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "RemoveClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "BHasClass",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "BAscendantHasClass",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( name: string, enable: boolean )",
+			"name": "SetHasClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "ToggleClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name1: string, name2: string )",
+			"name": "SwitchClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "TriggerClass",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "ClearPanelEvent",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( b?: boolean )",
+			"name": "SetDraggable",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "IsDraggable",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "GetChildCount",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "( index: number )",
+			"name": "GetChild",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "(child: Panel)",
+			"name": "GetChildIndex",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "Children",
+			"return": "Panel[]",
+			"desc": ""
+		},
+		{
+			"func": "( className: string )",
+			"name": "FindChildrenWithClassTraverse",
+			"return": "Panel | undefined",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "GetParent",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "( panel: Panel )",
+			"name": "SetParent",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( id: string )",
+			"name": "FindChild",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "( id: string )",
+			"name": "FindChildTraverse",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "( f: string )",
+			"name": "FindChildInLayoutFile",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "( f: string )",
+			"name": "FindPanelInLayoutFile",
+			"return": "Panel",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "RemoveAndDeleteChildren",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( source: Panel, target: Panel )",
+			"name": "MoveChildBefore",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( source: Panel, target: Panel )",
+			"name": "MoveChildAfter",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "GetPositionWithinWindow",
+			"return": "number[]",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "ApplyStyles",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( ...args: any[] )",
+			"name": "ClearPropertyFromCode",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( delay: number )",
+			"name": "DeleteAsync",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BIsTransparent",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BAcceptsInput",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BAcceptsFocus",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "SetFocus",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "UpdateFocusInContext",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BHasHoverStyle",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "SetAcceptsFocus",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "SetDisableFocusOnMouseDown",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BHasKeyFocus",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "SetScrollParentToFitWhenFocused",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BScrollParentToFitWhenFocused",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "IsSelected",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BHasDescendantKeyFocus",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( filePath: string, reload: boolean, usingParentContext: boolean )",
+			"name": "BLoadLayout",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( content: string, reload: boolean, usingParentContext: boolean )",
+			"name": "BLoadLayoutFromString",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( content: string, reload: boolean, usingParentContext: boolean )",
+			"name": "LoadLayoutFromStringAsync",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( filePath: string, reload: boolean, usingParentContext: boolean )",
+			"name": "LoadLayoutAsync",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "BLoadLayoutSnippet",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "BHasLayoutSnippet",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( content: string )",
+			"name": "BCreateChildren",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "SetTopOfInputContext",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: string )",
+			"name": "SetDialogVariable",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: number )",
+			"name": "SetDialogVariableInt",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: number )",
+			"name": "SetDialogVariableTime",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "ScrollToTop",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "ScrollToBottom",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "ScrollToLeftEdge",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "ScrollToRightEdge",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( unknownParam: any, b: boolean )",
+			"name": "ScrollParentToMakePanelFit",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BCanSeeInParentScroll",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, defaultValue: number )",
+			"name": "GetAttributeInt",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, defaultValue: string )",
+			"name": "GetAttributeString",
+			"return": "string",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, defaultValue: number )",
+			"name": "GetAttributeUInt32",
+			"return": "number",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: number )",
+			"name": "SetAttributeInt",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: string )",
+			"name": "SetAttributeString",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( key: string, value: number )",
+			"name": "SetAttributeUInt32",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( name: string )",
+			"name": "SetInputNamespace",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "RegisterForReadyEvents",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "BReadyForDisplay",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "( b: boolean )",
+			"name": "SetReadyForDisplay",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( x: number, y: number, z: number )",
+			"name": "SetPositionInPixels",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "()",
+			"name": "Data",
+			"return": "any",
+			"desc": ""
+		},
+		{
+			"func": "( eventName: string, callback: Function)",
+			"name": "SetPanelEvent",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "( ...args: any[] )",
+			"name": "RunScriptInPanelContext",
+			"return": "void",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "rememberchildfocus",
+			"return": "boolean",
+			"desc": ""
+		},
+		{
+			"func": "",
+			"name": "paneltype",
+			"return": "string",
+			"desc": ""
+		}
   ],
-  "Button": [],
+  "Button": [
+  ],
   "Label": [
     {
       "func": "",
@@ -4803,13 +4446,13 @@
       "return": "void",
       "desc": ""
     },
-    {
+		{
       "func": "( event: string, callback: Function )",
       "name": "SetPanelEvent",
       "return": "void",
       "desc": ""
-    },
-    {
+		},
+		{
       "func": "()",
       "name": "RunScriptInPanelContext",
       "return": "void",
@@ -4888,14 +4531,14 @@
       "name": "SetValueNoEvents",
       "return": "void",
       "desc": ""
-    },
-    {
+		},
+		{
       "func": "( event: string, callback: Function )",
       "name": "SetPanelEvent",
       "return": "void",
       "desc": ""
-    },
-    {
+		},
+		{
       "func": "()",
       "name": "RunScriptInPanelContext",
       "return": "void",
