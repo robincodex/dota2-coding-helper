@@ -65,6 +65,13 @@ const sortList = [
     'Panel',
 ];
 
+const Locale = (...args)=> {
+    //@ts-ignore
+    let localeWord = window.localeData
+    args.forEach(element => localeWord = localeWord[element] || localeWord);
+    return localeWord.constructor ==String?localeWord : '';
+};
+
 // On location.hash change
 function onHashChange() {
     let className = location.hash.replace('#', '');
@@ -133,8 +140,7 @@ function renderClasses(title, data, isContant) {
                     <span class="func-params">${renderParam(apiInfo.func)}</span>:
                     <span class="func-return"> ${apiInfo.return}</span>
                 </div>
-                <div>${apiInfo.desc}</div>
-                <div>${apiInfo.zhcn||''}</div>
+                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
             </td>
         </tr>`;
     };
@@ -148,8 +154,7 @@ function renderClasses(title, data, isContant) {
                     <span class="func-name">${apiInfo.name}</span>
                     <span class="func-params">${apiInfo.func}</span>
                 </div>
-                <div>${apiInfo.desc}</div>
-                <div>${apiInfo.zhcn||''}</div>
+                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
             </td>
         </tr>`;
     };
@@ -162,8 +167,7 @@ function renderClasses(title, data, isContant) {
                     <span class="func-name">${apiInfo.name}</span>
                     <span class="constant-value">${apiInfo.value}</span>
                 </div>
-                <div>${apiInfo.desc}</div>
-                <div>${apiInfo.zhcn||''}</div>
+                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
             </td>
         </tr>`;
     };
@@ -174,6 +178,7 @@ function renderClasses(title, data, isContant) {
     }
 
     return `<div class="api-title">${title}</div>
+    <div>${Locale(title)}</div>
     <table class="table api-list">
         <tbody> ${body} </tbody>
     </table>
@@ -288,7 +293,7 @@ function onSearch( value ) {
             for(const c in Constants) {
                 search_datas(Constants[c],c,
                     v=>list.filter(e=>
-                        (v.zhcn && v.zhcn.search(e) >= 0)
+                        Locale(c,v.name).search(e) >= 0
                         || v.desc.search(e) >= 0
                         || v.name.search(e) >= 0
                         ).length>0
@@ -299,7 +304,7 @@ function onSearch( value ) {
 
         search_datas(apiData[k],k,
             v=>list.filter(e=>
-                (v.zhcn && v.zhcn.search(e) >= 0)
+                Locale(k,v.name).search(e) >= 0
                 || v.desc.search(e) >= 0
                 || v.name.search(e) >= 0
                 || v.func.search(e) >= 0
@@ -346,12 +351,10 @@ window.onload = async function() {
     // @ts-ignore Fetch api data;
     const res = await fetch(window.apiUri);
     apiData = await res.json();
-    // @ts-ignore
-    const localeData = window.localeData;
 
     // Initialize html
     root.innerHTML = `
-    <div id="search-container"><input id="search-input" type="text" placeholder="${localeData['lua_api_search_tip']}" /></div>
+    <div id="search-container"><input id="search-input" type="text" placeholder="${Locale('lua_api_search_tip')}" /></div>
     <div id="api-container">
         <div id="menu">
             <div id="menu-header">

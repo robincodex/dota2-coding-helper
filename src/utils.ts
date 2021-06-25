@@ -1,5 +1,5 @@
 
-let localeData: any = null;
+let localeData: Record<string,any>;
 
 export function loadLocale() {
     if (localeData) {
@@ -14,6 +14,14 @@ export function loadLocale() {
     return localeData;
 }
 
-export function loadLocaleJSON() {
+export function loadLocaleJSON(fileName?:string) {
+    if(fileName){
+        const config = JSON.parse(String(process.env.VSCODE_NLS_CONFIG));
+        const locale = config['locale'];
+        let localFile = require(`../media/i18n/${fileName}_${locale}.json`);
+        if(localFile){
+            localeData = {...localeData,...localFile};
+        }
+    }
     return JSON.stringify(localeData);
 }
