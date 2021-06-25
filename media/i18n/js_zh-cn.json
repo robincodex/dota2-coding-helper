@@ -1,17 +1,17 @@
 {
   "GameEvents": {
-    "__self": "",
+    "__self": "游戏事件",
     "__extends": "",
     "__globalAccessorVariable": "",
     "Subscribe": "注册一个监听事件，事件名和回调函数",
-    "Unsubscribe": " (取消订阅游戏活动)",
-    "SendCustomGameEventToServer": " (向服务器发送自定义游戏事件)",
-    "SendCustomGameEventToAllClients": " (将自定义游戏事件发送到服务器，服务器会将其发送到所有客户端)",
-    "SendCustomGameEventToClient": " (将自定义游戏事件发送到服务器，然后服务器将其发送到一个客户端)",
-    "SendEventClientSide": " (使用gameeventmanager发送客户端事件（仅对少数特定事件有用）)"
+    "Unsubscribe": " 取消订阅游戏活动",
+    "SendCustomGameEventToServer": " 向服务器发送自定义游戏事件",
+    "SendCustomGameEventToAllClients": " 将自定义游戏事件发送到服务器，服务器会将其发送到所有客户端",
+    "SendCustomGameEventToClient": " 将自定义游戏事件发送到服务器，然后服务器将其发送到一个客户端",
+    "SendEventClientSide": " 使用gameeventmanager发送客户端事件（仅对少数特定事件有用）"
   },
   "CustomNetTables": {
-    "__self": "",
+    "__self": "自定义网表",
     "__extends": "",
     "__globalAccessorVariable": "",
     "GetTableValue": "",
@@ -42,22 +42,22 @@
     "__self": "",
     "__extends": "",
     "__globalAccessorVariable": "",
-    "RequestPersonaName": "   (请求用户的角色名称)",
-    "SetLargeAvatarImage": "  (在图像面板上设置化身图像)"
+    "RequestPersonaName": "请求用户的角色名称",
+    "SetLargeAvatarImage": "在图像面板上设置化身图像"
   },
   "SteamUtils": {
     "__self": "",
     "__extends": "",
     "__globalAccessorVariable": "",
-    "GetConnectedUniverse": "  (返回连接的宇宙)",
-    "GetAppID": "  (返回当前应用的appID)"
+    "GetConnectedUniverse": "  返回连接的宇宙",
+    "GetAppID": "  返回当前应用的appID"
   },
   "VRUtils": {
     "__self": "",
     "__extends": "",
     "__globalAccessorVariable": "",
-    "GetVRAppPropertyData": "  (获取具有指定appID的VR应用程序的应用程序属性)",
-    "LaunchSteamApp": "  (使用OpenVR启动Steam应用程序)"
+    "GetVRAppPropertyData": "  获取具有指定appID的VR应用程序的应用程序属性",
+    "LaunchSteamApp": "  使用OpenVR启动Steam应用程序"
   },
   "Buffs": {
     "__self": "",
@@ -74,9 +74,9 @@
     "GetStackCount": "获取大量计数",
     "IsDebuff": "是否拥有负面BUFF",
     "IsHidden": "是否隐藏",
-    "GetCaster": "  (获得负责修饰符的技能的拥有者)",
-    "GetParent": "  (获取修饰符的父级单位)",
-    "GetAbility": "  (获得生成修改器的技能)"
+    "GetCaster": "  获得负责修饰符的技能的拥有者",
+    "GetParent": "  获取修饰符的父级单位",
+    "GetAbility": "  获得生成修改器的技能"
   },
   "Players": {
     "__self": "",
@@ -90,8 +90,8 @@
     "GetPlayerHeroEntityIndex": "获取该玩家控制的英雄实体索引",
     "GetSelectedEntities": "获取该玩家选择的实体",
     "GetQueryUnit": "获取该玩家正在查询的实体",
-    "GetLocalPlayerPortraitUnit": "获取本地玩家当前的画像单位(即玩家的英雄或初选单位)",
-    "CanPlayerBuyback": " (玩家能买回吗？)",
+    "GetLocalPlayerPortraitUnit": "获取本地玩家当前的画像单位即玩家的英雄或初选单位",
+    "CanPlayerBuyback": " 玩家能买回吗？",
     "HasCustomGameTicketForPlayerID": "这个玩家有定制的游戏票吗？",
     "GetAssists": "一个玩家的助攻次数",
     "GetClaimedDenies": "获取索赔",
@@ -127,7 +127,7 @@
     "GetPerspectivePlayerId": "如果玩家处于透视模式，则返回后面的玩家id。否则，-1"
   },
   "Entities": {
-    "__self": "",
+    "__self": "实体管理工具",
     "__extends": "",
     "__globalAccessorVariable": "",
     "GetAbsOrigin": "获取实体的世界原点",
@@ -292,7 +292,7 @@
     "GetContainedItem": "获取此物理项容器中包含的项。"
   },
   "Abilities": {
-    "__self": "",
+    "__self": "技能",
     "__extends": "",
     "__globalAccessorVariable": "",
     "GetAbilityName": "",
@@ -359,7 +359,7 @@
     "GetCooldownTimeRemaining": "",
     "GetDuration": "",
     "GetUpgradeBlend": "",
-    "GetLocalPlayerActiveAbility": "获取本地玩家当前的激活技能(预制目标状态）",
+    "GetLocalPlayerActiveAbility": "获取本地玩家当前的激活技能预制目标状态）",
     "GetCaster": "",
     "GetCustomValueFor": "",
     "GetLevelSpecialValueFor": "",
@@ -371,7 +371,7 @@
     "GetKeybind": "返回指定功能的键绑定（作为字符串）"
   },
   "Items": {
-    "__self": "",
+    "__self": "物品",
     "__extends": "",
     "__globalAccessorVariable": "",
     "ShouldDisplayCharges": "",
@@ -414,7 +414,7 @@
     "LocalPlayerSellItem": ""
   },
   "Game": {
-    "__self": "",
+    "__self": "游戏进度工具",
     "__extends": "",
     "__globalAccessorVariable": "",
     "Time": "获取时间",
@@ -469,7 +469,7 @@
     "FinishGame": "结束游戏",
     "Disconnect": "断开",
     "FindEventMatch": "查找事件匹配",
-    "EmitSound": "为本地玩家发出声音。返回可传递到停止声音的整数处理(失败时返回0)",
+    "EmitSound": "为本地玩家发出声音。返回可传递到停止声音的整数处理失败时返回0",
     "StopSound": "停止当前本地玩家播放的声音。控制语音对话",
     "IsShopOpen": "询问游戏商城是否打开",
     "SetCustomShopEntityString": "设置商店自定义背景",
@@ -483,7 +483,7 @@
     "IsInAbilityLearnMode": "是否在技能学习模式中"
   },
   "GameUI": {
-    "__self": "",
+    "__self": "游戏界面工具",
     "__extends": "",
     "__globalAccessorVariable": "",
     "SetDefaultUIEnabled": "控制是否启用默认UI",
@@ -513,8 +513,8 @@
     "SetCameraPositionFromLateralLookAtPosition": "设置相机的世界坐标。",
     "SetCameraTerrainAdjustmentEnabled": "设置相机是否自动调整到平均地形高度。",
     "SetCameraDistance": "设置相机高度。",
-    "SetRenderBottomInsetOverride": "设置屏幕底部和“游戏渲染”视口之间的间隙(在规格化的1024x768视口中以像素表示的值)",
-    "SetRenderTopInsetOverride": "设置屏幕顶部和“游戏渲染”视口之间的间隙(在规格化的1024x768视口中以像素表示的值)",
+    "SetRenderBottomInsetOverride": "设置屏幕底部和“游戏渲染”视口之间的间隙在规格化的1024x768视口中以像素表示的值",
+    "SetRenderTopInsetOverride": "设置屏幕顶部和“游戏渲染”视口之间的间隙在规格化的1024x768视口中以像素表示的值",
     "SetCameraTarget": "为本地玩家设置相机目标，或-1清除",
     "SetCameraTargetPosition": "lerp之后,为本地玩家将摄像机目标设置在指定位置。",
     "MoveCameraToEntity": "将相机移动到实体，但不将相机锁定在该实体上",
@@ -524,7 +524,7 @@
     "ReplaceDOTAAbilitySpecialValues": "给定传递的技能，替换传递的本地化文本中的特殊值变量"
   },
   "Particles": {
-    "__self": "",
+    "__self": "粒子特效",
     "__extends": "",
     "__globalAccessorVariable": "",
     "CreateParticle": "创建粒子系统",
@@ -684,7 +684,7 @@
   },
   "TabButton": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "visible": "",
     "enabled": "",
@@ -787,36 +787,36 @@
     "rememberchildfocus": "",
     "paneltype": ""
   },
-  "Button": { "__self": "", "__extends": "", "__globalAccessorVariable": "" },
+  "Button": { "__self": "", "__extends": "Panel", "__globalAccessorVariable": "" },
   "Label": {
-    "__self": "",
-    "__extends": "",
+    "__self": "文字显示",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "text": "",
     "html": ""
   },
   "TextButton": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "text": ""
   },
   "RadioButton": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "GetSelectedButton": ""
   },
   "ToggleButton": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "SetSelected": "",
     "text": ""
   },
   "DropDown": {
-    "__self": "",
-    "__extends": "",
+    "__self": "下拉菜单",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "AddOption": "",
     "HasOption": "",
@@ -829,15 +829,15 @@
   },
   "ProgressBar": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "value": "",
     "min": "",
     "max": ""
   },
   "TextEntry": {
-    "__self": "",
-    "__extends": "",
+    "__self": "输入框",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "text": "",
     "SetMaxChars": "",
@@ -896,8 +896,8 @@
     "increment": ""
   },
   "Image": {
-    "__self": "",
-    "__extends": "",
+    "__self": "图片",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "SetImage": "",
     "SetScaling": ""
@@ -925,16 +925,16 @@
     "BAdjustingVolume": ""
   },
   "DOTAAvatarImage": {
-    "__self": "",
-    "__extends": "",
+    "__self": "玩家头像",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "steamid": "",
     "accountid": "",
     "SetAccountID": ""
   },
   "DOTAAbilityImage": {
-    "__self": "",
-    "__extends": "",
+    "__self": "技能图片",
+    "__extends": "Image",
     "__globalAccessorVariable": "",
     "abilityid": "",
     "abilityname": "",
@@ -942,15 +942,15 @@
     "contextEntityIndex": ""
   },
   "DOTAItemImage": {
-    "__self": "",
-    "__extends": "",
+    "__self": "装备图片",
+    "__extends": "Image",
     "__globalAccessorVariable": "",
     "itemname": "",
     "contextEntityIndex": ""
   },
   "DOTAHeroImage": {
-    "__self": "",
-    "__extends": "",
+    "__self": "英雄图片",
+    "__extends": "Image",
     "__globalAccessorVariable": "",
     "heroid": "",
     "heroname": "",
@@ -965,8 +965,8 @@
     "accountid": ""
   },
   "DOTAScenePanel": {
-    "__self": "",
-    "__extends": "",
+    "__self": "角色3D展板",
+    "__extends": "Panel",
     "__globalAccessorVariable": "",
     "FireEntityInput": "",
     "PlayEntitySoundEvent": "",
@@ -975,7 +975,7 @@
     "SetRotateParams": ""
   },
   "DOTAAbilityPanel": {
-    "__self": "",
+    "__self": "技能",
     "__extends": "",
     "__globalAccessorVariable": "",
     "overrideentityindex": "",
@@ -1047,7 +1047,7 @@
       "Public": ""
     },
     "DOTA_GameState": {
-      "__self": "",
+      "__self": "游戏进程阶段",
       "DOTA_GAMERULES_STATE_INIT": "",
       "DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD": "",
       "DOTA_GAMERULES_STATE_HERO_SELECTION": "",

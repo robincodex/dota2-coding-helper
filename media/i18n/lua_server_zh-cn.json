@@ -1,12 +1,12 @@
 {
   "CDOTA_Ability_Nian_Roar": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "GetCastCount": "年兽使用了咆哮的次数"
   },
   "Globals": {
-    "__self": "",
+    "__self": "全局函数，可以被任何类使用。",
     "__extends": "",
     "__globalAccessorVariable": "",
     "AddFOWViewer": "为指定队伍增加临时视野(nTeamID,vLocation,flRadius,flDuration,bObstructedVision)",
@@ -234,7 +234,7 @@
     "rr_QueryBestResponse": "参数:(hEnt,hQuery,hResult)//静态 :对实体的回复系统测试'query'并返回最佳回复(无回复返回nil)"
   },
   "HTTPRequest": {
-    "__self": "",
+    "__self": "HTTP请求",
     "__extends": "",
     "__globalAccessorVariable": "",
     "Send": "",
@@ -246,7 +246,7 @@
   },
   "CEntityInstance": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "ConnectOutput": "添加一个I/O链接,这可以当特定输出触发时,在这个实体调用方法",
     "Destroy": "",
@@ -269,8 +269,8 @@
     "entindex": ""
   },
   "CDOTA_Item": {
-    "__self": "",
-    "__extends": "",
+    "__self": "物品基类",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "CanBeUsedOutOfInventory": "",
     "GetContainer": "获得物品所有者",
@@ -323,8 +323,8 @@
     "Think": "判断此物品"
   },
   "CDOTABaseAbility": {
-    "__self": "",
-    "__extends": "",
+    "__self": "技能/物品的基类",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "CanAbilityBeUpgraded": "",
     "CastAbility": "",
@@ -454,8 +454,8 @@
     "UseResources": ""
   },
   "CBaseModelEntity": {
-    "__self": "",
-    "__extends": "",
+    "__self": "游戏模式的实体",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "GetAttachmentAngles": "",
     "GetAttachmentForward": "",
@@ -496,21 +496,21 @@
     "GetValue": "读取一个键值（spawnkey）"
   },
   "CDOTA_ShopTrigger": {
-    "__self": "",
-    "__extends": "",
+    "__self": "商店的触发器",
+    "__extends": "CBaseTrigger",
     "__globalAccessorVariable": "",
     "GetShopType": "",
     "SetShopType": ""
   },
   "CPointWorldText": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseModelEntity",
     "__globalAccessorVariable": "",
     "SetMessage": ""
   },
   "CEnvEntityMaker": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "SpawnEntity": "在生成器的位置创建一个实体",
     "SpawnEntityAtEntityOrigin": "在指定实体的位置立刻创建一个实体",
@@ -518,8 +518,8 @@
     "SpawnEntityAtNamedEntityOrigin": "在指定名字实体的位置创建一个实体"
   },
   "CDOTA_BaseNPC_Creature": {
-    "__self": "",
-    "__extends": "",
+    "__self": "创建类角色基类",
+    "__extends": "CDOTA_BaseNPC",
     "__globalAccessorVariable": "",
     "AddItemDrop": "为该生物添加特别的道具掉落",
     "CreatureLevelUp": "升级目标生物指定级别",
@@ -546,15 +546,15 @@
     "SetXPGain": "设置该生物每级增加的经验值"
   },
   "CDOTA_Ability_DataDriven": {
-    "__self": "",
-    "__extends": "",
+    "__self": "数据驱动类技能",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "ApplyDataDrivenModifier": "获取单位的攻击力。",
     "ApplyDataDrivenThinker": "在指定地点应用一个数据驱动thinker。"
   },
   "CDOTA_Unit_Nian": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTA_BaseNPC_Creature",
     "__globalAccessorVariable": "",
     "GetHorn": "获取年兽角",
     "GetTail": "获取年兽尾巴",
@@ -602,8 +602,8 @@
     "SetStabilityDamage": "设置稳定的伤害"
   },
   "CDOTA_CustomUIManager": {
-    "__self": "",
-    "__extends": "",
+    "__self": "自定义UI管理器",
+    "__extends": "CustomUI",
     "__globalAccessorVariable": "",
     "DynamicHud_Create": "为某玩家建立一个新的自定义用户界面元素。(intPlayerID/*-1meanseveryone*/,stringElementID/*shouldbeunique*/,stringLayoutFileName,tableDialogVariables/*canbenil*/)",
     "DynamicHud_Destroy": "删除一个自定义用户界面元素。(intPlayerID/*-1meanseveryone*/,stringElementID)",
@@ -622,7 +622,7 @@
   },
   "CDOTA_MapTree": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "CutDown": "砍掉这棵树",
     "CutDownRegrowAfter": "砍掉这棵树，一段时间后再生",
@@ -631,7 +631,7 @@
   },
   "CEnvProjectedTexture": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "SetFarRange": "设置光照最大距离",
     "SetLinearAttenuation": "设置光照线性淡化值",
@@ -659,20 +659,20 @@
   },
   "CDOTA_Ability_Animation_TailSpin": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "SetPlaybackRate": ""
   },
   "CDOTA_Item_DataDriven": {
-    "__self": "",
-    "__extends": "",
+    "__self": "数据驱动类物品基类",
+    "__extends": "CDOTA_Item",
     "__globalAccessorVariable": "",
     "ApplyDataDrivenModifier": "应用一个数据驱动的Mordifier。",
     "ApplyDataDrivenThinker": "应用一个数据驱动的计时器到指定地点。"
   },
   "CDOTA_Modifier_Lua_Motion_Both": {
-    "__self": "",
-    "__extends": "",
+    "__self": "修改器的混合运动控制器",
+    "__extends": "CDOTA_Modifier_Lua",
     "__globalAccessorVariable": "",
     "ApplyHorizontalMotionController": "启动水平运动控制器的特效。启动成功后返回True。",
     "ApplyVerticalMotionController": "启动垂直运动控制器的特效。启动成功后返回True。",
@@ -685,13 +685,13 @@
   },
   "CDOTA_ItemSpawner": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "GetItemName": ""
   },
   "CDOTA_SimpleObstruction": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "IsEnabled": "",
     "SetEnabled": ""
@@ -758,13 +758,13 @@
     "LaunchSpear": ""
   },
   "CDOTA_Unit_Courier": {
-    "__self": "",
-    "__extends": "",
+    "__self": "信使类角色基类",
+    "__extends": "CDOTA_BaseNPC",
     "__globalAccessorVariable": ""
   },
   "CDotaQuest": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "AddSubquest": "为该任务添加子任务",
     "CompleteQuest": "标记该任务完成",
@@ -776,14 +776,14 @@
   },
   "CDOTA_BaseNPC_Trap_Ward": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTA_BaseNPC_Creature",
     "__globalAccessorVariable": "",
     "GetTrapTarget": "",
     "SetAnimation": ""
   },
   "CDOTA_Ability_Nian_Dive": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "SetPlaybackRate": ""
   },
@@ -801,7 +801,7 @@
   },
   "CMarkupVolumeTagged": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "HasTag": "查询该卷是否带有指定标签"
   },
@@ -816,7 +816,7 @@
   },
   "CPointTemplate": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "DeleteCreatedSpawnGroups": "删除任何该点模板的刷新组。提示：并不删除点模板",
     "ForceSpawn": "强制刷新该点模板指向的全部实体",
@@ -824,8 +824,8 @@
     "SetSpawnCallback": "设置刷新回调（hCallbackFunc,hCallbackScope,hCallbackData），当模板产生实体时回调。被刷新的实体作为数组被传入"
   },
   "CDOTAPlayer": {
-    "__self": "",
-    "__extends": "",
+    "__self": "玩家实体",
+    "__extends": "CBaseAnimating",
     "__globalAccessorVariable": "",
     "CheckForCourierSpawning": "",
     "GetAssignedHero": "获取该玩家的英雄",
@@ -867,7 +867,7 @@
       "SUBQUEST_NUM_TEXT_REPLACE_VALUES": ""
     },
     "DAMAGE_TYPES": {
-      "__self": "",
+      "__self": "伤害类型",
       "DAMAGE_TYPE_NONE": "",
       "DAMAGE_TYPE_PHYSICAL": "",
       "DAMAGE_TYPE_MAGICAL": "",
@@ -876,7 +876,7 @@
       "DAMAGE_TYPE_HP_REMOVAL": ""
     },
     "DOTA_HeroPickState": {
-      "__self": "",
+      "__self": "英雄选择与禁用的阶段",
       "DOTA_HEROPICK_STATE_NONE": "",
       "DOTA_HEROPICK_STATE_AP_SELECT": "",
       "DOTA_HEROPICK_STATE_SD_SELECT": "",
@@ -941,7 +941,7 @@
       "DOTA_HEROPICK_STATE_COUNT": ""
     },
     "LuaModifierType": {
-      "__self": "",
+      "__self": "脚本驱动修改器的类型",
       "LUA_MODIFIER_MOTION_NONE": "",
       "LUA_MODIFIER_MOTION_HORIZONTAL": "",
       "LUA_MODIFIER_MOTION_VERTICAL": "",
@@ -954,11 +954,11 @@
       "DOTA_ABILITY_SPEAK_CAST": ""
     },
     "DOTA_RUNES": {
-      "__self": "",
+      "__self": "神符类型",
       "DOTA_RUNE_INVALID": "",
-      "DOTA_RUNE_DOUBLEDAMAGE": "",
+      "DOTA_RUNE_DOUBLEDAMAGE": "双倍伤害",
       "DOTA_RUNE_HASTE": "",
-      "DOTA_RUNE_ILLUSION": "",
+      "DOTA_RUNE_ILLUSION": "幻象",
       "DOTA_RUNE_INVISIBILITY": "",
       "DOTA_RUNE_REGENERATION": "",
       "DOTA_RUNE_BOUNTY": "",
@@ -967,7 +967,7 @@
       "DOTA_RUNE_COUNT": ""
     },
     "EDOTA_ModifyGold_Reason": {
-      "__self": "",
+      "__self": "金币变动原因",
       "DOTA_ModifyGold_Unspecified": "",
       "DOTA_ModifyGold_Death": "",
       "DOTA_ModifyGold_Buyback": "",
@@ -991,7 +991,7 @@
       "DOTA_ModifyGold_WardKill": ""
     },
     "UnitFilterResult": {
-      "__self": "",
+      "__self": "单位过滤器结果",
       "UF_SUCCESS": "",
       "UF_FAIL_FRIENDLY": "",
       "UF_FAIL_ENEMY": "",
@@ -1023,7 +1023,7 @@
       "UF_FAIL_OBSTRUCTED": ""
     },
     "DOTA_UNIT_TARGET_FLAGS": {
-      "__self": "",
+      "__self": "目标过滤标签",
       "DOTA_UNIT_TARGET_FLAG_NONE": "",
       "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY": "",
       "DOTA_UNIT_TARGET_FLAG_MELEE_ONLY": "",
@@ -1078,7 +1078,7 @@
       "DOTA_STASH_SLOT_6": ""
     },
     "DOTA_UNIT_TARGET_TEAM": {
-      "__self": "",
+      "__self": "目标过滤队伍",
       "DOTA_UNIT_TARGET_TEAM_NONE": "",
       "DOTA_UNIT_TARGET_TEAM_FRIENDLY": "",
       "DOTA_UNIT_TARGET_TEAM_ENEMY": "",
@@ -1093,7 +1093,7 @@
       "ABILITY_TYPE_HIDDEN": ""
     },
     "Attributes": {
-      "__self": "",
+      "__self": "三维属性",
       "DOTA_ATTRIBUTE_INVALID": "",
       "DOTA_ATTRIBUTE_STRENGTH": "",
       "DOTA_ATTRIBUTE_AGILITY": "",
@@ -1101,7 +1101,7 @@
       "DOTA_ATTRIBUTE_MAX": ""
     },
     "DOTAHUDVisibility_t": {
-      "__self": "",
+      "__self": "主界面面板",
       "DOTA_HUD_VISIBILITY_INVALID": "",
       "DOTA_HUD_VISIBILITY_TOP_TIMEOFDAY": "",
       "DOTA_HUD_VISIBILITY_TOP_HEROES": "",
@@ -1185,19 +1185,19 @@
       "DOTA_BUFF_REMOVE_ALLY": ""
     },
     "AttributeDerivedStats": {
-      "__self": "",
-      "DOTA_ATTRIBUTE_STRENGTH_DAMAGE": "",
-      "DOTA_ATTRIBUTE_STRENGTH_HP": "",
-      "DOTA_ATTRIBUTE_STRENGTH_HP_REGEN": "",
-      "DOTA_ATTRIBUTE_AGILITY_DAMAGE": "",
-      "DOTA_ATTRIBUTE_AGILITY_ARMOR": "",
-      "DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED": "",
-      "DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE": "",
-      "DOTA_ATTRIBUTE_INTELLIGENCE_MANA": "",
-      "DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN": ""
+      "__self": "三维属性的加成",
+      "DOTA_ATTRIBUTE_STRENGTH_DAMAGE": "力量加攻击伤害",
+      "DOTA_ATTRIBUTE_STRENGTH_HP": "力量加生命值",
+      "DOTA_ATTRIBUTE_STRENGTH_HP_REGEN": "力量加生命恢复",
+      "DOTA_ATTRIBUTE_AGILITY_DAMAGE": "敏捷加攻击伤害",
+      "DOTA_ATTRIBUTE_AGILITY_ARMOR": "敏捷加护甲",
+      "DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED": "敏捷加攻速",
+      "DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE": "智力加攻击伤害",
+      "DOTA_ATTRIBUTE_INTELLIGENCE_MANA": "智力加魔法值",
+      "DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN": "智力加魔法恢复"
     },
     "DOTA_UNIT_TARGET_TYPE": {
-      "__self": "",
+      "__self": "目标过滤单位基类",
       "DOTA_UNIT_TARGET_NONE": "",
       "DOTA_UNIT_TARGET_HERO": "",
       "DOTA_UNIT_TARGET_CREEP": "",
@@ -1310,7 +1310,7 @@
       "DMG_VEHICLE": ""
     },
     "modifierstate": {
-      "__self": "",
+      "__self": "修改器状态列表",
       "MODIFIER_STATE_ROOTED": "",
       "MODIFIER_STATE_DISARMED": "",
       "MODIFIER_STATE_ATTACK_IMMUNE": "",
@@ -1370,7 +1370,7 @@
       "MODIFIER_PRIORITY_SUPER_ULTRA": ""
     },
     "DOTAMusicStatus_t": {
-      "__self": "",
+      "__self": "音乐状态",
       "DOTA_MUSIC_STATUS_NONE": "",
       "DOTA_MUSIC_STATUS_EXPLORATION": "",
       "DOTA_MUSIC_STATUS_BATTLE": "",
@@ -1379,7 +1379,7 @@
       "DOTA_MUSIC_STATUS_LAST": ""
     },
     "DOTAModifierAttribute_t": {
-      "__self": "",
+      "__self": "修改器属性",
       "MODIFIER_ATTRIBUTE_NONE": "",
       "MODIFIER_ATTRIBUTE_PERMANENT": "",
       "MODIFIER_ATTRIBUTE_MULTIPLE": "",
@@ -1387,7 +1387,7 @@
       "MODIFIER_ATTRIBUTE_AURA_PRIORITY": ""
     },
     "DOTAMinimapEvent_t": {
-      "__self": "",
+      "__self": "小地图事件",
       "DOTA_MINIMAP_EVENT_ANCIENT_UNDER_ATTACK": "",
       "DOTA_MINIMAP_EVENT_BASE_UNDER_ATTACK": "",
       "DOTA_MINIMAP_EVENT_BASE_GLYPHED": "",
@@ -1415,7 +1415,7 @@
       "DOTA_ATTACK_RECORD_FAIL_BLOCKED_BY_OBSTRUCTION": ""
     },
     "DOTASpeechType_t": {
-      "__self": "",
+      "__self": "对话窗频道",
       "DOTA_SPEECH_USER_INVALID": "",
       "DOTA_SPEECH_USER_SINGLE": "",
       "DOTA_SPEECH_USER_TEAM": "",
@@ -1733,13 +1733,13 @@
       "DOTA_GAMERULES_STATE_DISCONNECT": ""
     },
     "EShareAbility": {
-      "__self": "",
+      "__self": "技能/物品共享属性",
       "ITEM_FULLY_SHAREABLE": "",
       "ITEM_PARTIALLY_SHAREABLE": "",
       "ITEM_NOT_SHAREABLE": ""
     },
     "DOTASlotType_t": {
-      "__self": "",
+      "__self": "饰品载入类型",
       "DOTA_LOADOUT_TYPE_INVALID": "",
       "DOTA_LOADOUT_TYPE_WEAPON": "",
       "DOTA_LOADOUT_TYPE_OFFHAND_WEAPON": "",
@@ -1833,7 +1833,7 @@
       "DOTA_LOADOUT_TYPE_COUNT": ""
     },
     "DOTADamageFlag_t": {
-      "__self": "",
+      "__self": "伤害标签",
       "DOTA_DAMAGE_FLAG_NONE": "",
       "DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR": "",
       "DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR": "",
@@ -1852,7 +1852,7 @@
       "DOTA_DAMAGE_FLAG_IGNORES_BASE_PHYSICAL_ARMOR": ""
     },
     "AbilityLearnResult_t": {
-      "__self": "",
+      "__self": "技能学习结果",
       "ABILITY_CAN_BE_UPGRADED": "",
       "ABILITY_CANNOT_BE_UPGRADED_NOT_UPGRADABLE": "",
       "ABILITY_CANNOT_BE_UPGRADED_AT_MAX": "",
@@ -2103,7 +2103,7 @@
       "MODIFIER_FUNCTION_INVALID": ""
     },
     "EDOTA_ModifyXP_Reason": {
-      "__self": "",
+      "__self": "经验变动原因",
       "DOTA_ModifyXP_Unspecified": "",
       "DOTA_ModifyXP_HeroKill": "",
       "DOTA_ModifyXP_CreepKill": "",
@@ -2113,7 +2113,7 @@
       "DOTA_ModifyXP_MAX": ""
     },
     "DOTAUnitAttackCapability_t": {
-      "__self": "",
+      "__self": "攻击触发类型",
       "DOTA_UNIT_CAP_NO_ATTACK": "",
       "DOTA_UNIT_CAP_MELEE_ATTACK": "",
       "DOTA_UNIT_CAP_RANGED_ATTACK": "",
@@ -2121,7 +2121,7 @@
       "DOTA_UNIT_CAP_RANGED_ATTACK_DIRECTIONAL": ""
     },
     "DOTATeam_t": {
-      "__self": "",
+      "__self": "队伍类型",
       "DOTA_TEAM_FIRST": "",
       "DOTA_TEAM_GOODGUYS": "",
       "DOTA_TEAM_BADGUYS": "",
@@ -2141,13 +2141,13 @@
       "DOTA_TEAM_COUNT": ""
     },
     "DOTAUnitMoveCapability_t": {
-      "__self": "",
+      "__self": "移动触发类型",
       "DOTA_UNIT_CAP_MOVE_NONE": "",
       "DOTA_UNIT_CAP_MOVE_GROUND": "",
       "DOTA_UNIT_CAP_MOVE_FLY": ""
     },
     "DOTA_ABILITY_BEHAVIOR": {
-      "__self": "",
+      "__self": "技能行为类型",
       "DOTA_ABILITY_BEHAVIOR_LAST_RESORT_POINT": "",
       "DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE": "",
       "DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE": "",
@@ -2197,7 +2197,7 @@
       "DOTA_MOTION_CONTROLLER_PRIORITY_HIGHEST": ""
     },
     "ParticleAttachment_t": {
-      "__self": "",
+      "__self": "粒子特效附着点",
       "PATTACH_INVALID": "",
       "PATTACH_ABSORIGIN": "",
       "PATTACH_ABSORIGIN_FOLLOW": "",
@@ -2219,7 +2219,7 @@
     }
   },
   "ProjectileManager": {
-    "__self": "",
+    "__self": "投射物管理器",
     "__extends": "",
     "__globalAccessorVariable": "",
     "ChangeTrackingProjectileSpeed": "",
@@ -2236,7 +2236,7 @@
     "UpdateLinearProjectileDirection": ""
   },
   "CDOTA_Buff": {
-    "__self": "",
+    "__self": "状态咒语的基类",
     "__extends": "",
     "__globalAccessorVariable": "",
     "AddParticle": "增加粒子。",
@@ -2271,7 +2271,7 @@
   },
   "CBaseCombatCharacter": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseFlex",
     "__globalAccessorVariable": ""
   },
   "CBasePlayer": {
@@ -2284,8 +2284,8 @@
     "IsNoclipping": "玩家处于穿墙模式（noclipmode）下返回true"
   },
   "CBaseTrigger": {
-    "__self": "",
-    "__extends": "",
+    "__self": "触发器实体",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "Disable": "禁止触发器",
     "Enable": "允许触发器",
@@ -2324,7 +2324,7 @@
   },
   "CDOTA_Item_Physical": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseAnimating",
     "__globalAccessorVariable": "",
     "GetContainedItem": "返回禁用的物品?",
     "GetCreationTime": "返回物品第一次出现在地图上的时间",
@@ -2354,9 +2354,9 @@
     "StopAnimation": ""
   },
   "CCustomNetTableManager": {
-    "__self": "",
+    "__self": "自定义网表，用于同步数据",
     "__extends": "",
-    "__globalAccessorVariable": "",
+    "__globalAccessorVariable": "CustomNetTables",
     "GetTableValue": "",
     "SetTableValue": ""
   },
@@ -2367,8 +2367,8 @@
     "GetValue": "读取一个键值（spawnkey）"
   },
   "CScriptHeroList": {
-    "__self": "",
-    "__extends": "",
+    "__self": "英雄列表",
+    "__extends": "HeroList",
     "__globalAccessorVariable": "",
     "GetAllHeroes": "返回当前世界全部英雄",
     "GetHero": "获取英雄列表中第N位英雄",
@@ -2387,14 +2387,14 @@
   },
   "CInfoWorldLayer": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "HideWorldLayer": "",
     "ShowWorldLayer": ""
   },
   "CBaseFlex": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseAnimating",
     "__globalAccessorVariable": "",
     "GetCurrentScene": "返回最早激活的场景实体的实例（如果存在的话）",
     "GetSceneByIndex": "返回指定索引号的场景实体的实例",
@@ -2402,7 +2402,7 @@
   },
   "CSceneEntity": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "AddBroadcastTeamTarget": "在记分板列表上增加一个组（使用索引号）",
     "Cancel": "取消场景重播",
@@ -2416,8 +2416,8 @@
     "Start": "开始场景重播，参数为激活者实体（activatorEntity）"
   },
   "CDOTA_Ability_Lua": {
-    "__self": "",
-    "__extends": "",
+    "__self": "脚本驱动类技能",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "CastFilterResult": "判断一个无目标的命令是否有效",
     "CastFilterResultLocation": "(VectorvLocation)判断一个作用于某个地点的命令是否有效",
@@ -2474,7 +2474,7 @@
   },
   "CPointClientUIWorldPanel": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseModelEntity",
     "__globalAccessorVariable": "",
     "AcceptUserInput": "",
     "AddCSSClasses": "",
@@ -2489,28 +2489,28 @@
   },
   "CDOTA_Ability_Nian_Leap": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "SetPlaybackRate": ""
   },
   "CPhysicsProp": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseAnimating",
     "__globalAccessorVariable": "",
     "DisableMotion": "禁止该元件运动",
     "EnableMotion": "允许该元件运动",
     "SetDynamicVsDynamicContinuous": ""
   },
   "CDOTA_Ability_Animation_Attack": {
-    "__self": "",
-    "__extends": "",
+    "__self": "技能攻击动画",
+    "__extends": "CDOTABaseAbility",
     "__globalAccessorVariable": "",
     "SetPlaybackRate": "重写播放速率"
   },
   "CDOTA_PlayerResource": {
-    "__self": "",
-    "__extends": "",
-    "__globalAccessorVariable": "",
+    "__self": "玩家数据管理",
+    "__extends": "CBaseEntity",
+    "__globalAccessorVariable": "PlayerResource",
     "AddAegisPickup": "",
     "AddCandyEvent": "",
     "AddClaimedFarm": "",
@@ -2654,12 +2654,12 @@
   },
   "CParticleSystem": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseModelEntity",
     "__globalAccessorVariable": ""
   },
   "CDOTA_Modifier_Lua_Horizontal_Motion": {
-    "__self": "",
-    "__extends": "",
+    "__self": "修改器的水平运动控制器",
+    "__extends": "CDOTA_Modifier_Lua",
     "__globalAccessorVariable": "",
     "ApplyHorizontalMotionController": "启动水平运动控制器的特效。启动成功后返回True。",
     "GetPriority": "获取优先级。",
@@ -2681,9 +2681,9 @@
     "SetServerAuthoritative": ""
   },
   "Convars": {
-    "__self": "",
-    "__extends": "",
-    "__globalAccessorVariable": "",
+    "__self": "控制台",
+    "__extends": "Convars",
+    "__globalAccessorVariable": "ConVars",
     "GetBool": "获取指定的控制台变量（convar）的boolean值",
     "GetCommandClient": "返回输入该控制台指令的玩家",
     "GetDOTACommandClient": "返回输入该控制台指令的DOTA玩家",
@@ -2698,8 +2698,8 @@
     "SetStr": "将指定控制台变量（convar）设置为指定string"
   },
   "CDOTA_Item_Lua": {
-    "__self": "",
-    "__extends": "",
+    "__self": "脚本驱动类物品基类",
+    "__extends": "CDOTA_Item",
     "__globalAccessorVariable": "",
     "CanUnitPickUp": "",
     "CastFilterResult": "判断一个无目标的命令是否有效",
@@ -2748,8 +2748,8 @@
     "SpeakTrigger": "返回所使用的语音类型"
   },
   "CDOTA_BaseNPC_Hero": {
-    "__self": "",
-    "__extends": "",
+    "__self": "英雄类角色基类",
+    "__extends": "CDOTA_BaseNPC",
     "__globalAccessorVariable": "",
     "AddExperience": "给单位增加经验值",
     "Buyback": "花费金钱并买活英雄",
@@ -2851,8 +2851,8 @@
     "WillReincarnate": ""
   },
   "CDOTA_Modifier_Lua_Vertical_Motion": {
-    "__self": "",
-    "__extends": "",
+    "__self": "修改器的垂直运动控制器",
+    "__extends": "CDOTA_Modifier_Lua",
     "__globalAccessorVariable": "",
     "ApplyVerticalMotionController": "启动垂直运动控制器的特效。启动成功后返回True。",
     "GetMotionPriority": "获取优先级。",
@@ -2867,16 +2867,16 @@
     "StartVote": "开始投票，详细由传入的table制定"
   },
   "CDOTA_BaseNPC_Building": {
-    "__self": "",
-    "__extends": "",
+    "__self": "建筑类角色基类",
+    "__extends": "CDOTA_BaseNPC",
     "__globalAccessorVariable": "",
     "GetInvulnCount": "返回建筑无敌计数",
     "SetInvulnCount": "设置建筑无敌计数"
   },
   "CDOTAGamerules": {
-    "__self": "",
+    "__self": "游戏规则工具",
     "__extends": "",
-    "__globalAccessorVariable": "",
+    "__globalAccessorVariable": "GameRules",
     "AddBotPlayerWithEntityScript": "",
     "AddEventMetadataLeaderboardEntry": "",
     "AddEventMetadataLeaderboardEntryRawScore": "",
@@ -2998,8 +2998,8 @@
     "State_Get": ""
   },
   "CDOTA_BaseNPC": {
-    "__self": "",
-    "__extends": "",
+    "__self": "非玩家角色基类",
+    "__extends": "CBaseFlex",
     "__globalAccessorVariable": "",
     "AddAbility": "以技能名称为该单位新增技能，并且返回该技能句柄。",
     "AddActivityModifier": "",
@@ -3322,7 +3322,7 @@
   },
   "CInfoData": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "QueryColor": "查询该键值颜色数据",
     "QueryFloat": "查询该键值浮点（float）数据",
@@ -3332,8 +3332,8 @@
     "QueryVector": "查询该键值矢量（vector）数据"
   },
   "CScriptParticleManager": {
-    "__self": "",
-    "__extends": "",
+    "__self": "粒子特效管理器",
+    "__extends": "ParticleManager",
     "__globalAccessorVariable": "",
     "CreateParticle": "创建一个新的粒子特效",
     "CreateParticleForPlayer": "创建一个只对指定玩家播放的粒子特效",
@@ -3357,9 +3357,9 @@
     "__globalAccessorVariable": ""
   },
   "CEntities": {
-    "__self": "",
+    "__self": "实体管理工具",
     "__extends": "",
-    "__globalAccessorVariable": "",
+    "__globalAccessorVariable": "Entities",
     "CreateByClassname": "用类名来创建一个实体",
     "FindAllByClassname": "通过类名来寻找所有实体.返回被找到实体的数组或表.",
     "FindAllByClassnameWithin": "在一个半径范围内通过类名寻找实体.",
@@ -3383,8 +3383,8 @@
     "Next": "从指定列表中的实体开始迭代"
   },
   "CDOTA_BaseNPC_Shop": {
-    "__self": "",
-    "__extends": "",
+    "__self": "商店类角色基类",
+    "__extends": "CDOTA_BaseNPC_Building",
     "__globalAccessorVariable": "",
     "GetShopType": "",
     "SetShopType": ""
@@ -3396,9 +3396,9 @@
     "IsPublicUniverse": ""
   },
   "CCustomGameEventManager": {
-    "__self": "",
+    "__self": "自定义事件管理器",
     "__extends": "",
-    "__globalAccessorVariable": "",
+    "__globalAccessorVariable": "CustomGameEventManager",
     "RegisterListener": "(stringEventName,funcCallbackFunction)-监听指定自定义事件，注册一个回调函数，在指定事件触发时被调用。返回一个监听者ID用来在以后取消监听。",
     "Send_ServerToAllClients": "",
     "Send_ServerToPlayer": "",
@@ -3406,8 +3406,8 @@
     "UnregisterListener": "(intListnerID)-对指定的监听者取消监听。"
   },
   "CDOTABaseGameMode": {
-    "__self": "",
-    "__extends": "",
+    "__self": "基础游戏模式工具",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "AddItemToCustomShop": "",
     "AddRealTimeCombatAnalyzerQuery": "",
@@ -3546,8 +3546,8 @@
     "SetWeatherEffectsDisabled": ""
   },
   "CDOTA_Modifier_Lua": {
-    "__self": "",
-    "__extends": "",
+    "__self": "脚本驱动的修改器基类",
+    "__extends": "CDOTA_Buff",
     "__globalAccessorVariable": "",
     "AllowIllusionDuplicate": "幻象是否继承这个Mordifier",
     "CanParentBeAutoAttacked": "",
@@ -3588,15 +3588,15 @@
   },
   "CDotaSubquestBase": {
     "__self": "",
-    "__extends": "",
+    "__extends": "CBaseEntity",
     "__globalAccessorVariable": "",
     "CompleteSubquest": "完成子任务",
     "SetTextReplaceString": "设置该任务的文本取代字符串",
     "SetTextReplaceValue": "设置任务数值"
   },
   "CBaseEntity": {
-    "__self": "",
-    "__extends": "",
+    "__self": "实体的基类",
+    "__extends": "CEntityInstance",
     "__globalAccessorVariable": "",
     "AddEffects": "",
     "ApplyAbsVelocityImpulse": "添加一个速度冲击",
@@ -3689,7 +3689,7 @@
   },
   "CDOTATutorial": {
     "__self": "",
-    "__extends": "",
+    "__extends": "Tutorial",
     "__globalAccessorVariable": "",
     "AddBot": "",
     "AddQuest": "",
