@@ -140,7 +140,8 @@ function renderClasses(title, data, isContant) {
                     <span class="func-params">${renderParam(apiInfo.func)}</span>:
                     <span class="func-return"> ${apiInfo.return}</span>
                 </div>
-                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
             </td>
         </tr>`;
     };
@@ -154,7 +155,8 @@ function renderClasses(title, data, isContant) {
                     <span class="func-name">${apiInfo.name}</span>
                     <span class="func-params">${apiInfo.func}</span>
                 </div>
-                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
             </td>
         </tr>`;
     };
@@ -167,7 +169,8 @@ function renderClasses(title, data, isContant) {
                     <span class="func-name">${apiInfo.name}</span>
                     <span class="constant-value">${apiInfo.value}</span>
                 </div>
-                <div>${Locale(title,apiInfo.name)||apiInfo.desc}</div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
             </td>
         </tr>`;
     };
@@ -176,9 +179,14 @@ function renderClasses(title, data, isContant) {
     for (let i = 0; i < data.length; i++) {
         body += getItem(data[i]);
     }
-
-    return `<div class="api-title">${title}</div>
-    <div>${Locale(title)}</div>
+    let extend = Locale(title,'__extends');
+    let variable = Locale(title,'__globalAccessorVariable');
+    return `<div>
+        <span class="api-title">${title}</span>
+        ${extend?`extends <span class="func-return">${extend}</span>`:''}
+        ${variable?`Global accessor variable <span class="func-name">${variable}</span>`:''}
+    </div>
+    <div>${isContant?Locale('Constants',title,'__self'):Locale(title,'__self')}</div>
     <table class="table api-list">
         <tbody> ${body} </tbody>
     </table>
