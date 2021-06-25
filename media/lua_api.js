@@ -186,7 +186,7 @@ function renderClasses(title, data, isContant) {
         ${extend?`extends <span class="func-return">${extend}</span>`:''}
         ${variable?`Global accessor variable <span class="func-name">${variable}</span>`:''}
     </div>
-    <div>${isContant?Locale('Constants',title,'__self'):Locale(title,'__self')}</div>
+    <div>${Locale(title,'__self')}</div>
     <table class="table api-list">
         <tbody> ${body} </tbody>
     </table>

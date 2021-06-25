@@ -8,8 +8,12 @@ export function loadLocale() {
     const config = JSON.parse(String(process.env.VSCODE_NLS_CONFIG));
     const locale = config['locale'];
     localeData = require(`../media/i18n/${locale}.json`);
-    if (!localeData) {
+    if(!localeData) {
         localeData = require('../media/i18n/en.json');
+    }
+    let constants = require(`../media/i18n/constants_${locale}.json`);
+    if( constants){
+        localeData = {...localeData,...constants};
     }
     return localeData;
 }
