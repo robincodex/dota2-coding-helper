@@ -1,3 +1,4 @@
+import { existsSync } from "fs";
 
 let localeData: Record<string,any>;
 
@@ -22,9 +23,9 @@ export function loadLocaleJSON(fileName?:string) {
     if(fileName){
         const config = JSON.parse(String(process.env.VSCODE_NLS_CONFIG));
         const locale = config['locale'];
-        let localFile = require(`../media/i18n/${fileName}_${locale}.json`);
-        if(localFile){
-            localeData = {...localeData,...localFile};
+        let localFile = `../media/i18n/${fileName}_${locale}.json`;
+        if (existsSync(localFile)) {
+            localeData = {...localeData,...require(localFile)};
         }
     }
     return JSON.stringify(localeData);
