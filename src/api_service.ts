@@ -63,6 +63,7 @@ export class API {
                 <script>
                     window.apiUri = "${apiUri}";
                     window.localeData = ${loadLocaleJSON()};
+                    window.usingJavascriptStyle = ${this.pathName==='js'};
                 </script>
                 <script src="${jsUri}"></script>
             </body>
