@@ -1,31 +1,32 @@
+import { existsSync } from "fs";
+import { join } from "path";
 
 let localeData: Record<string,any>;
+const localeFilePath = join(__dirname,'..','media','i18n');
 
-export function loadLocale() {
-    if (localeData) {
+export function loadLocale(fileName?:string) {
+    if (!fileName && localeData) {
         return localeData;
     }
     const config = JSON.parse(String(process.env.VSCODE_NLS_CONFIG));
-    const locale = config['locale'];
-    localeData = require(`../media/i18n/${locale}.json`);
-    if(!localeData) {
-        localeData = require('../media/i18n/en.json');
+    const locale = config['locale']
+    if(!localeData){
+        const common = join(localeFilePath,`${locale}.json`);
+        localeData = require(existsSync(common)? common: join(localeFilePath,'en.json'));
+        loadLocale('constants')
     }
-    let constants = require(`../media/i18n/constants_${locale}.json`);
-    if( constants){
-        localeData = {...localeData,...constants};
+    if(fileName){
+        let localFile = join(localeFilePath,`${fileName+'_'+locale}.json`);
+        if(existsSync(localFile)){
+            localeData = {...localeData,...require(localFile)};
+        }
     }
     return localeData;
 }
 
 export function loadLocaleJSON(fileName?:string) {
     if(fileName){
-        const config = JSON.parse(String(process.env.VSCODE_NLS_CONFIG));
-        const locale = config['locale'];
-        let localFile = require(`../media/i18n/${fileName}_${locale}.json`);
-        if(localFile){
-            localeData = {...localeData,...localFile};
-        }
+        loadLocale(fileName)
     }
     return JSON.stringify(localeData);
 }
