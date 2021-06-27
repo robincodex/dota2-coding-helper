@@ -65,6 +65,13 @@ const sortList = [
     'Panel',
 ];
 
+const Locale = (...args)=> {
+    //@ts-ignore
+    let localeWord = window.localeData
+    args.forEach(element => localeWord = localeWord[element] || localeWord);
+    return localeWord.constructor ==String?localeWord : '';
+};
+
 // On location.hash change
 function onHashChange() {
     let className = location.hash.replace('#', '');
@@ -94,120 +101,94 @@ function onHashChange() {
         isConstants = true;
     }
     const apiListContainer = root.querySelector('#api-list-container');
-    apiListContainer.innerHTML = isConstants? renderConstants(className, data):renderAPI(className, data);
+    apiListContainer.innerHTML = renderClasses(className, data,isConstants);
     apiListContainer.scrollTop = 0;
 }
 
-// Render list of Lua API
-function renderAPI(title, data) {
+/** Render list of API */
+function renderClasses(title, data, isContant) {
     if (!data) {
         return '';
     }
-    if (usingJavascriptStyle) {
-        return renderJavascriptAPI(title, data);
-    }
-    const getItem = (v) => {
-        return `<tr>
-            <td>
-                <div class="function">
-                    <span class="func-return">${v.return}</span>
-                    <span class="func-name">${v.name}</span><span class="func-params">${v.func}</span>
-                </div>
-                <div>${v.desc}</div>
-            </td>
-        </tr>`;
-    };
 
-    let body = '';
-    for (let i = 0; i < data.length; i++) {
-        body += getItem(data[i]);
-    }
-
-    return `<div class="api-title">${title}</div>
-    <table class="table">
-        <tbody>
-            ${body}
-        </tbody>
-    </table>
-    `;
-}
-
-// Render list of Javascript API
-function renderJavascriptAPI(title, data) {
-    /**
-     * @param {string} text
-     */
-    const renderParam = (text) => {
-        const list = text.match(/[\.\w\d_]+\:\s*[\w\d\_\|\[\]\. ]+/g);
-        if (!list) {
-            return text;
-        }
-        for (let i = list.length-1; i >= 0; i--) {
-            const str = list[i];
-            const strList = str.split(/\:\s*/);
-            if (strList.length === 1) {
-                text = text.replace(str, `<span class="func-param-name">${strList[0]}</span>: `);
+    /** single TypeScript api */
+    const getItem_js = apiInfo => {
+        /**
+         * @param {string} funcName
+         */
+        const renderParam = funcName => {
+            const list = funcName.match(/[\.\w\d_]+\:\s*[\w\d\_\|\[\]\. ]+/g);
+            if (!list) {
+                return funcName;
             }
-            else if (strList.length === 2) {
-                text = text.replace(str, `<span class="func-param-name">${strList[0]}</span>: <span class="func-param-type">${strList[1]}</span>`);
+            for (let i = list.length-1; i >= 0; i--) {
+                const str = list[i];
+                const strList = str.split(/\:\s*/);
+                if (strList.length === 1) {
+                    funcName = funcName.replace(str, `<span class="func-param-name">${strList[0]}</span>: `);
+                }
+                else if (strList.length === 2) {
+                    funcName = funcName.replace(str, `<span class="func-param-name">${strList[0]}</span>: <span class="func-param-type">${strList[1]}</span>`);
+                }
             }
-        }
-        return text;
-    };
-
-    const getItem = (v) => {
+            return funcName;
+        };
         return `<tr>
             <td>
                 <div class="function">
-                    <span class="func-name">${v.name}</span><span class="func-params">${renderParam(v.func)}</span>:
-                    <span class="func-return"> ${v.return}</span>
+                    <span class="func-name">${apiInfo.name}</span>
+                    <span class="func-params">${renderParam(apiInfo.func)}</span>:
+                    <span class="func-return"> ${apiInfo.return}</span>
                 </div>
-                <div>${v.desc}</div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
             </td>
         </tr>`;
     };
 
-    let body = '';
-    for (let i = 0; i < data.length; i++) {
-        body += getItem(data[i]);
-    }
-
-    return `<div class="api-title">${title}</div>
-    <table class="table">
-        <tbody>
-            ${body}
-        </tbody>
-    </table>
-    `;
-}
-
-// Render a constants list
-function renderConstants(title, data) {
-    if (!data) {
-        return '';
-    }
-    const getItem = (v) => {
+    /** single lua api */
+    const getItem_lua = apiInfo => {
         return `<tr>
             <td>
                 <div class="function">
-                    <span class="func-name">${v.name}</span>
-                    <span class="constant-value">${v.value}</span>
+                    <span class="func-return">${apiInfo.return}</span>
+                    <span class="func-name">${apiInfo.name}</span>
+                    <span class="func-params">${apiInfo.func}</span>
                 </div>
-                <div>${v.desc}</div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
             </td>
         </tr>`;
     };
 
+    /** single contant enum */
+    const getItem_constant = apiInfo => {
+        return `<tr>
+            <td>
+                <div class="function">
+                    <span class="func-name">${apiInfo.name}</span>
+                    <span class="constant-value">${apiInfo.value}</span>
+                </div>
+                <div>${apiInfo.desc}</div>
+                <div>${Locale(title,apiInfo.name)}</div>
+            </td>
+        </tr>`;
+    };
+    let getItem = isContant?getItem_constant:usingJavascriptStyle?getItem_js:getItem_lua;
     let body = '';
     for (let i = 0; i < data.length; i++) {
         body += getItem(data[i]);
     }
-
-    return `<div class="api-title">${title}</div>
+    let extend = Locale(title,'__extends');
+    let variable = Locale(title,'__globalAccessorVariable');
+    return `<div>
+        <span class="api-title">${title}</span>
+        ${extend?`extends <span class="func-return">${extend}</span>`:''}
+        ${variable?`Global accessor variable <span class="func-name">${variable}</span>`:''}
+    </div>
+    <div>${Locale(title,'__self')}</div>
     <table class="table api-list">
-        <tbody>
-            ${body}
-        </tbody>
+        <tbody> ${body} </tbody>
     </table>
     `;
 }
@@ -302,43 +283,9 @@ function onSearch( value ) {
 
     const list = value.split(/\s+/).map((v) => new RegExp(v, 'i'));
     const resultList = {};
-
-    for(const k in apiData) {
-        if (k === 'Constants') {
-            const Constants = apiData[k];
-            for(const c in Constants) {
-                const data = Constants[c];
-                for(const v of data) {
-                    let find = true;
-                    for(const e of list) {
-                        if (v.desc.search(e) < 0 && v.name.search(e) < 0) {
-                            find = false;
-                            break;
-                        }
-                    }
-                    if (find) {
-                        let apiList = resultList[c];
-                        if (!apiList) {
-                            resultList[c] = apiList = [];
-                        }
-                        apiList.push(v);
-                    }
-                }
-            }
-            continue;
-        }
-
-        const data = apiData[k];
-        for(const v of data) {
-            let find = true;
-            for(const e of list) {
-                if (v.desc.search(e) < 0 && v.name.search(e) < 0 && 
-                    v.func.search(e) < 0 && v.return.search(e) < 0) {
-                    find = false;
-                    break;
-                }
-            }
-            if (find) {
+    const search_datas =(datas,k,find)=>{
+        for(const v of datas) {
+            if (find(v)) {
                 let apiList = resultList[k];
                 if (!apiList) {
                     resultList[k] = apiList = [];
@@ -346,6 +293,32 @@ function onSearch( value ) {
                 apiList.push(v);
             }
         }
+
+    }
+    for(const k in apiData) {
+        if (k === 'Constants') {
+            const Constants = apiData[k];
+            for(const c in Constants) {
+                search_datas(Constants[c],c,
+                    v=>list.filter(e=>
+                        Locale(c,v.name).search(e) >= 0
+                        || v.desc.search(e) >= 0
+                        || v.name.search(e) >= 0
+                        ).length>0
+                )
+            }
+            continue;
+        }
+
+        search_datas(apiData[k],k,
+            v=>list.filter(e=>
+                Locale(k,v.name).search(e) >= 0
+                || v.desc.search(e) >= 0
+                || v.name.search(e) >= 0
+                || v.func.search(e) >= 0
+                || v.return.search(e) >= 0
+                ).length>0
+        )
     }
 
     // Sort keys
@@ -373,7 +346,7 @@ function onSearch( value ) {
         if (!apiData[k]) {
             isConstants = !!apiData['Constants'][k];
         }
-        html += isConstants? renderConstants(k, resultList[k]):renderAPI(k, resultList[k]);
+        html += renderClasses(k, resultList[k], isConstants);
     }
     const apiListContainer = root.querySelector('#api-list-container');
     apiListContainer.innerHTML = html;
@@ -386,12 +359,10 @@ window.onload = async function() {
     // @ts-ignore Fetch api data;
     const res = await fetch(window.apiUri);
     apiData = await res.json();
-    // @ts-ignore
-    const localeData = window.localeData;
 
     // Initialize html
     root.innerHTML = `
-    <div id="search-container"><input id="search-input" type="text" placeholder="${localeData['lua_api_search_tip']}" /></div>
+    <div id="search-container"><input id="search-input" type="text" placeholder="${Locale('lua_api_search_tip')}" /></div>
     <div id="api-container">
         <div id="menu">
             <div id="menu-header">

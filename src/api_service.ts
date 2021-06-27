@@ -3,16 +3,17 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { loadLocaleJSON } from './utils';
 
-export class JavascriptAPI {
+export class API {
     private webviewPanel: vscode.WebviewPanel;
     private viewType: string;
 
     constructor(
         private readonly context: vscode.ExtensionContext,
-    ){
+        private readonly pathName: string,
+    ) {
         // @ts-ignore
         this.webviewPanel = null;
-        this.viewType = `dota2CodingHelper.jsAPI`;
+        this.viewType = `dota2CodingHelper.${pathName}API`;
     }
 
     public register() {
@@ -25,17 +26,16 @@ export class JavascriptAPI {
     private start(): void {
         this.webviewPanel = vscode.window.createWebviewPanel(
             this.viewType,
-            `Dota2 Javascript API`,
+            `Dota2 ${this.pathName} API`,
             vscode.ViewColumn.One,
             {
                 enableScripts: true,
                 retainContextWhenHidden: true,
-                enableFindWidget: true,
             });
         this.renderHTML();
     }
 
-    private async renderHTML() {
+    private renderHTML() {
         const media = path.join(this.context.extensionPath, 'media');
 
         const jsUri = this.webviewPanel.webview.asWebviewUri(
@@ -47,7 +47,7 @@ export class JavascriptAPI {
         );
 
         const apiUri = this.webviewPanel.webview.asWebviewUri(
-            vscode.Uri.file(path.join(media, `javascript_api_ts.json`))
+            vscode.Uri.file(path.join(media, `api_${this.pathName}.json`))
         );
 
         this.webviewPanel.webview.html = `<!DOCTYPE html>
@@ -62,8 +62,8 @@ export class JavascriptAPI {
                 <div id="root"></div>
                 <script>
                     window.apiUri = "${apiUri}";
-                    window.localeData = ${loadLocaleJSON()};
-                    window.usingJavascriptStyle = true;
+                    window.localeData = ${loadLocaleJSON(this.pathName)};
+                    window.usingJavascriptStyle = ${this.pathName==='js'};
                 </script>
                 <script src="${jsUri}"></script>
             </body>
