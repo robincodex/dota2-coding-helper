@@ -1,7 +1,7 @@
-@import "./atom-one-dark.css";
-@import "./markdown.css";
+@import './atom-one-dark.css';
+@import './markdown.css';
 
-.markdown-body img[alt="box"] {
+.markdown-body img[alt='box'] {
     height: 128px;
     border: 2px solid #101010;
     margin: 3px;
@@ -12,13 +12,13 @@
     user-select: none;
     -webkit-user-drag: none;
 }
-.markdown-body img[alt="box"]:hover {
+.markdown-body img[alt='box']:hover {
     transform: scaleX(1.1) scaleY(1.1);
     z-index: 100;
     border: 2px solid #ffffff;
 }
 
-.markdown-body img[alt="box-static"] {
+.markdown-body img[alt='box-static'] {
     height: 128px;
     margin: 3px 0px;
     position: relative;
@@ -157,7 +157,7 @@
     flex-shrink: 0;
     width: 128px;
     height: 128px;
-    background-image: url("./down_arrow.svg");
+    background-image: url('./down_arrow.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
@@ -169,7 +169,7 @@
     width: 128px;
     height: 128px;
     flex-shrink: 1;
-    background-image: url("./down_arrow.svg");
+    background-image: url('./down_arrow.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;

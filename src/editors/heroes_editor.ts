@@ -77,17 +77,12 @@ export class CustomGameSettingsService {
         const nonce = GetNonce();
 
         const styleUri = webview.asWebviewUri(
-            vscode.Uri.file(
-                path.join(this.context.extensionPath, 'media/bundle/style.css')
-            )
+            vscode.Uri.file(path.join(this.context.extensionPath, 'media/bundle/style.css'))
         );
 
         const indexJs = webview.asWebviewUri(
             vscode.Uri.file(
-                path.join(
-                    this.context.extensionPath,
-                    'media/bundle/CustomGameSettings.js'
-                )
+                path.join(this.context.extensionPath, 'media/bundle/CustomGameSettings.js')
             )
         );
 

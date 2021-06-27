@@ -125,9 +125,7 @@ function ContextMenu(props: {
                             <MenuItemIcon></MenuItemIcon>
                             <MenuItemText>{v.text}</MenuItemText>
                             <MenuItemHotKey>{v.hotkey}</MenuItemHotKey>
-                            <MenuItemIcon>
-                                {v.submenu ? <ChevronRight /> : null}
-                            </MenuItemIcon>
+                            <MenuItemIcon>{v.submenu ? <ChevronRight /> : null}</MenuItemIcon>
                         </MenuItem>
                     );
                 } else if (v.type === ContextMenuType.Separator) {

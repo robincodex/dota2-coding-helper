@@ -344,7 +344,7 @@ const extendsTable = {
 const elementList = Object.keys(extendsTable);
 elementList.sort();
 
-for(const [k, list] of Object.entries(data)) {
+for (const [k, list] of Object.entries(data)) {
     if (k === 'Constants') {
         continue;
     }
@@ -360,57 +360,43 @@ for(const [k, list] of Object.entries(data)) {
 
         fileContent += `    /**\n     * $<Label>("#label-id")\n     */\n`;
         fileContent += `    <T = Panel>(id: string) : T;\n`;
-    }
-    else if (elementList.includes(k)) {
+    } else if (elementList.includes(k)) {
         fileContent += `declare interface ${k} ${extendsText}{\n`;
-    }
-    else {
+    } else {
         fileContent += `declare const ${k}: I${k};\n`;
         fileContent += `declare interface I${k} {\n`;
     }
 
-    list.forEach(v => {
+    list.forEach((v) => {
         if (v.desc) {
             fileContent += `    /**\n     * ${v.desc}\n     */\n`;
         }
 
         if (v.name === 'Subscribe') {
             fileContent += `    Subscribe<T = any>( pEventName: string, callback: (data: T) => void ): number;\n`;
-        }
-        else if (v.name === 'SendCustomGameEventToServer') {
+        } else if (v.name === 'SendCustomGameEventToServer') {
             fileContent += `    SendCustomGameEventToServer<T = any>( pEventName: string, data: T ): number;\n`;
-        }
-        else if (v.name === 'SendCustomGameEventToAllClients') {
+        } else if (v.name === 'SendCustomGameEventToAllClients') {
             fileContent += `    SendCustomGameEventToAllClients<T = any>( pEventName: string, data: T ): number;\n`;
-        }
-        else if (v.name === 'SendCustomGameEventToClient') {
+        } else if (v.name === 'SendCustomGameEventToClient') {
             fileContent += `    SendCustomGameEventToClient<T = any>( pEventName: string, playerIndex: number, data: T ): number;\n`;
-        }
-        else if (v.name === 'SendEventClientSide') {
+        } else if (v.name === 'SendEventClientSide') {
             fileContent += `    SendEventClientSide<T = any>( pEventName: string, data: T ): number;\n`;
-        }
-        else if (v.name === 'style') {
+        } else if (v.name === 'style') {
             fileContent += `    style: CSSProperties;\n`;
-        }
-        else if(v.name === 'FindChildrenWithClassTraverse') {
+        } else if (v.name === 'FindChildrenWithClassTraverse') {
             fileContent += `    FindChildrenWithClassTraverse<T = Panel>( className: string ): T[];\n`;
-        }
-        else if(v.name === 'FindChild') {
+        } else if (v.name === 'FindChild') {
             fileContent += `    FindChild<T = Panel>( id: string ): T | undefined;\n`;
-        }
-        else if(v.name === 'FindChildTraverse') {
+        } else if (v.name === 'FindChildTraverse') {
             fileContent += `    FindChildTraverse<T = Panel>( id: string ): T | undefined;\n`;
-        }
-        else if(v.name === 'FindChildInLayoutFile') {
+        } else if (v.name === 'FindChildInLayoutFile') {
             fileContent += `    FindChildInLayoutFile<T = Panel>( f: string ): T | undefined;\n`;
-        }
-        else if(v.name === 'FindPanelInLayoutFile') {
+        } else if (v.name === 'FindPanelInLayoutFile') {
             fileContent += `    FindPanelInLayoutFile<T = Panel>( f: string ): T | undefined;\n`;
-        }
-        else if(v.name === 'GetChild') {
+        } else if (v.name === 'GetChild') {
             fileContent += `    GetChild<T = Panel>( index: number ): T | undefined;\n`;
-        }
-        else {
+        } else {
             fileContent += `    ${v.name + v.func + ': ' + v.return};\n`;
         }
 
@@ -418,8 +404,7 @@ for(const [k, list] of Object.entries(data)) {
             elementList.forEach((tag) => {
                 fileContent += `    CreatePanel( tagName: '${tag}', parent: Panel, id: string ): ${tag} | undefined;\n`;
             });
-        }
-        else if (v.name === 'CreatePanelWithProperties') {
+        } else if (v.name === 'CreatePanelWithProperties') {
             elementList.forEach((tag) => {
                 fileContent += `    CreatePanelWithProperties( tagName: '${tag}', parent: Panel, id: string, properties: {[key: string]: string} ): ${tag} | undefined;\n`;
             });
@@ -428,9 +413,9 @@ for(const [k, list] of Object.entries(data)) {
     fileContent += '}\n\n';
 }
 
-for(const [k, list] of Object.entries(data['Constants'])) {
+for (const [k, list] of Object.entries(data['Constants'])) {
     fileContent += `declare enum ${k} {\n`;
-    list.forEach(v => {
+    list.forEach((v) => {
         if (v.desc) {
             fileContent += `    /**\n     * ${v.desc}\n     */\n`;
         }

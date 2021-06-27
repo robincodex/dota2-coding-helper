@@ -63,9 +63,7 @@ export function TextInput({
     ...props
 }: TextInputProps) {
     defaultValue = defaultValue || '';
-    const [value, setValue] = useState(
-        renderValue ? renderValue(defaultValue) : defaultValue
-    );
+    const [value, setValue] = useState(renderValue ? renderValue(defaultValue) : defaultValue);
     const [inputState, setInputState] = useState(
         renderState ? renderState(defaultValue) : InputState.Normal
     );

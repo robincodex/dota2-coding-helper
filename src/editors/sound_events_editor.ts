@@ -81,10 +81,7 @@ export class SoundEventsEditorService {
                 const vsndFiles = kv.Value.find((v) => v.Key === 'vsnd_files');
                 if (vsndFiles && Array.isArray(vsndFiles.Value)) {
                     for (const sound of vsndFiles.Value) {
-                        if (
-                            !Array.isArray(sound.Value) &&
-                            Array.isArray(data.vsnd_files)
-                        ) {
+                        if (!Array.isArray(sound.Value) && Array.isArray(data.vsnd_files)) {
                             data.vsnd_files.push(sound.Value);
                         }
                     }
@@ -278,11 +275,7 @@ export class SoundEventsEditorService {
         if (kv && Array.isArray(kv.Value)) {
             const vsnd_files = kv.Value.find((v) => v.Key === 'vsnd_files');
             if (vsnd_files && Array.isArray(vsnd_files.Value)) {
-                vsnd_files.Value.splice(
-                    itemIndex + 1,
-                    0,
-                    ...files.map((v) => NewKeyValue('', v))
-                );
+                vsnd_files.Value.splice(itemIndex + 1, 0, ...files.map((v) => NewKeyValue('', v)));
             }
         }
     }
@@ -326,11 +319,7 @@ export class SoundEventsEditorService {
     /**
      * Move sound events
      */
-    private moveSoundEvents(
-        soundIndexes: number[],
-        targetIndex: number,
-        isTop: boolean
-    ) {
+    private moveSoundEvents(soundIndexes: number[], targetIndex: number, isTop: boolean) {
         const root = this.kvList[1];
         if (!root || !Array.isArray(root.Value)) {
             return;
@@ -440,9 +429,7 @@ export class SoundEventsEditorService {
             const prefix2 = `"${prefix}`;
             for (const child of root.Value) {
                 if (child.Key.startsWith(prefix2)) {
-                    const num = parseInt(
-                        child.Key.replace(prefix2, '').replace(/\"/g, '')
-                    );
+                    const num = parseInt(child.Key.replace(prefix2, '').replace(/\"/g, ''));
                     if (!isNaN(num) && num > currentNumber) {
                         currentNumber = num;
                     }
@@ -638,12 +625,7 @@ export class SoundEventsEditorService {
             ) {
                 return;
             }
-            let result = this.moveSoundFiles(
-                soundIndex,
-                fileIndexes,
-                targetIndex,
-                isTop
-            );
+            let result = this.moveSoundFiles(soundIndex, fileIndexes, targetIndex, isTop);
             writeDocument(document, formatKeyValues(this.kvList));
             return result;
         });
@@ -718,9 +700,7 @@ export class SoundEventsEditorService {
 
         // Only support KeyValues3
         if (!document.lineAt(0).text.startsWith('<!--')) {
-            vscode.window.showErrorMessage(
-                "This file isn't kv3 format.\n" + document.uri.fsPath
-            );
+            vscode.window.showErrorMessage("This file isn't kv3 format.\n" + document.uri.fsPath);
             return;
         }
 
@@ -735,17 +715,12 @@ export class SoundEventsEditorService {
         const nonce = GetNonce();
 
         const styleUri = webview.asWebviewUri(
-            vscode.Uri.file(
-                path.join(this.context.extensionPath, 'media/bundle/style.css')
-            )
+            vscode.Uri.file(path.join(this.context.extensionPath, 'media/bundle/style.css'))
         );
 
         const indexJs = webview.asWebviewUri(
             vscode.Uri.file(
-                path.join(
-                    this.context.extensionPath,
-                    'media/bundle/SoundEventsEditor.js'
-                )
+                path.join(this.context.extensionPath, 'media/bundle/SoundEventsEditor.js')
             )
         );
 

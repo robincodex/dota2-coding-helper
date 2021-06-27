@@ -10,15 +10,11 @@ const isProd = process.env.NODE_ENV === 'production';
 const extensions = ['.js', '.ts', '.tsx'];
 
 export default {
-    input: [
-        'src/Demo.tsx',
-        'src/SoundEventsEditor.tsx',
-        'src/CustomGameSettings.tsx',
-    ],
+    input: ['src/Demo.tsx', 'src/SoundEventsEditor.tsx', 'src/CustomGameSettings.tsx'],
     output: {
-        dir: "../media/bundle",
+        dir: '../media/bundle',
         format: 'es',
-        sourcemap: isProd? false : 'inline',
+        sourcemap: isProd ? false : 'inline',
     },
     plugins: [
         replace({
@@ -36,9 +32,12 @@ export default {
             babelrc: false,
             runtimeHelpers: true,
             presets: [
-                ['@babel/preset-env', {
-                    "targets": {"chrome": "83"}
-                }],
+                [
+                    '@babel/preset-env',
+                    {
+                        targets: { chrome: '83' },
+                    },
+                ],
                 '@babel/preset-react',
                 '@babel/preset-typescript',
             ],
@@ -52,21 +51,24 @@ export default {
                 'react-require',
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-proposal-class-properties',
-                ['@babel/plugin-proposal-object-rest-spread', {
-                    useBuiltIns: true,
-                }],
+                [
+                    '@babel/plugin-proposal-object-rest-spread',
+                    {
+                        useBuiltIns: true,
+                    },
+                ],
                 // ['@babel/plugin-transform-runtime', {
                 //     // corejs: 3,
                 //     helpers: true,
                 //     regenerator: true,
                 //     useESModules: false,
                 // }],
-                ["@emotion"]
+                ['@emotion'],
             ],
         }),
         scss({
-            output: '../media/bundle/style.css'
+            output: '../media/bundle/style.css',
         }),
-        (isProd && terser()),
-    ]
+        isProd && terser(),
+    ],
 };

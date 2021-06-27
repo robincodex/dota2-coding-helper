@@ -48,10 +48,7 @@ export class CustomGameSettingsService {
         return apiList;
     }
 
-    private changeBoolean(
-        document: vscode.TextDocument,
-        data: GameAPIChangeEvent<boolean>
-    ) {
+    private changeBoolean(document: vscode.TextDocument, data: GameAPIChangeEvent<boolean>) {
         const text = document.getText();
         const result = text.match(
             new RegExp(`^${data.Namespace}:${data.FuncName}\\(.+\\);?$`, 'm')
@@ -65,10 +62,7 @@ export class CustomGameSettingsService {
         writeDocument(document, text.replace(result[0], changeText));
     }
 
-    private changeNumber(
-        document: vscode.TextDocument,
-        data: GameAPIChangeEvent<number>
-    ) {
+    private changeNumber(document: vscode.TextDocument, data: GameAPIChangeEvent<number>) {
         const text = document.getText();
         const result = text.match(
             new RegExp(`^${data.Namespace}:${data.FuncName}\\(.+\\);?$`, 'm')
@@ -172,16 +166,13 @@ export class CustomGameSettingsService {
             this.SetCustomGameTeamMaxPlayers(document, data);
         });
 
-        this.request.listenRequest(
-            'SetCustomAttributeDerivedStatValue',
-            (...args: any[]) => {
-                const data = args[0];
-                if (typeof data !== 'object') {
-                    return;
-                }
-                this.SetCustomAttributeDerivedStatValue(document, data);
+        this.request.listenRequest('SetCustomAttributeDerivedStatValue', (...args: any[]) => {
+            const data = args[0];
+            if (typeof data !== 'object') {
+                return;
             }
-        );
+            this.SetCustomAttributeDerivedStatValue(document, data);
+        });
 
         const onChangeDocument = vscode.workspace.onDidChangeTextDocument((e) => {
             if (e.contentChanges.length <= 0) {
@@ -218,17 +209,12 @@ export class CustomGameSettingsService {
         const nonce = GetNonce();
 
         const styleUri = webview.asWebviewUri(
-            vscode.Uri.file(
-                path.join(this.context.extensionPath, 'media/bundle/style.css')
-            )
+            vscode.Uri.file(path.join(this.context.extensionPath, 'media/bundle/style.css'))
         );
 
         const indexJs = webview.asWebviewUri(
             vscode.Uri.file(
-                path.join(
-                    this.context.extensionPath,
-                    'media/bundle/CustomGameSettings.js'
-                )
+                path.join(this.context.extensionPath, 'media/bundle/CustomGameSettings.js')
             )
         );
 

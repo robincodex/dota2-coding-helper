@@ -68,9 +68,7 @@ export function EditableText({
     ...props
 }: EditableTextProps) {
     defaultValue = defaultValue || '';
-    const [value, setValue] = useState(
-        renderValue ? renderValue(defaultValue) : defaultValue
-    );
+    const [value, setValue] = useState(renderValue ? renderValue(defaultValue) : defaultValue);
     const [inputState, setInputState] = useState(
         renderState ? renderState(defaultValue) : InputState.Normal
     );

@@ -14,11 +14,7 @@ import { CellInput } from './Components/CellInput';
 import { renderPositiveNumericState, TextInput } from './Components/TextInput';
 import type { ISoundEventData } from '../../src/editors/sound_events_editor';
 import { InputState } from './Components/utils';
-import {
-    ShowInputDialog,
-    ShowModalDialog,
-    ShowTextareaDialog,
-} from './Components/ModalDialog';
+import { ShowInputDialog, ShowModalDialog, ShowTextareaDialog } from './Components/ModalDialog';
 import { Button, ButtonGroup } from './Components/Button';
 
 const i18n: {
@@ -92,13 +88,7 @@ const keysSuggestion: { [key: string]: string[] } = {
     mixgroup: ['Weapons'],
 };
 
-function SoundEvent({
-    soundData,
-    index,
-}: {
-    index: number;
-    soundData: ISoundEventData;
-}) {
+function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEventData }) {
     // Delte Sound Files
     function deleteSoundFiles(indexes: number[]) {
         request('remove-sound-files', index, indexes);
@@ -400,9 +390,7 @@ function SoundEventsEditor() {
 
     // Copy Sound Event Name
     function copySoundNames(keys: number[]) {
-        const events = keys.map((k) =>
-            String(soundEvents[k]['event']).replace(/\"/g, '')
-        );
+        const events = keys.map((k) => String(soundEvents[k]['event']).replace(/\"/g, ''));
         navigator.clipboard.writeText(events.join('\n'));
     }
 
@@ -411,10 +399,7 @@ function SoundEventsEditor() {
         request('copy-sound-events', indexes);
     }
     // Paste Sound Events
-    async function pasteSoundEvents(
-        indexes: number[],
-        methods: ListViewMethods<number>
-    ) {
+    async function pasteSoundEvents(indexes: number[], methods: ListViewMethods<number>) {
         const list = await request<number[]>(
             'paste-sound-events',
             indexes.sort().pop() || soundEvents.length
@@ -437,10 +422,7 @@ function SoundEventsEditor() {
             },
         });
     }
-    async function duplicateSoundEvents(
-        indexes: number[],
-        methods: ListViewMethods<number>
-    ) {
+    async function duplicateSoundEvents(indexes: number[], methods: ListViewMethods<number>) {
         const result = await request<number[]>('duplicate-sound-events', indexes);
         if (result) {
             methods.select(result);
@@ -478,11 +460,7 @@ function SoundEventsEditor() {
                     items={soundEvents.map((v, i) => {
                         return {
                             key: i,
-                            content: (
-                                <div style={{ padding: 5 }}>
-                                    {v.event.replace(/\"/g, '')}
-                                </div>
-                            ),
+                            content: <div style={{ padding: 5 }}>{v.event.replace(/\"/g, '')}</div>,
                         };
                     })}
                     onSelected={(keys) => {
@@ -509,9 +487,7 @@ function SoundEventsEditor() {
                         }
                     }}
                     onContextMenu={async (event, keys, methods) => {
-                        const canPaste = await request<boolean>(
-                            'can-paste-sound-events'
-                        );
+                        const canPaste = await request<boolean>('can-paste-sound-events');
                         ShowContextMenu({
                             menu: [
                                 {
@@ -610,9 +586,7 @@ function SoundEventsEditor() {
                         if (!soundEvents[i]) {
                             return null;
                         }
-                        return (
-                            <SoundEvent key={i} index={i} soundData={soundEvents[i]} />
-                        );
+                        return <SoundEvent key={i} index={i} soundData={soundEvents[i]} />;
                     })}
                 </SoundsList>
             </EditorView>

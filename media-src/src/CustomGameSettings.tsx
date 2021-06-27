@@ -7,10 +7,7 @@ import ReactDOM from 'react-dom';
 import { EditableText } from './Components/EditableText';
 import { renderNumericState, TextInput } from './Components/TextInput';
 import { editorCache, onRequestResponse, request, useWindowEvent } from './utils';
-import type {
-    GameAPI,
-    GameAPIChangeEvent,
-} from '../../src/editors/custom_game_settings';
+import type { GameAPI, GameAPIChangeEvent } from '../../src/editors/custom_game_settings';
 import { Drawer } from './Components/Drawer';
 import commonText from './common_i18n';
 import { Chinese, English, Localization } from './Components/Localization';
@@ -112,8 +109,7 @@ const SettingList: SettingType[] = [
         namespace: GameRules,
         type: SettingValueType.Boolean,
         default: false,
-        description:
-            'When true, all items are available at as long as any shop is in range.',
+        description: 'When true, all items are available at as long as any shop is in range.',
     },
     {
         func: 'SetAlwaysShowPlayerInventory',
@@ -128,8 +124,7 @@ const SettingList: SettingType[] = [
         namespace: GameMode,
         type: SettingValueType.Boolean,
         default: true,
-        description:
-            'Set whether player names are always shown, regardless of client setting.',
+        description: 'Set whether player names are always shown, regardless of client setting.',
     },
     {
         func: 'SetAnnouncerDisabled',
@@ -221,8 +216,7 @@ const SettingList: SettingType[] = [
         namespace: GameMode,
         type: SettingValueType.Boolean,
         default: true,
-        description:
-            'Set whether tombstones can be channeled to be removed by enemy heroes.',
+        description: 'Set whether tombstones can be channeled to be removed by enemy heroes.',
     },
     {
         func: 'SetKillingSpreeAnnouncerDisabled',
@@ -243,8 +237,7 @@ const SettingList: SettingType[] = [
         namespace: GameMode,
         type: SettingValueType.Boolean,
         default: true,
-        description:
-            'When enabled, undiscovered items in the neutral item stash are hidden.',
+        description: 'When enabled, undiscovered items in the neutral item stash are hidden.',
     },
     {
         func: 'SetNeutralStashEnabled',
@@ -536,8 +529,7 @@ const SettingList: SettingType[] = [
         namespace: GameMode,
         type: SettingValueType.Number,
         default: -1,
-        description:
-            'Set the constant rate that the fountain will regen mana. (-1 for default)',
+        description: 'Set the constant rate that the fountain will regen mana. (-1 for default)',
     },
     {
         func: 'SetFountainPercentageHealthRegen',
@@ -552,8 +544,7 @@ const SettingList: SettingType[] = [
         namespace: GameMode,
         type: SettingValueType.Number,
         default: -1,
-        description:
-            'Set the percentage rate that the fountain will regen mana. (-1 for default)',
+        description: 'Set the percentage rate that the fountain will regen mana. (-1 for default)',
     },
     {
         func: 'SetMaximumAttackSpeed',
@@ -957,11 +948,7 @@ function Setting(props: SettingProps) {
                 {')'}
             </SettingFunction>
             <SettingDescription>
-                {props.api.description ? (
-                    getLocalize(props.api.description)
-                ) : (
-                    <span>&nbsp;</span>
-                )}
+                {props.api.description ? getLocalize(props.api.description) : <span>&nbsp;</span>}
             </SettingDescription>
         </SettingContainer>
     );
@@ -998,9 +985,7 @@ function CustomGameSettings() {
                 <div>
                     <SettingContainer>
                         <SettingFunction>
-                            <SettingFunctionName>
-                                SetCustomGameTeamMaxPlayers
-                            </SettingFunctionName>
+                            <SettingFunctionName>SetCustomGameTeamMaxPlayers</SettingFunctionName>
                         </SettingFunction>
                         <SettingDescription>
                             {getLocalize(SetCustomGameTeamMaxPlayers.description)}
@@ -1057,16 +1042,13 @@ function CustomGameSettings() {
                             </SettingFunctionName>
                         </SettingFunction>
                         <SettingDescription>
-                            {getLocalize(
-                                SetCustomAttributeDerivedStatValue.description
-                            )}
+                            {getLocalize(SetCustomAttributeDerivedStatValue.description)}
                         </SettingDescription>
                         {SetCustomAttributeDerivedStatValue.values.map((v, i) => {
                             const api = apiList.find(
                                 (v2) =>
                                     v2.Namespace === GameMode &&
-                                    v2.FuncName ===
-                                        'SetCustomAttributeDerivedStatValue' &&
+                                    v2.FuncName === 'SetCustomAttributeDerivedStatValue' &&
                                     v2.Params[0] === v.enum
                             );
                             let value = v.default;
@@ -1092,13 +1074,10 @@ function CustomGameSettings() {
                                             renderState={renderNumericState}
                                             defaultValue={value.toString()}
                                             onComplete={(text) => {
-                                                request(
-                                                    'SetCustomAttributeDerivedStatValue',
-                                                    {
-                                                        enum: v.enum,
-                                                        value: parseInt(text) || 0,
-                                                    }
-                                                );
+                                                request('SetCustomAttributeDerivedStatValue', {
+                                                    enum: v.enum,
+                                                    value: parseInt(text) || 0,
+                                                });
                                             }}
                                         />
                                         {')'}
@@ -1110,11 +1089,7 @@ function CustomGameSettings() {
                 </div>
             </SettingsRoot>
             {/* Help */}
-            <Drawer
-                title={commonText.help}
-                showable={showHelp}
-                onClose={() => setShowHelp(false)}
-            >
+            <Drawer title={commonText.help} showable={showHelp} onClose={() => setShowHelp(false)}>
                 <div>
                     <BooleanIcon style={{ verticalAlign: 'middle' }}>
                         <Toggle2Off />
@@ -1122,10 +1097,7 @@ function CustomGameSettings() {
                     <span style={{ verticalAlign: 'middle' }}>= false</span>
                 </div>
                 <div style={{ marginTop: 10 }}>
-                    <BooleanIcon
-                        className="is-true"
-                        style={{ verticalAlign: 'middle' }}
-                    >
+                    <BooleanIcon className="is-true" style={{ verticalAlign: 'middle' }}>
                         <Toggle2On />
                     </BooleanIcon>{' '}
                     <span style={{ verticalAlign: 'middle' }}>= true</span>
@@ -1135,11 +1107,10 @@ function CustomGameSettings() {
                         <li>
                             <Localization>
                                 <English>
-                                    The API that does not exist in the file will display
-                                    the default value. The default value refers to the
-                                    setting of DOTA2. The displayed default value is not
-                                    necessarily correct. Generally <code>-1</code>{' '}
-                                    represents using the default value of DOTA2.
+                                    The API that does not exist in the file will display the default
+                                    value. The default value refers to the setting of DOTA2. The
+                                    displayed default value is not necessarily correct. Generally{' '}
+                                    <code>-1</code> represents using the default value of DOTA2.
                                 </English>
                                 <Chinese>
                                     不存在文件中的API会显示默认值，该默认值参考DOTA2的设置，显示的默认值不一定是正确的，一般
@@ -1150,27 +1121,20 @@ function CustomGameSettings() {
                         <li>
                             <Localization>
                                 <English>
-                                    In the numeric input, press enter to change the
-                                    value.
+                                    In the numeric input, press enter to change the value.
                                 </English>
-                                <Chinese>
-                                    数字输入框在修改数值之后按回车键即可更改数值。
-                                </Chinese>
+                                <Chinese>数字输入框在修改数值之后按回车键即可更改数值。</Chinese>
                             </Localization>
                         </li>
                         <li>
                             <Localization>
                                 <English>
-                                    <code>
-                                        local GameMode = GameRules:GetGameModeEntity()
-                                    </code>
+                                    <code>local GameMode = GameRules:GetGameModeEntity()</code>
                                     must be on top
                                 </English>
                                 <Chinese>
                                     必须将
-                                    <code>
-                                        local GameMode = GameRules:GetGameModeEntity()
-                                    </code>
+                                    <code>local GameMode = GameRules:GetGameModeEntity()</code>
                                     放在最前面
                                 </Chinese>
                             </Localization>

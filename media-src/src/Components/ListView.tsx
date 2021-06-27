@@ -18,10 +18,7 @@ export interface ListViewMethods<T> {
 type ListViewProps<T> = BaseElementAttributes & {
     title: string;
     smallTitle?: boolean;
-    titleMenu?: (
-        offset: { top: number; left: number },
-        methods: ListViewMethods<T>
-    ) => void;
+    titleMenu?: (offset: { top: number; left: number }, methods: ListViewMethods<T>) => void;
     titleStyle?: BaseElementAttributes['style'];
     items: ListViewItemData<T>[];
     onSelected?: (keys: T[]) => void;
@@ -35,12 +32,7 @@ type ListViewProps<T> = BaseElementAttributes & {
         keys: T[],
         methods: ListViewMethods<T>
     ) => void;
-    onMoveItems?: (
-        keys: T[],
-        target: T,
-        isTop: boolean,
-        methods: ListViewMethods<T>
-    ) => void;
+    onMoveItems?: (keys: T[], target: T, isTop: boolean, methods: ListViewMethods<T>) => void;
 };
 
 /**
@@ -305,16 +297,11 @@ export function ListView<T>({
                 let vi = items.findIndex((v2) => v2.key === v.key);
                 const list: T[] = [];
                 if (vi < i) {
-                    list.push(
-                        ...items.slice(vi, i).map((v) => v.key),
-                        ...selectedState
-                    );
+                    list.push(...items.slice(vi, i).map((v) => v.key), ...selectedState);
                 } else if (vi > i) {
                     let j = Array.from(items)
                         .reverse()
-                        .findIndex(
-                            (v2) => selectedState.includes(v2.key) || v2.key === v.key
-                        );
+                        .findIndex((v2) => selectedState.includes(v2.key) || v2.key === v.key);
                     j = items.length - j - 1;
                     list.push(...items.slice(i, j + 1).map((v) => v.key));
                 }

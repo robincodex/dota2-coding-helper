@@ -88,9 +88,7 @@ export function CellInput({
     ...props
 }: CellInputProps) {
     defaultValue = defaultValue || '';
-    const [value, setValue] = useState(
-        renderValue ? renderValue(defaultValue) : defaultValue
-    );
+    const [value, setValue] = useState(renderValue ? renderValue(defaultValue) : defaultValue);
     const [inputState, setInputState] = useState(
         renderState ? renderState(defaultValue) : InputState.Normal
     );

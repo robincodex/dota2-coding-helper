@@ -90,7 +90,9 @@
         "test": "node ./out/test/runTest.js",
         "task": "gulp",
         "docs": "gulp docs",
-        "media": "cd ./media-src & npm run dev"
+        "media": "cd ./media-src & npm run dev",
+        "lint:prettier": "prettier --check .",
+        "write-prettier": "prettier --write ."
     },
     "devDependencies": {
         "@types/glob": "^7.1.3",

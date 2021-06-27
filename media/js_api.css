@@ -4,7 +4,6 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 body {
     margin: 0;
@@ -12,24 +11,30 @@ body {
     box-sizing: border-box;
 }
 
-div, table {
+div,
+table {
     box-sizing: border-box;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse; }
-    table tr th {
-        background: #303030;
-    }
-    table tr td {
-        background: #252525;
-    }
-    table tr td, table tr th {
-      padding: 5px;
-      border: 1px solid #353535; }
-    table tr:not(:last-child) td, table tr:not(:last-child) th {
-      border-bottom-width: 0; }
+    border-collapse: collapse;
+}
+table tr th {
+    background: #303030;
+}
+table tr td {
+    background: #252525;
+}
+table tr td,
+table tr th {
+    padding: 5px;
+    border: 1px solid #353535;
+}
+table tr:not(:last-child) td,
+table tr:not(:last-child) th {
+    border-bottom-width: 0;
+}
 
 a {
     color: rgb(61, 152, 255);
@@ -46,7 +51,8 @@ a:hover {
 
 code {
     color: #eeeeee;
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, Hiragino Sans GB,
+        Microsoft Yahei, WenQuanYi Micro Hei, monospace;
 }
 
 pre {

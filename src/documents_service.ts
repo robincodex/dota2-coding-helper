@@ -6,19 +6,14 @@ export class CustomGameDocuments {
     private webviewPanel: vscode.WebviewPanel;
     private viewType: string;
 
-    constructor(
-        private readonly context: vscode.ExtensionContext,
-    ){
+    constructor(private readonly context: vscode.ExtensionContext) {
         // @ts-ignore
         this.webviewPanel = null;
         this.viewType = `dota2CodingHelper.documents`;
     }
 
     public register() {
-        return vscode.commands.registerCommand(
-            this.viewType,
-            this.start.bind(this),
-        );
+        return vscode.commands.registerCommand(this.viewType, this.start.bind(this));
     }
 
     private start(): void {
@@ -30,22 +25,23 @@ export class CustomGameDocuments {
                 enableScripts: true,
                 retainContextWhenHidden: true,
                 enableFindWidget: true,
-            });
+            }
+        );
         this.renderHTML();
     }
 
     private async getDirsInfo() {
         type file_info_t = {
-            filename: string,
-            realname: string,
+            filename: string;
+            realname: string;
         };
         const sortList: string[] = [
-            "CSS.html",
-            "Panel.html",
-            "Label.html",
-            "Image.html",
-            "Button.html",
-            "综合.html",
+            'CSS.html',
+            'Panel.html',
+            'Label.html',
+            'Image.html',
+            'Button.html',
+            '综合.html',
         ];
         const sortFunc = (a: file_info_t, b: file_info_t) => {
             if (a.realname === b.realname) {
@@ -54,25 +50,25 @@ export class CustomGameDocuments {
             let c = sortList.indexOf(a.realname);
             let d = sortList.indexOf(b.realname);
             if (c >= 0 && d >= 0) {
-                return sortList.indexOf(a.realname) < sortList.indexOf(b.realname)? -1:1;
+                return sortList.indexOf(a.realname) < sortList.indexOf(b.realname) ? -1 : 1;
             } else if (c >= 0) {
                 return -1;
             } else if (d >= 0) {
                 return 1;
             }
-            return a > b? 1:-1;
+            return a > b ? 1 : -1;
         };
 
-        const rootPath = path.resolve(__dirname, "../media/docs");
-        const info: {[key: string]: file_info_t[]} = {};
+        const rootPath = path.resolve(__dirname, '../media/docs');
+        const info: { [key: string]: file_info_t[] } = {};
         const docs = await fs.promises.readdir(rootPath);
-        for(const category of docs) {
+        for (const category of docs) {
             const list: file_info_t[] = [];
             const files = await fs.promises.readdir(path.join(rootPath, category));
             const files2 = files.map((v) => {
                 return {
                     filename: v,
-                    realname: Buffer.from(v.replace('.html', ''), 'hex').toString('utf8')+'.html',
+                    realname: Buffer.from(v.replace('.html', ''), 'hex').toString('utf8') + '.html',
                 };
             });
             files2.sort(sortFunc);

@@ -6,19 +6,14 @@ export class PanoramaCSS {
     private webviewPanel: vscode.WebviewPanel;
     private viewType: string;
 
-    constructor(
-        private readonly context: vscode.ExtensionContext,
-    ){
+    constructor(private readonly context: vscode.ExtensionContext) {
         // @ts-ignore
         this.webviewPanel = null;
         this.viewType = `dota2CodingHelper.panoramaCSS`;
     }
 
     public register() {
-        return vscode.commands.registerCommand(
-            this.viewType,
-            this.start.bind(this),
-        );
+        return vscode.commands.registerCommand(this.viewType, this.start.bind(this));
     }
 
     private start(): void {
@@ -30,7 +25,8 @@ export class PanoramaCSS {
                 enableScripts: true,
                 retainContextWhenHidden: true,
                 enableFindWidget: true,
-            });
+            }
+        );
         this.renderHTML();
     }
 

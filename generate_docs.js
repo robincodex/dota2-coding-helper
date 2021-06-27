@@ -12,12 +12,12 @@ converter.setOption('strikethrough', true);
 converter.setOption('emoji', true);
 
 async function generate_docs() {
-    if (!fs.existsSync("./media/docs")) {
+    if (!fs.existsSync('./media/docs')) {
         await fs.promises.mkdir('./media/docs');
     }
 
     const dirs = await fs.promises.readdir('./docs');
-    for(const category of dirs) {
+    for (const category of dirs) {
         const srcPath = `./docs/${category}`;
         const targetPath = `./media/docs/${category}`;
         if (!fs.existsSync(targetPath)) {
@@ -25,16 +25,16 @@ async function generate_docs() {
         }
 
         const files = await fs.promises.readdir(srcPath);
-        for(const f of files) {
-            if (!f.endsWith(".md")) {
+        for (const f of files) {
+            if (!f.endsWith('.md')) {
                 continue;
             }
-            const content = await fs.promises.readFile(`${srcPath}/${f}`, {encoding: 'utf8'});
+            const content = await fs.promises.readFile(`${srcPath}/${f}`, { encoding: 'utf8' });
             const html = converter.makeHtml(content);
 
             // Render code using highlight.js
             const $ = cheerio.load(html);
-            $("pre code").each((_, e) => {
+            $('pre code').each((_, e) => {
                 const code = $(e);
                 const classText = code.attr('class');
                 if (!classText) {
@@ -47,7 +47,7 @@ async function generate_docs() {
             // Replace image data
             const imgWorker = () => {
                 return new Promise((resolve) => {
-                    const imgList = $("img");
+                    const imgList = $('img');
                     if (imgList.length <= 0) {
                         resolve();
                         return;
@@ -56,7 +56,7 @@ async function generate_docs() {
                         const img = $(e);
                         const imgPath = path.resolve(srcPath, img.attr('src'));
                         if (!fs.existsSync(imgPath)) {
-                            if (imgList.length-1 === i) {
+                            if (imgList.length - 1 === i) {
                                 resolve();
                                 return;
                             }
@@ -64,7 +64,7 @@ async function generate_docs() {
                         }
                         const data = await imageUri.encodeFromFile(imgPath);
                         img.attr('src', data);
-                        if (imgList.length-1 === i) {
+                        if (imgList.length - 1 === i) {
                             resolve();
                             return;
                         }
@@ -73,14 +73,16 @@ async function generate_docs() {
             };
             await imgWorker();
 
-            const buf = Buffer.from(f.replace('.md','')).toString('hex');
-            await fs.promises.writeFile(path.join( targetPath, `${buf.toString('ascii')}.html` ), $("body").html());
+            const buf = Buffer.from(f.replace('.md', '')).toString('hex');
+            await fs.promises.writeFile(
+                path.join(targetPath, `${buf.toString('ascii')}.html`),
+                $('body').html()
+            );
         }
     }
-
 }
 
-module.exports = async function(cb) {
+module.exports = async function (cb) {
     await generate_docs();
     cb();
 };

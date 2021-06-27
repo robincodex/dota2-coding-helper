@@ -1,0 +1,8 @@
+build
+coverage
+dist
+.github
+out/
+media/bundle
+media/docs
+docs/

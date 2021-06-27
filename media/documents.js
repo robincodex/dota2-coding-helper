@@ -1,15 +1,14 @@
-
 let root;
 let lastCategory = '';
 let lastSelectedFileElement = null;
 
-function swapCategory( name ) {
+function swapCategory(name) {
     const docsFiles = root.querySelector(`#docs-files`);
     lastCategory = name;
 
     let fileList = '';
     const files = window.dirsInfo[name];
-    for(const v of files) {
+    for (const v of files) {
         fileList += `<div class="file" data-file="${v.filename}">${v.realname.split('.')[0]}</div>`;
     }
     docsFiles.innerHTML = fileList;
@@ -19,19 +18,19 @@ function swapCategory( name ) {
     SetNavigation(null);
 }
 
-String.prototype.hexEncode = function(){
+String.prototype.hexEncode = function () {
     var hex, i;
 
-    var result = "";
-    for (i=0; i<this.length; i++) {
+    var result = '';
+    for (i = 0; i < this.length; i++) {
         hex = this.charCodeAt(i).toString(16);
-        result += ("000"+hex).slice(-4);
+        result += ('000' + hex).slice(-4);
     }
 
     return result;
 };
 
-async function showContent( file ) {
+async function showContent(file) {
     const res = await fetch(`${window.docsUri}/${lastCategory}/${file}`);
     /** @type {HTMLElement} */
     const content = root.querySelector('#docs-content > #content-body');
@@ -48,16 +47,16 @@ async function showContent( file ) {
                 if (chinese.test(element.innerText)) {
                     element.id = 'ID' + i + element.innerText.hexEncode();
                 }
-                headers.push({id: element.id, text: element.innerText});
+                headers.push({ id: element.id, text: element.innerText });
             } else if (element.tagName === 'H2') {
                 if (chinese.test(element.innerText)) {
                     element.id = 'ID' + i + element.innerText.hexEncode();
                 }
-                let subList = headers[headers.length-1];
+                let subList = headers[headers.length - 1];
                 if (Array.isArray(subList)) {
-                    subList.push({id: element.id, text: element.innerText});
+                    subList.push({ id: element.id, text: element.innerText });
                 } else {
-                    headers.push([{id: element.id, text: element.innerText}]);
+                    headers.push([{ id: element.id, text: element.innerText }]);
                 }
             }
         }
@@ -67,9 +66,9 @@ async function showContent( file ) {
 
 /**
  * 显示导航
- * @param { ({id: string, text: string } | {id: string, text: string }[])[] } headers 
+ * @param { ({id: string, text: string } | {id: string, text: string }[])[] } headers
  */
-function SetNavigation( headers ) {
+function SetNavigation(headers) {
     const navigation = root.querySelector('#docs-content #navigation-body');
 
     if (!headers) {
@@ -78,11 +77,11 @@ function SetNavigation( headers ) {
     }
 
     let html = '';
-    for(const h of headers) {
+    for (const h of headers) {
         if (!Array.isArray(h)) {
             html += `<div class="nav-h1" data-id="${h.id}">${h.text}</div>`;
         } else {
-            for(const c of h) {
+            for (const c of h) {
                 html += `<div class="nav-h2" data-id="${c.id}">${c.text}</div>`;
             }
         }
@@ -94,9 +93,9 @@ function SetNavigation( headers ) {
 let lastImageForLightbox = null;
 
 /**
- * @param {HTMLImageElement} img 
+ * @param {HTMLImageElement} img
  */
-function showLightbox( img ) {
+function showLightbox(img) {
     const lightbox = root.querySelector('#lightbox');
     const container = lightbox.querySelector('#img-container');
     container.innerHTML = '';
@@ -111,7 +110,7 @@ function previousLightboxImage() {
         return;
     }
     let currentImage = lastImageForLightbox;
-    while(currentImage.previousElementSibling) {
+    while (currentImage.previousElementSibling) {
         const nextImage = currentImage.previousElementSibling;
         if (!(nextImage instanceof HTMLImageElement)) {
             return;
@@ -120,8 +119,7 @@ function previousLightboxImage() {
         if (alt === 'box-static') {
             currentImage = nextImage;
             continue;
-        }
-        else if (alt === 'box') {
+        } else if (alt === 'box') {
             showLightbox(nextImage);
         }
         return;
@@ -133,7 +131,7 @@ function nextLightboxImage() {
         return;
     }
     let currentImage = lastImageForLightbox;
-    while(currentImage.nextElementSibling) {
+    while (currentImage.nextElementSibling) {
         const nextImage = currentImage.nextElementSibling;
         if (!(nextImage instanceof HTMLImageElement)) {
             return;
@@ -142,8 +140,7 @@ function nextLightboxImage() {
         if (alt === 'box-static') {
             currentImage = nextImage;
             continue;
-        }
-        else if (alt === 'box') {
+        } else if (alt === 'box') {
             showLightbox(nextImage);
         }
         return;
@@ -151,10 +148,10 @@ function nextLightboxImage() {
 }
 
 /**
- * @param {MouseWheelEvent} event 
+ * @param {MouseWheelEvent} event
  */
-function onLightboxMouseWheel( event ) {
-    console.log("onLightboxMouseWheel");
+function onLightboxMouseWheel(event) {
+    console.log('onLightboxMouseWheel');
     event.preventDefault();
     if (event.deltaY < 0) {
         previousLightboxImage();
@@ -163,16 +160,18 @@ function onLightboxMouseWheel( event ) {
     }
 }
 
-window.onload = async function(){
+window.onload = async function () {
     root = document.getElementById('root');
 
     let category = '';
-    Object.keys(window.dirsInfo).sort().forEach((v) => {
-        category += `<div class="category-item">
+    Object.keys(window.dirsInfo)
+        .sort()
+        .forEach((v) => {
+            category += `<div class="category-item">
             <input id="category-${v}" type="radio" name="category" />
             <label for="category-${v}" >${v}</label>
         </div>`;
-    });
+        });
 
     root.innerHTML = `
     <div id="category">
@@ -223,8 +222,10 @@ window.onload = async function(){
                 ev.target.classList.add('selected');
                 lastSelectedFileElement = ev.target;
             }
-        }
-        else if (ev.target instanceof HTMLImageElement && ev.target.getAttribute("alt") === 'box') {
+        } else if (
+            ev.target instanceof HTMLImageElement &&
+            ev.target.getAttribute('alt') === 'box'
+        ) {
             showLightbox(ev.target);
         }
     });

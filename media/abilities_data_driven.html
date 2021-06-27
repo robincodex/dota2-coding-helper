@@ -1,62 +1,152 @@
+<a id="top"></a>
 
-			<a id="top"></a>
+<div id="bodyContent" class="mw-body-content">
+    <div id="siteSub">Copy From Valve Developer Community</div>
 
-						
-			
-									<div id="bodyContent" class="mw-body-content">
-									<div id="siteSub">Copy From Valve Developer Community</div>
-								
-												
-				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
-<p>
-
-
-</p>
-<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Data_Driven_Ability_Example"><span class="tocnumber">1</span> <span class="toctext">Data Driven Ability Example</span></a>
-<ul>
-<li class="toclevel-2 tocsection-2"><a href="#Example_Breakdown"><span class="tocnumber">1.1</span> <span class="toctext">Example Breakdown</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-3"><a href="#Behavior_Flags"><span class="tocnumber">2</span> <span class="toctext">Behavior Flags</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#Ability_Events_and_Actions"><span class="tocnumber">3</span> <span class="toctext">Ability Events and Actions</span></a>
-<ul>
-<li class="toclevel-2 tocsection-5"><a href="#Events"><span class="tocnumber">3.1</span> <span class="toctext">Events</span></a></li>
-<li class="toclevel-2 tocsection-6"><a href="#Actions"><span class="tocnumber">3.2</span> <span class="toctext">Actions</span></a></li>
-<li class="toclevel-2 tocsection-7"><a href="#Example"><span class="tocnumber">3.3</span> <span class="toctext">Example</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-8"><a href="#Action_Target_Values"><span class="tocnumber">4</span> <span class="toctext">Action Target Values</span></a>
-<ul>
-<li class="toclevel-2 tocsection-9"><a href="#Single_Target"><span class="tocnumber">4.1</span> <span class="toctext">Single Target</span></a></li>
-<li class="toclevel-2 tocsection-10"><a href="#Multiple_Targets"><span class="tocnumber">4.2</span> <span class="toctext">Multiple Targets</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-11"><a href="#Modifiers"><span class="tocnumber">5</span> <span class="toctext">Modifiers</span></a>
-<ul>
-<li class="toclevel-2 tocsection-12"><a href="#Modifier_Properties"><span class="tocnumber">5.1</span> <span class="toctext">Modifier Properties</span></a>
-<ul>
-<li class="toclevel-3 tocsection-13"><a href="#Available_Modifier_Properties"><span class="tocnumber">5.1.1</span> <span class="toctext">Available Modifier Properties</span></a></li>
-</ul>
-</li>
-<li class="toclevel-2 tocsection-14"><a href="#Modifier_States"><span class="tocnumber">5.2</span> <span class="toctext">Modifier States</span></a>
-<ul>
-<li class="toclevel-3 tocsection-15"><a href="#Available_Modifier_States"><span class="tocnumber">5.2.1</span> <span class="toctext">Available Modifier States</span></a></li>
-</ul>
-</li>
-<li class="toclevel-2 tocsection-16"><a href="#Modifier_Events"><span class="tocnumber">5.3</span> <span class="toctext">Modifier Events</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-17"><a href="#Additional_Examples"><span class="tocnumber">6</span> <span class="toctext">Additional Examples</span></a></li>
-<li class="toclevel-1 tocsection-18"><a href="#Precaching"><span class="tocnumber">7</span> <span class="toctext">Precaching</span></a></li>
-</ul>
-</div>
-Most abilities in Dota 2 are defined by C++ code. When looking at these abilities, the npc_abilities.txt keyvalues file contains some ability metadata and exposes some tuning knobs, these are mostly metadata with all the actual behavior defined in code. The data driven ability system is a method to create custom abilities for Dota 2 and assign special properties and events to occur when they&apos;re used.
-<h2><span class="mw-headline" id="Data_Driven_Ability_Example">Data Driven Ability Example</span></h2>
-<p>Here is what a simple data driven ability looks like.  This example is a passive ability that applies a visual effect to the unit that has the ability.
-</p>
-<div class="mw-highlight mw-content-ltr" dir="ltr"><pre>&quot;fx_test_ability&quot;
+    <div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+        <p></p>
+        <div id="toc" class="toc">
+            <div id="toctitle"><h2>Contents</h2></div>
+            <ul>
+                <li class="toclevel-1 tocsection-1">
+                    <a href="#Data_Driven_Ability_Example"
+                        ><span class="tocnumber">1</span>
+                        <span class="toctext">Data Driven Ability Example</span></a
+                    >
+                    <ul>
+                        <li class="toclevel-2 tocsection-2">
+                            <a href="#Example_Breakdown"
+                                ><span class="tocnumber">1.1</span>
+                                <span class="toctext">Example Breakdown</span></a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="toclevel-1 tocsection-3">
+                    <a href="#Behavior_Flags"
+                        ><span class="tocnumber">2</span>
+                        <span class="toctext">Behavior Flags</span></a
+                    >
+                </li>
+                <li class="toclevel-1 tocsection-4">
+                    <a href="#Ability_Events_and_Actions"
+                        ><span class="tocnumber">3</span>
+                        <span class="toctext">Ability Events and Actions</span></a
+                    >
+                    <ul>
+                        <li class="toclevel-2 tocsection-5">
+                            <a href="#Events"
+                                ><span class="tocnumber">3.1</span>
+                                <span class="toctext">Events</span></a
+                            >
+                        </li>
+                        <li class="toclevel-2 tocsection-6">
+                            <a href="#Actions"
+                                ><span class="tocnumber">3.2</span>
+                                <span class="toctext">Actions</span></a
+                            >
+                        </li>
+                        <li class="toclevel-2 tocsection-7">
+                            <a href="#Example"
+                                ><span class="tocnumber">3.3</span>
+                                <span class="toctext">Example</span></a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="toclevel-1 tocsection-8">
+                    <a href="#Action_Target_Values"
+                        ><span class="tocnumber">4</span>
+                        <span class="toctext">Action Target Values</span></a
+                    >
+                    <ul>
+                        <li class="toclevel-2 tocsection-9">
+                            <a href="#Single_Target"
+                                ><span class="tocnumber">4.1</span>
+                                <span class="toctext">Single Target</span></a
+                            >
+                        </li>
+                        <li class="toclevel-2 tocsection-10">
+                            <a href="#Multiple_Targets"
+                                ><span class="tocnumber">4.2</span>
+                                <span class="toctext">Multiple Targets</span></a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="toclevel-1 tocsection-11">
+                    <a href="#Modifiers"
+                        ><span class="tocnumber">5</span> <span class="toctext">Modifiers</span></a
+                    >
+                    <ul>
+                        <li class="toclevel-2 tocsection-12">
+                            <a href="#Modifier_Properties"
+                                ><span class="tocnumber">5.1</span>
+                                <span class="toctext">Modifier Properties</span></a
+                            >
+                            <ul>
+                                <li class="toclevel-3 tocsection-13">
+                                    <a href="#Available_Modifier_Properties"
+                                        ><span class="tocnumber">5.1.1</span>
+                                        <span class="toctext"
+                                            >Available Modifier Properties</span
+                                        ></a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="toclevel-2 tocsection-14">
+                            <a href="#Modifier_States"
+                                ><span class="tocnumber">5.2</span>
+                                <span class="toctext">Modifier States</span></a
+                            >
+                            <ul>
+                                <li class="toclevel-3 tocsection-15">
+                                    <a href="#Available_Modifier_States"
+                                        ><span class="tocnumber">5.2.1</span>
+                                        <span class="toctext">Available Modifier States</span></a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="toclevel-2 tocsection-16">
+                            <a href="#Modifier_Events"
+                                ><span class="tocnumber">5.3</span>
+                                <span class="toctext">Modifier Events</span></a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="toclevel-1 tocsection-17">
+                    <a href="#Additional_Examples"
+                        ><span class="tocnumber">6</span>
+                        <span class="toctext">Additional Examples</span></a
+                    >
+                </li>
+                <li class="toclevel-1 tocsection-18">
+                    <a href="#Precaching"
+                        ><span class="tocnumber">7</span> <span class="toctext">Precaching</span></a
+                    >
+                </li>
+            </ul>
+        </div>
+        Most abilities in Dota 2 are defined by C++ code. When looking at these abilities, the
+        npc_abilities.txt keyvalues file contains some ability metadata and exposes some tuning
+        knobs, these are mostly metadata with all the actual behavior defined in code. The data
+        driven ability system is a method to create custom abilities for Dota 2 and assign special
+        properties and events to occur when they&apos;re used.
+        <h2>
+            <span class="mw-headline" id="Data_Driven_Ability_Example"
+                >Data Driven Ability Example</span
+            >
+        </h2>
+        <p>
+            Here is what a simple data driven ability looks like. This example is a passive ability
+            that applies a visual effect to the unit that has the ability.
+        </p>
+        <div class="mw-highlight mw-content-ltr" dir="ltr">
+            <pre>
+&quot;fx_test_ability&quot;
 {
     // General
     //-------------------------------------------------------------------------------------------------------------
@@ -85,28 +175,84 @@ Most abilities in Dota 2 are defined by C++ code. When looking at these abilitie
         }
     }
 }
-</pre></div>
-<p>The <code>BaseClass</code>, <code>AbilityBehavior</code> and <code>AbilityTextureName</code> keys are common to all abilities.
-</p>
-<h3><span class="mw-headline" id="Example_Breakdown">Example Breakdown</span></h3>
-<dl><dt><code>BaseClass</code></dt>
-<dd>Normally Dota chooses the C++ class to connect to an ability by looking at the ability name (in this case &quot;fx_test_ability&quot;).  If you&apos;d like to force Dota to use a different C++ class, the <code>BaseClass</code> key will do that.  In this example we&apos;re using the <code>ability_datadriven</code> class to connect to the data driven ability system.  It&apos;s possible to use this key to connect to any other existing ability code to make a new variant of an existing Dota 2 ability with different settings for whatever that ability exposes to keyvalues.</dd></dl>
-<dl><dt><code>AbilityBehavior</code></dt>
-<dd>A set of flags describing some properties of the ability. You can put flags in here separated by spaces and <code>|</code> for example <code>&quot;DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET&quot;</code> - The spaces are important!</dd></dl>
-<dl><dt><code>ID</code></dt>
-<dd>Not used.  This is used only by core Dota 2 abilities and is not used for data driven abilities.  As such, the above example does not include it but you will see it when looking at core Dota 2 abilities. But data driven items must have ID.</dd></dl>
-<dl><dt><code>AbilityTextureName</code></dt>
-<dd>The icon file name that should be used in the UI for this ability.  You can use this to borrow the icon from another ability just by putting that ability name here if desired.</dd></dl>
-<dl><dt><code>Modifiers</code></dt>
-<dd>Unique to data-driven abilities. This block describes a set of modifiers (commonly seen as buffs/debuffs in game when visible) that are unique to this ability.  Each modifier is named by the name of the keyvalues block that defines the modifier.</dd></dl>
-<dl><dt><code>Passive</code></dt>
-<dd>Flags the modifier as a passive modifier that should automatically be applied to the ability owner in this example.</dd></dl>
-<dl><dt><code>OnCreated</code></dt>
-<dd>The action block that is triggered when the modifier is first attached to the owner. In the above example, we attach a visual effect to the ability caster.</dd></dl>
-<h2><span class="mw-headline" id="Behavior_Flags">Behavior Flags</span></h2>
-<p>Available flags to use with the <code>&quot;AbilityBehavior&quot;</code> key.  These will define how the ability works.
-</p>
-<div class="mw-highlight mw-content-ltr" dir="ltr"><pre>DOTA_ABILITY_BEHAVIOR_HIDDEN               = 1 &lt;&lt; 0, //Can be owned by a unit but can&apos;t be cast and won&apos;t show up on the HUD.
+</pre
+            >
+        </div>
+        <p>
+            The <code>BaseClass</code>, <code>AbilityBehavior</code> and
+            <code>AbilityTextureName</code> keys are common to all abilities.
+        </p>
+        <h3><span class="mw-headline" id="Example_Breakdown">Example Breakdown</span></h3>
+        <dl>
+            <dt><code>BaseClass</code></dt>
+            <dd>
+                Normally Dota chooses the C++ class to connect to an ability by looking at the
+                ability name (in this case &quot;fx_test_ability&quot;). If you&apos;d like to force
+                Dota to use a different C++ class, the <code>BaseClass</code> key will do that. In
+                this example we&apos;re using the <code>ability_datadriven</code> class to connect
+                to the data driven ability system. It&apos;s possible to use this key to connect to
+                any other existing ability code to make a new variant of an existing Dota 2 ability
+                with different settings for whatever that ability exposes to keyvalues.
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>AbilityBehavior</code></dt>
+            <dd>
+                A set of flags describing some properties of the ability. You can put flags in here
+                separated by spaces and <code>|</code> for example
+                <code
+                    >&quot;DOTA_ABILITY_BEHAVIOR_HIDDEN |
+                    DOTA_ABILITY_BEHAVIOR_NO_TARGET&quot;</code
+                >
+                - The spaces are important!
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>ID</code></dt>
+            <dd>
+                Not used. This is used only by core Dota 2 abilities and is not used for data driven
+                abilities. As such, the above example does not include it but you will see it when
+                looking at core Dota 2 abilities. But data driven items must have ID.
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>AbilityTextureName</code></dt>
+            <dd>
+                The icon file name that should be used in the UI for this ability. You can use this
+                to borrow the icon from another ability just by putting that ability name here if
+                desired.
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>Modifiers</code></dt>
+            <dd>
+                Unique to data-driven abilities. This block describes a set of modifiers (commonly
+                seen as buffs/debuffs in game when visible) that are unique to this ability. Each
+                modifier is named by the name of the keyvalues block that defines the modifier.
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>Passive</code></dt>
+            <dd>
+                Flags the modifier as a passive modifier that should automatically be applied to the
+                ability owner in this example.
+            </dd>
+        </dl>
+        <dl>
+            <dt><code>OnCreated</code></dt>
+            <dd>
+                The action block that is triggered when the modifier is first attached to the owner.
+                In the above example, we attach a visual effect to the ability caster.
+            </dd>
+        </dl>
+        <h2><span class="mw-headline" id="Behavior_Flags">Behavior Flags</span></h2>
+        <p>
+            Available flags to use with the <code>&quot;AbilityBehavior&quot;</code> key. These will
+            define how the ability works.
+        </p>
+        <div class="mw-highlight mw-content-ltr" dir="ltr">
+            <pre>
+DOTA_ABILITY_BEHAVIOR_HIDDEN               = 1 &lt;&lt; 0, //Can be owned by a unit but can&apos;t be cast and won&apos;t show up on the HUD.
 DOTA_ABILITY_BEHAVIOR_PASSIVE              = 1 &lt;&lt; 1, //Cannot be cast like above but this one shows up on the ability HUD.
 DOTA_ABILITY_BEHAVIOR_NO_TARGET            = 1 &lt;&lt; 2, //Doesn&apos;t need a target to be cast, ability fires off as soon as the button is pressed.
 DOTA_ABILITY_BEHAVIOR_UNIT_TARGET          = 1 &lt;&lt; 3, //Needs a target to be cast on.
@@ -133,109 +279,232 @@ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK   = 1 &lt;&lt; 23, //Ability should not
 DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN   = 1 &lt;&lt; 24, //Ability still uses its normal cast point when stolen.
 DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING     = 1 &lt;&lt; 25, //Ability ignores backswing pseudoqueue.
 DOTA_ABILITY_BEHAVIOR_RUNE_TARGET          = 1 &lt;&lt; 26, //Targets runes.
-</pre></div>
-<h2><span class="mw-headline" id="Ability_Events_and_Actions">Ability Events and Actions</span></h2>
-<p>Abilities can have various in-game events which can trigger actions.
-</p>
-<h3><span class="mw-headline" id="Events">Events</span></h3>
-<p>Each of these keys is a block that can trigger actions.
-</p><p><code>
-</code></p><code>
-<ul><li>OnAbilityEndChannel</li>
-<li>OnAbilityPhaseStart -- Triggers when the ability is cast (before the unit turns toward the target)</li>
-<li>OnAbilityStart</li>
-<li>OnAttack</li>
-<li>OnAttackAllied</li>
-<li>OnAttackFailed</li>
-<li>OnChannelFinish</li>
-<li>OnChannelInterrupted</li>
-<li>OnChannelSucceeded</li>
-<li>OnCreated</li>
-<li>OnEquip</li>
-<li>OnHealReceived</li>
-<li>OnHealthGained</li>
-<li>OnHeroKilled</li>
-<li>OnManaGained</li>
-<li>OnOrder</li>
-<li>OnOwnerDied</li>
-<li>OnOwnerSpawned</li>
-<li>OnProjectileDodge</li>
-<li>OnProjectileFinish</li>
-<li>OnProjectileHitUnit -- Adding the KV pair &quot;DeleteOnHit&quot; &quot;0&quot; in this block will cause the projectile to not disappear when it hits a unit.</li>
-<li>OnRespawn</li>
-<li>OnSpellStart</li>
-<li>OnSpentMana</li>
-<li>OnStateChanged</li>
-<li>OnTeleported</li>
-<li>OnTeleporting</li>
-<li>OnToggleOff</li>
-<li>OnToggleOn</li>
-<li>OnUnitMoved</li>
-<li>OnUpgrade</li></ul>
-</code><p><code></code>
-</p>
-<h3><span class="mw-headline" id="Actions">Actions</span></h3>
-<p>Each of these keys is a block that contains one or more action descriptions.
-</p><p><code>
-</code></p><code>
-<ul><li>AddAbility</li></ul>
-<dl><dd>Target, AbilityName</dd></dl>
-<ul><li>ActOnTargets</li></ul>
-<dl><dd>Target, Action</dd></dl>
-<ul><li>ApplyModifier</li></ul>
-<dl><dd>Target, ModifierName</dd></dl>
-<ul><li>AttachEffect</li></ul>
-<dl><dd>EffectName, EffectAttachType, Target, ControlPoints, </dd>
-<dd>TargetPoint, EffectRadius, EffectDurationScale, EffectLifeDurationScale ,EffectColorA, EffectColorB, EffectAlphaScale</dd></dl>
-<ul><li>Blink</li></ul>
-<dl><dd>Target</dd></dl>
-<ul><li>CleaveAttack</li></ul>
-<dl><dd>CleavePercent, CleaveRadius</dd></dl>
-<ul><li>CreateThinker</li></ul>
-<dl><dd>Target, ModifierName</dd></dl>
-<ul><li>Damage</li></ul>
-<dl><dd>Target, Type, MinDamage/MaxDamage, Damage, CurrentHealthPercentBasedDamage, MaxHealthPercentBasedDamage</dd></dl>
-<ul><li>DelayedAction</li></ul>
-<dl><dd>Delay, Action</dd></dl>
-<ul><li>DestroyTrees</li></ul>
-<dl><dd>Target, Radius</dd></dl>
-<ul><li>FireEffect</li></ul>
-<dl><dd>EffectName, EffectAttachType, Target, ControlPoints</dd>
-<dd>TargetPoint, EffectRadius, EffectDurationScale, EffectLifeDurationScale ,EffectColorA, EffectColorB, EffectAlphaScale</dd></dl>
-<ul><li>FireSound</li></ul>
-<dl><dd>EffectName, Target</dd></dl>
-<ul><li>Heal</li></ul>
-<dl><dd>HealAmount, Target</dd></dl>
-<ul><li>Knockback</li></ul>
-<dl><dd>Target, Center, Duration, Distance, Height, IsFixedDistance, ShouldStun</dd></dl>
-<ul><li>LevelUpAbility</li></ul>
-<dl><dd>Target, AbilityName</dd></dl>
-<ul><li>Lifesteal</li></ul>
-<dl><dd>Target, LifestealPercent</dd></dl>
-<ul><li>LinearProjectile</li></ul>
-<dl><dd>Target, EffectName, MoveSpeed, StartRadius, EndRadius, FixedDistance, StartPosition, TargetTeams, TargetTypes, TargetFlags, HasFrontalCone, ProvidesVision, VisionRadius</dd></dl>
-<ul><li>Random</li></ul>
-<dl><dd>Chance, PseudoRandom, OnSuccess, OnFailure</dd></dl>
-<ul><li>RemoveAbility</li></ul>
-<dl><dd>Target, AbilityName</dd></dl>
-<ul><li>RemoveModifier</li></ul>
-<dl><dd>Target, ModifierName</dd></dl>
-<ul><li>RunScript</li></ul>
-<dl><dd>Target, ScriptFile, Function</dd></dl>
-<ul><li>SpawnUnit</li></ul>
-<dl><dd>UnitName, UnitCount, UnitLimit, SpawnRadius, Duration, Target, GrantsGold, GrantsXP</dd></dl>
-<ul><li>Stun</li></ul>
-<dl><dd>Target, Duration</dd></dl>
-<ul><li>TrackingProjectile</li></ul>
-<dl><dd>Target, EffectName, Dodgeable, ProvidesVision, VisionRadius, MoveSpeed, SourceAttachment</dd></dl>
-</code><p><code></code>
-</p><p><br>
-</p>
-<div title="Information" style="margin:0.4em 1em 0.5em;"><strong style="color:#EDEDED;display:table-cell;text-align:right;white-space:nowrap;padding-right:0.3em;"><img alt src="/w/images/c/cc/Note.png" width="10" height="13" data-file-width="10" data-file-height="13"> Note:</strong><span style="display:table-cell;"><code>AddAbility</code> adds a new ability at level 0.  <code>RemoveAbility</code> deletes the ability even if it has been leveled.  More complex ability management should be done through script as opposed to the data driven system.</span></div>
-<h3><span class="mw-headline" id="Example">Example</span></h3>
-<p>An example block showing an event and the accompanying action.  In this case, when the spell is cast fire a particular sound event using the caster as the target source of the sound.
-</p>
-<div class="mw-highlight mw-content-ltr" dir="ltr"><pre>&quot;OnSpellStart&quot;      // Event
+</pre
+            >
+        </div>
+        <h2>
+            <span class="mw-headline" id="Ability_Events_and_Actions"
+                >Ability Events and Actions</span
+            >
+        </h2>
+        <p>Abilities can have various in-game events which can trigger actions.</p>
+        <h3><span class="mw-headline" id="Events">Events</span></h3>
+        <p>Each of these keys is a block that can trigger actions.</p>
+        <p><code> </code></p>
+        <code>
+            <ul>
+                <li>OnAbilityEndChannel</li>
+                <li>
+                    OnAbilityPhaseStart -- Triggers when the ability is cast (before the unit turns
+                    toward the target)
+                </li>
+                <li>OnAbilityStart</li>
+                <li>OnAttack</li>
+                <li>OnAttackAllied</li>
+                <li>OnAttackFailed</li>
+                <li>OnChannelFinish</li>
+                <li>OnChannelInterrupted</li>
+                <li>OnChannelSucceeded</li>
+                <li>OnCreated</li>
+                <li>OnEquip</li>
+                <li>OnHealReceived</li>
+                <li>OnHealthGained</li>
+                <li>OnHeroKilled</li>
+                <li>OnManaGained</li>
+                <li>OnOrder</li>
+                <li>OnOwnerDied</li>
+                <li>OnOwnerSpawned</li>
+                <li>OnProjectileDodge</li>
+                <li>OnProjectileFinish</li>
+                <li>
+                    OnProjectileHitUnit -- Adding the KV pair &quot;DeleteOnHit&quot; &quot;0&quot;
+                    in this block will cause the projectile to not disappear when it hits a unit.
+                </li>
+                <li>OnRespawn</li>
+                <li>OnSpellStart</li>
+                <li>OnSpentMana</li>
+                <li>OnStateChanged</li>
+                <li>OnTeleported</li>
+                <li>OnTeleporting</li>
+                <li>OnToggleOff</li>
+                <li>OnToggleOn</li>
+                <li>OnUnitMoved</li>
+                <li>OnUpgrade</li>
+            </ul>
+        </code>
+        <p><code></code></p>
+        <h3><span class="mw-headline" id="Actions">Actions</span></h3>
+        <p>Each of these keys is a block that contains one or more action descriptions.</p>
+        <p><code> </code></p>
+        <code>
+            <ul>
+                <li>AddAbility</li>
+            </ul>
+            <dl><dd>Target, AbilityName</dd></dl>
+            <ul>
+                <li>ActOnTargets</li>
+            </ul>
+            <dl><dd>Target, Action</dd></dl>
+            <ul>
+                <li>ApplyModifier</li>
+            </ul>
+            <dl><dd>Target, ModifierName</dd></dl>
+            <ul>
+                <li>AttachEffect</li>
+            </ul>
+            <dl>
+                <dd>EffectName, EffectAttachType, Target, ControlPoints,</dd>
+                <dd>
+                    TargetPoint, EffectRadius, EffectDurationScale, EffectLifeDurationScale
+                    ,EffectColorA, EffectColorB, EffectAlphaScale
+                </dd>
+            </dl>
+            <ul>
+                <li>Blink</li>
+            </ul>
+            <dl><dd>Target</dd></dl>
+            <ul>
+                <li>CleaveAttack</li>
+            </ul>
+            <dl><dd>CleavePercent, CleaveRadius</dd></dl>
+            <ul>
+                <li>CreateThinker</li>
+            </ul>
+            <dl><dd>Target, ModifierName</dd></dl>
+            <ul>
+                <li>Damage</li>
+            </ul>
+            <dl>
+                <dd>
+                    Target, Type, MinDamage/MaxDamage, Damage, CurrentHealthPercentBasedDamage,
+                    MaxHealthPercentBasedDamage
+                </dd>
+            </dl>
+            <ul>
+                <li>DelayedAction</li>
+            </ul>
+            <dl><dd>Delay, Action</dd></dl>
+            <ul>
+                <li>DestroyTrees</li>
+            </ul>
+            <dl><dd>Target, Radius</dd></dl>
+            <ul>
+                <li>FireEffect</li>
+            </ul>
+            <dl>
+                <dd>EffectName, EffectAttachType, Target, ControlPoints</dd>
+                <dd>
+                    TargetPoint, EffectRadius, EffectDurationScale, EffectLifeDurationScale
+                    ,EffectColorA, EffectColorB, EffectAlphaScale
+                </dd>
+            </dl>
+            <ul>
+                <li>FireSound</li>
+            </ul>
+            <dl><dd>EffectName, Target</dd></dl>
+            <ul>
+                <li>Heal</li>
+            </ul>
+            <dl><dd>HealAmount, Target</dd></dl>
+            <ul>
+                <li>Knockback</li>
+            </ul>
+            <dl>
+                <dd>Target, Center, Duration, Distance, Height, IsFixedDistance, ShouldStun</dd>
+            </dl>
+            <ul>
+                <li>LevelUpAbility</li>
+            </ul>
+            <dl><dd>Target, AbilityName</dd></dl>
+            <ul>
+                <li>Lifesteal</li>
+            </ul>
+            <dl><dd>Target, LifestealPercent</dd></dl>
+            <ul>
+                <li>LinearProjectile</li>
+            </ul>
+            <dl>
+                <dd>
+                    Target, EffectName, MoveSpeed, StartRadius, EndRadius, FixedDistance,
+                    StartPosition, TargetTeams, TargetTypes, TargetFlags, HasFrontalCone,
+                    ProvidesVision, VisionRadius
+                </dd>
+            </dl>
+            <ul>
+                <li>Random</li>
+            </ul>
+            <dl><dd>Chance, PseudoRandom, OnSuccess, OnFailure</dd></dl>
+            <ul>
+                <li>RemoveAbility</li>
+            </ul>
+            <dl><dd>Target, AbilityName</dd></dl>
+            <ul>
+                <li>RemoveModifier</li>
+            </ul>
+            <dl><dd>Target, ModifierName</dd></dl>
+            <ul>
+                <li>RunScript</li>
+            </ul>
+            <dl><dd>Target, ScriptFile, Function</dd></dl>
+            <ul>
+                <li>SpawnUnit</li>
+            </ul>
+            <dl>
+                <dd>
+                    UnitName, UnitCount, UnitLimit, SpawnRadius, Duration, Target, GrantsGold,
+                    GrantsXP
+                </dd>
+            </dl>
+            <ul>
+                <li>Stun</li>
+            </ul>
+            <dl><dd>Target, Duration</dd></dl>
+            <ul>
+                <li>TrackingProjectile</li>
+            </ul>
+            <dl>
+                <dd>
+                    Target, EffectName, Dodgeable, ProvidesVision, VisionRadius, MoveSpeed,
+                    SourceAttachment
+                </dd>
+            </dl>
+        </code>
+        <p><code></code></p>
+        <p><br /></p>
+        <div title="Information" style="margin: 0.4em 1em 0.5em">
+            <strong
+                style="
+                    color: #ededed;
+                    display: table-cell;
+                    text-align: right;
+                    white-space: nowrap;
+                    padding-right: 0.3em;
+                "
+                ><img
+                    alt
+                    src="/w/images/c/cc/Note.png"
+                    width="10"
+                    height="13"
+                    data-file-width="10"
+                    data-file-height="13"
+                />
+                Note:</strong
+            ><span style="display: table-cell"
+                ><code>AddAbility</code> adds a new ability at level 0.
+                <code>RemoveAbility</code> deletes the ability even if it has been leveled. More
+                complex ability management should be done through script as opposed to the data
+                driven system.</span
+            >
+        </div>
+        <h3><span class="mw-headline" id="Example">Example</span></h3>
+        <p>
+            An example block showing an event and the accompanying action. In this case, when the
+            spell is cast fire a particular sound event using the caster as the target source of the
+            sound.
+        </p>
+        <div class="mw-highlight mw-content-ltr" dir="ltr">
+            <pre>
+&quot;OnSpellStart&quot;      // Event
 {
     &quot;FireSound&quot;     // Action
     {
@@ -243,135 +512,282 @@ DOTA_ABILITY_BEHAVIOR_RUNE_TARGET          = 1 &lt;&lt; 26, //Targets runes.
         &quot;Target&quot;        &quot;CASTER&quot;
     }
 }
-</pre></div>
-<h2><span class="mw-headline" id="Action_Target_Values">Action Target Values</span></h2>
-<p>Within an action the <code>Target</code> key can be given a value to specify what it is that the target is.  This exposes some choices to make as to what you may want to target.
-</p>
-<h3><span class="mw-headline" id="Single_Target">Single Target</span></h3>
-<p>Valid target values are as follows for single-target selection:
-</p><p><code>
-</code></p><code>
-<ul><li> CASTER</li>
-<li> TARGET</li>
-<li> POINT</li>
-<li> ATTACKER</li>
-<li> UNIT</li></ul>
-</code><p><code></code>
-</p><p>In the above example where a sound is being played, notice that <code>Target</code> is set to <code>CASTER</code>.  It will play the sound on the caster of the spell when it starts.  
-</p>
-<div title="Information" style="margin:0.4em 1em 0.5em;"><strong style="color:#EDEDED;display:table-cell;text-align:right;white-space:nowrap;padding-right:0.3em;"><img alt src="/w/images/c/cc/Note.png" width="10" height="13" data-file-width="10" data-file-height="13"> Note:</strong><span style="display:table-cell;">These names mean different things in different events.  It may require some experimentation to discover exactly what in each case.</span></div>
-<h3><span class="mw-headline" id="Multiple_Targets">Multiple Targets</span></h3>
-<p>For selecting multiple targets in an area, make the <code>Target</code> key a block with the following subkeys:
-</p>
-<ul><li> <code>Center</code> - Center point of the circle.</li></ul>
-<dl><dd> <code>CASTER, TARGET, POINT, PROJECTILE, UNIT, ATTACKER</code></dd></dl>
-<ul><li> <code>Radius</code> - Number in units defining the radius to search for target(s) in.</li></ul>
-<dl><dd> <code>IntegerValue</code></dd></dl>
-<ul><li> <code>Teams</code> - Affect which teams.</li></ul>
-<p><code>
-</code></p><code>
-<dl><dd> DOTA_UNIT_TARGET_TEAM_BOTH</dd>
-<dd> DOTA_UNIT_TARGET_TEAM_CUSTOM</dd>
-<dd> DOTA_UNIT_TARGET_TEAM_ENEMY</dd>
-<dd> DOTA_UNIT_TARGET_TEAM_FRIENDLY</dd>
-<dd> DOTA_UNIT_TARGET_TEAM_NONE</dd></dl>
-</code><p><code></code>
-</p>
-<ul><li> <code>Types, ExcludeTypes</code> - Target units of specified type or exclude units of specified type.</li></ul>
-<p><code> 
-</code></p><code>
-<dl><dd> DOTA_UNIT_TARGET_ALL</dd>
-<dd> DOTA_UNIT_TARGET_BASIC</dd>
-<dd> DOTA_UNIT_TARGET_BUILDING</dd>
-<dd> DOTA_UNIT_TARGET_COURIER</dd>
-<dd> DOTA_UNIT_TARGET_CREEP</dd>
-<dd> DOTA_UNIT_TARGET_CUSTOM</dd>
-<dd> DOTA_UNIT_TARGET_HERO</dd>
-<dd> DOTA_UNIT_TARGET_MECHANICAL</dd>
-<dd> DOTA_UNIT_TARGET_NONE</dd>
-<dd> DOTA_UNIT_TARGET_OTHER</dd>
-<dd> DOTA_UNIT_TARGET_TREE</dd></dl>
-</code><p><code></code>
-</p>
-<ul><li> <code>Flags, ExcludeFlags</code> - Target units with specific flags or reject units with specific flag.</li></ul>
-<p><code>
-</code></p><code>
-<dl><dd> DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_DEAD</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_INVULNERABLE</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_MANA_ONLY</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_MELEE_ONLY</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NO_INVIS</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NONE</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED</dd>
-<dd> DOTA_UNIT_TARGET_FLAG_RANGED_ONLY</dd></dl>
-</code><p><code></code>
-</p>
-<ul><li> <code>MaxTargets</code> - Maximum number of targets to select.</li></ul>
-<dl><dd> <code>IntegerValue</code></dd></dl>
-<ul><li> <code>Random</code> - Whether to select a random unit if more than MaxTargets exist.</li></ul>
-<dl><dd> <code>BooleanValue</code></dd></dl>
-<ul><li> <code>ScriptSelectPoints</code></li></ul>
-<dl><dd> <code>ScriptFile, Function, Radius, Count</code></dd></dl>
-<div title="Information" style="margin:0.4em 1em 0.5em;"><strong style="color:#EDEDED;display:table-cell;text-align:right;white-space:nowrap;padding-right:0.3em;"><img alt src="/w/images/c/cc/Note.png" width="10" height="13" data-file-width="10" data-file-height="13"> Note:</strong><span style="display:table-cell;"><code>Random</code> set to 0 in conjunction with a <code>MaxTargets</code> value will cause the ability to only function if there is <code>MaxTargets</code> or less targets in the area.</span></div>
-<h2><span class="mw-headline" id="Modifiers">Modifiers</span></h2>
-<p>Modifiers may have following keys:
-<code>
-</code></p><code>
-<ul><li> Attributes</li></ul>
-<dl><dd>MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE</dd>
-<dd>MODIFIER_ATTRIBUTE_MULTIPLE</dd>
-<dd>MODIFIER_ATTRIBUTE_NONE</dd>
-<dd>MODIFIER_ATTRIBUTE_PERMANENT</dd></dl>
-<ul><li> Duration</li></ul>
-<dl><dd>FloatValue</dd></dl>
-<ul><li> EffectAttachType</li></ul>
-<dl><dd>follow_origin, follow_overhead, start_at_customorigin, world_origin</dd></dl>
-<ul><li> EffectName</li></ul>
-<dl><dd>StringValue</dd></dl>
-<ul><li> IsBuff</li></ul>
-<dl><dd>BooleanValue</dd></dl>
-<ul><li> IsDebuff</li></ul>
-<dl><dd>BooleanValue</dd></dl>
-<ul><li> IsHidden</li></ul>
-<dl><dd>BooleanValue</dd></dl>
-<ul><li> IsPurgable</li></ul>
-<dl><dd>BooleanValue</dd></dl>
-<ul><li> OverrideAnimation</li></ul>
-<p>Other actions can be found at <a href="/wiki/Dota_2_Workshop_Tools/Actions_List" title="Dota 2 Workshop Tools/Actions List">the action list</a>, but these are the most commonly available ones.
-</p>
-<dl><dd>ACT_DOTA_ATTACK</dd>
-<dd>ACT_DOTA_CAST_ABILITY_1 (2, 3, 4, 5, 6)</dd>
-<dd>ACT_DOTA_DISABLED</dd>
-<dd>ACT_DOTA_RUN</dd>
-<dd>ACT_DOTA_SPAWN</dd>
-<dd>ACT_DOTA_TELEPORT</dd>
-<dd>ACT_DOTA_VICTORY</dd></dl>
-<ul><li> Passive</li></ul>
-<dl><dd>BooleanValue</dd></dl>
-<ul><li> TextureName</li></ul>
-<dl><dd>StringValue</dd></dl>
-<ul><li> ThinkInterval</li></ul>
-<dl><dd>FloatValue</dd></dl>
-</code><p><code></code>
-</p>
-<h3><span class="mw-headline" id="Modifier_Properties">Modifier Properties</span></h3>
-<p>Modifier properties are gameplay values a modifier can change on the unit it is applied to. Included here is a simple example of a modifier that slows attacks and movement speed (this chunk is a block inside the <code>&quot;Modifiers&quot;</code> block of an ability).
-</p><p>To specify numeric values, you can put in a number or you can use&#xA0;%name formatting to grab values out of the <code>&quot;AbilitySpecial&quot;</code> block of the ability. The advantage to using the <code>%name</code> syntax is that the value can change as the ability levels up and the numeric value can be formatted into tooltips.
-</p><p>In this example, the slow duration comes from an <code>&quot;AbilitySpecial&quot;</code> block, but the slow values are just numbers.
-</p>
-<div class="mw-highlight mw-content-ltr" dir="ltr"><pre>&quot;creature_slithereen_crush_slow&quot;
+</pre
+            >
+        </div>
+        <h2><span class="mw-headline" id="Action_Target_Values">Action Target Values</span></h2>
+        <p>
+            Within an action the <code>Target</code> key can be given a value to specify what it is
+            that the target is. This exposes some choices to make as to what you may want to target.
+        </p>
+        <h3><span class="mw-headline" id="Single_Target">Single Target</span></h3>
+        <p>Valid target values are as follows for single-target selection:</p>
+        <p><code> </code></p>
+        <code>
+            <ul>
+                <li>CASTER</li>
+                <li>TARGET</li>
+                <li>POINT</li>
+                <li>ATTACKER</li>
+                <li>UNIT</li>
+            </ul>
+        </code>
+        <p><code></code></p>
+        <p>
+            In the above example where a sound is being played, notice that <code>Target</code> is
+            set to <code>CASTER</code>. It will play the sound on the caster of the spell when it
+            starts.
+        </p>
+        <div title="Information" style="margin: 0.4em 1em 0.5em">
+            <strong
+                style="
+                    color: #ededed;
+                    display: table-cell;
+                    text-align: right;
+                    white-space: nowrap;
+                    padding-right: 0.3em;
+                "
+                ><img
+                    alt
+                    src="/w/images/c/cc/Note.png"
+                    width="10"
+                    height="13"
+                    data-file-width="10"
+                    data-file-height="13"
+                />
+                Note:</strong
+            ><span style="display: table-cell"
+                >These names mean different things in different events. It may require some
+                experimentation to discover exactly what in each case.</span
+            >
+        </div>
+        <h3><span class="mw-headline" id="Multiple_Targets">Multiple Targets</span></h3>
+        <p>
+            For selecting multiple targets in an area, make the <code>Target</code> key a block with
+            the following subkeys:
+        </p>
+        <ul>
+            <li><code>Center</code> - Center point of the circle.</li>
+        </ul>
+        <dl>
+            <dd><code>CASTER, TARGET, POINT, PROJECTILE, UNIT, ATTACKER</code></dd>
+        </dl>
+        <ul>
+            <li>
+                <code>Radius</code> - Number in units defining the radius to search for target(s)
+                in.
+            </li>
+        </ul>
+        <dl>
+            <dd><code>IntegerValue</code></dd>
+        </dl>
+        <ul>
+            <li><code>Teams</code> - Affect which teams.</li>
+        </ul>
+        <p><code> </code></p>
+        <code>
+            <dl>
+                <dd>DOTA_UNIT_TARGET_TEAM_BOTH</dd>
+                <dd>DOTA_UNIT_TARGET_TEAM_CUSTOM</dd>
+                <dd>DOTA_UNIT_TARGET_TEAM_ENEMY</dd>
+                <dd>DOTA_UNIT_TARGET_TEAM_FRIENDLY</dd>
+                <dd>DOTA_UNIT_TARGET_TEAM_NONE</dd>
+            </dl>
+        </code>
+        <p><code></code></p>
+        <ul>
+            <li>
+                <code>Types, ExcludeTypes</code> - Target units of specified type or exclude units
+                of specified type.
+            </li>
+        </ul>
+        <p><code> </code></p>
+        <code>
+            <dl>
+                <dd>DOTA_UNIT_TARGET_ALL</dd>
+                <dd>DOTA_UNIT_TARGET_BASIC</dd>
+                <dd>DOTA_UNIT_TARGET_BUILDING</dd>
+                <dd>DOTA_UNIT_TARGET_COURIER</dd>
+                <dd>DOTA_UNIT_TARGET_CREEP</dd>
+                <dd>DOTA_UNIT_TARGET_CUSTOM</dd>
+                <dd>DOTA_UNIT_TARGET_HERO</dd>
+                <dd>DOTA_UNIT_TARGET_MECHANICAL</dd>
+                <dd>DOTA_UNIT_TARGET_NONE</dd>
+                <dd>DOTA_UNIT_TARGET_OTHER</dd>
+                <dd>DOTA_UNIT_TARGET_TREE</dd>
+            </dl>
+        </code>
+        <p><code></code></p>
+        <ul>
+            <li>
+                <code>Flags, ExcludeFlags</code> - Target units with specific flags or reject units
+                with specific flag.
+            </li>
+        </ul>
+        <p><code> </code></p>
+        <code>
+            <dl>
+                <dd>DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_DEAD</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_INVULNERABLE</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_MANA_ONLY</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_MELEE_ONLY</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NO_INVIS</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NONE</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED</dd>
+                <dd>DOTA_UNIT_TARGET_FLAG_RANGED_ONLY</dd>
+            </dl>
+        </code>
+        <p><code></code></p>
+        <ul>
+            <li><code>MaxTargets</code> - Maximum number of targets to select.</li>
+        </ul>
+        <dl>
+            <dd><code>IntegerValue</code></dd>
+        </dl>
+        <ul>
+            <li>
+                <code>Random</code> - Whether to select a random unit if more than MaxTargets exist.
+            </li>
+        </ul>
+        <dl>
+            <dd><code>BooleanValue</code></dd>
+        </dl>
+        <ul>
+            <li><code>ScriptSelectPoints</code></li>
+        </ul>
+        <dl>
+            <dd><code>ScriptFile, Function, Radius, Count</code></dd>
+        </dl>
+        <div title="Information" style="margin: 0.4em 1em 0.5em">
+            <strong
+                style="
+                    color: #ededed;
+                    display: table-cell;
+                    text-align: right;
+                    white-space: nowrap;
+                    padding-right: 0.3em;
+                "
+                ><img
+                    alt
+                    src="/w/images/c/cc/Note.png"
+                    width="10"
+                    height="13"
+                    data-file-width="10"
+                    data-file-height="13"
+                />
+                Note:</strong
+            ><span style="display: table-cell"
+                ><code>Random</code> set to 0 in conjunction with a <code>MaxTargets</code> value
+                will cause the ability to only function if there is <code>MaxTargets</code> or less
+                targets in the area.</span
+            >
+        </div>
+        <h2><span class="mw-headline" id="Modifiers">Modifiers</span></h2>
+        <p>Modifiers may have following keys: <code> </code></p>
+        <code>
+            <ul>
+                <li>Attributes</li>
+            </ul>
+            <dl>
+                <dd>MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE</dd>
+                <dd>MODIFIER_ATTRIBUTE_MULTIPLE</dd>
+                <dd>MODIFIER_ATTRIBUTE_NONE</dd>
+                <dd>MODIFIER_ATTRIBUTE_PERMANENT</dd>
+            </dl>
+            <ul>
+                <li>Duration</li>
+            </ul>
+            <dl><dd>FloatValue</dd></dl>
+            <ul>
+                <li>EffectAttachType</li>
+            </ul>
+            <dl><dd>follow_origin, follow_overhead, start_at_customorigin, world_origin</dd></dl>
+            <ul>
+                <li>EffectName</li>
+            </ul>
+            <dl><dd>StringValue</dd></dl>
+            <ul>
+                <li>IsBuff</li>
+            </ul>
+            <dl><dd>BooleanValue</dd></dl>
+            <ul>
+                <li>IsDebuff</li>
+            </ul>
+            <dl><dd>BooleanValue</dd></dl>
+            <ul>
+                <li>IsHidden</li>
+            </ul>
+            <dl><dd>BooleanValue</dd></dl>
+            <ul>
+                <li>IsPurgable</li>
+            </ul>
+            <dl><dd>BooleanValue</dd></dl>
+            <ul>
+                <li>OverrideAnimation</li>
+            </ul>
+            <p>
+                Other actions can be found at
+                <a
+                    href="/wiki/Dota_2_Workshop_Tools/Actions_List"
+                    title="Dota 2 Workshop Tools/Actions List"
+                    >the action list</a
+                >, but these are the most commonly available ones.
+            </p>
+            <dl>
+                <dd>ACT_DOTA_ATTACK</dd>
+                <dd>ACT_DOTA_CAST_ABILITY_1 (2, 3, 4, 5, 6)</dd>
+                <dd>ACT_DOTA_DISABLED</dd>
+                <dd>ACT_DOTA_RUN</dd>
+                <dd>ACT_DOTA_SPAWN</dd>
+                <dd>ACT_DOTA_TELEPORT</dd>
+                <dd>ACT_DOTA_VICTORY</dd>
+            </dl>
+            <ul>
+                <li>Passive</li>
+            </ul>
+            <dl><dd>BooleanValue</dd></dl>
+            <ul>
+                <li>TextureName</li>
+            </ul>
+            <dl><dd>StringValue</dd></dl>
+            <ul>
+                <li>ThinkInterval</li>
+            </ul>
+            <dl><dd>FloatValue</dd></dl>
+        </code>
+        <p><code></code></p>
+        <h3><span class="mw-headline" id="Modifier_Properties">Modifier Properties</span></h3>
+        <p>
+            Modifier properties are gameplay values a modifier can change on the unit it is applied
+            to. Included here is a simple example of a modifier that slows attacks and movement
+            speed (this chunk is a block inside the <code>&quot;Modifiers&quot;</code> block of an
+            ability).
+        </p>
+        <p>
+            To specify numeric values, you can put in a number or you can use&#xA0;%name formatting
+            to grab values out of the <code>&quot;AbilitySpecial&quot;</code> block of the ability.
+            The advantage to using the <code>%name</code> syntax is that the value can change as the
+            ability levels up and the numeric value can be formatted into tooltips.
+        </p>
+        <p>
+            In this example, the slow duration comes from an
+            <code>&quot;AbilitySpecial&quot;</code> block, but the slow values are just numbers.
+        </p>
+        <div class="mw-highlight mw-content-ltr" dir="ltr">
+            <pre>
+&quot;creature_slithereen_crush_slow&quot;
 {
     &quot;Duration&quot;      &quot;%slow_duration&quot;
     &quot;Properties&quot;
@@ -380,111 +796,126 @@ DOTA_ABILITY_BEHAVIOR_RUNE_TARGET          = 1 &lt;&lt; 26, //Targets runes.
         &quot;MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT&quot;      &quot;-20&quot;
     }
 }
-</pre></div>
-<h4><span class="mw-headline" id="Available_Modifier_Properties">Available Modifier Properties</span></h4>
-<p><code>
-</code></p><code>
-<ul><li> MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL</li>
-<li> MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL</li>
-<li> MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE</li>
-<li> MODIFIER_PROPERTY_ABSORB_SPELL</li>
-<li> MODIFIER_PROPERTY_ATTACK_RANGE_BONUS</li>
-<li> MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT</li>
-<li> MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_POWER_TREADS</li>
-<li> MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_SECONDARY</li>
-<li> MODIFIER_PROPERTY_AVOID_CONSTANT</li>
-<li> MODIFIER_PROPERTY_AVOID_SPELL</li>
-<li> MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE</li>
-<li> MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT</li>
-<li> MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_BASE_MANA_REGEN</li>
-<li> MODIFIER_PROPERTY_BONUS_DAY_VISION</li>
-<li> MODIFIER_PROPERTY_BONUS_NIGHT_VISION</li>
-<li> MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE</li>
-<li> MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT</li>
-<li> MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION</li>
-<li> MODIFIER_PROPERTY_DEATHGOLDCOST</li>
-<li> MODIFIER_PROPERTY_DISABLE_AUTOATTACK</li>
-<li> MODIFIER_PROPERTY_DISABLE_HEALING</li>
-<li> MODIFIER_PROPERTY_DISABLE_TURNING  //unhandled</li>
-<li> MODIFIER_PROPERTY_EVASION_CONSTANT</li>
-<li> MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS</li>
-<li> MODIFIER_PROPERTY_EXTRA_MANA_BONUS</li>
-<li> MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS</li>
-<li> MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP</li>
-<li> MODIFIER_PROPERTY_HEALTH_BONUS</li>
-<li> MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT</li>
-<li> MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_IGNORE_CAST_ANGLE</li>
-<li> MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT</li>
-<li> MODIFIER_PROPERTY_INVISIBILITY_LEVEL</li>
-<li> MODIFIER_PROPERTY_IS_ILLUSION</li>
-<li> MODIFIER_PROPERTY_IS_SCEPTER</li>
-<li> MODIFIER_PROPERTY_LIFETIME_FRACTION</li>
-<li> MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS</li>
-<li> MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE</li>
-<li> MODIFIER_PROPERTY_MAGICAL_RESISTANCE_ITEM_UNIQUE</li>
-<li> MODIFIER_PROPERTY_MANA_BONUS</li>
-<li> MODIFIER_PROPERTY_MANA_REGEN_CONSTANT</li>
-<li> MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE</li>
-<li> MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_MIN_HEALTH</li>
-<li> MODIFIER_PROPERTY_MISS_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_MODEL_CHANGE</li>
-<li> MODIFIER_PROPERTY_MODEL_SCALE // unhandled</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_LIMIT // unhandled</li>
-<li> MODIFIER_PROPERTY_MOVESPEED_MAX // unhandled</li>
-<li> MODIFIER_PROPERTY_OVERRIDE_ANIMATION</li>
-<li> MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE</li>
-<li> MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT</li>
-<li> MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL</li>
-<li> MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY</li>
-<li> MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS</li>
-<li> MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_ILLUSIONS</li>
-<li> MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE</li>
-<li> MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE</li>
-<li> MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK</li>
-<li> MODIFIER_PROPERTY_POST_ATTACK</li>
-<li> MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE</li>
-<li> MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT</li>
-<li> MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE</li>
-<li> MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_COMPOSITE</li>
-<li> MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL</li>
-<li> MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL</li>
-<li> MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE</li>
-<li> MODIFIER_PROPERTY_PROCATTACK_FEEDBACK</li>
-<li> MODIFIER_PROPERTY_PROVIDES_FOW_POSITION</li>
-<li> MODIFIER_PROPERTY_REINCARNATION</li>
-<li> MODIFIER_PROPERTY_RESPAWNTIME</li>
-<li> MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE</li>
-<li> MODIFIER_PROPERTY_RESPAWNTIME_STACKING</li>
-<li> MODIFIER_PROPERTY_STATS_AGILITY_BONUS</li>
-<li> MODIFIER_PROPERTY_STATS_INTELLECT_BONUS</li>
-<li> MODIFIER_PROPERTY_STATS_STRENGTH_BONUS</li>
-<li> MODIFIER_PROPERTY_TOOLTIP</li>
-<li> MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK</li>
-<li> MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR</li>
-<li> MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE // unhandled</li>
-<li> MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS</li>
-<li> MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND</li>
-<li> MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE</li></ul>
-</code><p><code></code>
-</p>
-<h3><span class="mw-headline" id="Modifier_States">Modifier States</span></h3>
-<p>States are very similar to properties, except they are tri-state values. A state can have the value &quot;MODIFIER_STATE_VALUE_NO_ACTION&quot;, &quot;MODIFIER_STATE_VALUE_ENABLED&quot; or &quot;MODIFIER_STATE_VALUE_DISABLED&quot;. This example modifier attaches a simple stunned effect, overrides the base unit&apos;s animation and forces the unit into the stunned state:
-</p>
-<div class="mw-highlight mw-content-ltr" dir="ltr"><pre>&quot;creature_bash_ministun&quot;
+</pre
+            >
+        </div>
+        <h4>
+            <span class="mw-headline" id="Available_Modifier_Properties"
+                >Available Modifier Properties</span
+            >
+        </h4>
+        <p><code> </code></p>
+        <code>
+            <ul>
+                <li>MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL</li>
+                <li>MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL</li>
+                <li>MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE</li>
+                <li>MODIFIER_PROPERTY_ABSORB_SPELL</li>
+                <li>MODIFIER_PROPERTY_ATTACK_RANGE_BONUS</li>
+                <li>MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_POWER_TREADS</li>
+                <li>MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_SECONDARY</li>
+                <li>MODIFIER_PROPERTY_AVOID_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_AVOID_SPELL</li>
+                <li>MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE</li>
+                <li>MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_BASE_MANA_REGEN</li>
+                <li>MODIFIER_PROPERTY_BONUS_DAY_VISION</li>
+                <li>MODIFIER_PROPERTY_BONUS_NIGHT_VISION</li>
+                <li>MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE</li>
+                <li>MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION</li>
+                <li>MODIFIER_PROPERTY_DEATHGOLDCOST</li>
+                <li>MODIFIER_PROPERTY_DISABLE_AUTOATTACK</li>
+                <li>MODIFIER_PROPERTY_DISABLE_HEALING</li>
+                <li>MODIFIER_PROPERTY_DISABLE_TURNING //unhandled</li>
+                <li>MODIFIER_PROPERTY_EVASION_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS</li>
+                <li>MODIFIER_PROPERTY_EXTRA_MANA_BONUS</li>
+                <li>MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS</li>
+                <li>MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP</li>
+                <li>MODIFIER_PROPERTY_HEALTH_BONUS</li>
+                <li>MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_IGNORE_CAST_ANGLE</li>
+                <li>MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_INVISIBILITY_LEVEL</li>
+                <li>MODIFIER_PROPERTY_IS_ILLUSION</li>
+                <li>MODIFIER_PROPERTY_IS_SCEPTER</li>
+                <li>MODIFIER_PROPERTY_LIFETIME_FRACTION</li>
+                <li>MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS</li>
+                <li>MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_MAGICAL_RESISTANCE_ITEM_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_MANA_BONUS</li>
+                <li>MODIFIER_PROPERTY_MANA_REGEN_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_MIN_HEALTH</li>
+                <li>MODIFIER_PROPERTY_MISS_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_MODEL_CHANGE</li>
+                <li>MODIFIER_PROPERTY_MODEL_SCALE // unhandled</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_LIMIT // unhandled</li>
+                <li>MODIFIER_PROPERTY_MOVESPEED_MAX // unhandled</li>
+                <li>MODIFIER_PROPERTY_OVERRIDE_ANIMATION</li>
+                <li>MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE</li>
+                <li>MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT</li>
+                <li>MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL</li>
+                <li>MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY</li>
+                <li>MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS</li>
+                <li>MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_ILLUSIONS</li>
+                <li>MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE</li>
+                <li>MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE</li>
+                <li>MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK</li>
+                <li>MODIFIER_PROPERTY_POST_ATTACK</li>
+                <li>MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE</li>
+                <li>MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT</li>
+                <li>MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE</li>
+                <li>MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_COMPOSITE</li>
+                <li>MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL</li>
+                <li>MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL</li>
+                <li>MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE</li>
+                <li>MODIFIER_PROPERTY_PROCATTACK_FEEDBACK</li>
+                <li>MODIFIER_PROPERTY_PROVIDES_FOW_POSITION</li>
+                <li>MODIFIER_PROPERTY_REINCARNATION</li>
+                <li>MODIFIER_PROPERTY_RESPAWNTIME</li>
+                <li>MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE</li>
+                <li>MODIFIER_PROPERTY_RESPAWNTIME_STACKING</li>
+                <li>MODIFIER_PROPERTY_STATS_AGILITY_BONUS</li>
+                <li>MODIFIER_PROPERTY_STATS_INTELLECT_BONUS</li>
+                <li>MODIFIER_PROPERTY_STATS_STRENGTH_BONUS</li>
+                <li>MODIFIER_PROPERTY_TOOLTIP</li>
+                <li>MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK</li>
+                <li>MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR</li>
+                <li>MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE // unhandled</li>
+                <li>MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS</li>
+                <li>MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND</li>
+                <li>MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE</li>
+            </ul>
+        </code>
+        <p><code></code></p>
+        <h3><span class="mw-headline" id="Modifier_States">Modifier States</span></h3>
+        <p>
+            States are very similar to properties, except they are tri-state values. A state can
+            have the value &quot;MODIFIER_STATE_VALUE_NO_ACTION&quot;,
+            &quot;MODIFIER_STATE_VALUE_ENABLED&quot; or &quot;MODIFIER_STATE_VALUE_DISABLED&quot;.
+            This example modifier attaches a simple stunned effect, overrides the base unit&apos;s
+            animation and forces the unit into the stunned state:
+        </p>
+        <div class="mw-highlight mw-content-ltr" dir="ltr">
+            <pre>
+&quot;creature_bash_ministun&quot;
 {
     &quot;EffectName&quot;            &quot;generic_stunned&quot;
     &quot;EffectAttachType&quot;      &quot;follow_overhead&quot;
@@ -495,81 +926,133 @@ DOTA_ABILITY_BEHAVIOR_RUNE_TARGET          = 1 &lt;&lt; 26, //Targets runes.
         &quot;MODIFIER_STATE_STUNNED&quot; &quot;MODIFIER_STATE_VALUE_ENABLED&quot;
     }         
 }
-</pre></div>
-<h4><span class="mw-headline" id="Available_Modifier_States">Available Modifier States</span></h4>
-<p>Here is a list of all the states available to a modifier:
-<code>
-</code></p><code>
-<ul><li>MODIFIER_STATE_ATTACK_IMMUNE</li>
-<li>MODIFIER_STATE_BLIND</li>
-<li>MODIFIER_STATE_BLOCK_DISABLED</li>
-<li>MODIFIER_STATE_CANNOT_MISS</li>
-<li>MODIFIER_STATE_COMMAND_RESTRICTED</li>
-<li>MODIFIER_STATE_DISARMED</li>
-<li>MODIFIER_STATE_DOMINATED</li>
-<li>MODIFIER_STATE_EVADE_DISABLED</li>
-<li>MODIFIER_STATE_FLYING</li>
-<li>MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY</li>
-<li>MODIFIER_STATE_FROZEN</li>
-<li>MODIFIER_STATE_HEXED</li>
-<li>MODIFIER_STATE_INVISIBLE</li>
-<li>MODIFIER_STATE_INVULNERABLE</li>
-<li>MODIFIER_STATE_LOW_ATTACK_PRIORITY</li>
-<li>MODIFIER_STATE_MAGIC_IMMUNE</li>
-<li>MODIFIER_STATE_MUTED</li>
-<li>MODIFIER_STATE_NIGHTMARED</li>
-<li>MODIFIER_STATE_NO_HEALTH_BAR</li>
-<li>MODIFIER_STATE_NO_TEAM_MOVE_TO</li>
-<li>MODIFIER_STATE_NO_TEAM_SELECT</li>
-<li>MODIFIER_STATE_NOT_ON_MINIMAP</li>
-<li>MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES</li>
-<li>MODIFIER_STATE_NO_UNIT_COLLISION</li>
-<li>MODIFIER_STATE_OUT_OF_GAME</li>
-<li>MODIFIER_STATE_PASSIVES_DISABLED</li>
-<li>MODIFIER_STATE_PROVIDES_VISION</li>
-<li>MODIFIER_STATE_ROOTED</li>
-<li>MODIFIER_STATE_SILENCED</li>
-<li>MODIFIER_STATE_SOFT_DISARMED</li>
-<li>MODIFIER_STATE_SPECIALLY_DENIABLE</li>
-<li>MODIFIER_STATE_STUNNED</li>
-<li>MODIFIER_STATE_UNSELECTABLE</li></ul>
-</code><p><code></code>
-</p>
-<h3><span class="mw-headline" id="Modifier_Events">Modifier Events</span></h3>
-<p>Modifiers can also describe actions that should happen on various in-game events.  Each of these keys is a block that describes actions.  The action description system is documented elsewhere on this page.
-</p>
-<ul><li><code>OnAbilityExecuted</code></li>
-<li><code>OnAttacked</code> - The unit this modifier is attached to has been attacked.</li>
-<li><code>OnAttackLanded</code> - The unit this modifier is attached to has landed an attack on a target.  &quot;%attack_damage&quot; is set to the damage value before mitigation.  Autoattack damage is dealt after this block executes.</li>
-<li><code>OnAttackStart</code> - The unit this modifier is attached to has started to attack a target (when the attack animation begins, not when the autoattack projectile is created).</li>
-<li><code>OnCreated</code> - The modifier has been created.</li>
-<li><code>OnDealDamage</code> - The unit this modifier is attached to has dealt damage.  &quot;%attack_damage&quot; is set to the damage value after mitigation. </li>
-<li><code>OnDeath</code></li>
-<li><code>OnDestroy</code> - The modifier has been removed.</li>
-<li><code>OnIntervalThink</code></li>
-<li><code>OnKill</code></li>
-<li><code>OnOrbFire</code></li>
-<li><code>OnOrbImpact</code></li>
-<li><code>OnTakeDamage</code> - The unit this modifier is attached to has taken damage.  &quot;%attack_damage&quot; is set to the damage value after mitigation.</li>
-<li><code>Orb</code></li></ul>
-<p>A full list of <a href="/wiki/Dota_2_Workshop_Tools/Scripting/Abilities_Data_Driven/Modifier_Events" title="Dota 2 Workshop Tools/Scripting/Abilities Data Driven/Modifier Events">modifier events</a> is available but not all have been exposed to the data driven system and are unsupported at this time.  These events are used by the modifier events data driven system and cannot be called directly.
-</p>
-<h2><span class="mw-headline" id="Additional_Examples">Additional Examples</span></h2>
-<ul><li> <a href="/wiki/Dota_2_Workshop_Tools/Scripting/Abilities_Data_Driven_Examples" title="Dota 2 Workshop Tools/Scripting/Abilities Data Driven Examples">Data Driven Ability Examples</a></li></ul>
-<h2><span class="mw-headline" id="Precaching">Precaching</span></h2>
-<p>When creating data-driven abilities the <code>&quot;precache&quot;</code> block is not required.  This ONLY applies to data-driven abilities that have the <code>BaseClass</code> defined as <code>ability_datadriven</code>.
-</p>
-<dl><dt>Notes</dt></dl>
-<ul><li> Particle effects require the full path with extension in addition to the file name.  For example:</li></ul>
-<dl><dd><code>particles/econ/generic/generic_buff_1/generic_buff_1.vpcf</code> - The <code>_c</code> is not required.</dd></dl>
-<ul><li> Sound effects only require the event name.</li></ul>
-
-
-
-
-
-
-</div>					
-								
-							</div>
-		
+</pre
+            >
+        </div>
+        <h4>
+            <span class="mw-headline" id="Available_Modifier_States"
+                >Available Modifier States</span
+            >
+        </h4>
+        <p>Here is a list of all the states available to a modifier: <code> </code></p>
+        <code>
+            <ul>
+                <li>MODIFIER_STATE_ATTACK_IMMUNE</li>
+                <li>MODIFIER_STATE_BLIND</li>
+                <li>MODIFIER_STATE_BLOCK_DISABLED</li>
+                <li>MODIFIER_STATE_CANNOT_MISS</li>
+                <li>MODIFIER_STATE_COMMAND_RESTRICTED</li>
+                <li>MODIFIER_STATE_DISARMED</li>
+                <li>MODIFIER_STATE_DOMINATED</li>
+                <li>MODIFIER_STATE_EVADE_DISABLED</li>
+                <li>MODIFIER_STATE_FLYING</li>
+                <li>MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY</li>
+                <li>MODIFIER_STATE_FROZEN</li>
+                <li>MODIFIER_STATE_HEXED</li>
+                <li>MODIFIER_STATE_INVISIBLE</li>
+                <li>MODIFIER_STATE_INVULNERABLE</li>
+                <li>MODIFIER_STATE_LOW_ATTACK_PRIORITY</li>
+                <li>MODIFIER_STATE_MAGIC_IMMUNE</li>
+                <li>MODIFIER_STATE_MUTED</li>
+                <li>MODIFIER_STATE_NIGHTMARED</li>
+                <li>MODIFIER_STATE_NO_HEALTH_BAR</li>
+                <li>MODIFIER_STATE_NO_TEAM_MOVE_TO</li>
+                <li>MODIFIER_STATE_NO_TEAM_SELECT</li>
+                <li>MODIFIER_STATE_NOT_ON_MINIMAP</li>
+                <li>MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES</li>
+                <li>MODIFIER_STATE_NO_UNIT_COLLISION</li>
+                <li>MODIFIER_STATE_OUT_OF_GAME</li>
+                <li>MODIFIER_STATE_PASSIVES_DISABLED</li>
+                <li>MODIFIER_STATE_PROVIDES_VISION</li>
+                <li>MODIFIER_STATE_ROOTED</li>
+                <li>MODIFIER_STATE_SILENCED</li>
+                <li>MODIFIER_STATE_SOFT_DISARMED</li>
+                <li>MODIFIER_STATE_SPECIALLY_DENIABLE</li>
+                <li>MODIFIER_STATE_STUNNED</li>
+                <li>MODIFIER_STATE_UNSELECTABLE</li>
+            </ul>
+        </code>
+        <p><code></code></p>
+        <h3><span class="mw-headline" id="Modifier_Events">Modifier Events</span></h3>
+        <p>
+            Modifiers can also describe actions that should happen on various in-game events. Each
+            of these keys is a block that describes actions. The action description system is
+            documented elsewhere on this page.
+        </p>
+        <ul>
+            <li><code>OnAbilityExecuted</code></li>
+            <li>
+                <code>OnAttacked</code> - The unit this modifier is attached to has been attacked.
+            </li>
+            <li>
+                <code>OnAttackLanded</code> - The unit this modifier is attached to has landed an
+                attack on a target. &quot;%attack_damage&quot; is set to the damage value before
+                mitigation. Autoattack damage is dealt after this block executes.
+            </li>
+            <li>
+                <code>OnAttackStart</code> - The unit this modifier is attached to has started to
+                attack a target (when the attack animation begins, not when the autoattack
+                projectile is created).
+            </li>
+            <li><code>OnCreated</code> - The modifier has been created.</li>
+            <li>
+                <code>OnDealDamage</code> - The unit this modifier is attached to has dealt damage.
+                &quot;%attack_damage&quot; is set to the damage value after mitigation.
+            </li>
+            <li><code>OnDeath</code></li>
+            <li><code>OnDestroy</code> - The modifier has been removed.</li>
+            <li><code>OnIntervalThink</code></li>
+            <li><code>OnKill</code></li>
+            <li><code>OnOrbFire</code></li>
+            <li><code>OnOrbImpact</code></li>
+            <li>
+                <code>OnTakeDamage</code> - The unit this modifier is attached to has taken damage.
+                &quot;%attack_damage&quot; is set to the damage value after mitigation.
+            </li>
+            <li><code>Orb</code></li>
+        </ul>
+        <p>
+            A full list of
+            <a
+                href="/wiki/Dota_2_Workshop_Tools/Scripting/Abilities_Data_Driven/Modifier_Events"
+                title="Dota 2 Workshop Tools/Scripting/Abilities Data Driven/Modifier Events"
+                >modifier events</a
+            >
+            is available but not all have been exposed to the data driven system and are unsupported
+            at this time. These events are used by the modifier events data driven system and cannot
+            be called directly.
+        </p>
+        <h2><span class="mw-headline" id="Additional_Examples">Additional Examples</span></h2>
+        <ul>
+            <li>
+                <a
+                    href="/wiki/Dota_2_Workshop_Tools/Scripting/Abilities_Data_Driven_Examples"
+                    title="Dota 2 Workshop Tools/Scripting/Abilities Data Driven Examples"
+                    >Data Driven Ability Examples</a
+                >
+            </li>
+        </ul>
+        <h2><span class="mw-headline" id="Precaching">Precaching</span></h2>
+        <p>
+            When creating data-driven abilities the <code>&quot;precache&quot;</code> block is not
+            required. This ONLY applies to data-driven abilities that have the
+            <code>BaseClass</code> defined as <code>ability_datadriven</code>.
+        </p>
+        <dl><dt>Notes</dt></dl>
+        <ul>
+            <li>
+                Particle effects require the full path with extension in addition to the file name.
+                For example:
+            </li>
+        </ul>
+        <dl>
+            <dd>
+                <code>particles/econ/generic/generic_buff_1/generic_buff_1.vpcf</code> - The
+                <code>_c</code> is not required.
+            </dd>
+        </dl>
+        <ul>
+            <li>Sound effects only require the event name.</li>
+        </ul>
+    </div>
+</div>

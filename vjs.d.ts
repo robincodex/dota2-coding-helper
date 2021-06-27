@@ -1,4 +1,3 @@
-
 declare type Vector = number[];
 declare type QAngle = number[];
 
@@ -95,220 +94,220 @@ declare interface PrepareUnitOrdersArgument {
 }
 
 declare type CSSProperties = {
-    '-s2-mix-blend-mode': string,
-    align: string,
-    animation: string,
-    'animation-delay': string,
-    'animation-direction': string,
-    'animation-duration': string,
-    'animation-iteration-count': string,
-    'animation-name': string,
-    'animation-timing-function': string,
-    'background-blur': string,
-    'background-color': string,
-    'background-image': string,
-    'background-position': string,
-    'background-repeat': string,
-    'background-size': string,
-    blur: string,
-    border: string,
-    'border-bottom': string,
-    'border-bottom-color': string,
-    'border-bottom-left-radius': string,
-    'border-bottom-right-radius': string,
-    'border-bottom-style': string,
-    'border-bottom-width': string,
-    'border-color': string,
-    'border-left': string,
-    'border-left-color': string,
-    'border-left-style': string,
-    'border-left-width': string,
-    'border-radius': string,
-    'border-right': string,
-    'border-right-color': string,
-    'border-right-style': string,
-    'border-right-width': string,
-    'border-style': string,
-    'border-top': string,
-    'border-top-color': string,
-    'border-top-left-radius': string,
-    'border-top-right-radius': string,
-    'border-top-style': string,
-    'border-top-width': string,
-    'border-width': string,
-    'box-shadow': string,
-    brightness: string,
-    clip: string,
-    color: string,
-    'context-menu-arrow-position': string,
-    'context-menu-body-position': string,
-    'context-menu-position': string,
-    contrast: string,
-    'flow-children': 'none' | 'down' | 'right' | 'right-wrap',
-    font: string,
-    'font-family': string,
-    'font-size': string,
-    'font-stretch': string,
-    'font-style': string,
-    'font-weight': string,
-    height: string,
-    'horizontal-align': string,
-    'hue-rotation': string,
-    'img-shadow': string,
-    'letter-spacing': string,
-    'line-height': string,
-    margin: string,
-    'margin-bottom': string,
-    'margin-left': string,
-    'margin-right': string,
-    'margin-top': string,
-    'max-height': string,
-    'max-width': string,
-    'min-height': string,
-    'min-width': string,
-    opacity: string,
-    'opacity-mask': string,
-    'opacity-mask-scroll-down': string,
-    'opacity-mask-scroll-up': string,
-    'opacity-mask-scroll-up-down': string,
-    overflow: string,
-    padding: string,
-    'padding-bottom': string,
-    'padding-left': string,
-    'padding-right': string,
-    'padding-top': string,
-    perspective: string,
-    'perspective-origin': string,
-    position: string,
-    'pre-transform-rotate2d': string,
-    'pre-transform-scale2d': string,
-    saturation: string,
-    sound: string,
-    'sound-out': string,
-    'text-align': string,
-    'text-decoration': string,
-    'text-decoration-style': string,
-    'text-overflow': string,
-    'text-shadow': string,
-    'text-transform': string,
-    'texture-sampling': string,
-    'tooltip-arrow-position': string,
-    'tooltip-body-position': string,
-    'tooltip-position': string,
-    transform: string,
-    'transform-origin': string,
-    transition: string,
-    'transition-delay': string,
-    'transition-duration': string,
-    'transition-property': string,
-    'transition-timing-function': string,
-    'ui-scale': string,
-    'ui-scale-x': string,
-    'ui-scale-y': string,
-    'ui-scale-z': string,
-    'vertical-align': string,
-    visibility: string,
-    'wash-color': string,
-    'white-space': string,
-    width: string,
-    x: string,
-    y: string,
-    z: string,
-    'z-index': string,
-    animationDelay: string,
-    animationDirection: string,
-    animationDuration: string,
-    animationIterationCount: string,
-    animationName: string,
-    animationTimingFunction: string,
-    backgroundBlur: string,
-    backgroundColor: string,
-    backgroundImage: string,
-    backgroundPosition: string,
-    backgroundRepeat: string,
-    backgroundSize: string,
-    borderBottom: string,
-    borderBottomColor: string,
-    borderBottomLeftRadius: string,
-    borderBottomRightRadius: string,
-    borderBottomStyle: string,
-    borderBottomWidth: string,
-    borderColor: string,
-    borderLeft: string,
-    borderLeftColor: string,
-    borderLeftStyle: string,
-    borderLeftWidth: string,
-    borderRadius: string,
-    borderRight: string,
-    borderRightColor: string,
-    borderRightStyle: string,
-    borderRightWidth: string,
-    borderStyle: string,
-    borderTop: string,
-    borderTopColor: string,
-    borderTopLeftRadius: string,
-    borderTopRightRadius: string,
-    borderTopStyle: string,
-    borderTopWidth: string,
-    borderWidth: string,
-    boxShadow: string,
-    contextMenuArrowPosition: string,
-    contextMenuBodyPosition: string,
-    contextMenuPosition: string,
-    flowChildren: 'none' | 'down' | 'right' | 'right-wrap',
-    fontFamily: string,
-    fontSize: string,
-    fontStretch: string,
-    fontStyle: string,
-    fontWeight: string,
-    horizontalAlign: string,
-    hueRotation: string,
-    imgShadow: string,
-    letterSpacing: string,
-    lineHeight: string,
-    marginBottom: string,
-    marginLeft: string,
-    marginRight: string,
-    marginTop: string,
-    maxHeight: string,
-    maxWidth: string,
-    minHeight: string,
-    minWidth: string,
-    opacityMask: string,
-    opacityMaskScrollDown: string,
-    opacityMaskScrollUp: string,
-    opacityMaskScrollUpDown: string,
-    paddingBottom: string,
-    paddingLeft: string,
-    paddingRight: string,
-    paddingTop: string,
-    perspectiveOrigin: string,
-    preTransformRotate2d: string,
-    preTransformScale2d: string,
-    soundOut: string,
-    textAlign: string,
-    textDecoration: string,
-    textDecorationStyle: string,
-    textOverflow: string,
-    textShadow: string,
-    textTransform: string,
-    textureSampling: string,
-    tooltipArrowPosition: string,
-    tooltipBodyPosition: string,
-    tooltipPosition: string,
-    transformOrigin: string,
-    transitionDelay: string,
-    transitionDuration: string,
-    transitionProperty: string,
-    transitionTimingFunction: string,
-    uiScale: string,
-    uiScaleX: string,
-    uiScaleY: string,
-    uiScaleZ: string,
-    verticalAlign: string,
-    washColor: string,
-    whiteSpace: string,
-    zIndex: string,
+    '-s2-mix-blend-mode': string;
+    align: string;
+    animation: string;
+    'animation-delay': string;
+    'animation-direction': string;
+    'animation-duration': string;
+    'animation-iteration-count': string;
+    'animation-name': string;
+    'animation-timing-function': string;
+    'background-blur': string;
+    'background-color': string;
+    'background-image': string;
+    'background-position': string;
+    'background-repeat': string;
+    'background-size': string;
+    blur: string;
+    border: string;
+    'border-bottom': string;
+    'border-bottom-color': string;
+    'border-bottom-left-radius': string;
+    'border-bottom-right-radius': string;
+    'border-bottom-style': string;
+    'border-bottom-width': string;
+    'border-color': string;
+    'border-left': string;
+    'border-left-color': string;
+    'border-left-style': string;
+    'border-left-width': string;
+    'border-radius': string;
+    'border-right': string;
+    'border-right-color': string;
+    'border-right-style': string;
+    'border-right-width': string;
+    'border-style': string;
+    'border-top': string;
+    'border-top-color': string;
+    'border-top-left-radius': string;
+    'border-top-right-radius': string;
+    'border-top-style': string;
+    'border-top-width': string;
+    'border-width': string;
+    'box-shadow': string;
+    brightness: string;
+    clip: string;
+    color: string;
+    'context-menu-arrow-position': string;
+    'context-menu-body-position': string;
+    'context-menu-position': string;
+    contrast: string;
+    'flow-children': 'none' | 'down' | 'right' | 'right-wrap';
+    font: string;
+    'font-family': string;
+    'font-size': string;
+    'font-stretch': string;
+    'font-style': string;
+    'font-weight': string;
+    height: string;
+    'horizontal-align': string;
+    'hue-rotation': string;
+    'img-shadow': string;
+    'letter-spacing': string;
+    'line-height': string;
+    margin: string;
+    'margin-bottom': string;
+    'margin-left': string;
+    'margin-right': string;
+    'margin-top': string;
+    'max-height': string;
+    'max-width': string;
+    'min-height': string;
+    'min-width': string;
+    opacity: string;
+    'opacity-mask': string;
+    'opacity-mask-scroll-down': string;
+    'opacity-mask-scroll-up': string;
+    'opacity-mask-scroll-up-down': string;
+    overflow: string;
+    padding: string;
+    'padding-bottom': string;
+    'padding-left': string;
+    'padding-right': string;
+    'padding-top': string;
+    perspective: string;
+    'perspective-origin': string;
+    position: string;
+    'pre-transform-rotate2d': string;
+    'pre-transform-scale2d': string;
+    saturation: string;
+    sound: string;
+    'sound-out': string;
+    'text-align': string;
+    'text-decoration': string;
+    'text-decoration-style': string;
+    'text-overflow': string;
+    'text-shadow': string;
+    'text-transform': string;
+    'texture-sampling': string;
+    'tooltip-arrow-position': string;
+    'tooltip-body-position': string;
+    'tooltip-position': string;
+    transform: string;
+    'transform-origin': string;
+    transition: string;
+    'transition-delay': string;
+    'transition-duration': string;
+    'transition-property': string;
+    'transition-timing-function': string;
+    'ui-scale': string;
+    'ui-scale-x': string;
+    'ui-scale-y': string;
+    'ui-scale-z': string;
+    'vertical-align': string;
+    visibility: string;
+    'wash-color': string;
+    'white-space': string;
+    width: string;
+    x: string;
+    y: string;
+    z: string;
+    'z-index': string;
+    animationDelay: string;
+    animationDirection: string;
+    animationDuration: string;
+    animationIterationCount: string;
+    animationName: string;
+    animationTimingFunction: string;
+    backgroundBlur: string;
+    backgroundColor: string;
+    backgroundImage: string;
+    backgroundPosition: string;
+    backgroundRepeat: string;
+    backgroundSize: string;
+    borderBottom: string;
+    borderBottomColor: string;
+    borderBottomLeftRadius: string;
+    borderBottomRightRadius: string;
+    borderBottomStyle: string;
+    borderBottomWidth: string;
+    borderColor: string;
+    borderLeft: string;
+    borderLeftColor: string;
+    borderLeftStyle: string;
+    borderLeftWidth: string;
+    borderRadius: string;
+    borderRight: string;
+    borderRightColor: string;
+    borderRightStyle: string;
+    borderRightWidth: string;
+    borderStyle: string;
+    borderTop: string;
+    borderTopColor: string;
+    borderTopLeftRadius: string;
+    borderTopRightRadius: string;
+    borderTopStyle: string;
+    borderTopWidth: string;
+    borderWidth: string;
+    boxShadow: string;
+    contextMenuArrowPosition: string;
+    contextMenuBodyPosition: string;
+    contextMenuPosition: string;
+    flowChildren: 'none' | 'down' | 'right' | 'right-wrap';
+    fontFamily: string;
+    fontSize: string;
+    fontStretch: string;
+    fontStyle: string;
+    fontWeight: string;
+    horizontalAlign: string;
+    hueRotation: string;
+    imgShadow: string;
+    letterSpacing: string;
+    lineHeight: string;
+    marginBottom: string;
+    marginLeft: string;
+    marginRight: string;
+    marginTop: string;
+    maxHeight: string;
+    maxWidth: string;
+    minHeight: string;
+    minWidth: string;
+    opacityMask: string;
+    opacityMaskScrollDown: string;
+    opacityMaskScrollUp: string;
+    opacityMaskScrollUpDown: string;
+    paddingBottom: string;
+    paddingLeft: string;
+    paddingRight: string;
+    paddingTop: string;
+    perspectiveOrigin: string;
+    preTransformRotate2d: string;
+    preTransformScale2d: string;
+    soundOut: string;
+    textAlign: string;
+    textDecoration: string;
+    textDecorationStyle: string;
+    textOverflow: string;
+    textShadow: string;
+    textTransform: string;
+    textureSampling: string;
+    tooltipArrowPosition: string;
+    tooltipBodyPosition: string;
+    tooltipPosition: string;
+    transformOrigin: string;
+    transitionDelay: string;
+    transitionDuration: string;
+    transitionProperty: string;
+    transitionTimingFunction: string;
+    uiScale: string;
+    uiScaleX: string;
+    uiScaleY: string;
+    uiScaleZ: string;
+    verticalAlign: string;
+    washColor: string;
+    whiteSpace: string;
+    zIndex: string;
 };
 
 declare const GameEvents: IGameEvents;
@@ -316,27 +315,27 @@ declare interface IGameEvents {
     /**
      * Subscribe to a game event
      */
-    Subscribe<T = any>( pEventName: string, callback: (data: T) => void ): number;
+    Subscribe<T = any>(pEventName: string, callback: (data: T) => void): number;
     /**
      * Unsubscribe from a game event
      */
-    Unsubscribe( nCallbackHandle: number ): void;
+    Unsubscribe(nCallbackHandle: number): void;
     /**
      * Send a custom game event to the server
      */
-    SendCustomGameEventToServer<T = any>( pEventName: string, data: T ): number;
+    SendCustomGameEventToServer<T = any>(pEventName: string, data: T): number;
     /**
      * Send a custom game event to the server, which will send it to all clients
      */
-    SendCustomGameEventToAllClients<T = any>( pEventName: string, data: T ): number;
+    SendCustomGameEventToAllClients<T = any>(pEventName: string, data: T): number;
     /**
      * Send a custom game event to the server, which will then send it to one client
      */
-    SendCustomGameEventToClient<T = any>( pEventName: string, playerIndex: number, data: T ): number;
+    SendCustomGameEventToClient<T = any>(pEventName: string, playerIndex: number, data: T): number;
     /**
      * Send a client-side event using gameeventmanager (only useful for a few specific events)
      */
-    SendEventClientSide<T = any>( pEventName: string, data: T ): number;
+    SendEventClientSide<T = any>(pEventName: string, data: T): number;
 }
 
 declare const CustomNetTables: ICustomNetTables;
@@ -344,19 +343,22 @@ declare interface ICustomNetTables {
     /**
      * Get a key from a custom net table
      */
-    GetTableValue( pTableName: string, pKeyName: string ): any;
+    GetTableValue(pTableName: string, pKeyName: string): any;
     /**
      * Get all values from a custom net table
      */
-    GetAllTableValues( pTableName: string ): any;
+    GetAllTableValues(pTableName: string): any;
     /**
      * Register a callback when a particular custom net table changes
      */
-    SubscribeNetTableListener( pTableName: string, callback: (pTableName: string, key: string, table: any) => void ): number;
+    SubscribeNetTableListener(
+        pTableName: string,
+        callback: (pTableName: string, key: string, table: any) => void
+    ): number;
     /**
      * Unsubscribe from a game event
      */
-    UnsubscribeNetTableListener( nCallbackHandle: number ): void;
+    UnsubscribeNetTableListener(nCallbackHandle: number): void;
 }
 
 declare const SteamUGC: ISteamUGC;
@@ -364,59 +366,63 @@ declare interface ISteamUGC {
     /**
      * Subscribe to a piece of UGC
      */
-    SubscribeItem( pPublishedFileID: string, callback: Function ): void;
+    SubscribeItem(pPublishedFileID: string, callback: Function): void;
     /**
      * Unsubscribe from a piece of UGC
      */
-    UnsubscribeItem( pPublishedFileID: string, callback: Function ): void;
+    UnsubscribeItem(pPublishedFileID: string, callback: Function): void;
     /**
      * Get a key from a custom net table
      */
-    GetSubscriptionInfo( pPublishedFileID: string ): any;
+    GetSubscriptionInfo(pPublishedFileID: string): any;
     /**
      * Vote on a piece of UGC
      */
-    SetUserItemVote( pPublishedFileID: string, bVoteUp: boolean, callback: Function ): void;
+    SetUserItemVote(pPublishedFileID: string, bVoteUp: boolean, callback: Function): void;
     /**
      * Get the user&apos;s vote on a piece of UGC
      */
-    GetUserItemVote( pPublishedFileID: string, callback: Function ): any;
+    GetUserItemVote(pPublishedFileID: string, callback: Function): any;
     /**
      * Add an item to the user&apos;s favorites list
      */
-    AddToFavorites( pPublishedFileID: string, callback: Function ): void;
+    AddToFavorites(pPublishedFileID: string, callback: Function): void;
     /**
      * Remove an item from the user&apos;s favorites list
      */
-    RemoveFromFavorites( pPublishedFileID: string, callback: Function ): void;
+    RemoveFromFavorites(pPublishedFileID: string, callback: Function): void;
     /**
      * Create a request to query Steam for all UGC
      */
-    CreateQueryAllUGCRequest( eQueryType: number, eMatchingeMatchingUGCTypeFileType: number, unPage: number ): any;
+    CreateQueryAllUGCRequest(
+        eQueryType: number,
+        eMatchingeMatchingUGCTypeFileType: number,
+        unPage: number
+    ): any;
     /**
      * Create a request to query Steam for specific UGC
      */
-    CreateQueryUGCDetailsRequest( jsArray: any[] ): any;
+    CreateQueryUGCDetailsRequest(jsArray: any[]): any;
     /**
      * Adds a required tag to the query
      */
-    AddRequiredTagToQuery( handle: number, pchTag: string ): any;
+    AddRequiredTagToQuery(handle: number, pchTag: string): any;
     /**
      * Adds an excluded tag to the query
      */
-    AddExcludedTagToQuery( handle: number, pchTag: string ): any;
+    AddExcludedTagToQuery(handle: number, pchTag: string): any;
     /**
      * Adds a required tag to the query
      */
-    ConfigureQuery( handle: number, jsObject: object ): any;
+    ConfigureQuery(handle: number, jsObject: object): any;
     /**
      * Sends the prepared query
      */
-    SendUGCQuery( handle: number, callback: Function ): any;
+    SendUGCQuery(handle: number, callback: Function): any;
     /**
      * Register a callback to be called when the item is downloaded
      */
-    RegisterDownloadItemResultCallback( pPublishedFileID: string, callback: Function ): any;
+    RegisterDownloadItemResultCallback(pPublishedFileID: string, callback: Function): any;
 }
 
 declare const SteamFriends: ISteamFriends;
@@ -424,11 +430,11 @@ declare interface ISteamFriends {
     /**
      * Requests the user&apos;s persona name
      */
-    RequestPersonaName( pchSteamID: string, callback: Function ): void;
+    RequestPersonaName(pchSteamID: string, callback: Function): void;
     /**
      * Sets the avatar image on the image panel
      */
-    SetLargeAvatarImage( ...args: any[] ): void;
+    SetLargeAvatarImage(...args: any[]): void;
 }
 
 declare const SteamUtils: ISteamUtils;
@@ -448,38 +454,38 @@ declare interface IVRUtils {
     /**
      * Get application properties for a VR app with the specified appID
      */
-    GetVRAppPropertyData( nAppID: number ): any;
+    GetVRAppPropertyData(nAppID: number): any;
     /**
      * Launches a Steam application using OpenVR.
      */
-    LaunchSteamApp( nAppID: number, pszLaunchSource: string ): any;
+    LaunchSteamApp(nAppID: number, pszLaunchSource: string): any;
 }
 
 declare const Buffs: IBuffs;
 declare interface IBuffs {
-    GetName( nEntity: number, nBuff: number ): string;
-    GetClass( nEntity: number, nBuff: number ): string;
-    GetTexture( nEntity: number, nBuff: number ): string;
-    GetDuration( nEntity: number, nBuff: number ): number;
-    GetDieTime( nEntity: number, nBuff: number ): number;
-    GetRemainingTime( nEntity: number, nBuff: number ): number;
-    GetElapsedTime( nEntity: number, nBuff: number ): number;
-    GetCreationTime( nEntity: number, nBuff: number ): number;
-    GetStackCount( nEntity: number, nBuff: number ): number;
-    IsDebuff( nEntity: number, nBuff: number ): boolean;
-    IsHidden( nEntity: number, nBuff: number ): boolean;
+    GetName(nEntity: number, nBuff: number): string;
+    GetClass(nEntity: number, nBuff: number): string;
+    GetTexture(nEntity: number, nBuff: number): string;
+    GetDuration(nEntity: number, nBuff: number): number;
+    GetDieTime(nEntity: number, nBuff: number): number;
+    GetRemainingTime(nEntity: number, nBuff: number): number;
+    GetElapsedTime(nEntity: number, nBuff: number): number;
+    GetCreationTime(nEntity: number, nBuff: number): number;
+    GetStackCount(nEntity: number, nBuff: number): number;
+    IsDebuff(nEntity: number, nBuff: number): boolean;
+    IsHidden(nEntity: number, nBuff: number): boolean;
     /**
      * Get the owner of the ability responsible for the modifier.
      */
-    GetCaster( nEntity: number, nBuff: number ): number;
+    GetCaster(nEntity: number, nBuff: number): number;
     /**
      * Get the unit the modifier is parented to.
      */
-    GetParent( nEntity: number, nBuff: number ): number;
+    GetParent(nEntity: number, nBuff: number): number;
     /**
      * Get the ability that generated the modifier.
      */
-    GetAbility( nEntity: number, nBuff: number ): number;
+    GetAbility(nEntity: number, nBuff: number): number;
 }
 
 declare const Players: IPlayers;
@@ -499,23 +505,23 @@ declare interface IPlayers {
     /**
      * Is the nth player a valid player?
      */
-    IsValidPlayerID( iPlayerID: number ): boolean;
+    IsValidPlayerID(iPlayerID: number): boolean;
     /**
      * Return the name of a player.
      */
-    GetPlayerName( iPlayerID: number ): string;
+    GetPlayerName(iPlayerID: number): string;
     /**
      * Get the entity index of the hero controlled by this player.
      */
-    GetPlayerHeroEntityIndex( iPlayerID: number ): number;
+    GetPlayerHeroEntityIndex(iPlayerID: number): number;
     /**
      * Get the entities this player has selected.
      */
-    GetSelectedEntities( iPlayerID: number ): number[];
+    GetSelectedEntities(iPlayerID: number): number[];
     /**
      * Get the entities this player is querying.
      */
-    GetQueryUnit( iPlayerID: number ): number;
+    GetQueryUnit(iPlayerID: number): number;
     /**
      * Get local player current portrait unit. (ie. Player&apos;s hero or primary selected unit.)
      */
@@ -523,96 +529,100 @@ declare interface IPlayers {
     /**
      * Can the player buy back?
      */
-    CanPlayerBuyback( iPlayerID: number ): boolean;
+    CanPlayerBuyback(iPlayerID: number): boolean;
     /**
      * Does this player have a custom game ticket?
      */
-    HasCustomGameTicketForPlayerID( iPlayerID: number ): boolean;
+    HasCustomGameTicketForPlayerID(iPlayerID: number): boolean;
     /**
      * The number of assists credited to a player.
      */
-    GetAssists( iPlayerID: number ): number;
-    GetClaimedDenies( iPlayerID: number ): number;
-    GetClaimedMisses( iPlayerID: number ): number;
+    GetAssists(iPlayerID: number): number;
+    GetClaimedDenies(iPlayerID: number): number;
+    GetClaimedMisses(iPlayerID: number): number;
     /**
      * The number of deaths a player has suffered.
      */
-    GetDeaths( iPlayerID: number ): any;
+    GetDeaths(iPlayerID: number): any;
     /**
      * The number of denies credited to a player.
      */
-    GetDenies( iPlayerID: number ): number;
+    GetDenies(iPlayerID: number): number;
     /**
      * The amount of gold a player has.
      */
-    GetGold( iPlayerID: number ): number;
+    GetGold(iPlayerID: number): number;
     /**
      * The number of kills credited to a player.
      */
-    GetKills( iPlayerID: number ): number;
-    GetLastBuybackTime( iPlayerID: number ): number;
-    GetLastHitMultikill( iPlayerID: number ): number;
+    GetKills(iPlayerID: number): number;
+    GetLastBuybackTime(iPlayerID: number): number;
+    GetLastHitMultikill(iPlayerID: number): number;
     /**
      * The number of last hits credited to a player.
      */
-    GetLastHits( iPlayerID: number ): number;
-    GetLastHitStreak( iPlayerID: number ): number;
+    GetLastHits(iPlayerID: number): number;
+    GetLastHitStreak(iPlayerID: number): number;
     /**
      * The current level of a player.
      */
-    GetLevel( iPlayerID: number ): number;
-    GetMisses( iPlayerID: number ): number;
-    GetNearbyCreepDeaths( iPlayerID: number ): number;
+    GetLevel(iPlayerID: number): number;
+    GetMisses(iPlayerID: number): number;
+    GetNearbyCreepDeaths(iPlayerID: number): number;
     /**
      * Total reliable gold for this player.
      */
-    GetReliableGold( iPlayerID: number ): number;
-    GetRespawnSeconds( iPlayerID: number ): number;
-    GetStreak( iPlayerID: number ): number;
+    GetReliableGold(iPlayerID: number): number;
+    GetRespawnSeconds(iPlayerID: number): number;
+    GetStreak(iPlayerID: number): number;
     /**
      * Total gold earned in this game by this player.
      */
-    GetTotalEarnedGold( iPlayerID: number ): number;
+    GetTotalEarnedGold(iPlayerID: number): number;
     /**
      * Total xp earned in this game by this player.
      */
-    GetTotalEarnedXP( iPlayerID: number ): number;
+    GetTotalEarnedXP(iPlayerID: number): number;
     /**
      * Total unreliable gold for this player.
      */
-    GetUnreliableGold( iPlayerID: number ): number;
+    GetUnreliableGold(iPlayerID: number): number;
     /**
      * Get the team this player is on.
      */
-    GetTeam( iPlayerID: number ): DOTATeam_t;
+    GetTeam(iPlayerID: number): DOTATeam_t;
     /**
      * Average gold earned per minute for this player.
      */
-    GetGoldPerMin( iPlayerID: number ): number;
+    GetGoldPerMin(iPlayerID: number): number;
     /**
      * Average xp earned per minute for this player.
      */
-    GetXPPerMin( iPlayerID: number ): number;
+    GetXPPerMin(iPlayerID: number): number;
     /**
      * Return the name of the hero a player is controlling.
      */
-    GetPlayerSelectedHero( iPlayerID: number ): number;
+    GetPlayerSelectedHero(iPlayerID: number): number;
     /**
      * Get the player color.
      */
-    GetPlayerColor( iPlayerID: number ): number;
+    GetPlayerColor(iPlayerID: number): number;
     /**
      * Is this player a spectator.
      */
-    IsSpectator( iPlayerID: number ): boolean;
+    IsSpectator(iPlayerID: number): boolean;
     /**
      * .
      */
-    PlayerPortraitClicked( nClickedPlayerID: number, bHoldingCtrl: boolean, bHoldingAlt: boolean ): void;
+    PlayerPortraitClicked(
+        nClickedPlayerID: number,
+        bHoldingCtrl: boolean,
+        bHoldingAlt: boolean
+    ): void;
     /**
      * .
      */
-    BuffClicked( nEntity: number, nBuffSerial: number, bAlert: boolean ): void;
+    BuffClicked(nEntity: number, nBuffSerial: number, bAlert: boolean): void;
     /**
      * Is the local player live spectating?
      */
@@ -636,23 +646,23 @@ declare interface IEntities {
     /**
      * Get the world origin of the entity.
      */
-    GetAbsOrigin( nEntityIndex: number ): Vector;
+    GetAbsOrigin(nEntityIndex: number): Vector;
     /**
      * Get the world angles of the entity.
      */
-    GetAbsAngles( nEntityIndex: number ): QAngle;
+    GetAbsAngles(nEntityIndex: number): QAngle;
     /**
      * Get the forward vector of the entity.
      */
-    GetForward( nEntityIndex: number ): Vector;
+    GetForward(nEntityIndex: number): Vector;
     /**
      * Get the right vector of the entity.
      */
-    GetRight( nEntityIndex: number ): Vector;
+    GetRight(nEntityIndex: number): Vector;
     /**
      * Get the up vector of the entity.
      */
-    GetUp( nEntityIndex: number ): Vector;
+    GetUp(nEntityIndex: number): Vector;
     /**
      * Get all the building entities.
      */
@@ -664,11 +674,11 @@ declare interface IEntities {
     /**
      * Get all the entities with a given name.
      */
-    GetAllEntitiesByName( pszName: string ): number[];
+    GetAllEntitiesByName(pszName: string): number[];
     /**
      * Get all the entities with a given classname.
      */
-    GetAllEntitiesByClassname( pszName: string ): number[];
+    GetAllEntitiesByClassname(pszName: string): number[];
     /**
      * Get all the creature entities.
      */
@@ -677,320 +687,320 @@ declare interface IEntities {
      * Get all the entities.
      */
     GetAllEntities(): number[];
-    CanBeDominated( nEntityIndex: number ): boolean;
-    HasAttackCapability( nEntityIndex: number ): boolean;
-    HasCastableAbilities( nEntityIndex: number ): boolean;
-    HasFlyingVision( nEntityIndex: number ): boolean;
-    HasFlyMovementCapability( nEntityIndex: number ): boolean;
-    HasGroundMovementCapability( nEntityIndex: number ): boolean;
-    HasMovementCapability( nEntityIndex: number ): boolean;
-    HasScepter( nEntityIndex: number ): boolean;
-    HasUpgradeableAbilities( nEntityIndex: number ): boolean;
-    HasUpgradeableAbilitiesThatArentMaxed( nEntityIndex: number ): boolean;
-    IsAlive( nEntityIndex: number ): boolean;
-    IsAncient( nEntityIndex: number ): boolean;
-    IsAttackImmune( nEntityIndex: number ): boolean;
-    IsBarracks( nEntityIndex: number ): boolean;
-    IsBlind( nEntityIndex: number ): boolean;
-    IsBoss( nEntityIndex: number ): boolean;
-    IsRoshan( nEntityIndex: number ): boolean;
-    IsBuilding( nEntityIndex: number ): boolean;
-    IsCommandRestricted( nEntityIndex: number ): boolean;
-    IsConsideredHero( nEntityIndex: number ): boolean;
-    IsControllableByAnyPlayer( nEntityIndex: number ): boolean;
-    IsCourier( nEntityIndex: number ): boolean;
-    IsCreature( nEntityIndex: number ): boolean;
-    IsCreep( nEntityIndex: number ): boolean;
-    IsCreepHero( nEntityIndex: number ): boolean;
-    IsDeniable( nEntityIndex: number ): boolean;
-    IsDominated( nEntityIndex: number ): boolean;
-    IsEnemy( nEntityIndex: number ): boolean;
-    IsEvadeDisabled( nEntityIndex: number ): boolean;
-    IsFort( nEntityIndex: number ): boolean;
-    IsFrozen( nEntityIndex: number ): boolean;
-    IsGeneratedByEconItem( nEntityIndex: number ): boolean;
-    IsHallofFame( nEntityIndex: number ): boolean;
-    IsDisarmed( nEntityIndex: number ): boolean;
-    IsHero( nEntityIndex: number ): boolean;
-    IsHexed( nEntityIndex: number ): boolean;
-    IsIllusion( nEntityIndex: number ): boolean;
-    IsInRangeOfFountain( nEntityIndex: number ): boolean;
-    IsInventoryEnabled( nEntityIndex: number ): boolean;
-    IsInvisible( nEntityIndex: number ): boolean;
-    IsInvulnerable( nEntityIndex: number ): boolean;
-    IsLaneCreep( nEntityIndex: number ): boolean;
-    IsLowAttackPriority( nEntityIndex: number ): boolean;
-    IsMagicImmune( nEntityIndex: number ): boolean;
-    IsMuted( nEntityIndex: number ): boolean;
-    IsNeutralUnitType( nEntityIndex: number ): boolean;
-    IsNightmared( nEntityIndex: number ): boolean;
-    IsOther( nEntityIndex: number ): boolean;
-    IsOutOfGame( nEntityIndex: number ): boolean;
-    IsOwnedByAnyPlayer( nEntityIndex: number ): boolean;
-    IsPhantom( nEntityIndex: number ): boolean;
-    IsRangedAttacker( nEntityIndex: number ): boolean;
-    IsRealHero( nEntityIndex: number ): boolean;
-    IsRooted( nEntityIndex: number ): boolean;
-    IsSelectable( nEntityIndex: number ): boolean;
-    IsShop( nEntityIndex: number ): boolean;
-    IsSilenced( nEntityIndex: number ): boolean;
-    IsSpeciallyDeniable( nEntityIndex: number ): boolean;
-    IsStunned( nEntityIndex: number ): boolean;
-    IsSummoned( nEntityIndex: number ): boolean;
-    IsTower( nEntityIndex: number ): boolean;
-    IsUnselectable( nEntityIndex: number ): boolean;
-    IsWard( nEntityIndex: number ): boolean;
-    IsZombie( nEntityIndex: number ): boolean;
-    NoHealthBar( nEntityIndex: number ): boolean;
-    NoTeamMoveTo( nEntityIndex: number ): boolean;
-    NoTeamSelect( nEntityIndex: number ): boolean;
-    NotOnMinimap( nEntityIndex: number ): boolean;
-    NotOnMinimapForEnemies( nEntityIndex: number ): boolean;
-    NoUnitCollision( nEntityIndex: number ): boolean;
-    PassivesDisabled( nEntityIndex: number ): boolean;
-    ProvidesVision( nEntityIndex: number ): boolean;
-    UsesHeroAbilityNumbers( nEntityIndex: number ): number[];
-    IsMoving( nEntityIndex: number ): boolean;
-    GetAbilityCount( nEntityIndex: number ): number;
-    GetCombatClassAttack( nEntityIndex: number ): number;
-    GetCombatClassDefend( nEntityIndex: number ): number;
-    GetCurrentVisionRange( nEntityIndex: number ): number;
-    GetDamageBonus( nEntityIndex: number ): number;
-    GetDamageMax( nEntityIndex: number ): number;
-    GetDamageMin( nEntityIndex: number ): number;
-    GetDayTimeVisionRange( nEntityIndex: number ): number;
-    GetHealth( nEntityIndex: number ): number;
-    GetHealthPercent( nEntityIndex: number ): number;
-    GetHealthThinkRegen( nEntityIndex: number ): number;
-    GetLevel( nEntityIndex: number ): number;
-    GetMaxHealth( nEntityIndex: number ): number;
-    GetNightTimeVisionRange( nEntityIndex: number ): number;
-    GetPlayerOwnerID( nEntityIndex: number ): number;
-    GetStates( nEntityIndex: number ): number;
-    GetTotalPurchasedUpgradeGoldCost( nEntityIndex: number ): number;
-    GetTeamNumber( nEntityIndex: number ): DOTATeam_t;
-    GetHealthBarOffset( nEntityIndex: number ): number;
-    GetAttackRange( nEntityIndex: number ): number;
-    GetAttackSpeed( nEntityIndex: number ): number;
-    GetAttacksPerSecond( nEntityIndex: number ): number;
-    GetBaseAttackTime( nEntityIndex: number ): number;
-    GetBaseMagicalResistanceValue( nEntityIndex: number ): number;
-    GetBaseMoveSpeed( nEntityIndex: number ): number;
-    GetBonusPhysicalArmor( nEntityIndex: number ): number;
-    GetCollisionPadding( nEntityIndex: number ): number;
-    GetEffectiveInvisibilityLevel( nEntityIndex: number ): number;
-    GetHasteFactor( nEntityIndex: number ): number;
-    GetHullRadius( nEntityIndex: number ): number;
-    GetIdealSpeed( nEntityIndex: number ): number;
-    GetIncreasedAttackSpeed( nEntityIndex: number ): number;
-    GetMana( nEntityIndex: number ): number;
-    GetManaThinkRegen( nEntityIndex: number ): number;
-    GetMaxMana( nEntityIndex: number ): number;
-    GetMagicalArmorValue( nEntityIndex: number ): number;
-    GetPaddedCollisionRadius( nEntityIndex: number ): number;
-    GetPercentInvisible( nEntityIndex: number ): number;
-    GetPhysicalArmorValue( nEntityIndex: number ): number;
-    GetProjectileCollisionSize( nEntityIndex: number ): number;
-    GetRingRadius( nEntityIndex: number ): number;
-    GetSecondsPerAttack( nEntityIndex: number ): number;
-    ManaFraction( nEntityIndex: number ): number;
-    GetClassname( nEntityIndex: number ): string;
-    GetDisplayedUnitName( nEntityIndex: number ): string;
-    GetSelectionGroup( nEntityIndex: number ): number;
-    GetSoundSet( nEntityIndex: number ): string;
-    GetUnitLabel( nEntityIndex: number ): string;
-    GetUnitName( nEntityIndex: number ): string;
-    GetTotalDamageTaken( nEntityIndex: number ): number;
-    IsControllableByPlayer( nEntityIndex: number, nPlayerIndex: number ): boolean;
-    GetChosenTarget( nEntityIndex: number ): number;
-    HasItemInInventory( nEntityIndex: number, pItemName: string ): boolean;
-    GetRangeToUnit( nEntityIndex: number, nTarget: number ): number;
-    IsEntityInRange( nEntityIndex: number, nTarget: number, flRange: number ): boolean;
-    GetMoveSpeedModifier( nEntityIndex: number, flBaseSpeed: number ): number;
-    CanAcceptTargetToAttack( nEntityIndex: number, nTarget: number ): boolean;
-    InState( nEntityIndex: number, nState: modifierstate ): boolean;
-    GetArmorForDamageType( nEntityIndex: number, iDamageType: DAMAGE_TYPES ): number;
-    GetArmorReductionForDamageType( nEntityIndex: number, iDamageType: DAMAGE_TYPES ): number;
-    IsInRangeOfShop( nEntityIndex: number, iShopType: DOTA_SHOP_TYPE, bSpecific: boolean ): boolean;
-    GetNumItemsInStash( nEntityIndex: number ): number;
-    GetNumItemsInInventory( nEntityIndex: number ): number;
-    GetItemInSlot( nEntityIndex: number, nSlotIndex: number ): number;
-    GetAbility( nEntityIndex: number, nSlotIndex: number ): number;
-    GetAbilityByName( nEntityIndex: number, pszAbilityName: string ): number;
-    GetNumBuffs( nEntityIndex: number ): number;
-    GetBuff( nEntityIndex: number, nBufIndex: number ): number;
-    GetAbilityPoints( nEntityIndex: number ): number;
-    GetCurrentXP( nEntityIndex: number ): number;
-    GetNeededXPToLevel( nEntityIndex: number ): number;
+    CanBeDominated(nEntityIndex: number): boolean;
+    HasAttackCapability(nEntityIndex: number): boolean;
+    HasCastableAbilities(nEntityIndex: number): boolean;
+    HasFlyingVision(nEntityIndex: number): boolean;
+    HasFlyMovementCapability(nEntityIndex: number): boolean;
+    HasGroundMovementCapability(nEntityIndex: number): boolean;
+    HasMovementCapability(nEntityIndex: number): boolean;
+    HasScepter(nEntityIndex: number): boolean;
+    HasUpgradeableAbilities(nEntityIndex: number): boolean;
+    HasUpgradeableAbilitiesThatArentMaxed(nEntityIndex: number): boolean;
+    IsAlive(nEntityIndex: number): boolean;
+    IsAncient(nEntityIndex: number): boolean;
+    IsAttackImmune(nEntityIndex: number): boolean;
+    IsBarracks(nEntityIndex: number): boolean;
+    IsBlind(nEntityIndex: number): boolean;
+    IsBoss(nEntityIndex: number): boolean;
+    IsRoshan(nEntityIndex: number): boolean;
+    IsBuilding(nEntityIndex: number): boolean;
+    IsCommandRestricted(nEntityIndex: number): boolean;
+    IsConsideredHero(nEntityIndex: number): boolean;
+    IsControllableByAnyPlayer(nEntityIndex: number): boolean;
+    IsCourier(nEntityIndex: number): boolean;
+    IsCreature(nEntityIndex: number): boolean;
+    IsCreep(nEntityIndex: number): boolean;
+    IsCreepHero(nEntityIndex: number): boolean;
+    IsDeniable(nEntityIndex: number): boolean;
+    IsDominated(nEntityIndex: number): boolean;
+    IsEnemy(nEntityIndex: number): boolean;
+    IsEvadeDisabled(nEntityIndex: number): boolean;
+    IsFort(nEntityIndex: number): boolean;
+    IsFrozen(nEntityIndex: number): boolean;
+    IsGeneratedByEconItem(nEntityIndex: number): boolean;
+    IsHallofFame(nEntityIndex: number): boolean;
+    IsDisarmed(nEntityIndex: number): boolean;
+    IsHero(nEntityIndex: number): boolean;
+    IsHexed(nEntityIndex: number): boolean;
+    IsIllusion(nEntityIndex: number): boolean;
+    IsInRangeOfFountain(nEntityIndex: number): boolean;
+    IsInventoryEnabled(nEntityIndex: number): boolean;
+    IsInvisible(nEntityIndex: number): boolean;
+    IsInvulnerable(nEntityIndex: number): boolean;
+    IsLaneCreep(nEntityIndex: number): boolean;
+    IsLowAttackPriority(nEntityIndex: number): boolean;
+    IsMagicImmune(nEntityIndex: number): boolean;
+    IsMuted(nEntityIndex: number): boolean;
+    IsNeutralUnitType(nEntityIndex: number): boolean;
+    IsNightmared(nEntityIndex: number): boolean;
+    IsOther(nEntityIndex: number): boolean;
+    IsOutOfGame(nEntityIndex: number): boolean;
+    IsOwnedByAnyPlayer(nEntityIndex: number): boolean;
+    IsPhantom(nEntityIndex: number): boolean;
+    IsRangedAttacker(nEntityIndex: number): boolean;
+    IsRealHero(nEntityIndex: number): boolean;
+    IsRooted(nEntityIndex: number): boolean;
+    IsSelectable(nEntityIndex: number): boolean;
+    IsShop(nEntityIndex: number): boolean;
+    IsSilenced(nEntityIndex: number): boolean;
+    IsSpeciallyDeniable(nEntityIndex: number): boolean;
+    IsStunned(nEntityIndex: number): boolean;
+    IsSummoned(nEntityIndex: number): boolean;
+    IsTower(nEntityIndex: number): boolean;
+    IsUnselectable(nEntityIndex: number): boolean;
+    IsWard(nEntityIndex: number): boolean;
+    IsZombie(nEntityIndex: number): boolean;
+    NoHealthBar(nEntityIndex: number): boolean;
+    NoTeamMoveTo(nEntityIndex: number): boolean;
+    NoTeamSelect(nEntityIndex: number): boolean;
+    NotOnMinimap(nEntityIndex: number): boolean;
+    NotOnMinimapForEnemies(nEntityIndex: number): boolean;
+    NoUnitCollision(nEntityIndex: number): boolean;
+    PassivesDisabled(nEntityIndex: number): boolean;
+    ProvidesVision(nEntityIndex: number): boolean;
+    UsesHeroAbilityNumbers(nEntityIndex: number): number[];
+    IsMoving(nEntityIndex: number): boolean;
+    GetAbilityCount(nEntityIndex: number): number;
+    GetCombatClassAttack(nEntityIndex: number): number;
+    GetCombatClassDefend(nEntityIndex: number): number;
+    GetCurrentVisionRange(nEntityIndex: number): number;
+    GetDamageBonus(nEntityIndex: number): number;
+    GetDamageMax(nEntityIndex: number): number;
+    GetDamageMin(nEntityIndex: number): number;
+    GetDayTimeVisionRange(nEntityIndex: number): number;
+    GetHealth(nEntityIndex: number): number;
+    GetHealthPercent(nEntityIndex: number): number;
+    GetHealthThinkRegen(nEntityIndex: number): number;
+    GetLevel(nEntityIndex: number): number;
+    GetMaxHealth(nEntityIndex: number): number;
+    GetNightTimeVisionRange(nEntityIndex: number): number;
+    GetPlayerOwnerID(nEntityIndex: number): number;
+    GetStates(nEntityIndex: number): number;
+    GetTotalPurchasedUpgradeGoldCost(nEntityIndex: number): number;
+    GetTeamNumber(nEntityIndex: number): DOTATeam_t;
+    GetHealthBarOffset(nEntityIndex: number): number;
+    GetAttackRange(nEntityIndex: number): number;
+    GetAttackSpeed(nEntityIndex: number): number;
+    GetAttacksPerSecond(nEntityIndex: number): number;
+    GetBaseAttackTime(nEntityIndex: number): number;
+    GetBaseMagicalResistanceValue(nEntityIndex: number): number;
+    GetBaseMoveSpeed(nEntityIndex: number): number;
+    GetBonusPhysicalArmor(nEntityIndex: number): number;
+    GetCollisionPadding(nEntityIndex: number): number;
+    GetEffectiveInvisibilityLevel(nEntityIndex: number): number;
+    GetHasteFactor(nEntityIndex: number): number;
+    GetHullRadius(nEntityIndex: number): number;
+    GetIdealSpeed(nEntityIndex: number): number;
+    GetIncreasedAttackSpeed(nEntityIndex: number): number;
+    GetMana(nEntityIndex: number): number;
+    GetManaThinkRegen(nEntityIndex: number): number;
+    GetMaxMana(nEntityIndex: number): number;
+    GetMagicalArmorValue(nEntityIndex: number): number;
+    GetPaddedCollisionRadius(nEntityIndex: number): number;
+    GetPercentInvisible(nEntityIndex: number): number;
+    GetPhysicalArmorValue(nEntityIndex: number): number;
+    GetProjectileCollisionSize(nEntityIndex: number): number;
+    GetRingRadius(nEntityIndex: number): number;
+    GetSecondsPerAttack(nEntityIndex: number): number;
+    ManaFraction(nEntityIndex: number): number;
+    GetClassname(nEntityIndex: number): string;
+    GetDisplayedUnitName(nEntityIndex: number): string;
+    GetSelectionGroup(nEntityIndex: number): number;
+    GetSoundSet(nEntityIndex: number): string;
+    GetUnitLabel(nEntityIndex: number): string;
+    GetUnitName(nEntityIndex: number): string;
+    GetTotalDamageTaken(nEntityIndex: number): number;
+    IsControllableByPlayer(nEntityIndex: number, nPlayerIndex: number): boolean;
+    GetChosenTarget(nEntityIndex: number): number;
+    HasItemInInventory(nEntityIndex: number, pItemName: string): boolean;
+    GetRangeToUnit(nEntityIndex: number, nTarget: number): number;
+    IsEntityInRange(nEntityIndex: number, nTarget: number, flRange: number): boolean;
+    GetMoveSpeedModifier(nEntityIndex: number, flBaseSpeed: number): number;
+    CanAcceptTargetToAttack(nEntityIndex: number, nTarget: number): boolean;
+    InState(nEntityIndex: number, nState: modifierstate): boolean;
+    GetArmorForDamageType(nEntityIndex: number, iDamageType: DAMAGE_TYPES): number;
+    GetArmorReductionForDamageType(nEntityIndex: number, iDamageType: DAMAGE_TYPES): number;
+    IsInRangeOfShop(nEntityIndex: number, iShopType: DOTA_SHOP_TYPE, bSpecific: boolean): boolean;
+    GetNumItemsInStash(nEntityIndex: number): number;
+    GetNumItemsInInventory(nEntityIndex: number): number;
+    GetItemInSlot(nEntityIndex: number, nSlotIndex: number): number;
+    GetAbility(nEntityIndex: number, nSlotIndex: number): number;
+    GetAbilityByName(nEntityIndex: number, pszAbilityName: string): number;
+    GetNumBuffs(nEntityIndex: number): number;
+    GetBuff(nEntityIndex: number, nBufIndex: number): number;
+    GetAbilityPoints(nEntityIndex: number): number;
+    GetCurrentXP(nEntityIndex: number): number;
+    GetNeededXPToLevel(nEntityIndex: number): number;
     /**
      * Get the currently selected entities
      */
-    GetSelectionEntities( nEntityIndex: number ): number[];
+    GetSelectionEntities(nEntityIndex: number): number[];
     /**
      * Is this a valid entity index?
      */
-    IsValidEntity( nEntityIndex: number ): boolean;
+    IsValidEntity(nEntityIndex: number): boolean;
     /**
      * Is this entity an item container in the world?
      */
-    IsItemPhysical( nEntityIndex: number ): boolean;
+    IsItemPhysical(nEntityIndex: number): boolean;
     /**
      * Get the item contained in this physical item container.
      */
-    GetContainedItem( nEntityIndex: number ): number;
+    GetContainedItem(nEntityIndex: number): number;
 }
 
 declare const Abilities: IAbilities;
 declare interface IAbilities {
-    GetAbilityName( nEntityIndex: number ): string;
-    GetAbilityTextureName( nEntityIndex: number ): string;
-    GetAssociatedPrimaryAbilities( nEntityIndex: number ): string;
-    GetAssociatedSecondaryAbilities( nEntityIndex: number ): string;
-    GetHotkeyOverride( nEntityIndex: number ): string;
-    GetIntrinsicModifierName( nEntityIndex: number ): string;
-    GetSharedCooldownName( nEntityIndex: number ): string;
-    AbilityReady( nEntityIndex: number ): boolean;
+    GetAbilityName(nEntityIndex: number): string;
+    GetAbilityTextureName(nEntityIndex: number): string;
+    GetAssociatedPrimaryAbilities(nEntityIndex: number): string;
+    GetAssociatedSecondaryAbilities(nEntityIndex: number): string;
+    GetHotkeyOverride(nEntityIndex: number): string;
+    GetIntrinsicModifierName(nEntityIndex: number): string;
+    GetSharedCooldownName(nEntityIndex: number): string;
+    AbilityReady(nEntityIndex: number): boolean;
     /**
      * Returns an AbilityLearnResult_t
      */
-    CanAbilityBeUpgraded( nEntityIndex: number ): AbilityLearnResult_t;
-    CanBeExecuted( nEntityIndex: number ): number;
-    GetAbilityDamage( nEntityIndex: number ): number;
-    GetAbilityDamageType( nEntityIndex: number ): DAMAGE_TYPES;
-    GetAbilityTargetFlags( nEntityIndex: number ): DOTA_UNIT_TARGET_FLAGS;
-    GetAbilityTargetTeam( nEntityIndex: number ): DOTA_UNIT_TARGET_TEAM;
-    GetAbilityTargetType( nEntityIndex: number ): DOTA_UNIT_TARGET_TYPE;
-    GetAbilityType( nEntityIndex: number ): ABILITY_TYPES;
-    GetBehavior( nEntityIndex: number ): DOTA_ABILITY_BEHAVIOR;
-    GetCastRange( nEntityIndex: number ): number;
-    GetChannelledManaCostPerSecond( nEntityIndex: number ): number;
-    GetCurrentCharges( nEntityIndex: number ): number;
-    GetEffectiveLevel( nEntityIndex: number ): number;
-    GetHeroLevelRequiredToUpgrade( nEntityIndex: number ): number;
-    GetLevel( nEntityIndex: number ): number;
-    GetManaCost( nEntityIndex: number ): number;
-    GetMaxLevel( nEntityIndex: number ): number;
-    AttemptToUpgrade( nEntityIndex: number ): boolean;
-    CanLearn( nEntityIndex: number ): boolean;
-    GetAutoCastState( nEntityIndex: number ): boolean;
-    GetToggleState( nEntityIndex: number ): boolean;
-    HasScepterUpgradeTooltip( nEntityIndex: number ): boolean;
-    IsActivated( nEntityIndex: number ): boolean;
-    IsActivatedChanging( nEntityIndex: number ): boolean;
-    IsAttributeBonus( nEntityIndex: number ): boolean;
-    IsAutocast( nEntityIndex: number ): boolean;
-    IsCooldownReady( nEntityIndex: number ): boolean;
-    IsDisplayedAbility( nEntityIndex: number ): boolean;
-    IsHidden( nEntityIndex: number ): boolean;
-    IsHiddenWhenStolen( nEntityIndex: number ): boolean;
-    IsInAbilityPhase( nEntityIndex: number ): boolean;
-    IsItem( nEntityIndex: number ): boolean;
-    IsMarkedAsDirty( nEntityIndex: number ): boolean;
-    IsMuted( nEntityIndex: number ): boolean;
-    IsOnCastbar( nEntityIndex: number ): boolean;
-    IsOnLearnbar( nEntityIndex: number ): boolean;
-    IsOwnersGoldEnough( nEntityIndex: number ): boolean;
-    IsOwnersGoldEnoughForUpgrade( nEntityIndex: number ): boolean;
-    IsOwnersManaEnough( nEntityIndex: number ): boolean;
-    IsPassive( nEntityIndex: number ): boolean;
-    IsRecipe( nEntityIndex: number ): boolean;
-    IsSharedWithTeammates( nEntityIndex: number ): boolean;
-    IsStealable( nEntityIndex: number ): boolean;
-    IsStolen( nEntityIndex: number ): boolean;
-    IsToggle( nEntityIndex: number ): boolean;
-    GetAOERadius( nEntityIndex: number ): number;
-    GetBackswingTime( nEntityIndex: number ): number;
-    GetCastPoint( nEntityIndex: number ): number;
-    GetChannelStartTime( nEntityIndex: number ): number;
-    GetChannelTime( nEntityIndex: number ): number;
-    GetCooldown( nEntityIndex: number ): number;
-    GetCooldownLength( nEntityIndex: number ): number;
-    GetCooldownTime( nEntityIndex: number ): number;
-    GetCooldownTimeRemaining( nEntityIndex: number ): number;
-    GetDuration( nEntityIndex: number ): number;
-    GetUpgradeBlend( nEntityIndex: number ): number;
+    CanAbilityBeUpgraded(nEntityIndex: number): AbilityLearnResult_t;
+    CanBeExecuted(nEntityIndex: number): number;
+    GetAbilityDamage(nEntityIndex: number): number;
+    GetAbilityDamageType(nEntityIndex: number): DAMAGE_TYPES;
+    GetAbilityTargetFlags(nEntityIndex: number): DOTA_UNIT_TARGET_FLAGS;
+    GetAbilityTargetTeam(nEntityIndex: number): DOTA_UNIT_TARGET_TEAM;
+    GetAbilityTargetType(nEntityIndex: number): DOTA_UNIT_TARGET_TYPE;
+    GetAbilityType(nEntityIndex: number): ABILITY_TYPES;
+    GetBehavior(nEntityIndex: number): DOTA_ABILITY_BEHAVIOR;
+    GetCastRange(nEntityIndex: number): number;
+    GetChannelledManaCostPerSecond(nEntityIndex: number): number;
+    GetCurrentCharges(nEntityIndex: number): number;
+    GetEffectiveLevel(nEntityIndex: number): number;
+    GetHeroLevelRequiredToUpgrade(nEntityIndex: number): number;
+    GetLevel(nEntityIndex: number): number;
+    GetManaCost(nEntityIndex: number): number;
+    GetMaxLevel(nEntityIndex: number): number;
+    AttemptToUpgrade(nEntityIndex: number): boolean;
+    CanLearn(nEntityIndex: number): boolean;
+    GetAutoCastState(nEntityIndex: number): boolean;
+    GetToggleState(nEntityIndex: number): boolean;
+    HasScepterUpgradeTooltip(nEntityIndex: number): boolean;
+    IsActivated(nEntityIndex: number): boolean;
+    IsActivatedChanging(nEntityIndex: number): boolean;
+    IsAttributeBonus(nEntityIndex: number): boolean;
+    IsAutocast(nEntityIndex: number): boolean;
+    IsCooldownReady(nEntityIndex: number): boolean;
+    IsDisplayedAbility(nEntityIndex: number): boolean;
+    IsHidden(nEntityIndex: number): boolean;
+    IsHiddenWhenStolen(nEntityIndex: number): boolean;
+    IsInAbilityPhase(nEntityIndex: number): boolean;
+    IsItem(nEntityIndex: number): boolean;
+    IsMarkedAsDirty(nEntityIndex: number): boolean;
+    IsMuted(nEntityIndex: number): boolean;
+    IsOnCastbar(nEntityIndex: number): boolean;
+    IsOnLearnbar(nEntityIndex: number): boolean;
+    IsOwnersGoldEnough(nEntityIndex: number): boolean;
+    IsOwnersGoldEnoughForUpgrade(nEntityIndex: number): boolean;
+    IsOwnersManaEnough(nEntityIndex: number): boolean;
+    IsPassive(nEntityIndex: number): boolean;
+    IsRecipe(nEntityIndex: number): boolean;
+    IsSharedWithTeammates(nEntityIndex: number): boolean;
+    IsStealable(nEntityIndex: number): boolean;
+    IsStolen(nEntityIndex: number): boolean;
+    IsToggle(nEntityIndex: number): boolean;
+    GetAOERadius(nEntityIndex: number): number;
+    GetBackswingTime(nEntityIndex: number): number;
+    GetCastPoint(nEntityIndex: number): number;
+    GetChannelStartTime(nEntityIndex: number): number;
+    GetChannelTime(nEntityIndex: number): number;
+    GetCooldown(nEntityIndex: number): number;
+    GetCooldownLength(nEntityIndex: number): number;
+    GetCooldownTime(nEntityIndex: number): number;
+    GetCooldownTimeRemaining(nEntityIndex: number): number;
+    GetDuration(nEntityIndex: number): number;
+    GetUpgradeBlend(nEntityIndex: number): number;
     /**
      * Get the local player&apos;s current active ability. (Pre-cast targetting state.)
      */
     GetLocalPlayerActiveAbility(): number;
-    GetCaster( nAbilityIndex: string ): number;
-    GetCustomValueFor( nAbilityIndex: string, pszAbilityVarName: string ): number;
-    GetLevelSpecialValueFor( nAbilityIndex: string, szName: string, nLevel: number ): number;
-    GetSpecialValueFor( nAbilityIndex: string, szName: string ): number;
-    IsCosmetic( nAbilityIndex: string, nTargetEntityIndex: number ): boolean;
+    GetCaster(nAbilityIndex: string): number;
+    GetCustomValueFor(nAbilityIndex: string, pszAbilityVarName: string): number;
+    GetLevelSpecialValueFor(nAbilityIndex: string, szName: string, nLevel: number): number;
+    GetSpecialValueFor(nAbilityIndex: string, szName: string): number;
+    IsCosmetic(nAbilityIndex: string, nTargetEntityIndex: number): boolean;
     /**
      * Attempt to execute the specified ability (Equivalent to clicking the ability in the HUD action bar)
      */
-    ExecuteAbility( nAbilityEntIndex: number, nCasterEntIndex: number, bIsQuickCast: boolean ): void;
+    ExecuteAbility(nAbilityEntIndex: number, nCasterEntIndex: number, bIsQuickCast: boolean): void;
     /**
      * Attempt to double-tap (self-cast) the specified ability (Equivalent to double-clicking the ability in the HUD action bar)
      */
-    CreateDoubleTapCastOrder( nAbilityEntIndex: number, nCasterEntIndex: number ): void;
+    CreateDoubleTapCastOrder(nAbilityEntIndex: number, nCasterEntIndex: number): void;
     /**
      * Ping the specified ability (Equivalent to alt-clicking the ability in the HUD action bar)
      */
-    PingAbility( nAbilityIndex: number ): void;
+    PingAbility(nAbilityIndex: number): void;
     /**
      * Returns the keybind (as a string) for the specified ability.
      */
-    GetKeybind( nAbilityEntIndex: number ): string;
+    GetKeybind(nAbilityEntIndex: number): string;
 }
 
 declare const Items: IItems;
 declare interface IItems {
-    ShouldDisplayCharges( nEntityIndex: number ): number;
-    AlwaysDisplayCharges( nEntityIndex: number ): number;
-    ShowSecondaryCharges( nEntityIndex: number ): number;
-    CanBeSoldByLocalPlayer( nEntityIndex: number ): boolean;
-    CanDoubleTapCast( nEntityIndex: number ): boolean;
-    ForceHideCharges( nEntityIndex: number ): boolean;
-    IsAlertableItem( nEntityIndex: number ): boolean;
-    IsCastOnPickup( nEntityIndex: number ): boolean;
-    IsDisassemblable( nEntityIndex: number ): boolean;
-    IsDroppable( nEntityIndex: number ): boolean;
-    IsInnatelyDisassemblable( nEntityIndex: number ): boolean;
-    IsKillable( nEntityIndex: number ): boolean;
-    IsMuted( nEntityIndex: number ): boolean;
-    IsPermanent( nEntityIndex: number ): boolean;
-    IsPurchasable( nEntityIndex: number ): boolean;
-    IsRecipe( nEntityIndex: number ): boolean;
-    IsRecipeGenerated( nEntityIndex: number ): boolean;
-    IsSellable( nEntityIndex: number ): boolean;
-    IsStackable( nEntityIndex: number ): boolean;
-    ProRatesChargesWhenSelling( nEntityIndex: number ): number;
-    RequiresCharges( nEntityIndex: number ): number;
-    CanBeExecuted( nEntityIndex: number ): number;
-    GetCost( nEntityIndex: number ): number;
-    GetCurrentCharges( nEntityIndex: number ): number;
-    GetSecondaryCharges( nEntityIndex: number ): number;
-    GetDisplayedCharges( nEntityIndex: number ): number;
-    GetInitialCharges( nEntityIndex: number ): number;
-    GetItemColor( nEntityIndex: number ): number;
-    GetShareability( nEntityIndex: number ): number;
-    GetAbilityTextureSF( nEntityIndex: number ): number;
-    GetAssembledTime( nEntityIndex: number ): number;
-    GetPurchaseTime( nEntityIndex: number ): number;
-    GetPurchaser( nItemID: number ): number;
+    ShouldDisplayCharges(nEntityIndex: number): number;
+    AlwaysDisplayCharges(nEntityIndex: number): number;
+    ShowSecondaryCharges(nEntityIndex: number): number;
+    CanBeSoldByLocalPlayer(nEntityIndex: number): boolean;
+    CanDoubleTapCast(nEntityIndex: number): boolean;
+    ForceHideCharges(nEntityIndex: number): boolean;
+    IsAlertableItem(nEntityIndex: number): boolean;
+    IsCastOnPickup(nEntityIndex: number): boolean;
+    IsDisassemblable(nEntityIndex: number): boolean;
+    IsDroppable(nEntityIndex: number): boolean;
+    IsInnatelyDisassemblable(nEntityIndex: number): boolean;
+    IsKillable(nEntityIndex: number): boolean;
+    IsMuted(nEntityIndex: number): boolean;
+    IsPermanent(nEntityIndex: number): boolean;
+    IsPurchasable(nEntityIndex: number): boolean;
+    IsRecipe(nEntityIndex: number): boolean;
+    IsRecipeGenerated(nEntityIndex: number): boolean;
+    IsSellable(nEntityIndex: number): boolean;
+    IsStackable(nEntityIndex: number): boolean;
+    ProRatesChargesWhenSelling(nEntityIndex: number): number;
+    RequiresCharges(nEntityIndex: number): number;
+    CanBeExecuted(nEntityIndex: number): number;
+    GetCost(nEntityIndex: number): number;
+    GetCurrentCharges(nEntityIndex: number): number;
+    GetSecondaryCharges(nEntityIndex: number): number;
+    GetDisplayedCharges(nEntityIndex: number): number;
+    GetInitialCharges(nEntityIndex: number): number;
+    GetItemColor(nEntityIndex: number): number;
+    GetShareability(nEntityIndex: number): number;
+    GetAbilityTextureSF(nEntityIndex: number): number;
+    GetAssembledTime(nEntityIndex: number): number;
+    GetPurchaseTime(nEntityIndex: number): number;
+    GetPurchaser(nItemID: number): number;
     /**
      * Attempt to have the local player disassemble the specified item. Returns false if the order wasn&apos;t issued.
      */
-    LocalPlayerDisassembleItem( nItem: number ): void;
+    LocalPlayerDisassembleItem(nItem: number): void;
     /**
      * Attempt to have the local player drop the specified item from its stash. Returns false if the order wasn&apos;t issued.
      */
-    LocalPlayerDropItemFromStash( nItem: number ): void;
+    LocalPlayerDropItemFromStash(nItem: number): void;
     /**
      * Attempt to have the local player alert allies about the specified item. Returns false if the order wasn&apos;t issued.
      */
-    LocalPlayerItemAlertAllies( nItem: number ): void;
+    LocalPlayerItemAlertAllies(nItem: number): void;
     /**
      * Attempt to have the local player move the specified item to its stash. Returns false if the order wasn&apos;t issued.
      */
-    LocalPlayerMoveItemToStash( nItem: number ): void;
+    LocalPlayerMoveItemToStash(nItem: number): void;
     /**
      * Attempt to have the local player sell the specified item. Returns false if the order wasn&apos;t issued.
      */
-    LocalPlayerSellItem( nItem: number ): void;
+    LocalPlayerSellItem(nItem: number): void;
 }
 
 declare const Game: IGame;
@@ -998,7 +1008,7 @@ declare interface IGame {
     Time(): number;
     GetGameTime(): number;
     GetGameFrameTime(): number;
-    GetDOTATime( bIncludePreGame: boolean, bIncludeNegativeTime: boolean ): number;
+    GetDOTATime(bIncludePreGame: boolean, bIncludeNegativeTime: boolean): number;
     IsGamePaused(): boolean;
     IsInToolsMode(): boolean;
     IsInBanPhase(): boolean;
@@ -1026,42 +1036,47 @@ declare interface IGame {
     /**
      * Converts the specified x,y,z world co-ordinate into an x screen coordinate. Returns -1 if behind the camera
      */
-    WorldToScreenX( x: number, y: number, z: number ): number;
+    WorldToScreenX(x: number, y: number, z: number): number;
     /**
      * Converts the specified x,y,z world co-ordinate into a y screen coordinate. Returns -1 if behind the camera
      */
-    WorldToScreenY( x: number, y: number, z: number ): number;
+    WorldToScreenY(x: number, y: number, z: number): number;
     /**
      * Converts the specified x, y screen coordinates into a x, y, z world coordinates.
      */
-    ScreenXYToWorld( nX: number, nY: number ): number[];
+    ScreenXYToWorld(nX: number, nY: number): number[];
     /**
      * Returns the keybind (as a string) for the requested ability slot.
      */
-    GetKeybindForAbility( iSlot: number ): string;
+    GetKeybindForAbility(iSlot: number): string;
     /**
      * Returns the keybind (as a string) for the requested inventory slot.
      */
-    GetKeybindForInventorySlot( iSlot: number ): string;
+    GetKeybindForInventorySlot(iSlot: number): string;
     /**
      * Returns the keybind (as a string).
      */
-    GetKeybindForCommand( nCommand: DOTAKeybindCommand_t ): string;
+    GetKeybindForCommand(nCommand: DOTAKeybindCommand_t): string;
     /**
      * Create a new keybind.
      */
-    CreateCustomKeyBind( pszKey: string, pszCommand: string ): void;
+    CreateCustomKeyBind(pszKey: string, pszCommand: string): void;
     GetNianFightTimeLeft(): void;
     GetState(): DOTA_GameState;
-    GameStateIs( nState: DOTA_GameState ): boolean;
-    GameStateIsBefore( nState: DOTA_GameState ): boolean;
-    GameStateIsAfter( nState: DOTA_GameState ): boolean;
-    AddCommand( pszCommandName: string, callback: Function, pszDescription: string, nFlags: number ): void;
+    GameStateIs(nState: DOTA_GameState): boolean;
+    GameStateIsBefore(nState: DOTA_GameState): boolean;
+    GameStateIsAfter(nState: DOTA_GameState): boolean;
+    AddCommand(
+        pszCommandName: string,
+        callback: Function,
+        pszDescription: string,
+        nFlags: number
+    ): void;
     GetLocalPlayerID(): number;
     /**
      * Assign the local player to the specified team
      */
-    PlayerJoinTeam( nTeamID: DOTATeam_t ): void;
+    PlayerJoinTeam(nTeamID: DOTATeam_t): void;
     /**
      * Assign the currently unassigned players to teams
      */
@@ -1073,15 +1088,15 @@ declare interface IGame {
     /**
      * Set the remaining seconds in team setup before the game starts. -1 to stop the countdown timer
      */
-    SetRemainingSetupTime( flSeconds: number ): void;
+    SetRemainingSetupTime(flSeconds: number): void;
     /**
      * Set the amount of time in seconds that will be set as the remaining time when all players are assigned to a team.
      */
-    SetAutoLaunchDelay( flSeconds: number ): void;
+    SetAutoLaunchDelay(flSeconds: number): void;
     /**
      * Enable or disable automatically starting the game once all players are assigned to a team
      */
-    SetAutoLaunchEnabled( bEnable: boolean ): void;
+    SetAutoLaunchEnabled(bEnable: boolean): void;
     /**
      * Return true of false indicating if automatically starting the game is enabled.
      */
@@ -1089,7 +1104,7 @@ declare interface IGame {
     /**
      * Lock the team selection preventing players from swiching teams.
      */
-    SetTeamSelectionLocked( bLockTeams: boolean ): void;
+    SetTeamSelectionLocked(bLockTeams: boolean): void;
     /**
      * Returns true or false to indicate if team selection is locked
      */
@@ -1109,19 +1124,19 @@ declare interface IGame {
     /**
      * Get info about the player hero ultimate ability
      */
-    GetPlayerUltimateStateOrTime( nPlayerID: number ): number;
+    GetPlayerUltimateStateOrTime(nPlayerID: number): number;
     /**
      * Whether the local player has muted text and voice chat for the specified player id
      */
-    IsPlayerMuted( nPlayerID: number ): boolean;
+    IsPlayerMuted(nPlayerID: number): boolean;
     /**
      * Set whether the local player has muted text and voice chat for the specified player id
      */
-    SetPlayerMuted( nPlayerID: number, bMuted: boolean ): void;
+    SetPlayerMuted(nPlayerID: number, bMuted: boolean): void;
     /**
      * Get detailed information for the given team
      */
-    GetTeamDetails( nTeam: DOTATeam_t ): ITeamDetails;
+    GetTeamDetails(nTeam: DOTATeam_t): ITeamDetails;
     /**
      * Get details for the local player
      */
@@ -1129,28 +1144,28 @@ declare interface IGame {
     /**
      * Get info about the player items.
      */
-    GetPlayerItems( nPlayerID: number ): number[];
+    GetPlayerItems(nPlayerID: number): number[];
     /**
      * Get info about the given player
      */
-    GetPlayerInfo( nPlayerID: number ): IPlayerInfo;
+    GetPlayerInfo(nPlayerID: number): IPlayerInfo;
     /**
      * Get player IDs for the given team
      */
-    GetPlayerIDsOnTeam( nTeam: DOTATeam_t ): number[];
-    ServerCmd( pMsg: string ): void;
-    SetDotaRefractHeroes( bEnabled: boolean ): void;
+    GetPlayerIDsOnTeam(nTeam: DOTATeam_t): number[];
+    ServerCmd(pMsg: string): void;
+    SetDotaRefractHeroes(bEnabled: boolean): void;
     FinishGame(): void;
     Disconnect(): void;
     FindEventMatch(): any;
     /**
      * Emit a sound for the local player. Returns an integer handle that can be passed to StopSound. (Returns 0 on failure.)
      */
-    EmitSound( pSoundEventName: string ): number;
+    EmitSound(pSoundEventName: string): number;
     /**
      * Stop a current playing sound on the local player. Takes handle from a call to EmitSound.
      */
-    StopSound( nHandle: number ): void;
+    StopSound(nHandle: number): void;
     /**
      * Ask whether the in game shop is open.
      */
@@ -1158,7 +1173,7 @@ declare interface IGame {
     /**
      * Set custom shop context.
      */
-    SetCustomShopEntityString( pszCustomShopEntityString: string ): string;
+    SetCustomShopEntityString(pszCustomShopEntityString: string): string;
     /**
      * Return information about the current map.
      */
@@ -1166,19 +1181,19 @@ declare interface IGame {
     /**
      * Orders from the local player - takes a single arguments object that supports: dotaunitorder_t OrderType, ent_index TargetIndex, vector Position, ent_index AbilityIndex, OrderIssuer_t OrderIssuer, ent_index UnitIndex, OrderQueueBehavior_t QueueBehavior, bool ShowEffects.
      */
-    PrepareUnitOrders( args: PrepareUnitOrdersArgument ): void;
+    PrepareUnitOrders(args: PrepareUnitOrdersArgument): void;
     /**
      * Order a unit to drop the specified item at the current cursor location.
      */
-    DropItemAtCursor( nControlledUnitEnt: number, nItemEnt: number ): void;
+    DropItemAtCursor(nControlledUnitEnt: number, nItemEnt: number): void;
     /**
      * Calculate 2D length.
      */
-    Length2D( vec1: Vector, vec2: Vector ): number;
+    Length2D(vec1: Vector, vec2: Vector): number;
     /**
      * Returns normalized vector.
      */
-    Normalized( vec: Vector ): number[];
+    Normalized(vec: Vector): number[];
     EnterAbilityLearnMode(): void;
     EndAbilityLearnMode(): void;
     IsInAbilityLearnMode(): boolean;
@@ -1189,7 +1204,7 @@ declare interface IGameUI {
     /**
      * Control whether the default UI is enabled
      */
-    SetDefaultUIEnabled( nElementType: number, bVisible: boolean ): void;
+    SetDefaultUIEnabled(nElementType: number, bVisible: boolean): void;
     /**
      * Get the current UI configuration
      */
@@ -1197,12 +1212,14 @@ declare interface IGameUI {
     /**
      * Create a minimap ping at the given location
      */
-    PingMinimapAtLocation( vec: Vector ): void;
+    PingMinimapAtLocation(vec: Vector): void;
     /**
      * Install a mouse input filter
      */
-    SetMouseCallback( callback: (eventName: MouseCallbackEventType, mouseButton: number) => boolean ): void;
-    EnableAliMode( bEnable: boolean, nPort: number, offsetVal: number, flScale: number ): void;
+    SetMouseCallback(
+        callback: (eventName: MouseCallbackEventType, mouseButton: number) => boolean
+    ): void;
+    EnableAliMode(bEnable: boolean, nPort: number, offsetVal: number, flScale: number): void;
     /**
      * Get the current mouse position.
      */
@@ -1210,7 +1227,7 @@ declare interface IGameUI {
     /**
      * Return the entity index of the entity under the given screen position.
      */
-    FindScreenEntities( target: Vector ): {entityIndex: number;accurateCollision: boolean;}[];
+    FindScreenEntities(target: Vector): { entityIndex: number; accurateCollision: boolean }[];
     /**
      * Get the world position of the screen position, or null if the cursor is out of the world.
      */
@@ -1218,15 +1235,15 @@ declare interface IGameUI {
     /**
      * Install a mouse input filter
      */
-    WasMousePressed( nButtonNum: number ): boolean;
+    WasMousePressed(nButtonNum: number): boolean;
     /**
      * Install a mouse input filter
      */
-    WasMouseDoublePressed( nButtonNum: number ): boolean;
+    WasMouseDoublePressed(nButtonNum: number): boolean;
     /**
      * Install a mouse input filter
      */
-    IsMouseDown( nButtonNum: number ): boolean;
+    IsMouseDown(nButtonNum: number): boolean;
     /**
      * Is the shift button pressed?
      */
@@ -1246,7 +1263,7 @@ declare interface IGameUI {
     /**
      * Select a unit, adding it to the group or replacing the current selection.
      */
-    SelectUnit( nEntityIndex: number, bAddToGroup: boolean ): void;
+    SelectUnit(nEntityIndex: number, bAddToGroup: boolean): void;
     /**
      * Get the current look at position.
      */
@@ -1262,15 +1279,15 @@ declare interface IGameUI {
     /**
      * Set the minimum camera pitch angle.
      */
-    SetCameraPitchMin( flPitchMin: number ): void;
+    SetCameraPitchMin(flPitchMin: number): void;
     /**
      * Set the maximum camera pitch angle.
      */
-    SetCameraPitchMax( flPitchMax: number ): void;
+    SetCameraPitchMax(flPitchMax: number): void;
     /**
      * Set the camera&apos;s yaw.
      */
-    SetCameraYaw( flCameraYaw: number ): void;
+    SetCameraYaw(flCameraYaw: number): void;
     /**
      * Get the camera&apos;s yaw.
      */
@@ -1278,55 +1295,55 @@ declare interface IGameUI {
     /**
      * Offset the camera&apos;s look at point.
      */
-    SetCameraLookAtPositionHeightOffset( flCameraLookAtHeightOffset: number ): void;
+    SetCameraLookAtPositionHeightOffset(flCameraLookAtHeightOffset: number): void;
     /**
      * Set the camera from a lateral position.
      */
-    SetCameraPositionFromLateralLookAtPosition( x: number, y: number ): void;
+    SetCameraPositionFromLateralLookAtPosition(x: number, y: number): void;
     /**
      * Set whether the camera should automatically adjust to average terrain height.
      */
-    SetCameraTerrainAdjustmentEnabled( bEnabled: boolean ): void;
+    SetCameraTerrainAdjustmentEnabled(bEnabled: boolean): void;
     /**
      * Set the camera distance from the look at point.
      */
-    SetCameraDistance( flDistance: number ): void;
+    SetCameraDistance(flDistance: number): void;
     /**
      * Set the gap between the bottom of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)
      */
-    SetRenderBottomInsetOverride( nInset: number ): void;
+    SetRenderBottomInsetOverride(nInset: number): void;
     /**
      * Set the gap between the top of the screen and the game rendering viewport. (Value expressed as pixels in a normalized 1024x768 viewport.)
      */
-    SetRenderTopInsetOverride( nInset: number ): void;
+    SetRenderTopInsetOverride(nInset: number): void;
     /**
      * Set the camera target for the local player, or -1 to clear.
      */
-    SetCameraTarget( nTargetEntIndex: number ): void;
+    SetCameraTarget(nTargetEntIndex: number): void;
     /**
      * Set the camera target as position for the local player over specified lerp.
      */
-    SetCameraTargetPosition( vec: Vector, flLerp: number ): void;
+    SetCameraTargetPosition(vec: Vector, flLerp: number): void;
     /**
      * Moves the camera to an entity, but doesn&apos;t lock the camera on that entity.
      */
-    MoveCameraToEntity( nTargetEntIndex: number ): void;
+    MoveCameraToEntity(nTargetEntIndex: number): void;
     /**
      * Converts the specified x,y,z world co-ordinate into an x,y screen coordinate. Will clamp position to always be in front of camera.  Position returned as 0-&gt;1.0
      */
-    WorldToScreenXYClamped( vec: Vector ): number[];
+    WorldToScreenXYClamped(vec: Vector): number[];
     /**
      * Get the current players scoreboard score for the specified zone.
      */
-    GetPlayerScoreboardScore( pszScoreboardName: string ): any;
+    GetPlayerScoreboardScore(pszScoreboardName: string): any;
     /**
      * Send a custom client side error message with passed string and soundevent.
      */
-    SendCustomHUDError( pszErrorText: string, pszErrorSound: string ): void;
+    SendCustomHUDError(pszErrorText: string, pszErrorSound: string): void;
     /**
      * Given a passed ability, replace the special value variables in the passed localized text.
      */
-    ReplaceDOTAAbilitySpecialValues( ability: number ): void;
+    ReplaceDOTAAbilitySpecialValues(ability: number): void;
 }
 
 declare const Particles: IParticles;
@@ -1334,28 +1351,36 @@ declare interface IParticles {
     /**
      * Create a particle system
      */
-    CreateParticle( pParticleName: string, nAttachType: number, nEntityToAttach: number): number;
+    CreateParticle(pParticleName: string, nAttachType: number, nEntityToAttach: number): number;
     /**
      * Release a particle system
      */
-    ReleaseParticleIndex( iIndex: number ): void;
+    ReleaseParticleIndex(iIndex: number): void;
     /**
      * Destroy a particle system
      */
-    DestroyParticleEffect( iIndex: number, bDestroyImmediately: boolean ): void;
+    DestroyParticleEffect(iIndex: number, bDestroyImmediately: boolean): void;
     /**
      * Set a control point on a particle system
      */
-    SetParticleControl( iIndex: number, iPoint: number, vPosVal: Vector ): void;
+    SetParticleControl(iIndex: number, iPoint: number, vPosVal: Vector): void;
     /**
      * Set the orientation on a control point on a particle system
      */
-    SetParticleControlForward( iIndex: number, iPoint: number, vForwardVal: Vector ): void;
-    SetParticleAlwaysSimulate( iIndex: number ): void;
+    SetParticleControlForward(iIndex: number, iPoint: number, vForwardVal: Vector): void;
+    SetParticleAlwaysSimulate(iIndex: number): void;
     /**
      * Set a control point to track an entity on a particle system
      */
-    SetParticleControlEnt( iIndex: number, iPoint: number, iEntIndex: number, iAttachType: number, pszAttachName: string, vecFallbackPositionVal: Vector, bIncludeWearables: boolean ): void;
+    SetParticleControlEnt(
+        iIndex: number,
+        iPoint: number,
+        iEntIndex: number,
+        iAttachType: number,
+        pszAttachName: string,
+        vecFallbackPositionVal: Vector,
+        bIncludeWearables: boolean
+    ): void;
 }
 
 declare const EventData: IEventData;
@@ -1363,15 +1388,15 @@ declare interface IEventData {
     /**
      * Get the score of an EventAction
      */
-    GetEventActionScore( unEventID: number, unActionID: number ): any;
+    GetEventActionScore(unEventID: number, unActionID: number): any;
     /**
      * Get a periodic resource value used
      */
-    GetPeriodicResourceUsed( unPeriodicResourceID: number ): any;
+    GetPeriodicResourceUsed(unPeriodicResourceID: number): any;
     /**
      * Get a periodic resource value max
      */
-    GetPeriodicResourceMax( unPeriodicResourceID: number ): any;
+    GetPeriodicResourceMax(unPeriodicResourceID: number): any;
 }
 
 declare const LocalInventory: ILocalInventory;
@@ -1379,7 +1404,7 @@ declare interface ILocalInventory {
     /**
      * Does the player have an inventory item of a given item definition index?
      */
-    HasItemByDefinition( nDefIndex: number ): boolean;
+    HasItemByDefinition(nDefIndex: number): boolean;
 }
 
 declare const $: IPanorama;
@@ -1387,113 +1412,245 @@ declare interface IPanorama {
     /**
      * $<Label>("#label-id")
      */
-    <T = Panel>(id: string) : T;
+    <T = Panel>(id: string): T;
     /**
      * Log a message
      */
-    Msg( ...args: any[] ): void;
+    Msg(...args: any[]): void;
     /**
      * Trigger an assert
      */
-    AssertHelper( ...args: any[] ): void;
+    AssertHelper(...args: any[]): void;
     /**
      * Log a warning message to specified channel
      */
-    Warning( ...args: any[] ): void;
+    Warning(...args: any[]): void;
     /**
      * Dispatch an event
      */
-    DispatchEvent( event: string, panel: Panel, ...args: any[] ): void;
+    DispatchEvent(event: string, panel: Panel, ...args: any[]): void;
     /**
      * Dispatch an event
      */
-    DispatchEvent( event: string, panelID?: string, ...args: any[] ): void;
+    DispatchEvent(event: string, panelID?: string, ...args: any[]): void;
     /**
      * Dispatch an event to occur later
      */
-    DispatchEventAsync( delay: number, event: string, panelID?: string, ...args: any[] ): void;
+    DispatchEventAsync(delay: number, event: string, panelID?: string, ...args: any[]): void;
     /**
      * Dispatch an event to occur later
      */
-    DispatchEventAsync( delay: number, event: string, panel: Panel, ...args: any[] ): void;
+    DispatchEventAsync(delay: number, event: string, panel: Panel, ...args: any[]): void;
     /**
      * Register an event handler
      */
-    RegisterEventHandler( event: string, parent: Panel, handler: (...args: any[]) => void ): void;
+    RegisterEventHandler(event: string, parent: Panel, handler: (...args: any[]) => void): void;
     /**
      * Register a handler for an event that is not otherwise handled
      */
-    RegisterForUnhandledEvent( event: string, handler: (...args: any[]) => void ): number;
+    RegisterForUnhandledEvent(event: string, handler: (...args: any[]) => void): number;
     /**
      * Remove an unhandled event handler
      */
-    UnregisterForUnhandledEvent( event: string, handle: number ): void;
+    UnregisterForUnhandledEvent(event: string, handle: number): void;
     /**
      * Find an element
      */
-    FindChildInContext( selector: string ): Panel | undefined;
+    FindChildInContext(selector: string): Panel | undefined;
     /**
      * Make a web request
      */
-    AsyncWebRequest( url: string, args: IAsyncWebRequestData ): void;
+    AsyncWebRequest(url: string, args: IAsyncWebRequestData): void;
     /**
      * Create a new panel
      */
-    CreatePanel( tagName: string, parent: Panel, id: string ): Panel | undefined;
-    CreatePanel( tagName: 'Button', parent: Panel, id: string ): Button | undefined;
-    CreatePanel( tagName: 'Carousel', parent: Panel, id: string ): Carousel | undefined;
-    CreatePanel( tagName: 'DOTAAbilityImage', parent: Panel, id: string ): DOTAAbilityImage | undefined;
-    CreatePanel( tagName: 'DOTAAbilityPanel', parent: Panel, id: string ): DOTAAbilityPanel | undefined;
-    CreatePanel( tagName: 'DOTAAvatarImage', parent: Panel, id: string ): DOTAAvatarImage | undefined;
-    CreatePanel( tagName: 'DOTAHTMLPanel', parent: Panel, id: string ): DOTAHTMLPanel | undefined;
-    CreatePanel( tagName: 'DOTAHUDOverlayMap', parent: Panel, id: string ): DOTAHUDOverlayMap | undefined;
-    CreatePanel( tagName: 'DOTAHeroImage', parent: Panel, id: string ): DOTAHeroImage | undefined;
-    CreatePanel( tagName: 'DOTAItemImage', parent: Panel, id: string ): DOTAItemImage | undefined;
-    CreatePanel( tagName: 'DOTAScenePanel', parent: Panel, id: string ): DOTAScenePanel | undefined;
-    CreatePanel( tagName: 'DOTAUserName', parent: Panel, id: string ): DOTAUserName | undefined;
-    CreatePanel( tagName: 'DropDown', parent: Panel, id: string ): DropDown | undefined;
-    CreatePanel( tagName: 'Image', parent: Panel, id: string ): Image | undefined;
-    CreatePanel( tagName: 'Label', parent: Panel, id: string ): Label | undefined;
-    CreatePanel( tagName: 'Movie', parent: Panel, id: string ): Movie | undefined;
-    CreatePanel( tagName: 'NumberEntry', parent: Panel, id: string ): NumberEntry | undefined;
-    CreatePanel( tagName: 'Panel', parent: Panel, id: string ): Panel | undefined;
-    CreatePanel( tagName: 'ProgressBar', parent: Panel, id: string ): ProgressBar | undefined;
-    CreatePanel( tagName: 'RadioButton', parent: Panel, id: string ): RadioButton | undefined;
-    CreatePanel( tagName: 'TabButton', parent: Panel, id: string ): TabButton | undefined;
-    CreatePanel( tagName: 'TextButton', parent: Panel, id: string ): TextButton | undefined;
-    CreatePanel( tagName: 'TextEntry', parent: Panel, id: string ): TextEntry | undefined;
-    CreatePanel( tagName: 'ToggleButton', parent: Panel, id: string ): ToggleButton | undefined;
+    CreatePanel(tagName: string, parent: Panel, id: string): Panel | undefined;
+    CreatePanel(tagName: 'Button', parent: Panel, id: string): Button | undefined;
+    CreatePanel(tagName: 'Carousel', parent: Panel, id: string): Carousel | undefined;
+    CreatePanel(
+        tagName: 'DOTAAbilityImage',
+        parent: Panel,
+        id: string
+    ): DOTAAbilityImage | undefined;
+    CreatePanel(
+        tagName: 'DOTAAbilityPanel',
+        parent: Panel,
+        id: string
+    ): DOTAAbilityPanel | undefined;
+    CreatePanel(tagName: 'DOTAAvatarImage', parent: Panel, id: string): DOTAAvatarImage | undefined;
+    CreatePanel(tagName: 'DOTAHTMLPanel', parent: Panel, id: string): DOTAHTMLPanel | undefined;
+    CreatePanel(
+        tagName: 'DOTAHUDOverlayMap',
+        parent: Panel,
+        id: string
+    ): DOTAHUDOverlayMap | undefined;
+    CreatePanel(tagName: 'DOTAHeroImage', parent: Panel, id: string): DOTAHeroImage | undefined;
+    CreatePanel(tagName: 'DOTAItemImage', parent: Panel, id: string): DOTAItemImage | undefined;
+    CreatePanel(tagName: 'DOTAScenePanel', parent: Panel, id: string): DOTAScenePanel | undefined;
+    CreatePanel(tagName: 'DOTAUserName', parent: Panel, id: string): DOTAUserName | undefined;
+    CreatePanel(tagName: 'DropDown', parent: Panel, id: string): DropDown | undefined;
+    CreatePanel(tagName: 'Image', parent: Panel, id: string): Image | undefined;
+    CreatePanel(tagName: 'Label', parent: Panel, id: string): Label | undefined;
+    CreatePanel(tagName: 'Movie', parent: Panel, id: string): Movie | undefined;
+    CreatePanel(tagName: 'NumberEntry', parent: Panel, id: string): NumberEntry | undefined;
+    CreatePanel(tagName: 'Panel', parent: Panel, id: string): Panel | undefined;
+    CreatePanel(tagName: 'ProgressBar', parent: Panel, id: string): ProgressBar | undefined;
+    CreatePanel(tagName: 'RadioButton', parent: Panel, id: string): RadioButton | undefined;
+    CreatePanel(tagName: 'TabButton', parent: Panel, id: string): TabButton | undefined;
+    CreatePanel(tagName: 'TextButton', parent: Panel, id: string): TextButton | undefined;
+    CreatePanel(tagName: 'TextEntry', parent: Panel, id: string): TextEntry | undefined;
+    CreatePanel(tagName: 'ToggleButton', parent: Panel, id: string): ToggleButton | undefined;
     /**
      * Create a new panel supplying a JS object as a fourth parameter containing properties to be applied to the panel
      */
-    CreatePanelWithProperties( tagName: string, parent: Panel, id: string, properties: {[key: string]: string} ): Panel | undefined;
-    CreatePanelWithProperties( tagName: 'Button', parent: Panel, id: string, properties: {[key: string]: string} ): Button | undefined;
-    CreatePanelWithProperties( tagName: 'Carousel', parent: Panel, id: string, properties: {[key: string]: string} ): Carousel | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAAbilityImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAAbilityImage | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAAbilityPanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAAbilityPanel | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAAvatarImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAAvatarImage | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAHTMLPanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHTMLPanel | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAHUDOverlayMap', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHUDOverlayMap | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAHeroImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAHeroImage | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAItemImage', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAItemImage | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAScenePanel', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAScenePanel | undefined;
-    CreatePanelWithProperties( tagName: 'DOTAUserName', parent: Panel, id: string, properties: {[key: string]: string} ): DOTAUserName | undefined;
-    CreatePanelWithProperties( tagName: 'DropDown', parent: Panel, id: string, properties: {[key: string]: string} ): DropDown | undefined;
-    CreatePanelWithProperties( tagName: 'Image', parent: Panel, id: string, properties: {[key: string]: string} ): Image | undefined;
-    CreatePanelWithProperties( tagName: 'Label', parent: Panel, id: string, properties: {[key: string]: string} ): Label | undefined;
-    CreatePanelWithProperties( tagName: 'Movie', parent: Panel, id: string, properties: {[key: string]: string} ): Movie | undefined;
-    CreatePanelWithProperties( tagName: 'NumberEntry', parent: Panel, id: string, properties: {[key: string]: string} ): NumberEntry | undefined;
-    CreatePanelWithProperties( tagName: 'Panel', parent: Panel, id: string, properties: {[key: string]: string} ): Panel | undefined;
-    CreatePanelWithProperties( tagName: 'ProgressBar', parent: Panel, id: string, properties: {[key: string]: string} ): ProgressBar | undefined;
-    CreatePanelWithProperties( tagName: 'RadioButton', parent: Panel, id: string, properties: {[key: string]: string} ): RadioButton | undefined;
-    CreatePanelWithProperties( tagName: 'TabButton', parent: Panel, id: string, properties: {[key: string]: string} ): TabButton | undefined;
-    CreatePanelWithProperties( tagName: 'TextButton', parent: Panel, id: string, properties: {[key: string]: string} ): TextButton | undefined;
-    CreatePanelWithProperties( tagName: 'TextEntry', parent: Panel, id: string, properties: {[key: string]: string} ): TextEntry | undefined;
-    CreatePanelWithProperties( tagName: 'ToggleButton', parent: Panel, id: string, properties: {[key: string]: string} ): ToggleButton | undefined;
+    CreatePanelWithProperties(
+        tagName: string,
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Panel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Button',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Button | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Carousel',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Carousel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAAbilityImage',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAAbilityImage | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAAbilityPanel',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAAbilityPanel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAAvatarImage',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAAvatarImage | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAHTMLPanel',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAHTMLPanel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAHUDOverlayMap',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAHUDOverlayMap | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAHeroImage',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAHeroImage | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAItemImage',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAItemImage | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAScenePanel',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAScenePanel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DOTAUserName',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DOTAUserName | undefined;
+    CreatePanelWithProperties(
+        tagName: 'DropDown',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): DropDown | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Image',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Image | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Label',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Label | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Movie',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Movie | undefined;
+    CreatePanelWithProperties(
+        tagName: 'NumberEntry',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): NumberEntry | undefined;
+    CreatePanelWithProperties(
+        tagName: 'Panel',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): Panel | undefined;
+    CreatePanelWithProperties(
+        tagName: 'ProgressBar',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): ProgressBar | undefined;
+    CreatePanelWithProperties(
+        tagName: 'RadioButton',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): RadioButton | undefined;
+    CreatePanelWithProperties(
+        tagName: 'TabButton',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): TabButton | undefined;
+    CreatePanelWithProperties(
+        tagName: 'TextButton',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): TextButton | undefined;
+    CreatePanelWithProperties(
+        tagName: 'TextEntry',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): TextEntry | undefined;
+    CreatePanelWithProperties(
+        tagName: 'ToggleButton',
+        parent: Panel,
+        id: string,
+        properties: { [key: string]: string }
+    ): ToggleButton | undefined;
     /**
      * Localize a string
      */
-    Localize( key: string, panel?: Panel ): string;
+    Localize(key: string, panel?: Panel): string;
     /**
      * Get the current language
      */
@@ -1505,7 +1662,7 @@ declare interface IPanorama {
     /**
      * Cancelse a scheduled function
      */
-    CancelScheduled( scheduledId: number ): void;
+    CancelScheduled(scheduledId: number): void;
     /**
      * Get the current panel context
      */
@@ -1513,11 +1670,11 @@ declare interface IPanorama {
     /**
      * Register a key binding
      */
-    RegisterKeyBind( context: Panel, keyName: string, callback: Function ): void;
+    RegisterKeyBind(context: Panel, keyName: string, callback: Function): void;
     /**
      * Call a function on each given item
      */
-    Each( ...args: any[] ): void;
+    Each(...args: any[]): void;
     /**
      * Call during JS startup code to check if script is being reloaded
      */
@@ -1525,11 +1682,11 @@ declare interface IPanorama {
     /**
      * Convert a string to HTML-safe
      */
-    HTMLEscape( text: string ): string;
+    HTMLEscape(text: string): string;
     /**
      * Create a logging channel
      */
-    LogChannel( ...args: any[] ): any;
+    LogChannel(...args: any[]): any;
 }
 
 declare interface Panel {
@@ -1559,79 +1716,79 @@ declare interface Panel {
     actualuiscale_y: number;
     actualuiscale_x: number;
     style: CSSProperties;
-    AddClass( name: string ): void;
-    RemoveClass( name: string ): void;
-    BHasClass( name: string ): boolean;
-    BAscendantHasClass( name: string ): boolean;
-    SetHasClass( name: string, enable: boolean ): void;
-    ToggleClass( name: string ): void;
-    SwitchClass( name1: string, name2: string ): void;
-    TriggerClass( name: string ): void;
-    ClearPanelEvent( name: string ): void;
-    SetDraggable( b?: boolean ): void;
+    AddClass(name: string): void;
+    RemoveClass(name: string): void;
+    BHasClass(name: string): boolean;
+    BAscendantHasClass(name: string): boolean;
+    SetHasClass(name: string, enable: boolean): void;
+    ToggleClass(name: string): void;
+    SwitchClass(name1: string, name2: string): void;
+    TriggerClass(name: string): void;
+    ClearPanelEvent(name: string): void;
+    SetDraggable(b?: boolean): void;
     IsDraggable(): boolean;
     GetChildCount(): number;
-    GetChild<T = Panel>( index: number ): T | undefined;
+    GetChild<T = Panel>(index: number): T | undefined;
     GetChildIndex(): number;
     Children(): Panel[];
-    FindChildrenWithClassTraverse<T = Panel>( className: string ): T[];
+    FindChildrenWithClassTraverse<T = Panel>(className: string): T[];
     GetParent(): Panel;
-    SetParent( panel: Panel ): void;
-    FindChild<T = Panel>( id: string ): T | undefined;
-    FindChildTraverse<T = Panel>( id: string ): T | undefined;
-    FindChildInLayoutFile<T = Panel>( f: string ): T | undefined;
-    FindPanelInLayoutFile<T = Panel>( f: string ): T | undefined;
+    SetParent(panel: Panel): void;
+    FindChild<T = Panel>(id: string): T | undefined;
+    FindChildTraverse<T = Panel>(id: string): T | undefined;
+    FindChildInLayoutFile<T = Panel>(f: string): T | undefined;
+    FindPanelInLayoutFile<T = Panel>(f: string): T | undefined;
     RemoveAndDeleteChildren(): void;
-    MoveChildBefore( source: Panel, target: Panel ): void;
-    MoveChildAfter( source: Panel, target: Panel ): void;
+    MoveChildBefore(source: Panel, target: Panel): void;
+    MoveChildAfter(source: Panel, target: Panel): void;
     GetPositionWithinWindow(): number[];
-    ApplyStyles( b: boolean ): void;
-    ClearPropertyFromCode( ...args: any[] ): void;
-    DeleteAsync( delay: number ): void;
+    ApplyStyles(b: boolean): void;
+    ClearPropertyFromCode(...args: any[]): void;
+    DeleteAsync(delay: number): void;
     BIsTransparent(): boolean;
     BAcceptsInput(): boolean;
     BAcceptsFocus(): boolean;
     SetFocus(): void;
     UpdateFocusInContext(): void;
     BHasHoverStyle(): boolean;
-    SetAcceptsFocus( b: boolean ): void;
-    SetDisableFocusOnMouseDown( b: boolean ): void;
+    SetAcceptsFocus(b: boolean): void;
+    SetDisableFocusOnMouseDown(b: boolean): void;
     BHasKeyFocus(): boolean;
-    SetScrollParentToFitWhenFocused( b: boolean ): void;
+    SetScrollParentToFitWhenFocused(b: boolean): void;
     BScrollParentToFitWhenFocused(): boolean;
     IsSelected(): boolean;
     BHasDescendantKeyFocus(): boolean;
-    BLoadLayout( filePath: string, reload: boolean, usingParentContext: boolean ): boolean;
-    BLoadLayoutFromString( content: string, reload: boolean, usingParentContext: boolean ): boolean;
-    LoadLayoutFromStringAsync( content: string, reload: boolean, usingParentContext: boolean ): void;
-    LoadLayoutAsync( filePath: string, reload: boolean, usingParentContext: boolean ): void;
-    BLoadLayoutSnippet( name: string ): void;
-    BHasLayoutSnippet( name: string ): boolean;
-    BCreateChildren( content: string ): boolean;
-    SetTopOfInputContext( b: boolean ): void;
-    SetDialogVariable( key: string, value: string ): void;
-    SetDialogVariableInt( key: string, value: number ): void;
-    SetDialogVariableTime( key: string, value: number ): void;
+    BLoadLayout(filePath: string, reload: boolean, usingParentContext: boolean): boolean;
+    BLoadLayoutFromString(content: string, reload: boolean, usingParentContext: boolean): boolean;
+    LoadLayoutFromStringAsync(content: string, reload: boolean, usingParentContext: boolean): void;
+    LoadLayoutAsync(filePath: string, reload: boolean, usingParentContext: boolean): void;
+    BLoadLayoutSnippet(name: string): void;
+    BHasLayoutSnippet(name: string): boolean;
+    BCreateChildren(content: string): boolean;
+    SetTopOfInputContext(b: boolean): void;
+    SetDialogVariable(key: string, value: string): void;
+    SetDialogVariableInt(key: string, value: number): void;
+    SetDialogVariableTime(key: string, value: number): void;
     ScrollToTop(): void;
     ScrollToBottom(): void;
     ScrollToLeftEdge(): void;
     ScrollToRightEdge(): void;
-    ScrollParentToMakePanelFit( unknownParam: any, b: boolean ): void;
+    ScrollParentToMakePanelFit(unknownParam: any, b: boolean): void;
     BCanSeeInParentScroll(): boolean;
-    GetAttributeInt( key: string, defaultValue: number ): number;
-    GetAttributeString( key: string, defaultValue: string ): string;
-    GetAttributeUInt32( key: string, defaultValue: number ): number;
-    SetAttributeInt( key: string, value: number ): void;
-    SetAttributeString( key: string, value: string ): void;
-    SetAttributeUInt32( key: string, value: number ): void;
-    SetInputNamespace( name: string ): void;
-    RegisterForReadyEvents( b: boolean ): void;
+    GetAttributeInt(key: string, defaultValue: number): number;
+    GetAttributeString(key: string, defaultValue: string): string;
+    GetAttributeUInt32(key: string, defaultValue: number): number;
+    SetAttributeInt(key: string, value: number): void;
+    SetAttributeString(key: string, value: string): void;
+    SetAttributeUInt32(key: string, value: number): void;
+    SetInputNamespace(name: string): void;
+    RegisterForReadyEvents(b: boolean): void;
     BReadyForDisplay(): boolean;
-    SetReadyForDisplay( b: boolean ): void;
-    SetPositionInPixels( x: number, y: number, z: number ): void;
+    SetReadyForDisplay(b: boolean): void;
+    SetPositionInPixels(x: number, y: number, z: number): void;
     Data(): any;
-    SetPanelEvent( eventName: PanelEvent, callback: Function): void;
-    RunScriptInPanelContext( ...args: any[] ): void;
+    SetPanelEvent(eventName: PanelEvent, callback: Function): void;
+    RunScriptInPanelContext(...args: any[]): void;
     rememberchildfocus: boolean;
     paneltype: string;
 }
@@ -1662,85 +1819,84 @@ declare interface TabButton extends Panel {
     actualuiscale_y: number;
     actualuiscale_x: number;
     style: CSSProperties;
-    AddClass( name: string ): void;
-    RemoveClass( name: string ): void;
-    BHasClass( name: string ): boolean;
-    BAscendantHasClass( name: string ): boolean;
-    SetHasClass( name: string, enable: boolean ): void;
-    ToggleClass( name: string ): void;
-    SwitchClass( name1: string, name2: string ): void;
-    TriggerClass( name: string ): void;
-    ClearPanelEvent( name: string ): void;
-    SetDraggable( b?: boolean ): void;
+    AddClass(name: string): void;
+    RemoveClass(name: string): void;
+    BHasClass(name: string): boolean;
+    BAscendantHasClass(name: string): boolean;
+    SetHasClass(name: string, enable: boolean): void;
+    ToggleClass(name: string): void;
+    SwitchClass(name1: string, name2: string): void;
+    TriggerClass(name: string): void;
+    ClearPanelEvent(name: string): void;
+    SetDraggable(b?: boolean): void;
     IsDraggable(): boolean;
     GetChildCount(): number;
-    GetChild<T = Panel>( index: number ): T | undefined;
+    GetChild<T = Panel>(index: number): T | undefined;
     GetChildIndex(): number;
     Children(): Panel[];
-    FindChildrenWithClassTraverse<T = Panel>( className: string ): T[];
+    FindChildrenWithClassTraverse<T = Panel>(className: string): T[];
     GetParent(): Panel;
-    SetParent( panel: Panel ): void;
-    FindChild<T = Panel>( id: string ): T | undefined;
-    FindChildTraverse<T = Panel>( id: string ): T | undefined;
-    FindChildInLayoutFile<T = Panel>( f: string ): T | undefined;
-    FindPanelInLayoutFile<T = Panel>( f: string ): T | undefined;
+    SetParent(panel: Panel): void;
+    FindChild<T = Panel>(id: string): T | undefined;
+    FindChildTraverse<T = Panel>(id: string): T | undefined;
+    FindChildInLayoutFile<T = Panel>(f: string): T | undefined;
+    FindPanelInLayoutFile<T = Panel>(f: string): T | undefined;
     RemoveAndDeleteChildren(): void;
-    MoveChildBefore( source: Panel, target: Panel ): void;
-    MoveChildAfter( source: Panel, target: Panel ): void;
+    MoveChildBefore(source: Panel, target: Panel): void;
+    MoveChildAfter(source: Panel, target: Panel): void;
     GetPositionWithinWindow(): number[];
-    ApplyStyles( b: boolean ): void;
-    ClearPropertyFromCode( ...args: any[] ): void;
-    DeleteAsync( delay: number ): void;
+    ApplyStyles(b: boolean): void;
+    ClearPropertyFromCode(...args: any[]): void;
+    DeleteAsync(delay: number): void;
     BIsTransparent(): boolean;
     BAcceptsInput(): boolean;
     BAcceptsFocus(): boolean;
     SetFocus(): void;
     UpdateFocusInContext(): void;
     BHasHoverStyle(): boolean;
-    SetAcceptsFocus( b: boolean ): void;
-    SetDisableFocusOnMouseDown( b: boolean ): void;
+    SetAcceptsFocus(b: boolean): void;
+    SetDisableFocusOnMouseDown(b: boolean): void;
     BHasKeyFocus(): boolean;
-    SetScrollParentToFitWhenFocused( b: boolean ): void;
+    SetScrollParentToFitWhenFocused(b: boolean): void;
     BScrollParentToFitWhenFocused(): boolean;
     IsSelected(): boolean;
     BHasDescendantKeyFocus(): boolean;
-    BLoadLayout( filePath: string, reload: boolean, usingParentContext: boolean ): boolean;
-    BLoadLayoutFromString( content: string, reload: boolean, usingParentContext: boolean ): boolean;
-    LoadLayoutFromStringAsync( content: string, reload: boolean, usingParentContext: boolean ): void;
-    LoadLayoutAsync( filePath: string, reload: boolean, usingParentContext: boolean ): void;
-    BLoadLayoutSnippet( name: string ): void;
-    BHasLayoutSnippet( name: string ): boolean;
-    BCreateChildren( content: string ): boolean;
-    SetTopOfInputContext( b: boolean ): void;
-    SetDialogVariable( key: string, value: string ): void;
-    SetDialogVariableInt( key: string, value: number ): void;
-    SetDialogVariableTime( key: string, value: number ): void;
+    BLoadLayout(filePath: string, reload: boolean, usingParentContext: boolean): boolean;
+    BLoadLayoutFromString(content: string, reload: boolean, usingParentContext: boolean): boolean;
+    LoadLayoutFromStringAsync(content: string, reload: boolean, usingParentContext: boolean): void;
+    LoadLayoutAsync(filePath: string, reload: boolean, usingParentContext: boolean): void;
+    BLoadLayoutSnippet(name: string): void;
+    BHasLayoutSnippet(name: string): boolean;
+    BCreateChildren(content: string): boolean;
+    SetTopOfInputContext(b: boolean): void;
+    SetDialogVariable(key: string, value: string): void;
+    SetDialogVariableInt(key: string, value: number): void;
+    SetDialogVariableTime(key: string, value: number): void;
     ScrollToTop(): void;
     ScrollToBottom(): void;
     ScrollToLeftEdge(): void;
     ScrollToRightEdge(): void;
-    ScrollParentToMakePanelFit( unknownParam: any, b: boolean ): void;
+    ScrollParentToMakePanelFit(unknownParam: any, b: boolean): void;
     BCanSeeInParentScroll(): boolean;
-    GetAttributeInt( key: string, defaultValue: number ): number;
-    GetAttributeString( key: string, defaultValue: string ): string;
-    GetAttributeUInt32( key: string, defaultValue: number ): number;
-    SetAttributeInt( key: string, value: number ): void;
-    SetAttributeString( key: string, value: string ): void;
-    SetAttributeUInt32( key: string, value: number ): void;
-    SetInputNamespace( name: string ): void;
-    RegisterForReadyEvents( b: boolean ): void;
+    GetAttributeInt(key: string, defaultValue: number): number;
+    GetAttributeString(key: string, defaultValue: string): string;
+    GetAttributeUInt32(key: string, defaultValue: number): number;
+    SetAttributeInt(key: string, value: number): void;
+    SetAttributeString(key: string, value: string): void;
+    SetAttributeUInt32(key: string, value: number): void;
+    SetInputNamespace(name: string): void;
+    RegisterForReadyEvents(b: boolean): void;
     BReadyForDisplay(): boolean;
-    SetReadyForDisplay( b: boolean ): void;
-    SetPositionInPixels( x: number, y: number, z: number ): void;
+    SetReadyForDisplay(b: boolean): void;
+    SetPositionInPixels(x: number, y: number, z: number): void;
     Data(): any;
-    SetPanelEvent( eventName: string, callback: Function): void;
-    RunScriptInPanelContext( ...args: any[] ): void;
+    SetPanelEvent(eventName: string, callback: Function): void;
+    RunScriptInPanelContext(...args: any[]): void;
     rememberchildfocus: boolean;
     paneltype: string;
 }
 
-declare interface Button extends Panel {
-}
+declare interface Button extends Panel {}
 
 declare interface Label extends Panel {
     text: string;
@@ -1756,18 +1912,18 @@ declare interface RadioButton extends Panel {
 }
 
 declare interface ToggleButton extends Panel {
-    SetSelected( b: boolean ): void;
+    SetSelected(b: boolean): void;
     text: string;
 }
 
 declare interface DropDown extends Panel {
-    AddOption( id: string, text: string ): void;
-    HasOption( id: string ): boolean;
-    RemoveOption( id: string ): void;
+    AddOption(id: string, text: string): void;
+    HasOption(id: string): boolean;
+    RemoveOption(id: string): void;
     RemoveAllOptions(): void;
     GetSelected(): string;
-    SetSelected( id: string ): void;
-    FindDropDownMenuChild( id: string ): Panel;
+    SetSelected(id: string): void;
+    FindDropDownMenuChild(id: string): Panel;
     AccessDropDownMenu(): void;
 }
 
@@ -1779,13 +1935,13 @@ declare interface ProgressBar extends Panel {
 
 declare interface TextEntry extends Panel {
     text: string;
-    SetMaxChars( count: number ): void;
+    SetMaxChars(count: number): void;
     GetMaxCharCount(): number;
     GetCursorOffset(): number;
-    SetCursorOffset( offset: number ): void;
+    SetCursorOffset(offset: number): void;
     ClearSelection(): void;
     SelectAll(): void;
-    RaiseChangeEvents( b: boolean ): void;
+    RaiseChangeEvents(b: boolean): void;
 }
 
 declare const SlottedSlider: ISlottedSlider;
@@ -1798,11 +1954,11 @@ declare interface ISlottedSlider {
     increment: number;
     default: number;
     mousedown: boolean;
-    SetDirection( str: 'horizontal' | 'vertical' ): void;
-    SetShowDefaultValue( b: boolean ): void;
-    SetRequiresSelection( b: boolean ): void;
-    SetValueNoEvents( v: number ): void;
-    SetPanelEvent( event: string, callback: Function ): void;
+    SetDirection(str: 'horizontal' | 'vertical'): void;
+    SetShowDefaultValue(b: boolean): void;
+    SetRequiresSelection(b: boolean): void;
+    SetValueNoEvents(v: number): void;
+    SetPanelEvent(event: string, callback: Function): void;
     RunScriptInPanelContext(): void;
 }
 
@@ -1816,11 +1972,11 @@ declare interface ISlider {
     increment: number;
     default: number;
     mousedown: boolean;
-    SetDirection( str: 'horizontal' | 'vertical' ): void;
-    SetShowDefaultValue( b: boolean ): void;
-    SetRequiresSelection( b: boolean ): void;
-    SetValueNoEvents( v: number ): void;
-    SetPanelEvent( event: string, callback: Function ): void;
+    SetDirection(str: 'horizontal' | 'vertical'): void;
+    SetShowDefaultValue(b: boolean): void;
+    SetRequiresSelection(b: boolean): void;
+    SetValueNoEvents(v: number): void;
+    SetPanelEvent(event: string, callback: Function): void;
     RunScriptInPanelContext(): void;
 }
 
@@ -1832,32 +1988,32 @@ declare interface NumberEntry extends Panel {
 }
 
 declare interface Image extends Panel {
-    SetImage( path: string ): void;
-    SetScaling( v: string ): void;
+    SetImage(path: string): void;
+    SetScaling(v: string): void;
 }
 
 declare interface Carousel extends Panel {
-    SetSelectedChild( ...args: any[] ): void;
+    SetSelectedChild(...args: any[]): void;
     GetFocusChild(): Panel;
     GetFocusIndex(): number;
 }
 
 declare interface Movie extends Panel {
-    SetMovie( path: string ): void;
-    SetControls( v: string ): void;
-    SetTitle( v: string ): void;
+    SetMovie(path: string): void;
+    SetControls(v: string): void;
+    SetTitle(v: string): void;
     Play(): void;
     Pause(): void;
     Stop(): void;
-    SetRepeat( bEnable: boolean ): void;
-    SetPlaybackVolume( v: number ): void;
+    SetRepeat(bEnable: boolean): void;
+    SetPlaybackVolume(v: number): void;
     BAdjustingVolume(): boolean;
 }
 
 declare interface DOTAAvatarImage extends Image {
     steamid: string;
     accountid: number;
-    SetAccountID( id: number ): void;
+    SetAccountID(id: number): void;
 }
 
 declare interface DOTAAbilityImage extends Image {
@@ -1888,11 +2044,11 @@ declare interface DOTAUserName extends Panel {
 }
 
 declare interface DOTAScenePanel extends Panel {
-    FireEntityInput( entityName: string, event: string, param: string ): void;
-    PlayEntitySoundEvent( entityName: string, sound: string ): void;
-    SetUnit( sUnitName: string, sEnvironmentName: string, bShowPortraitBackground: boolean ): void;
+    FireEntityInput(entityName: string, event: string, param: string): void;
+    PlayEntitySoundEvent(entityName: string, sound: string): void;
+    SetUnit(sUnitName: string, sEnvironmentName: string, bShowPortraitBackground: boolean): void;
     GetPanoramaSurfacePanel(): Panel;
-    SetRotateParams( pitch: number, yaw: number, roll: number, unknow: number ): void;
+    SetRotateParams(pitch: number, yaw: number, roll: number, unknow: number): void;
 }
 
 declare interface DOTAAbilityPanel extends Panel {
@@ -1901,7 +2057,7 @@ declare interface DOTAAbilityPanel extends Panel {
 }
 
 declare interface DOTAHTMLPanel extends Panel {
-    SetURL( url: string ): void;
+    SetURL(url: string): void;
 }
 
 declare interface DOTAHUDOverlayMap extends Panel {
@@ -1912,8 +2068,8 @@ declare interface DOTAHUDOverlayMap extends Panel {
     maptexture: string;
     mapscale: number;
     fixedoffsetenabled: boolean;
-    SetFixedOffset( x: number, y: number ): void;
-    SetFixedBackgroundTexturePosition( size: number, x: number, y: number ): boolean;
+    SetFixedOffset(x: number, y: number): void;
+    SetFixedBackgroundTexturePosition(size: number, x: number, y: number): boolean;
 }
 
 declare enum SteamUGCQuery {
@@ -3213,4 +3369,3 @@ declare enum DOTA_SHOP_TYPE {
     DOTA_SHOP_NEUTRALS = 7,
     DOTA_SHOP_NONE = 8,
 }
-

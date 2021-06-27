@@ -9,7 +9,7 @@ export class API {
 
     constructor(
         private readonly context: vscode.ExtensionContext,
-        private readonly pathName: string,
+        private readonly pathName: string
     ) {
         // @ts-ignore
         this.webviewPanel = null;
@@ -17,10 +17,7 @@ export class API {
     }
 
     public register() {
-        return vscode.commands.registerCommand(
-            this.viewType,
-            this.start.bind(this),
-        );
+        return vscode.commands.registerCommand(this.viewType, this.start.bind(this));
     }
 
     private start(): void {
@@ -31,7 +28,8 @@ export class API {
             {
                 enableScripts: true,
                 retainContextWhenHidden: true,
-            });
+            }
+        );
         this.renderHTML();
     }
 
@@ -63,7 +61,7 @@ export class API {
                 <script>
                     window.apiUri = "${apiUri}";
                     window.localeData = ${loadLocaleJSON(this.pathName)};
-                    window.usingJavascriptStyle = ${this.pathName==='js'};
+                    window.usingJavascriptStyle = ${this.pathName === 'js'};
                 </script>
                 <script src="${jsUri}"></script>
             </body>
