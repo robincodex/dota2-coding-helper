@@ -111,6 +111,7 @@
         "highlight.js": "^11.0.1",
         "image-data-uri": "^2.0.1",
         "mocha": "^9.0.1",
+        "prettier": "^2.3.2",
         "request": "^2.88.2",
         "request-promise": "^4.2.5",
         "showdown": "^1.9.1",
@@ -118,6 +119,6 @@
         "vscode-test": "^1.5.2"
     },
     "dependencies": {
-        "easy-keyvalues": "^1.0.4"
+        "easy-keyvalues": "^1.0.6"
     }
 }
