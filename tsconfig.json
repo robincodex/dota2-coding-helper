@@ -3,12 +3,12 @@
         "module": "commonjs",
         "target": "es6",
         "outDir": "out",
-        "lib": ["es6", "DOM"],
+        "lib": ["ES2017", "DOM"],
         "esModuleInterop": true,
         "sourceMap": false,
         "rootDir": "src",
         "experimentalDecorators": true,
-        "strict": true /* enable all strict type-checking options */
+        "strict": true
         /* Additional Checks */
         // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
         // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */

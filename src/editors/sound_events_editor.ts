@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import * as vscode from 'vscode';
 import { KeyValues3 } from 'easy-keyvalues';
 import {
@@ -57,11 +57,11 @@ export class SoundEventsDocument extends KeyValues3Document {
     private newSoundEvent(soundIndex: number, newEvent: string): void {
         this._kvRoot.CreateObjectValue(
             newEvent,
-            new KeyValues3.Object([
-                new KeyValues3('type', new KeyValues3.String('dota_update_default')),
-                new KeyValues3('vsnd_files', new KeyValues3.Array()),
-                new KeyValues3('volume', new KeyValues3.String('1.0000')),
-                new KeyValues3('pitch', new KeyValues3.String('1.0000')),
+            KeyValues3.Object([
+                new KeyValues3('type', KeyValues3.String('dota_update_default')),
+                new KeyValues3('vsnd_files', KeyValues3.Array()),
+                new KeyValues3('volume', KeyValues3.String('1.0000')),
+                new KeyValues3('pitch', KeyValues3.String('1.0000')),
             ])
         );
     }
@@ -198,7 +198,7 @@ export class SoundEventsDocument extends KeyValues3Document {
             const vsnd_files = kv.FindKey('vsnd_files');
             if (vsnd_files) {
                 const items = vsnd_files.GetArray();
-                items.Insert(itemIndex, ...files.map((v) => new KeyValues3.String(v)));
+                items.Insert(itemIndex, ...files.map((v) => KeyValues3.String(v)));
             }
         }
     }
@@ -226,7 +226,7 @@ export class SoundEventsDocument extends KeyValues3Document {
     private changeSoundKeyValue(soundIndex: number, key: string, value: string) {
         const kv = this._kvRoot.GetObject().Get(soundIndex);
         if (kv) {
-            kv.GetObject().Create(key, new KeyValues3.String(value));
+            kv.GetObject().Create(key, KeyValues3.String(value));
         }
     }
 

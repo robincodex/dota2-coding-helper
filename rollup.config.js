@@ -10,15 +10,20 @@ const isProd = process.env.NODE_ENV === 'production';
 const extensions = ['.js', '.ts', '.tsx'];
 
 export default {
-    input: ['src/Demo.tsx', 'src/SoundEventsEditor.tsx', 'src/CustomGameSettings.tsx'],
+    input: [
+        'media-src/Demo.tsx',
+        'media-src/SoundEventsEditor.tsx',
+        'media-src/CustomGameSettings.tsx',
+    ],
     output: {
-        dir: '../media/bundle',
+        dir: 'media/bundle',
         format: 'es',
         sourcemap: isProd ? false : 'inline',
     },
     plugins: [
         replace({
             'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
+            preventAssignment: true,
         }),
         nodeResolve({
             extensions,

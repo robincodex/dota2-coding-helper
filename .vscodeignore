@@ -16,3 +16,5 @@ generate_ts.js
 gulpfile.js
 media/javascript_api.json
 media-src
+rollup.config.js
+yarn.lock
