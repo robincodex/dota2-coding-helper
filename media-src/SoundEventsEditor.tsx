@@ -12,7 +12,7 @@ import commonText from './common_i18n';
 import { EditableText } from './Components/EditableText';
 import { CellInput } from './Components/CellInput';
 import { renderPositiveNumericState, TextInput } from './Components/TextInput';
-import type { ISoundEventData } from '../../src/editors/sound_events_editor';
+import type { ISoundEventData } from '../src/editors/sound_events_editor';
 import { InputState } from './Components/utils';
 import { ShowInputDialog, ShowModalDialog, ShowTextareaDialog } from './Components/ModalDialog';
 import { Button, ButtonGroup } from './Components/Button';

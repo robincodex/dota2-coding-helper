@@ -24,7 +24,7 @@
         "onCustomEditor:dota2CodingHelper.editSoundEvents",
         "onCustomEditor:dota2CodingHelper.editCustomGameSettings"
     ],
-    "main": "./out/extension.js",
+    "main": "./out/main.js",
     "contributes": {
         "commands": [
             {
@@ -83,15 +83,13 @@
     },
     "scripts": {
         "vscode:prepublish": "npm run compile & npm run docs",
-        "compile": "tsc -p ./",
-        "lint": "eslint src --ext ts",
-        "watch": "tsc -watch -p ./",
-        "pretest": "npm run compile && npm run lint",
-        "test": "node ./out/test/runTest.js",
+        "compile": "esbuild ./src/extension.ts --tsconfig=./src/tsconfig.json --outfile=./out/main.js --bundle --format=cjs --platform=node --target=node14.16 --external:vscode",
+        "watch": "npm run compile -- --watch --sourcemap",
+        "pretest": "npm run compile",
         "task": "gulp",
         "docs": "gulp docs",
-        "media": "rollup -c -w",
-        "media-build": "rimraf ../media/bundle && cross-env NODE_ENV=production rollup -c",
+        "dev": "rollup -c -w",
+        "build": "rimraf ../media/bundle && cross-env NODE_ENV=production rollup -c",
         "lint:prettier": "prettier --check .",
         "write-prettier": "prettier --write ."
     },
@@ -129,7 +127,9 @@
         "babel-plugin-react-require": "^3.1.3",
         "cheerio": "^1.0.0-rc.10",
         "cross-env": "^7.0.3",
+        "easy-keyvalues": "^1.0.8",
         "es-react": "^16.13.1",
+        "esbuild": "^0.14.2",
         "eslint": "^8.4.1",
         "fuse.js": "^6.4.6",
         "glob": "^7.2.0",
@@ -157,7 +157,5 @@
         "typescript": "^4.5.2",
         "vscode-test": "^1.6.1"
     },
-    "dependencies": {
-        "easy-keyvalues": "^1.0.8"
-    }
+    "dependencies": {}
 }

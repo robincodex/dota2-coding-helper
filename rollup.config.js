@@ -40,7 +40,7 @@ export default {
                 [
                     '@babel/preset-env',
                     {
-                        targets: { chrome: '83' },
+                        targets: { chrome: '91' },
                     },
                 ],
                 '@babel/preset-react',
@@ -72,7 +72,7 @@ export default {
             ],
         }),
         scss({
-            output: '../media/bundle/style.css',
+            output: './media/bundle/style.css',
         }),
         isProd && terser(),
     ],
