@@ -96,7 +96,7 @@ export function ListView<T>({
 
     // Normal
     return (
-        <ListViewRoot {...props} ref={root} tabIndex={0} onKeyDown={onKeyDownHandle}>
+        <ListViewRoot {...props} ref={root} onKeyDown={onKeyDownHandle}>
             <ListViewTitle
                 className={cx({
                     small: smallTitle === true,
@@ -128,6 +128,7 @@ export function ListView<T>({
                     return (
                         <ListViewItem
                             key={i}
+                            tabIndex={0}
                             className={isSelected ? 'selected' : ''}
                             onClick={onItemClick(v)}
                             onContextMenu={onItemContextMenu(v)}
@@ -371,7 +372,7 @@ const ListViewItem = styled.div`
 
     &.selected {
         color: var(--vscode-list-focusForeground);
-        background: var(--vscode-list-focusBackground);
+        background: var(--vscode-list-activeSelectionBackground);
     }
 `;
 
@@ -405,13 +406,6 @@ const ListViewRoot = styled.div`
     /* background: var(--vscode-editorWidget-background); */
     outline: none;
     overflow: hidden;
-
-    &:not(:focus) {
-        ${ListViewItem}.selected {
-            color: var(--vscode-list-hoverForeground);
-            background: var(--vscode-list-hoverBackground);
-        }
-    }
 
     &:focus {
         border: 1px solid var(--vscode-inputValidation-infoBorder);

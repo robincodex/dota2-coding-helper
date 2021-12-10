@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { KeyValues3 } from 'easy-keyvalues';
 import { Disposable } from './dispose';
+import { IKV3Value } from 'easy-keyvalues/KeyValues3';
 
 /**
  * 用于表示类
@@ -59,9 +60,6 @@ export class KeyValues3Document extends Disposable implements vscode.CustomDocum
         return this._kvRoot;
     }
 
-    protected _edits: Array<KeyValues3> = [];
-    protected _savedEdits: Array<KeyValues3> = [];
-
     protected constructor(uri: vscode.Uri, initialKV: KeyValues3) {
         super();
         this._uri = uri;
@@ -76,14 +74,32 @@ export class KeyValues3Document extends Disposable implements vscode.CustomDocum
 
     protected readonly _onDidChangeDocument = this._register(
         new vscode.EventEmitter<{
-            readonly content?: Uint8Array;
-            readonly edits: readonly KeyValues3[];
+            readonly root: KeyValues3;
         }>()
     );
     /**
      * Fired to notify webviews that the document has changed.
      */
     public readonly onDidChangeContent = this._onDidChangeDocument.event;
+
+    public fireDidChangeContent() {
+        this._onDidChangeDocument.fire({ root: this._kvRoot });
+    }
+
+    protected changeContent(data: { label: string; undo: () => void; redo: () => void }) {
+        data.redo();
+        this._onDidChange.fire({
+            label: data.label,
+            undo: () => {
+                data.undo();
+                this.fireDidChangeContent();
+            },
+            redo: () => {
+                data.redo();
+                this.fireDidChangeContent();
+            },
+        });
+    }
 
     protected readonly _onDidChange = this._register(
         new vscode.EventEmitter<{
@@ -100,11 +116,40 @@ export class KeyValues3Document extends Disposable implements vscode.CustomDocum
     public readonly onDidChange = this._onDidChange.event;
 
     /**
+     * 编辑KV的值
+     */
+    public editChangeValue(target: KeyValues3, key: string, value: IKV3Value) {
+        const oldKV = target.GetObject().FindKey(key);
+        if (oldKV) {
+            const oldValue = oldKV.GetValue();
+            this.changeContent({
+                label: 'editChangeValue',
+                undo: () => {
+                    oldKV.SetValue(oldValue);
+                },
+                redo: () => {
+                    oldKV.SetValue(value);
+                },
+            });
+        } else {
+            const newKV = target.GetObject().Create(key, value);
+            this.changeContent({
+                label: 'editChangeValue',
+                undo: () => {
+                    target.GetObject().Delete(newKV);
+                },
+                redo: () => {
+                    target.GetObject().Append(newKV);
+                },
+            });
+        }
+    }
+
+    /**
      * Called by VS Code when the user saves the document.
      */
     async save(cancellation: vscode.CancellationToken): Promise<void> {
         await this.saveAs(this.uri, cancellation);
-        this._savedEdits = Array.from(this._edits);
     }
 
     /**
@@ -127,11 +172,9 @@ export class KeyValues3Document extends Disposable implements vscode.CustomDocum
     async revert(_cancellation: vscode.CancellationToken): Promise<void> {
         const kv3 = await KeyValues3Document.readFile(this.uri);
         this._kvRoot = kv3;
-        this._edits = this._savedEdits;
-        // this._onDidChangeDocument.fire({
-        //     content: diskContent,
-        //     edits: this._edits,
-        // });
+        this._onDidChangeDocument.fire({
+            root: kv3,
+        });
     }
 
     /**

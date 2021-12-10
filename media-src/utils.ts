@@ -38,6 +38,16 @@ export async function request<T>(label: string, ...args: any[]) {
     });
 }
 
+let layoutReady = false;
+
+export function sendLayoutReady() {
+    if (layoutReady) {
+        return;
+    }
+    layoutReady = true;
+    vscode.postMessage({ label: 'layout-ready' });
+}
+
 export function onRequestResponse(data: any) {
     if (typeof data.requestId === 'number') {
         let resolve = requestMap.get(data.requestId);

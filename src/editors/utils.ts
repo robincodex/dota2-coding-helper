@@ -40,6 +40,10 @@ export class RequestHelper {
             }
         }
     }
+
+    public bind(cb: Function) {
+        this._requestMap.set(cb.name.replace('bound ', ''), cb);
+    }
 }
 
 export function writeDocument(document: vscode.TextDocument, text: string) {
@@ -79,15 +83,4 @@ export function cloneObject(src: any): any {
         }
     }
     return obj;
-}
-
-/**
- * Register class methods for vscode post message.
- */
-export function PostMethod() {
-    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-        if (typeof descriptor.value !== 'function') {
-            throw Error(`PostMethod: Not function ${target.name}:${propertyKey}`);
-        }
-    };
 }

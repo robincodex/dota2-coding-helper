@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { EditableText } from './Components/EditableText';
 import { renderNumericState, TextInput } from './Components/TextInput';
 import { editorCache, onRequestResponse, request, useWindowEvent } from './utils';
-import type { GameAPI, GameAPIChangeEvent } from '../../src/editors/custom_game_settings';
+import type { GameAPI, GameAPIChangeEvent } from '../src/editors/custom_game_settings';
 import { Drawer } from './Components/Drawer';
 import commonText from './common_i18n';
 import { Chinese, English, Localization } from './Components/Localization';
@@ -622,9 +622,10 @@ const DescriptionLocalize: Record<string, { 'zh-cn': string }> = {
     'Control if the normal DOTA hero respawn rules apply.': {
         'zh-cn': '设置英雄是否可以重生',
     },
-    'Sets whether the multikill, streak, and first-blood banners appear at the top of the screen.': {
-        'zh-cn': '设置是否在触发第一滴血，多杀，连续击杀的时候在界面顶部显示消息',
-    },
+    'Sets whether the multikill, streak, and first-blood banners appear at the top of the screen.':
+        {
+            'zh-cn': '设置是否在触发第一滴血，多杀，连续击杀的时候在界面顶部显示消息',
+        },
     'When true, players can repeatedly pick the same hero.': {
         'zh-cn': '设置是否可以选择相同英雄',
     },
@@ -703,30 +704,34 @@ const DescriptionLocalize: Record<string, { 'zh-cn': string }> = {
     'Turn the panel for showing recommended items at the shop off/on.': {
         'zh-cn': '禁用推荐出装',
     },
-    'Make it so illusions are immediately removed upon death, rather than sticking around for a few seconds.': {
-        'zh-cn': '启用后幻象死亡将立即移除，而不是等待几秒后移除',
-    },
+    'Make it so illusions are immediately removed upon death, rather than sticking around for a few seconds.':
+        {
+            'zh-cn': '启用后幻象死亡将立即移除，而不是等待几秒后移除',
+        },
     'Enable/disable gold penalty for late picking.': {
         'zh-cn': '启用或关闭随机英雄的金币惩罚',
     },
     'Allow items to be sent to the stash.': {
         'zh-cn': '允许将物品放到储藏处',
     },
-    'Turn purchasing items to the stash off/on. If purchasing to the stash is off the player must be at a shop to purchase items.': {
-        'zh-cn': '开启/关闭购买物品的储藏处, 如果关闭了购买，玩家必须在商店购买物品',
-    },
+    'Turn purchasing items to the stash off/on. If purchasing to the stash is off the player must be at a shop to purchase items.':
+        {
+            'zh-cn': '开启/关闭购买物品的储藏处, 如果关闭了购买，玩家必须在商店购买物品',
+        },
     'Hide the sticky item in the quickbuy.': {
         'zh-cn': '在快速购买中隐藏合成配方物品',
     },
     'Enables/Disables tower backdoor protection.': {
         'zh-cn': '启用/禁用建筑的保护',
     },
-    'Enable or disable unseen fog of war. When enabled parts of the map the player has never seen will be completely hidden by fog of war.': {
-        'zh-cn': '启用或禁用黑色迷雾，玩家未探索的区域将是完全黑色的',
-    },
-    'If set to true, use current rune spawn rules. Either setting respects custom spawn intervals.': {
-        'zh-cn': '如果设置未true，使用DOTA2默认刷新神符的逻辑',
-    },
+    'Enable or disable unseen fog of war. When enabled parts of the map the player has never seen will be completely hidden by fog of war.':
+        {
+            'zh-cn': '启用或禁用黑色迷雾，玩家未探索的区域将是完全黑色的',
+        },
+    'If set to true, use current rune spawn rules. Either setting respects custom spawn intervals.':
+        {
+            'zh-cn': '如果设置未true，使用DOTA2默认刷新神符的逻辑',
+        },
     'Set if weather effects are disabled.': {
         'zh-cn': '禁用天气效果',
     },
@@ -924,7 +929,8 @@ function SettingValueNumber(props: SettingProps) {
     );
 }
 
-const lang = document.documentElement.lang.toLowerCase() as keyof typeof DescriptionLocalize[string];
+const lang =
+    document.documentElement.lang.toLowerCase() as keyof typeof DescriptionLocalize[string];
 
 function getLocalize(text: string) {
     const data = DescriptionLocalize[text];

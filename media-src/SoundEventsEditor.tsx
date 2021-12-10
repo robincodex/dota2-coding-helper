@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './SoundEventsEditor.scss';
-import { editorCache, onRequestResponse, request, useWindowEvent } from './utils';
+import { editorCache, onRequestResponse, request, sendLayoutReady, useWindowEvent } from './utils';
 import * as Icons from 'react-bootstrap-icons';
 import styled from '@emotion/styled';
 import { ListView, ListViewMethods } from './Components/ListView';
@@ -91,7 +91,7 @@ const keysSuggestion: { [key: string]: string[] } = {
 function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEventData }) {
     // Delte Sound Files
     function deleteSoundFiles(indexes: number[]) {
-        request('remove-sound-files', index, indexes);
+        request('removeSoundFiles', index, indexes);
     }
     // Add a sound file
     function addSoundFile(indexes: number[]) {
@@ -103,7 +103,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
             ok: (text) => {
                 const list = text.split('\n').map((v) => v.trim());
                 request(
-                    'add-sound-files',
+                    'addSoundFiles',
                     index,
                     indexes.sort().pop() || soundData.vsnd_files.length,
                     list
@@ -123,11 +123,11 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
     }
     // Copy Sound Files
     function copySoundFiles(indexes: number[]) {
-        request('copy-sound-files', index, indexes);
+        request('copySoundFiles', index, indexes);
     }
     // Paste Sound Files
     function pasteSoundFiles(indexes: number[]) {
-        request('paste-sound-files', index, indexes);
+        request('pasteSoundFiles', index, indexes);
     }
 
     return (
@@ -141,7 +141,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                         borderBottom: '1px solid var(--vscode-panel-border)',
                     }}
                     onComplete={(text) => {
-                        request('change-event-name', index, text);
+                        request('changeSoundEventName', index, text);
                     }}
                 />
             </div>
@@ -157,7 +157,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                     searchTexts={keysSuggestion['type']}
                     defaultValue={soundData.type}
                     onComplete={(text) => {
-                        request('change-sound-key', index, 'type', text);
+                        request('changeSoundKeyValue', index, 'type', text);
                     }}
                 />
                 <TextInput
@@ -166,7 +166,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                     labelStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     defaultValue={soundData.volume}
                     onComplete={(text) => {
-                        request('change-sound-key', index, 'volume', text);
+                        request('changeSoundKeyValue', index, 'volume', text);
                     }}
                 />
                 <TextInput
@@ -175,7 +175,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                     labelStyle={{ color: 'var(--vscode-terminal-ansiBrightMagenta)' }}
                     defaultValue={soundData.pitch}
                     onComplete={(text) => {
-                        request('change-sound-key', index, 'pitch', text);
+                        request('changeSoundKeyValue', index, 'pitch', text);
                     }}
                 />
             </div>
@@ -221,7 +221,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                                         return InputState.Normal;
                                     }}
                                     onComplete={(text) => {
-                                        request('change-sound-file', index, i, text);
+                                        request('changeSoundFile', index, i, text);
                                     }}
                                 />
                             ),
@@ -304,7 +304,7 @@ function SoundEvent({ soundData, index }: { index: number; soundData: ISoundEven
                         const result = await request<{
                             startIndex: number;
                             length: number;
-                        }>('move-sound-files', index, keys, target, isTop);
+                        }>('moveSoundFiles', index, keys, target, isTop);
                         if (result) {
                             let list: number[] = [];
                             for (let i = 0; i < result.length; i++) {
@@ -379,6 +379,7 @@ const SoundCard = styled.div`
 function SoundEventsEditor() {
     let [soundEvents, setSoundEvents] = useState<ISoundEventData[]>([]);
     let [editableItems, setEditableItems] = useState<number[]>([]);
+    let ready = useRef();
 
     useWindowEvent('message', (evt) => {
         if (evt.data.label === 'update') {
@@ -388,6 +389,8 @@ function SoundEventsEditor() {
         }
     });
 
+    useLayoutEffect(sendLayoutReady, [ready]);
+
     // Copy Sound Event Name
     function copySoundNames(keys: number[]) {
         const events = keys.map((k) => String(soundEvents[k]['event']).replace(/\"/g, ''));
@@ -396,26 +399,26 @@ function SoundEventsEditor() {
 
     // Copy Sound Events
     function copySoundEvents(indexes: number[]) {
-        request('copy-sound-events', indexes);
+        request('copySoundEvents', indexes);
     }
     // Paste Sound Events
     async function pasteSoundEvents(indexes: number[], methods: ListViewMethods<number>) {
         const list = await request<number[]>(
-            'paste-sound-events',
-            indexes.sort().pop() || soundEvents.length
+            'pasteSoundEvents',
+            indexes.sort().pop() ?? soundEvents.length
         );
         methods.select(list);
     }
     // Delte Sound Events
     function deleteSoundEvents(indexes: number[]) {
-        request('remove-events', indexes);
+        request('removeSoundEvents', indexes);
     }
     // Add a sound event
     function addSoundEvent(indexes: number[]) {
         ShowInputDialog({
             title: localText.add_sound_event,
             ok: (text) => {
-                request('add-event', indexes.sort().pop() || soundEvents.length, text);
+                request('newSoundEvent', indexes.sort().pop() || soundEvents.length, text);
             },
             renderValue(text) {
                 return text.trim().replace(/\"/g, '');
@@ -423,7 +426,7 @@ function SoundEventsEditor() {
         });
     }
     async function duplicateSoundEvents(indexes: number[], methods: ListViewMethods<number>) {
-        const result = await request<number[]>('duplicate-sound-events', indexes);
+        const result = await request<number[]>('duplicateSoundEvents', indexes);
         if (result) {
             methods.select(result);
         }
@@ -431,7 +434,11 @@ function SoundEventsEditor() {
 
     return (
         <CacheProvider value={editorCache}>
-            <EditorView>
+            <EditorView
+                onContextMenu={(event) => {
+                    event.stopPropagation();
+                }}
+            >
                 <ListView
                     title={localText.title}
                     titleMenu={(offset) => {
@@ -487,7 +494,7 @@ function SoundEventsEditor() {
                         }
                     }}
                     onContextMenu={async (event, keys, methods) => {
-                        const canPaste = await request<boolean>('can-paste-sound-events');
+                        const canPaste = await request<boolean>('canPasteSoundEvents');
                         ShowContextMenu({
                             menu: [
                                 {
@@ -571,7 +578,7 @@ function SoundEventsEditor() {
                         const result = await request<{
                             startIndex: number;
                             length: number;
-                        }>('move-sound-events', keys, target, isTop);
+                        }>('moveSoundEvents', keys, target, isTop);
                         if (result) {
                             let list: number[] = [];
                             for (let i = 0; i < result.length; i++) {
