@@ -365,6 +365,10 @@ const ListViewItem = styled.div`
     cursor: pointer;
     position: relative;
 
+    &:focus {
+        outline: 1px solid var(--vscode-focusBorder);
+    }
+
     &:hover {
         color: var(--vscode-list-hoverForeground);
         background: var(--vscode-list-hoverBackground);
